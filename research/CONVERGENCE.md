@@ -3,38 +3,41 @@
 ## Decision
 Select HYBRID: a small stable execution kernel in the injected prompt plus GitHub-owned dynamic project/program state.
 
+After final validation, add one further invariant:
+**dynamic GitHub state must itself have a single runtime authority.**
+
 ## Evidence table
 
 | Criterion | PROMPT_HEAVY | HYBRID | POINTER_ONLY |
 |---|---|---|---|
-| Clean-path bootstrap reads | Best: observed 0 before result | Observed 4 in baseline | Observed 4 in clean baseline |
-| Dynamic mutation | Requires deployed prompt mutation when embedded generation/marker changes | GitHub-only mutation demonstrated | GitHub-only churn demonstrated; 0 prompt mutations |
-| Dynamic split-brain risk | Highest because dynamic values are duplicated/deployed | Low when dynamic values remain GitHub-only | Low for dynamic values |
-| Missing GitHub entrypoint | Can retain embedded work state, but risks staleness | Stable kernel can carry canonical recovery references/fail-safe | Fail-safe but cannot reconstruct project state from loss of sole pointer |
-| Stale deployed prompt | Embedded dynamic values can stale | Stable kernel changes rarely; dynamic values reload from GitHub | Dynamic freshness good; pointer/schema drift remains single-entrypoint weakness |
-| Scheduler accepted/live vs later wake | Same physical limitation without independent observer | Same physical limitation | Same physical limitation |
+| Clean-path bootstrap reads | Best: observed 0 before result | Observed bounded reads in baseline | Similar clean baseline |
+| Dynamic mutation | Requires deployed prompt mutation when embedded values change | GitHub-only mutation demonstrated | GitHub-only churn demonstrated |
+| Dynamic split-brain risk | Highest because dynamic values are duplicated/deployed | Lowest when dynamic state is GitHub-only **and singularly owned** | Low for dynamic values but pointer is fragile |
+| Missing GitHub entrypoint | Embedded work may remain but can stale | Stable kernel carries recovery references/fail-safe | Fail-safe but cannot reconstruct project state from loss of sole pointer |
+| Stale deployed prompt | Embedded dynamic values can stale | Stable kernel changes rarely; dynamic values reload from GitHub | Pointer/schema drift remains single-entrypoint weakness |
+| Finalization | Can require prompt mutation | One authoritative GitHub program transition | One GitHub transition but weaker recovery path |
 
-## Boundary
+## Final authority boundary
 Prompt owns only stable execution concerns:
 - role/identity and repository/write scope;
-- authority/delegation contract: GitHub owns dynamic project/program state;
-- canonical bootstrap/recovery references sufficient to avoid a single fragile pointer;
-- scheduler survival: same automation, recurring RRULE, exact schedule, enabled, no stale DTSTART;
-- fail-safe behavior when required state cannot be validated;
+- authority/delegation contract;
+- canonical recovery references;
+- scheduler survival invariants;
+- fail-safe behavior;
 - work-session discipline and minimum report contract.
 
-GitHub owns:
-- Goal and Master Plan;
-- current stage and next step;
-- changing experiment/project state;
-- workload definitions, evidence, gates, backlog, and final deliverables.
+GitHub owns dynamic state, but not through multiple equal files:
+- `status/program.json` owns stage, next step and active execution pointer;
+- `control/active.json` is static bootstrap indirection;
+- `spec/execution.json` is valid only when selected by `program.active_execution`;
+- historical status belongs in evidence/archive.
 
-## Remove / reject
-- Reject PROMPT_HEAVY embedding of generation, marker, current stage, next action, or other frequently changing project state.
-- Reject pure POINTER_ONLY as final architecture because loss/drift of its sole entrypoint leaves no project-state recovery route.
-- Remove duplicated dynamic values from the final injected prompt.
-- Do not claim WAKE_OK from scheduler write acceptance alone; retain ACCEPTED / LIVE_STATE_VERIFIED / LATER_WAKE as separate evidence states.
-- Do not add rules/files unless they protect a demonstrated failure mode or are required by final validation.
+## Final Stage 6 gate
+PASS:
+- clean validation 3/3;
+- missing-entrypoint recovery 1/1;
+- final stale-state cleanup completed;
+- duplicate runtime authority removed.
 
-## Stage 5 gate
-PASS. The smallest currently supported design is HYBRID stable kernel + GitHub dynamic brain. Proceed to Stage 6: three clean end-to-end wakes plus one recovery wake, then finalize prompt/schema/recovery/rollout/rejected-alternatives artifacts.
+The smallest supported design is therefore:
+**HYBRID stable kernel + GitHub dynamic brain + single authoritative program object.**
