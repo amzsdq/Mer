@@ -1,22 +1,41 @@
 {
-  "schema_version": 2,
-  "program": "MER_PROMPT_GITHUB_BOUNDARY",
+  "schema_version": 3,
+  "program": "MER_RELAY_OPTIMIZATION",
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "case_studies": "research/case-studies-v1.md",
-  "current_stage": "COMPLETE",
-  "next_step": "NONE",
-  "active_execution": null,
-  "required_clean_samples": 3,
-  "current_clean_samples": 3,
-  "required_recovery_samples": 1,
-  "current_recovery_samples": 1,
-  "final_design": "research/FINAL_DESIGN.md",
-  "final_prompt": "control/CANONICAL_PROMPT_SUPERVISOR.md",
-  "result": "HYBRID_STABLE_KERNEL_PLUS_GITHUB_DYNAMIC_BRAIN",
-  "authority_rule": "Only this file owns current_stage, next_step, and active_execution. Other runtime files may reference this file but must not duplicate those dynamic fields.",
-  "finalized_at": "2026-09-23T20:22:08+09:00",
-  "cleanup_reconciled_at": "2026-09-23T20:42:00+09:00",
-  "updated_at": "2026-09-23T20:42:00+09:00"
+  "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
+  "current_stage": "O1_IMMEDIATE_PREARM_BASELINE",
+  "next_step": "O1_SAMPLE_001_IMMEDIATE_PREARM",
+  "active_hypothesis": "H-SCHED-1",
+  "hypothesis_status": "TESTING",
+  "active_execution": "spec/execution.json",
+  "candidate": {
+    "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM",
+    "recurrence": "RRULE:FREQ=HOURLY",
+    "target_useful_work_sec": 600,
+    "planned_gap_sec": 180,
+    "prearm_due_rule": "TURN_START + target_useful_work_sec + planned_gap_sec",
+    "normal_close_scheduler_rewrite": false,
+    "scheduler_writers": 1
+  },
+  "gate": {
+    "baseline_required_clean_end_to_end_samples": 5,
+    "baseline_clean_end_to_end_samples": 0,
+    "require_retrospective_wake_ok": true,
+    "require_work_ok": true,
+    "require_comparator": true
+  },
+  "objective_order": [
+    "CONTINUITY_RECOVERABILITY",
+    "USEFUL_WORK_DUTY_CYCLE",
+    "SIMPLICITY"
+  ],
+  "previous_program_result": {
+    "scope": "PROMPT_GITHUB_BOUNDARY_SUBPROBLEM",
+    "result": "HYBRID_STABLE_KERNEL_PLUS_GITHUB_DYNAMIC_BRAIN",
+    "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
+  },
+  "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
+  "updated_at": "2026-09-23T20:45:00+09:00"
 }
