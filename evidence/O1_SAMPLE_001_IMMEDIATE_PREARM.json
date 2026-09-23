@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "sample_id": "O1_SAMPLE_001_IMMEDIATE_PREARM",
+  "hypothesis": "H-SCHED-1",
+  "primary_variable": "SCHEDULER_WRITE_TIMING",
+  "turn_start_local": "2026-09-23T21:08:54+09:00",
+  "bootstrap_complete_approx_local": "2026-09-23T21:09:06+09:00",
+  "candidate": {
+    "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM",
+    "target_useful_work_sec": 600,
+    "planned_gap_sec": 180,
+    "due_rule": "TURN_START + 780s",
+    "scheduled_dtstart_local": "2026-09-23T21:21:54+09:00",
+    "normal_close_scheduler_rewrite": false
+  },
+  "scheduler_evidence": {
+    "WRITE_OK": true,
+    "STATE_OK": true,
+    "WAKE_OK": null,
+    "WORK_OK": true,
+    "returned_enabled": true,
+    "returned_timing_mode": "exact_schedule",
+    "returned_rrule": "FREQ=HOURLY"
+  },
+  "prior_art": {
+    "internal": [
+      "research/PRIOR_EVIDENCE_2026-09-23.md",
+      "amzsdq/tEST relay lead-time work",
+      "amzsdq/workwork ACTIVE_OWNER_IMMEDIATE_PREARM"
+    ],
+    "external": [
+      "Kubernetes Lease / leader election: explicit holder, renewal, expiry and optimistic-concurrency fencing",
+      "Kubernetes kube-scheduler: leadership is acquired before executing the main loop; lease duration, renew deadline and retry period are separate parameters"
+    ],
+    "transferable": [
+      "secure/verify control authority before substantive work",
+      "separate renewal/survival timing from productive work timing",
+      "scheduler write acceptance is not proof of later execution"
+    ],
+    "non_transferable": [
+      "Kubernetes timing defaults are not valid ChatGPT Automation timing constants",
+      "Kubernetes Lease safety guarantees do not imply ChatGPT Automation scheduler guarantees"
+    ]
+  },
+  "status": "OPEN_AWAITING_RETROSPECTIVE_WAKE",
+  "promotion_note": "This sample cannot count as clean end-to-end until a later invocation proves WAKE_OK and resumed WORK_OK."
+}
