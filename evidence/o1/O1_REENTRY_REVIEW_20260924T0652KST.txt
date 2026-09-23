@@ -1,0 +1,5 @@
+RESULT=REJECT_LIVE_OWNER_REENTRY_AS_NEXT_MECHANISM
+REASON=It restores one ephemeral invocation as owner but does not remove the same dead-predecessor bootstrap failure if that invocation ends before successor readiness.
+REVISION=Test a provisional lease-first bootstrap ordering instead of requiring same-owner renewal calibration before any expiry exists.
+SAFEGUARDS=Fresh read; exact predecessor; generation +1; SHA optimistic concurrency; per-side-effect generation fencing; false-takeover test before promotion.
+NEXT=Inventory Mer timing evidence for scheduler delay, overlap, and runtime. Derive a provisional expiry only from observed Mer evidence; otherwise collect non-authoritative timing observations first.
