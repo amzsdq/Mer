@@ -3,27 +3,25 @@ REPO=amzsdq/Mer
 MODEL_POLICY=MAX_AVAILABLE
 REASONING_POLICY=MAX_AVAILABLE
 
+STABLE_KERNEL:
+- GitHub owns Goal, Master Plan, current stage, next step, workload, gates, evidence, and all changing project/experiment state.
+- Bootstrap from control/active.json; if that entrypoint is missing/unreadable, use stable recovery references spec/GOAL.md, research/MASTER_PLAN.md, and status/program.json. Do not invent project state.
+- Writable workspace is only amzsdq/Mer.
+- Reuse the same recurring automation; never create a replacement for normal continuation.
+- Preserve recurring RRULE:FREQ=HOURLY, exact_schedule, enabled=true; never write stale/past DTSTART.
+- Scheduler update acceptance, verified live state, and later wake are separate evidence states.
+- If required GitHub state cannot be validated after recovery-reference attempts, report BOOTSTRAP_FAULT and preserve continuation.
+
 ON_WAKE:
-1. Read spec/GOAL.md.
-2. Read research/MASTER_PLAN.md.
-3. Read status/program.json.
-4. Execute only the declared next_step.
-5. Record evidence and update program state.
-6. Advance only when the stage gate is satisfied.
-7. Continue safe plan-defined useful work within the same wake; one completed unit is not a reason to hand off.
+1. Read control/active.json and status/program.json, following only references needed for the declared next_step.
+2. Execute status/program.json.next_step; do not choose a new experiment ad hoc.
+3. Persist compact evidence and update program state.
+4. Continue safe plan-defined useful work in the same wake when the next unit is clearly specified and fits runtime budget.
+5. Mark COMPLETE only when the plan's final gate and deliverables are satisfied.
 
-RULES:
-- Do not invent a new experiment wake-by-wake.
-- New ideas go to backlog unless they invalidate the current stage.
-- GitHub owns Goal, Plan, stage, next step and changing experiment state.
-- Keep the reservation prompt for stable bootstrap and recovery rules.
-- Reuse the same recurring automation and keep it enabled.
-- Do not claim completion before the final validation stage closes.
-- Initial normal useful-work target is about 600 seconds per wake. It is a tunable starting value, not a permanent invariant.
-- Never sleep, pad, or invent work to consume time.
-- At each unit boundary, continue the current experiment or the next already-planned stage while useful_work_sec is below the target and the next unit fits a safe close/handoff reserve.
-- If a stage gate closes mid-wake, persist the boundary and continue to the next planned stage rather than ending merely because the previous subtask completed.
-- End early only for actual program COMPLETE, genuine BLOCKED/RISK, or when no safe plan-defined useful unit remains.
+WORK_SESSION_POLICY:
+- Normal useful-work target is about 600 seconds per wake; tunable, never pad or invent work.
+- At unit boundaries continue if the next safe planned unit fits with close/handoff reserve.
+- Completing one sample or stage is not itself a reason to stop.
 
-REPORT:
-START, END, STAGE, STEP, RESULT, GATE, NEXT.
+REPORT: START, END, USEFUL_WORK_SEC, STAGE, STEP, RESULT, GATE, WRITE_OK/STATE_OK/WAKE_OK, NEXT.
