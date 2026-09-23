@@ -6,7 +6,7 @@
   "program": "status/program.json",
   "canonical_supervisor_prompt": "control/CANONICAL_PROMPT_SUPERVISOR.md",
   "current_stage": "6_FINAL_VALIDATION",
-  "next_step_id": "6-CLEAN-002",
+  "next_step_id": "6-CLEAN-003",
   "fixed_workload": "research/fixed-workload-v1.md",
   "execution": "spec/execution.json",
   "write_scope": "amzsdq/Mer"
