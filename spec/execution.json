@@ -1,11 +1,10 @@
 {
   "schema_version": 1,
-  "generation": 1,
+  "generation": 2,
   "experiment_id": "B_HYBRID_BOOTSTRAP",
-  "desired_marker": "GITHUB_DYNAMIC",
+  "desired_marker": "GITHUB_DYNAMIC_MUTATED",
   "next_action": "emit_fixed_workload_result",
   "workload": "research/fixed-workload-v1.md",
   "scheduler_policy_owner": "embedded_safety_plus_repository_dynamic_policy",
   "status_owner": "status/current.json"
 }
-
