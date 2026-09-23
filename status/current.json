@@ -2,8 +2,8 @@
   "schema_version": 1,
   "phase": "STORAGE_BOUNDARY_TEST",
   "experiment": "B_HYBRID_BOOTSTRAP",
-  "sample": 4,
-  "last_result": "B hybrid sample 1 produced deterministic workload result but exposed stale/incomplete active.json pointer",
+  "sample": 5,
+  "last_result": "B hybrid sample 2 reached deterministic workload result with four normal-path repository reads and no bootstrap fault",
   "phase1_summary": {
     "T1_P_DIRECT_CONFLICT": "PROMPT selected",
     "T2_P_DELEGATED": "GITHUB selected under explicit prompt delegation",
@@ -16,6 +16,12 @@
     "fault": "ACTIVE_POINTER_STALE_AND_INCOMPLETE",
     "fix": "active.json reconciled to direct canonical/execution/status/workload pointers"
   },
-  "next": "Run B_HYBRID_BOOTSTRAP sample 2 from reconciled active.json and measure reduced normal-path bootstrap reads; then begin controlled adverse-state tests",
-  "updated_at": "2026-09-23T17:08:40+09:00"
+  "hybrid_sample_2": {
+    "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+    "bootstrap_read_count": 4,
+    "fault": null,
+    "finding": "Normal-path bootstrap overhead halved after pointer reconciliation; four reads currently suffice for the benchmark."
+  },
+  "next": "Begin controlled adverse-state test of stale status/generation handling while keeping scheduler semantics fixed",
+  "updated_at": "2026-09-23T17:16:00+09:00"
 }
