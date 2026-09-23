@@ -5,12 +5,12 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "6_FINAL_VALIDATION",
-  "next_step": "Run the single Stage 6 recovery wake for the converged HYBRID stable-kernel candidate. Use the plan-defined reversible/synthetic missing-entrypoint recovery condition: treat control/active.json as unavailable for bootstrap and recover only through the stable canonical references embedded in the prompt (spec/GOAL.md, research/MASTER_PLAN.md, status/program.json), then follow authoritative program/execution state without inventing state. Persist the recovery sample. If it passes, produce the final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record; verify deliverables and only then mark research COMPLETE.",
+  "next_step": "Validation gates passed: clean 3/3 and recovery 1/1. Produce and verify the required final deliverables: final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record. Only after all deliverables are persisted and verified may research be marked COMPLETE.",
   "required_clean_samples": 3,
   "current_clean_samples": 3,
   "required_recovery_samples": 1,
-  "current_recovery_samples": 0,
+  "current_recovery_samples": 1,
   "then": "COMPLETE",
-  "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
+  "rule": "Do not mark COMPLETE until all Stage 6 deliverables are persisted and verified.",
   "updated_at": "2026-09-23T20:22:08+09:00"
 }
