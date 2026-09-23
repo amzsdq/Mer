@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "sample_id": "O1_SAMPLE_002_IMMEDIATE_PREARM",
+  "hypothesis": "H-SCHED-1",
+  "primary_variable": "SCHEDULER_WRITE_TIMING",
+  "turn_start_local": "2026-09-23T21:32:00+09:00",
+  "candidate": {
+    "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM",
+    "target_useful_work_sec": 600,
+    "planned_gap_sec": 180,
+    "due_rule": "TURN_START + 780s",
+    "scheduled_dtstart_local": "2026-09-23T21:45:00+09:00",
+    "normal_close_scheduler_rewrite": false
+  },
+  "scheduler_evidence": {
+    "WRITE_OK": true,
+    "STATE_OK": true,
+    "WAKE_OK": null,
+    "WORK_OK": true,
+    "returned_enabled": true,
+    "returned_timing_mode": "exact_schedule",
+    "returned_rrule": "FREQ=HOURLY"
+  },
+  "work_session": {
+    "policy": "continue safe plan-defined useful units within runtime/admission budget",
+    "status": "OPEN"
+  },
+  "status": "OPEN_AWAITING_RETROSPECTIVE_WAKE"
+}
