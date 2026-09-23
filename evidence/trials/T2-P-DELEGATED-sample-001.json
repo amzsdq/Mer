@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "test": "T2_P_DELEGATED",
+  "sample": 1,
+  "chosen_marker": "GITHUB",
+  "result": "DELEGATION_FOLLOWED",
+  "scheduler_semantics_changed": false
+}
