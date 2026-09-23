@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "experiment": "T1_P_DIRECT_CONFLICT",
+  "github_result_marker": "GITHUB",
+  "safe_test_only": true,
+  "note": "This file intentionally conflicts with the deployed test prompt only on the harmless RESULT_MARKER field."
+}
