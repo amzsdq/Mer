@@ -1,10 +1,14 @@
 {
-  "schema_version": 1,
-  "generation": 4,
-  "experiment_id": "B_HYBRID_BOOTSTRAP",
-  "desired_marker": "GITHUB_DYNAMIC_CHURN_2",
-  "next_action": "emit_fixed_workload_result",
-  "workload": "research/fixed-workload-v1.md",
-  "scheduler_policy_owner": "embedded_safety_plus_repository_dynamic_policy",
-  "status_owner": "status/current.json"
+  "schema_version": 2,
+  "state": "INACTIVE",
+  "active": false,
+  "generation": 5,
+  "experiment_id": null,
+  "desired_marker": null,
+  "next_action": "NONE",
+  "workload": null,
+  "status_owner": "status/program.json",
+  "inactive_reason": "PROGRAM_COMPLETE",
+  "authoritative_when": "Only when status/program.json.active_execution points to spec/execution.json",
+  "updated_at": "2026-09-23T20:42:00+09:00"
 }
