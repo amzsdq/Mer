@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "phase": "BOUNDARY_COST_COMPARISON",
+  "experiment": "B_HYBRID_BOOTSTRAP_BASELINE",
+  "sample": 2,
+  "last_result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+  "classification": "B_BASELINE_SAMPLE_002_PASS",
+  "bootstrap_read_count": 4,
+  "bootstrap_fault": false,
+  "scheduler_semantics_changed": false,
+  "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state structurally and semantically; manage prompt copies with PREPARE->DEPLOY->VERIFY->ACTIVATE and rollback metadata.",
+  "next": "Prepare A_PROMPT_HEAVY using the same fixed workload while changing only storage boundary candidate.",
+  "updated_at": "2026-09-23T18:12:35+09:00"
+}
