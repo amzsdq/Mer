@@ -1,0 +1,8 @@
+{
+  "test": "A_PROMPT_HEAVY_SAMPLE_002",
+  "prompt_version": "0.4.0-A-PROMPT-HEAVY",
+  "bootstrap_reads_before_result": 0,
+  "result": "A_PROMPT_HEAVY|PROMPT_EMBEDDED|1|emit_fixed_workload_result",
+  "write_ok": true,
+  "note": "Deterministic result was produced entirely from embedded execution state before any dynamic GitHub bootstrap read. Evidence persistence succeeded via direct create_file."
+}
