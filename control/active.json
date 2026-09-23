@@ -1,11 +1,15 @@
 {
   "schema_version": 1,
-  "research_phase": "BOUNDARY_STUDY",
+  "research_phase": "PRIORITY_FORCE_TEST",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
-  "canonical_prompt": "control/CANONICAL_PROMPT.md",
+  "canonical_prompt": "control/CANONICAL_PROMPT_T1.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "case_study": "research/case-study-prompt-github-boundary.md",
-  "candidate": "HYBRID_BOOTSTRAP",
-  "write_scope": "amzsdq/Mer"
+  "candidate": "T1_P_DIRECT_CONFLICT",
+  "write_scope": "amzsdq/Mer",
+  "priority_hypothesis": "research/priority-force-hypothesis.md",
+  "experiment_matrix": "research/experiment-matrix-v1.md",
+  "conflict_spec": "control/conflict.json",
+  "status": "status/current.json"
 }
