@@ -20,6 +20,10 @@ At minimum perform a bounded scan of:
 
 Maintain reusable references in `research/REFERENCE_BASE.md`.
 
+Maintain reusable cross-experiment generalizations in `research/GENERALIZED_PRINCIPLES.md`.
+When an experiment suggests a reusable principle, record it with status, evidence, scope, limits/counterevidence, operational implication, and a falsification test.
+Do not promote a one-off observation directly to a validated principle.
+
 Every new hypothesis must state:
 - supporting priors;
 - counter-priors / known conflicts;
