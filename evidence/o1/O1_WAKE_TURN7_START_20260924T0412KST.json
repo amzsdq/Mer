@@ -1,0 +1,7 @@
+{
+  "marker": "START_MARKER",
+  "invocation_role": "SHADOW",
+  "prompt_version": "2.2.5-14M-BATON",
+  "purpose": "owner-loss recovery calibration and authority-liveness diagnosis",
+  "clock_authority": "GITHUB_COMMIT_SERVER_TIMESTAMP"
+}
