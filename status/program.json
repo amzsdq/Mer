@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "program": "MER_PROMPT_GITHUB_BOUNDARY",
+  "goal": "spec/GOAL.md",
+  "plan": "research/MASTER_PLAN.md",
+  "case_studies": "research/case-studies-v1.md",
+  "current_stage": "3C_HYBRID_DYNAMIC_MUTATION",
+  "next_step": "Change the same dynamic generation/marker in GitHub only, then collect the first clean HYBRID post-mutation sample.",
+  "required_clean_samples": 2,
+  "current_clean_samples": 0,
+  "then": "3D_POINTER_ONLY_BASELINE",
+  "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
+  "updated_at": "2026-09-23T19:15:00+09:00"
+}
