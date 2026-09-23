@@ -5,12 +5,12 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "6_FINAL_VALIDATION",
-  "next_step": "Deploy the converged HYBRID stable-kernel candidate and run final validation: 3 clean end-to-end wakes plus 1 recovery wake. Persist each sample. After all four pass, produce the final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record; only then mark research COMPLETE.",
+  "next_step": "Continue final validation of the converged HYBRID stable-kernel candidate. Clean sample 1/3 passed. Run clean sample 2/3 next; then clean sample 3/3; then run 1 recovery wake. Persist each sample. Repair control/active.json stage-pointer drift before final deliverables. After all four pass, produce the final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record; only then mark research COMPLETE.",
   "required_clean_samples": 3,
-  "current_clean_samples": 0,
+  "current_clean_samples": 1,
   "required_recovery_samples": 1,
   "current_recovery_samples": 0,
   "then": "COMPLETE",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T20:09:00+09:00"
+  "updated_at": "2026-09-23T20:14:00+09:00"
 }
