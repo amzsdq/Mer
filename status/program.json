@@ -5,10 +5,10 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "3C_HYBRID_DYNAMIC_MUTATION",
-  "next_step": "Change the same dynamic generation/marker in GitHub only, then collect the first clean HYBRID post-mutation sample.",
+  "next_step": "Collect the second clean HYBRID post-mutation sample using generation=2 and marker=GITHUB_DYNAMIC_MUTATED without changing the automation prompt or scheduler semantics.",
   "required_clean_samples": 2,
-  "current_clean_samples": 0,
+  "current_clean_samples": 1,
   "then": "3D_POINTER_ONLY_BASELINE",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T19:15:00+09:00"
+  "updated_at": "2026-09-23T19:26:00+09:00"
 }
