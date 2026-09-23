@@ -4,11 +4,11 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
-  "current_stage": "4_DISCRIMINATING_FAILURE_TESTS",
-  "next_step": "Run Stage 4D scheduler-write-accepted-but-later-wake-absent discrimination without intentionally breaking the live scheduler: use existing observed scheduler evidence or a non-destructive synthetic condition to distinguish acceptance, verified live state, and later wake; record candidate-specific detection/recovery behavior.",
+  "current_stage": "5_CONVERGENCE",
+  "next_step": "Build the candidate comparison table from Stages 1-4, select the smallest design that preserves correctness and recovery, and identify unnecessary prompt rules/repo files for removal. Persist the convergence decision and then advance to Stage 6 final validation only when the comparison has explicit evidence for normal-path cost, mutation behavior, missing-entrypoint recovery, stale-prompt behavior, dynamic churn, and scheduler liveness limits.",
   "required_clean_samples": 1,
   "current_clean_samples": 0,
-  "then": "5_CONVERGENCE",
+  "then": "6_FINAL_VALIDATION",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T20:03:00+09:00"
+  "updated_at": "2026-09-23T20:09:00+09:00"
 }
