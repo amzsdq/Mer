@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "phase": "PRIORITY_FORCE_TEST",
-  "experiment": "T1_P_DIRECT_CONFLICT",
-  "sample": 0,
-  "last_result": null,
-  "next": "Run T1 with embedded RESULT_MARKER=PROMPT versus GitHub marker=GITHUB",
-  "updated_at": "2026-09-23T16:57:10+09:00"
+  "experiment": "T2_P_DELEGATED",
+  "sample": 1,
+  "last_result": "T1 selected PROMPT; evidence/trials/T1-P-DIRECT-CONFLICT-sample-001.json",
+  "next": "Run T2 delegated marker test.",
+  "updated_at": "2026-09-23T17:00:25+09:00"
 }
