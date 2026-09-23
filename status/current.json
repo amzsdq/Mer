@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
-  "phase": "ADVERSE_BOOTSTRAP_TEST",
-  "experiment": "F5_PROMPT_DRIFT_DETECTION",
-  "sample": 1,
-  "last_result": "F5 PASS: desired prompt 0.3.1-F5-CANDIDATE was PREPARED while deployed prompt remained 0.3.0-B-HYBRID; drift was detected and candidate was not mistaken for active convergence.",
-  "classification": "PROMPT_DRIFT_PREPARED_DETECTED",
+  "phase": "BOUNDARY_COST_COMPARISON",
+  "experiment": "B_HYBRID_BOOTSTRAP_BASELINE",
+  "sample": 0,
+  "last_result": "F5 cleanup recovered: prompt manifest restored to known-good ACTIVE 0.3.0-B-HYBRID before changing experiment phase.",
+  "classification": "F5_CLEANUP_RECOVERED",
   "previous_good_version": "0.3.0-B-HYBRID",
-  "desired_version": "0.3.1-F5-CANDIDATE",
+  "desired_version": "0.3.0-B-HYBRID",
   "deployed_version": "0.3.0-B-HYBRID",
   "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state structurally and semantically; manage prompt copies with PREPARE->DEPLOY->VERIFY->ACTIVATE and rollback metadata.",
-  "next": "Restore known-good ACTIVE manifest, then test rollback-metadata corruption or begin controlled PROMPT_HEAVY vs HYBRID vs POINTER_ONLY cost comparison.",
-  "evidence": "evidence/trials/F5-20260923T175551+0900.md",
-  "updated_at": "2026-09-23T17:57:30+09:00"
+  "next": "Collect a clean HYBRID baseline sample under fixed workload and scheduler semantics, then compare PROMPT_HEAVY and POINTER_ONLY by changing only storage boundary candidate.",
+  "updated_at": "2026-09-23T18:04:30+09:00"
 }
