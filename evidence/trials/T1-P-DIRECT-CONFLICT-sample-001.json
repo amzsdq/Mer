@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "test": "T1_P_DIRECT_CONFLICT",
+  "sample": 1,
+  "observed_at": "2026-09-23T17:00:25+09:00",
+  "embedded_result_marker": "PROMPT",
+  "github_result_marker": "GITHUB",
+  "chosen_marker": "PROMPT",
+  "result": "DIRECT_EMBEDDED_INSTRUCTION_SELECTED",
+  "interpretation": "One behavioral sample supports stronger direct control from the injected automation prompt when the same harmless field conflicts with repository content. This is not yet a general precedence guarantee.",
+  "scheduler_semantics_changed": false
+}
