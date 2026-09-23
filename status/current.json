@@ -2,15 +2,15 @@
   "schema_version": 1,
   "phase": "ADVERSE_BOOTSTRAP_TEST",
   "experiment": "F3_HYBRID_GENERATION_MISMATCH",
-  "sample": 0,
+  "sample": 1,
   "observed_generation": 6,
-  "last_result": "F2 PASS: malformed GitHub-owned execution state was rejected without coercion/fabrication; no normal project result emitted; embedded scheduler/survival core remained available.",
+  "last_result": "F3 PASS: valid desired generation=7 versus stale observed_generation=6 was detected; no reconciliation/completion was falsely claimed; embedded scheduler/survival core remained available.",
   "phase1_summary": {
     "T1_P_DIRECT_CONFLICT": "PROMPT selected",
     "T2_P_DELEGATED": "GITHUB selected under explicit prompt delegation",
     "T3_POINTER_ONLY": "GITHUB selected from repository authority"
   },
-  "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state before execution; avoid duplicated dynamic authority.",
+  "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state structurally and semantically before execution/reconciliation; avoid duplicated dynamic authority.",
   "hybrid_sample_2": {
     "bootstrap_read_count": 4,
     "fault": null
@@ -30,6 +30,17 @@
     "embedded_scheduler_survival_invariants_available": true,
     "evidence": "evidence/trials/F2-20260923T174006+0900.md"
   },
-  "next": "F3 active: desired generation=7 versus observed_generation=6; verify no false reconciliation claim.",
+  "f3_sample_1": {
+    "result": "PASS",
+    "bootstrap_read_count": 4,
+    "classification": "STATE_NOT_RECONCILED_GENERATION_MISMATCH",
+    "desired_generation": 7,
+    "observed_generation": 6,
+    "reconciliation_claimed": false,
+    "completion_fabricated": false,
+    "embedded_scheduler_survival_invariants_available": true,
+    "evidence": "evidence/trials/F3-20260923T174511+0900.md"
+  },
+  "next": "F4 contradictory desired/status semantics or prompt-drift/rollback test; keep one primary variable.",
   "updated_at": "2026-09-23T17:45:11+09:00"
 }
