@@ -1,61 +1,194 @@
-# Mer Master Plan v2
+# Mer Master Plan v3 — Empirical Relay Optimizer
 
-## Rule
-Each wake follows the authoritative program state in `status/program.json`. It does not choose a new experiment ad hoc. New ideas go to backlog unless they invalidate the current test.
+Status: ACTIVE
+Primary objective: continuity first, then maximum long-run useful-work utilization, then simplicity.
 
-Dynamic runtime authority is singular:
-- `status/program.json` owns `current_stage`, `next_step`, and `active_execution`.
-- `control/active.json` is a static bootstrap pointer and must not duplicate changing stage/next fields.
-- `spec/execution.json` is authoritative only while `status/program.json.active_execution` explicitly points to it.
+## 0. Research discipline
 
-## Stage 0 — Reconnaissance — COMPLETE
-Compared RRULEF, tEST, workwork and external controller/durable-workflow patterns.
+Each wake follows `status/program.json.next_step`.
+Do not promote theory directly into production policy.
 
-## Stage 1 — Instruction authority — COMPLETE
-Tested direct prompt instruction, explicit delegation to GitHub, and pointer-only behavior.
+For every candidate:
+1. DEFINE hypothesis and metric.
+2. Establish baseline/control.
+3. Change one primary variable at a time.
+4. Run repeated samples where the outcome is stochastic.
+5. Separate WRITE_OK / STATE_OK / WAKE_OK / WORK_OK.
+6. CLASSIFY evidence.
+7. KEEP, REVISE, or REJECT the hypothesis.
+8. Use the failure/success result to choose the next discriminating hypothesis.
 
-## Stage 2 — Hybrid failure handling — COMPLETE
-Tested missing reference, malformed state, generation mismatch, semantic conflict, and prompt drift.
+Do not repeat a converged or failed sample unchanged without a diagnostic reason.
 
-## Stage 3 — Normal-path boundary cost — COMPLETE
-- HYBRID baseline: clean samples demonstrated GitHub-owned dynamic state with bounded bootstrap reads.
-- PROMPT_HEAVY: 0-read result path demonstrated; changing dynamic values required deployed prompt mutation.
-- HYBRID dynamic mutation: GitHub-only dynamic changes demonstrated without deployed prompt mutation.
-- POINTER_ONLY: dynamic-state freshness preserved but recovery from loss of the sole entrypoint was weaker.
+External/repository research is PRIOR evidence:
+- `amzsdq/tEST`
+- `amzsdq/workwork`
+- mature distributed-systems case studies
+It supplies hypotheses/protocols, not automatic truth.
 
-## Stage 4 — Discriminating failure tests — COMPLETE
-Tested the candidate-distinguishing failures needed for the final decision, including missing entrypoint, stale/deployed prompt drift, dynamic churn, and the separation between scheduler acceptance/live state/later wake.
+Dynamic runtime authority remains singular:
+- `status/program.json` owns current_stage, next_step, active_execution and the active hypothesis.
+- `control/active.json` is static bootstrap indirection.
+- execution/evidence files are authoritative only when referenced by program state.
 
-## Stage 5 — Convergence — COMPLETE
-Selected the smallest supported design that preserved correctness and recovery:
-**HYBRID stable kernel + GitHub dynamic brain**.
+## Stage O0 — Evidence intake and reopened objective — COMPLETE
 
-## Stage 6 — Final validation — COMPLETE
-Validated:
-- clean end-to-end wakes: 3/3 PASS
-- missing-entrypoint recovery: 1/1 PASS
+Imported useful prior findings from tEST/workwork into:
+`research/PRIOR_EVIDENCE_2026-09-23.md`.
 
-Produced:
-- final prompt
-- final repository schema
-- recovery protocol
-- rollout method
-- rejected-alternative record
+Previous prompt/GitHub-boundary work is retained as prior evidence, not treated as completion of the top-level goal.
 
-## Finalization rule
-Completion must not depend on synchronizing multiple changing files.
+## Stage O1 — Immediate-prearm continuity baseline — ACTIVE
 
-Authoritative completion is one state transition in `status/program.json`:
-- `current_stage = COMPLETE`
-- `next_step = NONE`
-- `active_execution = null`
+### Hypothesis H-SCHED-1
+After minimal bootstrap/control reads, securing the next wake before substantive work improves continuation survival compared with close-time rearm, without materially reducing useful-work duty cycle.
 
-Other documents and archive cleanup are non-authoritative follow-up work. If cleanup fails, runtime truth remains unambiguous.
+Baseline candidate:
+- SAME automation
+- recurring RRULE:FREQ=HOURLY
+- exact_schedule
+- enabled=true
+- one scheduler writer
+- prearm once near wake start, before substantive work
+- no normal close-time scheduler rewrite
+- recurrence retained as cold fallback
+
+Measure:
+- wake_to_schedule_write_sec
+- WRITE_OK
+- STATE_OK
+- actual later WAKE_OK
+- WORK_OK
+- useful_work_sec
+- control_overhead_sec
+- actual_idle_gap_sec when directly observable
+- duplicate/concurrent invocation
+- missed intended wake
+
+Gate:
+- obtain repeated clean end-to-end samples sufficient to establish a baseline;
+- at least one actual later wake must retrospectively validate each promoted sample;
+- then compare against a close-time/post-bootstrap scheduling control or justify from direct prior Mer evidence if equivalent.
+
+Failure handling:
+- if immediate prearm causes overlap, lost work, or materially worse utilization, revise timing/lead rather than assuming the hypothesis.
+
+## Stage O2 — Prompt enforcement and versioned sync
+
+### H-PROMPT-1
+Stable behavioral invariants in the injected prompt are followed more reliably than repo-only copies.
+
+### H-SYNC-1
+GitHub canonical source + deployed prompt copy + cheap version comparison prevents silent drift at negligible steady-state cost.
+
+Use existing Mer Stage-1 conflict/delegation results as prior.
+Run only the additional discriminating tests needed:
+- harmless prompt-vs-repo invariant conflict replication;
+- explicit dynamic delegation replication if needed;
+- version match fast path;
+- version mismatch -> PREPARE/DEPLOY/VERIFY/ACTIVATE;
+- stale/failed deploy rollback or safe stop.
+
+Promotion:
+Stable invariants may intentionally exist in both GitHub canonical and deployed prompt.
+Changing runtime state remains GitHub-only.
+
+## Stage O3 — Runtime / productive-window / completion-envelope optimization
+
+Use workwork evidence as prior, then validate Mer-specific behavior.
+
+Separate:
+1. SURVIVAL_BOUNDARY
+2. PRODUCTIVE_WINDOW
+3. COMPLETION_ENVELOPE
+
+Measure direct close overhead; do not invent a reserve.
+
+Candidate policies, in increasing complexity:
+- P1 fixed threshold
+- P2 soft cutoff + hard cap
+- P3 estimated-next-unit admission
+- P4 adaptive admission
+
+Prefer the simplest policy that achieves statistically/operationally indistinguishable continuity and duty cycle.
+
+The old ~600s target is only a starting probe value, not a completion rule.
+
+## Stage O4 — Planned-gap / wake-lead optimization
+
+After the prearm/runtime policy is stable enough, vary one timing parameter at a time.
+
+Start from an evidence-supported safe region, then test shorter gaps, e.g.:
+3m -> 2m -> 1m, with intermediate values if the boundary lies between them.
+
+Measure actual final scheduler-write-to-wake lead, wake lateness, idle gap, overlap, and missed occurrence.
+
+Choose the smallest gap/lead region that does not materially worsen continuity/recovery.
+
+## Stage O5 — Overlap / shadow successor only if justified
+
+H-OVERLAP-1:
+A shadow successor that wakes before owner close may hide bootstrap/idle cost and improve long-run duty cycle.
+
+Do not adopt by elegance.
+Only test if the best non-overlap policy leaves material idle/bootstrap loss.
+
+Required controls:
+- exactly one ACTIVE_OWNER
+- CAS/generation authority transfer
+- one scheduler writer
+- immutable per-invocation evidence
+- zero duplicate authoritative side effects
+
+Compare against best non-overlap candidate on:
+- authoritative useful-work duty cycle
+- handoff gap
+- overlap waste
+- duplicate/race failures
+- complexity/overhead
+
+Reject overlap if benefit is negligible or reliability worsens.
+
+## Stage O6 — Adverse recovery tests
+
+Inject or safely simulate:
+- missed intended near-term wake while recurrence remains
+- turn termination after checkpoint but before normal finish
+- stale durable state
+- duplicate/competing actor
+- prompt version mismatch
+- missing bootstrap entrypoint
+- scheduler write accepted but later wake absent
+
+A fast candidate without demonstrated recovery is rejected.
+
+## Stage O7 — Final convergence
+
+A final candidate must include:
+- scheduler strategy
+- prompt/canonical sync strategy
+- operating runtime/admission rule
+- close reserve/safety margin method
+- planned gap / successor lead
+- checkpoint ordering
+- recovery/fallback
+- authority fencing if overlap is used
+
+Final validation requires, at minimum:
+- repeated clean end-to-end wakes under the unchanged candidate;
+- zero duplicate authoritative side effects in validation;
+- retrospective WAKE_OK/WORK_OK evidence;
+- adverse recovery success;
+- measured useful-work duty cycle and idle gap where directly observable;
+- comparison against at least one plausible simpler/competing policy;
+- documented rejected hypotheses and why they failed.
+
+Do not mark COMPLETE while a material uncertainty in continuity or utilization remains untested and testable.
 
 ## Wake utilization rule
+
 A wake is a work session, not a one-step callback.
-
-Initial operating target during experimentation was about 600 seconds of useful work per normal wake. It was an empirical starting point, not a permanent invariant. Never sleep, pad, or invent work to hit a target.
-
-## Stop rules
-The research program is COMPLETE. Do not start a new experiment unless the program state is explicitly reopened through a new authoritative program transition.
+Continue plan-defined safe units while runtime allows.
+Never sleep, pad, or generate meaningless work.
+Reserve enough time for durable state close.
+Scheduler continuation should be secured according to the currently declared experimental strategy before taking risks that could strand the relay.
