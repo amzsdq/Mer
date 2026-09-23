@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "candidates": {
+    "A": {
+      "prompt": "control/CANONICAL_PROMPT_A_HEAVY.md",
+      "normal_path_expected_repo_reads_before_result": 0,
+      "tradeoff": "highest embedded staleness/update exposure"
+    },
+    "B": {
+      "prompt": "control/CANONICAL_PROMPT_B_HYBRID.md",
+      "normal_path_expected_repo_reads_before_result": "measure sample 2",
+      "tradeoff": "stable core embedded, dynamic state durable"
+    },
+    "C": {
+      "prompt": "control/CANONICAL_PROMPT_C_POINTER.md",
+      "normal_path_expected_repo_reads_before_result": "measure",
+      "tradeoff": "smallest prompt, maximum bootstrap dependency"
+    }
+  },
+  "comparison_guard": "Same deterministic workload semantics and scheduler behavior; compare control storage boundary only."
+}
