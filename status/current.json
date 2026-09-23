@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "phase": "STORAGE_BOUNDARY_TEST",
-  "experiment": "B_HYBRID_BOOTSTRAP",
-  "sample": 5,
-  "last_result": "B hybrid sample 2 reached deterministic workload result with four normal-path repository reads and no bootstrap fault",
+  "phase": "ADVERSE_BOOTSTRAP_TEST",
+  "experiment": "F1_HYBRID_MISSING_DYNAMIC_REFERENCE",
+  "sample": 0,
+  "last_result": "B hybrid clean sample 2 PASS: deterministic result, bootstrap_read_count=4, no fault.",
   "phase1_summary": {
     "T1_P_DIRECT_CONFLICT": "PROMPT selected",
     "T2_P_DELEGATED": "GITHUB selected under explicit prompt delegation",
@@ -22,6 +22,7 @@
     "fault": null,
     "finding": "Normal-path bootstrap overhead halved after pointer reconciliation; four reads currently suffice for the benchmark."
   },
-  "next": "Begin controlled adverse-state test of stale status/generation handling while keeping scheduler semantics fixed",
-  "updated_at": "2026-09-23T17:16:00+09:00"
+  "next": "Run F1 with exactly one changed variable: required dynamic reference is missing; expect fail-closed project action while embedded scheduler/survival invariants remain usable.",
+  "updated_at": "2026-09-23T17:16:30+09:00",
+  "f1_activation_gate": "SATISFIED"
 }
