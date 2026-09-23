@@ -9,324 +9,58 @@ Each wake follows `status/program.json.next_step`.
 Do not promote theory directly into production policy.
 
 ### Hypothesis sourcing gate — REQUIRED
-
 Before a new hypothesis becomes TESTABLE, follow `research/HYPOTHESIS_SOURCING_POLICY.md`.
-
-At minimum perform a bounded scan of:
-- relevant Mer/tEST/workwork empirical evidence;
-- authoritative implementation references for the same primitive;
-- academic/formal research when an established literature exists;
-- at least one competing interpretation, counterexample, or failure mode.
-
-Maintain reusable references in `research/REFERENCE_BASE.md`.
-
-Maintain reusable cross-experiment generalizations in `research/GENERALIZED_PRINCIPLES.md`.
-When an experiment suggests a reusable principle, record it with status, evidence, scope, limits/counterevidence, operational implication, and a falsification test.
-Do not promote a one-off observation directly to a validated principle.
-
-Every new hypothesis must state:
-- supporting priors;
-- counter-priors / known conflicts;
-- what is transferable to Mer;
-- what cannot be assumed to transfer;
-- the exact discriminating test and rejection/revision condition.
-
-If no useful prior art is found after a bounded search, label the hypothesis `EXPLORATORY_UNSOURCED`; do not silently treat intuition as established engineering knowledge.
-
-For every candidate:
-1. DEFINE hypothesis and metric.
-2. Establish baseline/control.
-3. Change one primary variable at a time.
-4. Run repeated samples where the outcome is stochastic.
-5. Separate WRITE_OK / STATE_OK / WAKE_OK / WORK_OK.
-6. CLASSIFY evidence.
-7. KEEP, REVISE, or REJECT the hypothesis.
-8. Use the failure/success result to choose the next discriminating hypothesis.
-
-Do not repeat a converged or failed sample unchanged without a diagnostic reason.
-
-External/repository research is PRIOR evidence:
-- `amzsdq/tEST`
-- `amzsdq/workwork`
-- mature distributed-systems case studies
-It supplies hypotheses/protocols, not automatic truth.
-
-Dynamic runtime authority remains singular:
-- `status/program.json` owns current_stage, next_step, active_execution and the active hypothesis.
-- `control/active.json` is static bootstrap indirection.
-- execution/evidence files are authoritative only when referenced by program state.
+Use internal empirical evidence, authoritative implementation references, applicable formal work, and competing/counter evidence. A candidate is KEEP/REVISE/REJECT only after a discriminating test. Dynamic runtime authority remains `status/program.json`; execution/evidence files are authoritative only when referenced there.
 
 ## Stage O0 — Evidence intake and reopened objective — COMPLETE
+Prior tEST/workwork evidence remains prior evidence, not automatic Mer truth.
 
-Imported useful prior findings from tEST/workwork into:
-`research/PRIOR_EVIDENCE_2026-09-23.md`.
+## Stage O1 — Controlled-overlap / baton baseline — ACTIVE
 
-Previous prompt/GitHub-boundary work is retained as prior evidence, not treated as completion of the top-level goal.
+Reference: `research/WORKWORK_OVERLAP_INTAKE.md`.
+Prior fact: workwork observed predecessor/successor concurrency. This establishes overlap feasibility only, not clean handoff.
 
-## Stage O1 — Controlled-overlap baseline — ACTIVE
+### Current baseline candidate
+- same recurring automation; `RRULE:FREQ=HOURLY`; `exact_schedule`; enabled
+- no work-duration target or voluntary time cutoff
+- every invocation performs exactly one verified scheduler pre-arm immediately on wake: `wake + 840s`; no later scheduler mutation in that wake
+- scheduler pre-arm is continuity plumbing and is independent of substantive ownership; SHADOW may perform this one write
+- exactly one substantive ACTIVE_OWNER at a time, fenced by durable generation/CAS
+- successor begins as SHADOW_SUCCESSOR and may prepare/read/write immutable own evidence
+- normal voluntary stop gates are only `PROGRAM_COMPLETE` or `SUCCESSOR_HANDOFF_COMPLETE`
+- `SUCCESSOR_HANDOFF_COMPLETE` requires actual successor WAKE_OK/READY plus durable generation-increment ownership transfer
+- predecessor may not voluntarily close before transfer; late/missing successor means predecessor continues genuine useful work
+- after transfer predecessor stops authoritative work and closes; successor continues prepared work as sole substantive owner
 
-Reference:
-- `research/WORKWORK_OVERLAP_INTAKE.md`
-
-### Prior fact
-workwork directly observed the same recurring automation running predecessor and successor concurrently for about 198 seconds in one controlled probe. Treat concurrent execution as established prior evidence, not as proof of clean handoff or optimal utilization.
-
-### Hypothesis H-OVERLAP-BASE-1
-A controlled predecessor + SHADOW successor overlap, with exactly one authoritative owner and one scheduler writer, can reduce handoff idle versus non-overlap without duplicate authoritative side effects or continuity loss.
-
-### Baseline candidate
-- SAME recurring automation
-- `RRULE:FREQ=HOURLY`
-- `exact_schedule`
-- `enabled=true`
-- owner nominal work horizon: 600s initially
-- successor lead: 180s initially
-- successor wake target: owner start + 420s
-- exactly one ACTIVE_OWNER
-- successor begins as SHADOW_SUCCESSOR
-- only ACTIVE_OWNER may mutate scheduler
-- SHADOW may read/prepare/write immutable own evidence but may not perform authoritative project side effects
-- durable generation/CAS ownership transfer
-- predecessor stops authoritative work after successful transfer
-- successor begins prepared useful work immediately after accepting transferred authority
-
-The 600s horizon and 180s lead are starting experimental parameters, not invariants.
-
-### Evidence required per overlap sample
-- predecessor invocation id / start
-- successor scheduled_for / actual_start
-- predecessor evidence after successor actual_start
-- observed overlap_sec
-- successor bootstrap_ready_sec
-- owner generation before/after
-- transfer_at / accept_at
-- authoritative_work_end/start around transfer
-- handoff_gap_sec
-- duplicate_authoritative_work_count
-- scheduler_writer_conflicts
-- checkpoint_loss
-- WRITE_OK / STATE_OK / WAKE_OK / WORK_OK
-- useful_work and control/overlap overhead where directly observable
+### Evidence required per baton sample
+Record predecessor/successor invocation ids, actual wake evidence, verified +840s pre-arm, READY evidence, generation before/after, transfer/accept evidence, authoritative work around transfer, handoff gap, duplicate authoritative side effects, scheduler conflicts, checkpoint loss, WRITE_OK/STATE_OK/WAKE_OK/WORK_OK, useful work/control overhead where observable.
 
 ### Clean sample
-A sample is CLEAN only when:
-- successor actually starts while predecessor is still alive;
-- predecessor is the sole authoritative owner until transfer;
-- successor becomes READY before authority transfer;
-- generation/CAS transfer succeeds;
-- no predecessor authoritative work occurs after transfer;
-- successor fresh-reads/accepts the new generation and begins useful work;
-- exactly one scheduler writer exists;
-- no duplicate authoritative side effect or checkpoint loss occurs.
+CLEAN requires actual successor wake while predecessor remains active; exactly one substantive owner before and after transfer; successor READY before/at transfer; successful generation/CAS transfer; no predecessor authoritative side effect after transfer; successor accepts fresh generation and resumes useful work; no duplicate authoritative side effect, scheduler conflict, or checkpoint loss. Concurrent wake without clean transfer is not a clean handoff.
 
-Concurrent wake without clean authority transfer is overlap evidence but not a clean handoff sample.
+### Gate O1A / O1B
+O1A requires at least 3 clean handoffs. O1B requires at least 5 clean end-to-end handoffs under an unchanged candidate before timing optimization. Preserve prior non-overlap evidence as comparator.
 
-### Gate O1A — baseline viability
-Require repeated Mer overlap observations demonstrating actual concurrency and at least 3 clean authority handoffs before treating the mechanism as operationally viable.
+### Active failure domain — owner loss
+The first owner-mediated sample exposed a liveness hole when the durable OWNER disappears before consuming a READY successor. `H-O1-OWNER-LOSS-RECOVERY` owns this subproblem. Do not count that sample CLEAN. Prefer a simpler non-time-based takeover if it demonstrates equivalent safety/recovery; retain per-side-effect generation fencing because takeover/leader election alone is not fencing.
 
-### Gate O1B — baseline stabilization
-After first clean transfers, obtain at least 5 clean end-to-end overlap handoffs under an unchanged candidate before timing optimization.
+## Stage O2 — Prompt enforcement / representation / versioned sync
+Retain existing prompt-boundary research as planned work. Stable invariants belong in deployed prompt plus canonical GitHub source; dynamic runtime state remains GitHub-only. Compare representation/anchors only with semantics held constant. Version mismatch uses prepare/deploy/verify/activate; version match uses cheap manifest fast path.
 
-### Comparator
-Existing Mer non-overlap immediate-prearm observations remain comparator evidence. After overlap is viable, compare against the best simple non-overlap policy on:
-- long-run authoritative useful-work duty cycle;
-- handoff/idle gap;
-- continuation success;
-- control overhead;
-- duplicate/race failures.
+## Stage O3 — Productive-window / completion-envelope observation
+There is no fixed work-duration completion rule in the current baton candidate. Measure platform survival boundary, productive window, close overhead, and interruption behavior observationally. A duration threshold may be tested later only if evidence shows it improves continuity/utilization; it must not silently become a stop gate.
 
-Do not claim overlap is globally superior until this comparison is measured.
+## Stage O4 — Wake-prearm offset optimization
+After baton handoff is viable, vary the single pre-arm offset from the current +840s baseline one variable at a time. Measure actual wake lateness, overlap, handoff gap, missed occurrence, and recovery. Prefer the simplest fixed offset whose continuity/utilization is equivalent to more complex policies.
 
-### Failure handling
-If overlap is concurrent but clean handoff fails:
-- do not fall back merely because the first implementation is faulty;
-- classify the failure domain: ownership detection, READY observation, CAS/transfer, scheduler ownership, unit granularity, wake jitter, or recovery;
-- revise only the responsible mechanism and retest.
-If repeated controlled revisions cannot achieve clean handoff without material reliability loss, demote overlap and use the best non-overlap policy.
-
-## Stage O2 — Prompt enforcement, representation, and versioned sync
-
-Reference:
-- `research/PROMPT_REPRESENTATION_PRIORS.md`
-
-### O2A — Authority placement
-
-#### H-PROMPT-1
-Stable behavioral invariants in the injected prompt are followed more reliably than repo-only copies.
-
-Use existing Mer Stage-1 conflict/delegation results as prior.
-Replicate only the discriminating conflict/delegation cases needed to confirm the result under the current optimizer kernel/model.
-
-### O2B — Prompt representation and rule encoding
-
-Do not conflate syntax format with semantic rigidity.
-
-#### O2B-1 — Representation syntax
-Primary variable: section/serialization syntax only.
-
-Candidates:
-- F1_MARKDOWN_DIRECT
-- F2_FLAT_KV_WRAPPER
-- F3_JSON_WRAPPER
-- F4_XML_WRAPPER
-
-Hold the same atomic propositions, ordering, authority channel, model/reasoning policy, fixtures, and dynamic state constant.
-Do not change a nuanced rule into a simpler enum merely to fit a format.
-
-Measure:
-- critical invariant adherence;
-- task completion quality;
-- omission/misinterpretation;
-- control/token overhead;
-- parse/boundary confusion;
-- repair/sync burden.
-
-#### O2B-2 — Lexical action naming / anchors
-Primary variable: how the same action/invariant is named, while surrounding semantics remain fixed.
-
-Examples for the same scheduling action:
-- natural-language Korean/English label: `예약 갱신` / `update the schedule`
-- invented symbolic name: `SCHEDULE_UPDATE`
-- function/command-like anchor: `schedule.update(...)`
-- native protocol fragment when one exists: e.g. `RRULE:FREQ=HOURLY`
-
-For scheduler invariants, explicitly compare:
-- natural-language description;
-- invented key/value DSL such as `RECURRENCE=HOURLY`;
-- exact native iCalendar fragment such as `RRULE:FREQ=HOURLY`;
-- hybrid natural-language behavior + native protocol fragment.
-
-Test whether canonical/native action names or syntax improve retrieval, disambiguation, and compliance or merely add ceremony.
-Do not mix this test with changes to the underlying rule semantics or scheduler behavior.
-
-#### O2B-3 — Rule encoding rigidity
-Run after syntax and lexical-anchor baselines.
-
-Primary variable: how the same rule is encoded.
-Compare, within the selected representation/anchor convention:
-- natural-language imperative;
-- declarative key/value or enum/boolean constants where semantically lossless;
-- hybrid: constants/identifiers as machine-like fields, nuanced behavioral rules as direct natural language.
-
-Do not hardcode dynamic runtime state.
-
-Measure whether exact constants improve compliance without losing conditional/behavioral meaning.
-
-#### O2B-4 — Relay canary
-Promote only the best materially distinct candidates from O2B-1/O2B-2/O2B-3 to real relay canary testing.
-If candidates are operationally tied, choose the simpler/shorter/more maintainable representation.
-
-### O2C — Versioned canonical/deployed sync
-
-#### H-SYNC-1
-GitHub canonical source + deployed prompt copy + cheap version comparison prevents silent drift at negligible steady-state cost.
-
-Test:
-- version match fast path;
-- version mismatch -> PREPARE/DEPLOY/VERIFY/ACTIVATE;
-- stale/failed deploy rollback or safe stop;
-- version/id changed without unnecessary full canonical reread when already matched.
-
-Promotion:
-- stable invariants may intentionally exist in both GitHub canonical and deployed prompt;
-- changing runtime state remains GitHub-only;
-- representation format is selected by O2B evidence, not by preference.
-
-## Stage O3 — Runtime / productive-window / completion-envelope optimization
-
-Use workwork evidence as prior, then validate Mer-specific behavior.
-
-Separate:
-1. SURVIVAL_BOUNDARY
-2. PRODUCTIVE_WINDOW
-3. COMPLETION_ENVELOPE
-
-Measure direct close overhead; do not invent a reserve.
-
-Candidate policies, in increasing complexity:
-- P1 fixed threshold
-- P2 soft cutoff + hard cap
-- P3 estimated-next-unit admission
-- P4 adaptive admission
-
-Prefer the simplest policy that achieves statistically/operationally indistinguishable continuity and duty cycle.
-
-The old ~600s target is only a starting probe value, not a completion rule.
-
-## Stage O4 — Planned-gap / wake-lead optimization
-
-After the prearm/runtime policy is stable enough, vary one timing parameter at a time.
-
-Start from an evidence-supported safe region, then test shorter gaps, e.g.:
-3m -> 2m -> 1m, with intermediate values if the boundary lies between them.
-
-Measure actual final scheduler-write-to-wake lead, wake lateness, idle gap, overlap, and missed occurrence.
-
-Choose the smallest gap/lead region that does not materially worsen continuity/recovery.
-
-## Stage O5 — Overlap lead / handoff optimization
-
-Run only after O1 establishes a viable controlled-overlap mechanism.
-
-Optimize:
-- successor lead;
-- READY handoff policy;
-- safe-unit granularity near transfer;
-- ownership timeout/recovery;
-- scheduler writer fencing.
-
-Candidate successor leads begin from the prior-supported 180s region, then test shorter/longer values one primary variable at a time.
-
-Objective:
-minimize handoff gap and wasted shadow overlap while preserving:
-- one authoritative owner;
-- one scheduler writer;
-- zero duplicate authoritative side effects;
-- clean checkpoint/transfer;
-- stable continuation.
-
-Compare any more complex adaptive lead against the best fixed-lead policy. Prefer the simpler policy if operationally equivalent.
+## Stage O5 — Handoff optimization
+Optimize READY policy, safe-unit granularity near transfer, ownership recovery, and fencing only after O1 viability. Scheduler has one wake-start write per invocation; substantive ownership remains generation fenced. Compare complex recovery against the simplest safe alternative.
 
 ## Stage O6 — Adverse recovery tests
-
-Inject or safely simulate:
-- missed intended near-term wake while recurrence remains
-- turn termination after checkpoint but before normal finish
-- stale durable state
-- duplicate/competing actor
-- prompt version mismatch
-- missing bootstrap entrypoint
-- scheduler write accepted but later wake absent
-
-A fast candidate without demonstrated recovery is rejected.
+Test missed intended wake, predecessor termination, stale state, duplicate/competing actor, prompt mismatch, missing bootstrap, and accepted scheduler write followed by absent wake. Reject fast candidates without demonstrated recovery.
 
 ## Stage O7 — Final convergence
-
-A final candidate must include:
-- scheduler strategy
-- prompt/canonical sync strategy
-- operating runtime/admission rule
-- close reserve/safety margin method
-- planned gap / successor lead
-- checkpoint ordering
-- recovery/fallback
-- authority fencing if overlap is used
-
-Final validation requires, at minimum:
-- repeated clean end-to-end wakes under the unchanged candidate;
-- zero duplicate authoritative side effects in validation;
-- retrospective WAKE_OK/WORK_OK evidence;
-- adverse recovery success;
-- measured useful-work duty cycle and idle gap where directly observable;
-- comparison against at least one plausible simpler/competing policy;
-- documented rejected hypotheses and why they failed.
-
-Do not mark COMPLETE while a material uncertainty in continuity or utilization remains untested and testable.
+Final candidate must specify scheduler strategy, prompt/canonical sync, work/stop rule, checkpoint ordering, recovery/fallback, and authority fencing. Require repeated unchanged clean wakes, zero duplicate authoritative side effects, retrospective WAKE_OK/WORK_OK, adverse recovery success, measured duty cycle/idle gap where observable, a simpler comparator, and documented rejected hypotheses. Do not mark COMPLETE while material continuity/utilization uncertainty remains testable.
 
 ## Wake utilization rule
-
-A wake is a work session, not a one-step callback.
-Continue plan-defined safe units while runtime allows.
-Never sleep, pad, or generate meaningless work.
-Reserve enough time for durable state close.
-Scheduler continuation should be secured according to the currently declared experimental strategy before taking risks that could strand the relay.
+A wake is a work session, not a one-step callback. Continue genuine plan-defined safe units until `PROGRAM_COMPLETE` or `SUCCESSOR_HANDOFF_COMPLETE`; abnormal platform/safety interruption is not successful voluntary completion. Never sleep, pad, repeat converged work, or invent work. Continuation is secured by the current one-write wake-start pre-arm strategy.
