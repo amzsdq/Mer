@@ -6,7 +6,7 @@
   "plan": "research/MASTER_PLAN.md",
   "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
   "current_stage": "O1_IMMEDIATE_PREARM_BASELINE",
-  "next_step": "O1_SAMPLE_001_IMMEDIATE_PREARM",
+  "next_step": "O1_VERIFY_SAMPLE_001_THEN_SAMPLE_002",
   "active_hypothesis": "H-SCHED-1",
   "hypothesis_status": "TESTING",
   "active_execution": "spec/execution.json",
@@ -22,6 +22,7 @@
   "gate": {
     "baseline_required_clean_end_to_end_samples": 5,
     "baseline_clean_end_to_end_samples": 0,
+    "open_sample": "evidence/O1_SAMPLE_001_IMMEDIATE_PREARM.json",
     "require_retrospective_wake_ok": true,
     "require_work_ok": true,
     "require_comparator": true
@@ -37,5 +38,5 @@
     "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
-  "updated_at": "2026-09-23T20:45:00+09:00"
+  "updated_at": "2026-09-23T21:09:30+09:00"
 }
