@@ -1,37 +1,34 @@
 {
   "schema_version": 1,
   "phase": "ADVERSE_BOOTSTRAP_TEST",
-  "experiment": "F1_HYBRID_MISSING_DYNAMIC_REFERENCE",
+  "experiment": "F2_HYBRID_MALFORMED_DYNAMIC_SPEC",
   "sample": 1,
-  "last_result": "F1 PASS: missing required dynamic reference produced BOOTSTRAP_FAULT; no normal project result or fabricated payload; embedded scheduler/survival core remained available.",
+  "last_result": "F2 PASS: malformed GitHub-owned execution state was rejected without coercion/fabrication; no normal project result emitted; embedded scheduler/survival core remained available.",
   "phase1_summary": {
     "T1_P_DIRECT_CONFLICT": "PROMPT selected",
     "T2_P_DELEGATED": "GITHUB selected under explicit prompt delegation",
     "T3_POINTER_ONLY": "GITHUB selected from repository authority"
   },
-  "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; avoid duplicated dynamic authority.",
-  "hybrid_sample_1": {
-    "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
-    "bootstrap_read_count": 8,
-    "fault": "ACTIVE_POINTER_STALE_AND_INCOMPLETE",
-    "fix": "active.json reconciled to direct canonical/execution/status/workload pointers"
-  },
+  "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state before execution; avoid duplicated dynamic authority.",
   "hybrid_sample_2": {
-    "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
     "bootstrap_read_count": 4,
-    "fault": null,
-    "finding": "Normal-path bootstrap overhead halved after pointer reconciliation; four reads currently suffice for the benchmark."
+    "fault": null
   },
   "f1_sample_1": {
     "result": "PASS",
-    "bootstrap_read_count": 4,
     "fault": "BOOTSTRAP_FAULT_MISSING_REQUIRED_DYNAMIC_REFERENCE",
-    "normal_project_result_emitted": false,
-    "fabricated_payload": false,
-    "embedded_scheduler_survival_invariants_available": true,
-    "evidence": "evidence/trials/F1-20260923T173510+0900.md"
+    "normal_project_result_emitted": false
   },
-  "next": "Prepare F2 malformed dynamic spec while preserving all other variables; test whether hybrid rejects malformed authoritative dynamic state without losing continuation safety.",
-  "updated_at": "2026-09-23T17:35:10+09:00",
-  "f1_activation_gate": "COMPLETED_PASS"
+  "f2_sample_1": {
+    "result": "PASS",
+    "bootstrap_read_count": 3,
+    "fault": "BOOTSTRAP_FAULT_MALFORMED_DYNAMIC_SPEC",
+    "failed_fields": ["generation:type", "next_action:type"],
+    "normal_project_result_emitted": false,
+    "coercion_or_fabrication": false,
+    "embedded_scheduler_survival_invariants_available": true,
+    "evidence": "evidence/trials/F2-20260923T174006+0900.md"
+  },
+  "next": "F3 generation mismatch: valid desired spec plus stale observed_generation; verify no false reconciliation claim and continuation safety remains intact.",
+  "updated_at": "2026-09-23T17:40:06+09:00"
 }
