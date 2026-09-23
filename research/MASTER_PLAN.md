@@ -94,25 +94,58 @@ Gate:
 Failure handling:
 - if immediate prearm causes overlap, lost work, or materially worse utilization, revise timing/lead rather than assuming the hypothesis.
 
-## Stage O2 — Prompt enforcement and versioned sync
+## Stage O2 — Prompt enforcement, representation, and versioned sync
 
-### H-PROMPT-1
+Reference:
+- `research/PROMPT_REPRESENTATION_PRIORS.md`
+
+### O2A — Authority placement
+
+#### H-PROMPT-1
 Stable behavioral invariants in the injected prompt are followed more reliably than repo-only copies.
 
-### H-SYNC-1
+Use existing Mer Stage-1 conflict/delegation results as prior.
+Replicate only the discriminating conflict/delegation cases needed to confirm the result under the current optimizer kernel/model.
+
+### O2B — Representation format
+
+Do not assume prose, Markdown, JSON, XML, or hardcoded key/value syntax is best.
+
+Candidate representations initially:
+- F1_MARKDOWN_DIRECT
+- F2_FLAT_KV_DSL
+- F3_JSON_INVARIANTS
+- F4_XML_SECTIONS
+- F5_HYBRID_MINIMAL
+
+Hold semantics, rule ordering, authority channel, model/reasoning policy, fixtures, and dynamic state constant.
+Change only representation.
+
+First run a compact fixture suite measuring:
+- critical invariant adherence;
+- task completion quality;
+- omission/misinterpretation;
+- control/token overhead;
+- repair/sync burden.
+
+Promote only the best two materially distinct candidates to relay canary testing.
+If candidates are operationally tied, choose the simpler/shorter/more maintainable representation.
+
+### O2C — Versioned canonical/deployed sync
+
+#### H-SYNC-1
 GitHub canonical source + deployed prompt copy + cheap version comparison prevents silent drift at negligible steady-state cost.
 
-Use existing Mer Stage-1 conflict/delegation results as prior.
-Run only the additional discriminating tests needed:
-- harmless prompt-vs-repo invariant conflict replication;
-- explicit dynamic delegation replication if needed;
+Test:
 - version match fast path;
 - version mismatch -> PREPARE/DEPLOY/VERIFY/ACTIVATE;
-- stale/failed deploy rollback or safe stop.
+- stale/failed deploy rollback or safe stop;
+- version/id changed without unnecessary full canonical reread when already matched.
 
 Promotion:
-Stable invariants may intentionally exist in both GitHub canonical and deployed prompt.
-Changing runtime state remains GitHub-only.
+- stable invariants may intentionally exist in both GitHub canonical and deployed prompt;
+- changing runtime state remains GitHub-only;
+- representation format is selected by O2B evidence, not by preference.
 
 ## Stage O3 — Runtime / productive-window / completion-envelope optimization
 
