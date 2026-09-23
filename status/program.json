@@ -4,11 +4,11 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
-  "current_stage": "3C_HYBRID_DYNAMIC_MUTATION",
-  "next_step": "Collect the second clean HYBRID post-mutation sample using generation=2 and marker=GITHUB_DYNAMIC_MUTATED without changing the automation prompt or scheduler semantics.",
+  "current_stage": "3D_POINTER_ONLY_BASELINE",
+  "next_step": "Prepare and collect the first clean POINTER_ONLY baseline sample using the fixed workload while preserving scheduler semantics.",
   "required_clean_samples": 2,
-  "current_clean_samples": 1,
-  "then": "3D_POINTER_ONLY_BASELINE",
+  "current_clean_samples": 0,
+  "then": "4_DISCRIMINATING_FAILURE_TESTS",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T19:26:00+09:00"
+  "updated_at": "2026-09-23T19:27:00+09:00"
 }
