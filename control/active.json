@@ -1,19 +1,19 @@
 {
   "schema_version": 2,
   "research_phase": "ADVERSE_BOOTSTRAP_TEST",
-  "candidate": "F2_HYBRID_MALFORMED_DYNAMIC_SPEC",
+  "candidate": "F3_HYBRID_GENERATION_MISMATCH",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
   "canonical_prompt": "control/CANONICAL_PROMPT_B_HYBRID.md",
-  "execution": "spec/execution-f2-malformed.json",
+  "execution": "spec/execution-f3-generation-mismatch.json",
   "status": "status/current.json",
-  "workload": "research/adverse-f2-workload.md",
+  "workload": "research/adverse-f3-workload.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "write_scope": "amzsdq/Mer",
   "rollout_state": "ACTIVE",
   "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
-  "remaining_uncertainty": "malformed_authoritative_dynamic_state_behavior",
-  "adverse_test": "F2",
-  "primary_variable": "authoritative_dynamic_spec_valid:true->false"
+  "remaining_uncertainty": "desired_observed_generation_mismatch_behavior",
+  "adverse_test": "F3",
+  "primary_variable": "observed_generation_matches_desired:true->false"
 }
