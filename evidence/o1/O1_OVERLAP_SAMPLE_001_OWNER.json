@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "sample_id": "O1_OVERLAP_SAMPLE_001",
+  "hypothesis": "H-OVERLAP-BASE-1",
+  "invocation_id": "MER-20260923T215700+0900-O1S001",
+  "role": "ACTIVE_OWNER",
+  "generation": 1,
+  "owner_started_at": "2026-09-23T21:57:00+09:00",
+  "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM_SHADOW",
+  "successor_scheduled_for": "2026-09-23T22:04:00+09:00",
+  "scheduler_update": {
+    "write_ok": true,
+    "state_ok": true,
+    "same_automation_id": true,
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY",
+    "dtstart": "20260923T220400",
+    "live_list_verified": true
+  },
+  "wake_ok": "PENDING_LATER_INVOCATION",
+  "work_ok": true,
+  "authoritative_side_effects": [
+    "claimed control/ownership.json generation 1",
+    "prearmed same recurring automation for successor target"
+  ],
+  "duplicate_authoritative_work_count": 0,
+  "scheduler_writer_conflicts": 0,
+  "checkpoint_loss": 0,
+  "prior_art_validation": {
+    "kubernetes": "Lease/leader-election supports concurrent candidates with one holder and optimistic concurrency; timing semantics are not assumed transferable.",
+    "github_contents": "update requires current blob sha and conflicting writes can return conflict; suitable as Mer optimistic-concurrency primitive but not proof of atomic multi-file transactions."
+  },
+  "classification": "OWNER_PREARMED_AWAITING_SUCCESSOR",
+  "notes": "Immutable owner-side evidence only. CLEAN cannot be claimed until a later invocation proves actual overlap, READY, fenced transfer, successor generation acceptance, and resumed useful work."
+}
