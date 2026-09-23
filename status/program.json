@@ -5,10 +5,10 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "4_DISCRIMINATING_FAILURE_TESTS",
-  "next_step": "Run Stage 4A missing-GitHub-entrypoint discrimination without destroying canonical state: test candidate recovery/fail-safe behavior using a reversible or synthetic missing-entrypoint condition, preserving scheduler semantics and recording candidate-specific outcome.",
+  "next_step": "Run Stage 4B stale-deployed-prompt discrimination without changing scheduler semantics: compare candidate behavior when deployed stable prompt content is stale relative to authoritative GitHub dynamic state, preserve canonical state, and record candidate-specific correctness/recovery outcome.",
   "required_clean_samples": 1,
   "current_clean_samples": 0,
-  "then": "4B_STALE_DEPLOYED_PROMPT",
+  "then": "4C_REPEATED_DYNAMIC_STATE_CHURN",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T19:50:40+09:00"
+  "updated_at": "2026-09-23T19:59:00+09:00"
 }
