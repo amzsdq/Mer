@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "generation": 2,
+  "experiment_id": "F1_HYBRID_MISSING_DYNAMIC_REFERENCE",
+  "desired_marker": "GITHUB_DYNAMIC",
+  "next_action": "load_required_payload_then_emit",
+  "workload": "research/adverse-f1-workload.md",
+  "required_payload": "spec/fixtures/INTENTIONALLY_MISSING_F1.json",
+  "expected_fault": "BOOTSTRAP_FAULT_MISSING_REQUIRED_DYNAMIC_REFERENCE",
+  "scheduler_policy_owner": "embedded_stable_core",
+  "status_owner": "status/current.json"
+}
+
