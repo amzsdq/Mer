@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "prompt_version": "0.1.0",
+  "canonical_path": "control/CANONICAL_PROMPT.md",
+  "deployment_model": "canonical_in_git_deployed_copy_in_automation",
+  "compatible_state_schema": 1,
+  "rollout_state": "RESEARCH_ONLY",
+  "previous_good_version": null,
+  "content_hash_status": "TODO_AFTER_PROMPT_FREEZE"
+}
