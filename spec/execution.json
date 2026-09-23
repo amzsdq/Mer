@@ -15,8 +15,15 @@
   "scheduler_writer_rule": "ACTIVE_OWNER_ONLY",
   "transfer_rule": "GENERATION_PLUS_OPTIMISTIC_CONCURRENCY",
   "normal_close_scheduler_rewrite": false,
-  "next_action": "O1_OVERLAP_SAMPLE_001_ESTABLISH_OWNER_AND_PREARM_SHADOW",
+  "next_action": "O1_OVERLAP_SAMPLE_001_SHADOW_PREPARE_PUBLISH_READY_THEN_OWNER_CAS_TRANSFER",
   "workload": "research/MASTER_PLAN.md#stage-o1--controlled-overlap-baseline--active",
   "status_owner": "status/program.json",
-  "updated_at": "2026-09-23T21:48:30+09:00"
+  "active_sample": "O1_OVERLAP_SAMPLE_001",
+  "sample_protocol": {
+    "shadow_on_wake": "fresh-read ownership; if another invocation owns current generation, do not mutate scheduler/shared authority; create immutable evidence/o1/O1_OVERLAP_SAMPLE_001_SHADOW_<invocation_id>.json with actual_start, bootstrap_ready_at, observed owner/generation, READY status",
+    "owner_transfer": "owner fresh-reads READY evidence and ownership; CAS update ownership to successor invocation with generation+1; after successful transfer owner performs no further authoritative project side effects",
+    "successor_accept": "successor fresh-reads ownership after transfer; only exact active_invocation_id+generation may become ACTIVE_OWNER and resume useful work",
+    "clean_gate": "actual concurrent start + READY before transfer + successful CAS + no predecessor authoritative work after transfer + successor acceptance/work + zero scheduler conflict/duplicate/checkpoint loss"
+  },
+  "updated_at": "2026-09-23T22:00:00+09:00"
 }
