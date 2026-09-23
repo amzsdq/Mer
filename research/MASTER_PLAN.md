@@ -1,52 +1,61 @@
-# Mer Master Plan v1
+# Mer Master Plan v2
 
 ## Rule
-Each wake follows the current stage and next step. It does not choose a new experiment ad hoc. New ideas go to backlog unless they invalidate the current test.
+Each wake follows the authoritative program state in `status/program.json`. It does not choose a new experiment ad hoc. New ideas go to backlog unless they invalidate the current test.
+
+Dynamic runtime authority is singular:
+- `status/program.json` owns `current_stage`, `next_step`, and `active_execution`.
+- `control/active.json` is a static bootstrap pointer and must not duplicate changing stage/next fields.
+- `spec/execution.json` is authoritative only while `status/program.json.active_execution` explicitly points to it.
 
 ## Stage 0 — Reconnaissance — COMPLETE
-Compare RRULEF, tEST, workwork and external controller/durable-workflow patterns.
+Compared RRULEF, tEST, workwork and external controller/durable-workflow patterns.
 
 ## Stage 1 — Instruction authority — COMPLETE
-Test direct prompt instruction, explicit delegation to GitHub, and pointer-only behavior.
+Tested direct prompt instruction, explicit delegation to GitHub, and pointer-only behavior.
 
 ## Stage 2 — Hybrid failure handling — COMPLETE
-Test missing reference, malformed state, generation mismatch, semantic conflict, and prompt drift.
+Tested missing reference, malformed state, generation mismatch, semantic conflict, and prompt drift.
 
-## Stage 3 — Normal-path boundary cost — IN PROGRESS
-3A HYBRID baseline — COMPLETE: 2 clean samples, 4 bootstrap reads.
-3B PROMPT_HEAVY — COMPLETE: repeated 0-read result path; changing dynamic values required prompt mutation.
-3C HYBRID dynamic mutation — NEXT: change the same generation/marker in GitHub only, then collect 2 clean samples.
-3D POINTER_ONLY baseline — after 3C: collect 2 clean samples.
+## Stage 3 — Normal-path boundary cost — COMPLETE
+- HYBRID baseline: clean samples demonstrated GitHub-owned dynamic state with bounded bootstrap reads.
+- PROMPT_HEAVY: 0-read result path demonstrated; changing dynamic values required deployed prompt mutation.
+- HYBRID dynamic mutation: GitHub-only dynamic changes demonstrated without deployed prompt mutation.
+- POINTER_ONLY: dynamic-state freshness preserved but recovery from loss of the sole entrypoint was weaker.
 
-## Stage 4 — Discriminating failure tests
-Test only faults that distinguish the candidates:
-- missing GitHub entrypoint;
-- stale deployed prompt;
-- repeated dynamic-state churn;
-- scheduler write accepted but later wake absent.
+## Stage 4 — Discriminating failure tests — COMPLETE
+Tested the candidate-distinguishing failures needed for the final decision, including missing entrypoint, stale/deployed prompt drift, dynamic churn, and the separation between scheduler acceptance/live state/later wake.
 
-## Stage 5 — Convergence
-Build the comparison table, choose the smallest design that preserves correctness and recovery, then remove unnecessary rules/files.
+## Stage 5 — Convergence — COMPLETE
+Selected the smallest supported design that preserved correctness and recovery:
+**HYBRID stable kernel + GitHub dynamic brain**.
 
-## Stage 6 — Final validation
-Run 3 clean end-to-end wakes plus 1 recovery wake. Produce the final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record.
+## Stage 6 — Final validation — COMPLETE
+Validated:
+- clean end-to-end wakes: 3/3 PASS
+- missing-entrypoint recovery: 1/1 PASS
+
+Produced:
+- final prompt
+- final repository schema
+- recovery protocol
+- rollout method
+- rejected-alternative record
+
+## Finalization rule
+Completion must not depend on synchronizing multiple changing files.
+
+Authoritative completion is one state transition in `status/program.json`:
+- `current_stage = COMPLETE`
+- `next_step = NONE`
+- `active_execution = null`
+
+Other documents and archive cleanup are non-authoritative follow-up work. If cleanup fails, runtime truth remains unambiguous.
 
 ## Wake utilization rule
 A wake is a work session, not a one-step callback.
 
-Initial operating target:
-- useful-work target: about 600 seconds per normal wake;
-- this is an empirical starting value, not a permanent invariant;
-- never sleep, pad, or invent work to hit the target.
-
-After each completed unit:
-1. record useful work accumulated so far;
-2. if the current experiment gate is still open, continue its next valid unit;
-3. if the gate just closed, persist the boundary and immediately continue with the next planned stage/step when it is safe and clearly specified;
-4. stop starting new substantial units only when the remaining runtime is no longer sufficient for the estimated next unit plus close/handoff reserve;
-5. early close is reserved for actual COMPLETE, BLOCKED, RISK, or absence of any safe plan-defined useful unit.
-
-One-primary-variable applies per experiment/sample boundary, not as a reason to waste the remainder of a wake.
+Initial operating target during experimentation was about 600 seconds of useful work per normal wake. It was an empirical starting point, not a permanent invariant. Never sleep, pad, or invent work to hit a target.
 
 ## Stop rules
-Do not repeat a converged sample unless an anomaly requires it. Do not change more than one primary experimental variable inside one experimental sample.
+The research program is COMPLETE. Do not start a new experiment unless the program state is explicitly reopened through a new authoritative program transition.
