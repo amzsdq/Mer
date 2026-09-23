@@ -1,0 +1,8 @@
+{
+  "marker_type": "END_MARKER",
+  "invocation_id": "MER-20260924T0105Z-OWNERLOSS-CAL",
+  "start_commit": "47794a2957590bf723e3109d8f2d8ab11c050579",
+  "result": "OWNER_LOSS_CALIBRATION_DESIGNED_AND_PARTIAL_SERVER_MARKER_SAMPLE_COLLECTED",
+  "early_close": true,
+  "early_close_reason": "Current invocation is non-owner and cannot mutate authoritative program/execution/scheduler state. Safe immutable research and calibration work was completed; next discriminating evidence requires a later cross-wake server timestamp, so continuing this wake would only create artificial same-wake samples and would not answer scheduler jitter/expiry calibration."
+}
