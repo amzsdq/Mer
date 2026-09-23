@@ -1,12 +1,13 @@
 {
-  "schema_version": 1,
-  "generation": 1,
-  "active_invocation_id": "MER-20260923T215700+0900-O1S001",
+  "schema_version": 2,
+  "generation": 2,
+  "active_invocation_id": "MER-20260924T060808+0900-O1BOOT001",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": null,
+  "predecessor_invocation_id": "MER-20260923T215700+0900-O1S001",
   "intended_successor_invocation_id": "NEXT_WAKE_SHADOW_PENDING_ID",
-  "owner_started_at": "2026-09-23T21:57:00+09:00",
-  "successor_scheduled_for": "2026-09-23T22:04:00+09:00",
-  "updated_at": "2026-09-23T21:57:20+09:00",
-  "authority_rule": "Only the invocation named active_invocation_id at the current generation may perform authoritative shared-state side effects or scheduler mutation. Ownership changes require fresh-read optimistic-concurrency update with generation increment."
+  "owner_started_at": "SERVER_TIMESTAMP_FROM_BOOTSTRAP_CAS_COMMIT",
+  "owner_renewal_seq": 0,
+  "updated_at": "SERVER_TIMESTAMP_FROM_BOOTSTRAP_CAS_COMMIT",
+  "authority_rule": "Only the invocation named active_invocation_id at the current generation may perform authoritative shared-state side effects. Ownership changes require fresh-read optimistic-concurrency update with generation increment. Scheduler wake-start pre-arm remains a separate continuity lane per deployed prompt.",
+  "transition_reason": "EXPLICIT_ONE_TIME_BOOTSTRAP_RECOVERY_CANARY"
 }
