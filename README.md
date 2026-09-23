@@ -2,36 +2,51 @@
 
 Research workspace for finding the optimal boundary between a ChatGPT Automation reservation prompt and GitHub durable control/state.
 
-## Research question
-What information must be embedded in the scheduler/automation prompt for reliable cold-start and self-repair, and what information should live in GitHub for low-overhead durable execution?
+## Result
+The research program is COMPLETE.
 
-## Working hypothesis
-The leading candidate is a **thin immutable bootstrap prompt + GitHub canonical kernel/spec/status/evidence** architecture.
+Selected architecture:
+**HYBRID stable kernel + GitHub dynamic brain + single authoritative program object.**
 
-The reservation prompt should contain only what must exist before GitHub can be trusted/read:
-- identity and writable repository
-- canonical prompt/kernel path
-- same-automation self-update safety invariants
-- minimum status/report contract
-- source-of-truth rule and failure behavior
-- model/reasoning policy
+### Prompt owns
+- identity and writable repository;
+- explicit authority/delegation contract;
+- stable bootstrap/recovery references;
+- same-automation scheduler safety invariants;
+- minimum status/report contract;
+- fail-safe behavior;
+- model/reasoning policy.
 
-GitHub should contain:
-- Goal / Plan / current task / next action
-- project context and instructions
-- dynamic scheduler/runtime policy
-- desired state vs observed state
-- evidence and experiment ledger
-- canonical reservation prompt used for propagation/repair
-- version/hash metadata for drift detection
+### GitHub owns
+- Goal / Plan / current program state;
+- dynamic execution and experiment state;
+- evidence and decisions;
+- canonical prompt/version metadata.
 
-## Method
-Compare three candidates:
-1. PROMPT_HEAVY
-2. HYBRID_BOOTSTRAP
-3. POINTER_ONLY
+### Single runtime authority
+`status/program.json` alone owns:
+- current stage;
+- next step;
+- active execution pointer.
 
-Measure bootstrap overhead, time-to-first-useful-work, stale-policy incidents, continuation reliability, recovery, repository I/O, prompt mutation frequency, and useful-work utilization.
+`control/active.json` is a static bootstrap pointer. It must not duplicate dynamic stage/next state.
+
+`spec/execution.json` is authoritative only if selected by `status/program.json.active_execution`.
+
+Historical status belongs in `evidence/` or `archive/`, never as a competing current truth.
+
+## Validated gates
+- clean final wakes: 3/3 PASS
+- missing-entrypoint recovery: 1/1 PASS
+- final authority cleanup: COMPLETE
+
+## Key documents
+- `research/FINAL_DESIGN.md`
+- `research/CONVERGENCE.md`
+- `research/MASTER_PLAN.md`
+- `research/case-studies-v1.md`
+- `control/CANONICAL_PROMPT_SUPERVISOR.md`
+- `status/program.json`
 
 ## Sources
-Prior internal evidence is read from `amzsdq/RRULEF`, `amzsdq/tEST`, and `amzsdq/workwork` as READ_ONLY unless a later experiment explicitly changes that scope.
+Prior internal evidence was read from `amzsdq/RRULEF`, `amzsdq/tEST`, and `amzsdq/workwork` as READ_ONLY during the research program.
