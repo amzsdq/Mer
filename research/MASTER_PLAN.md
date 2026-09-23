@@ -8,6 +8,27 @@ Primary objective: continuity first, then maximum long-run useful-work utilizati
 Each wake follows `status/program.json.next_step`.
 Do not promote theory directly into production policy.
 
+### Hypothesis sourcing gate — REQUIRED
+
+Before a new hypothesis becomes TESTABLE, follow `research/HYPOTHESIS_SOURCING_POLICY.md`.
+
+At minimum perform a bounded scan of:
+- relevant Mer/tEST/workwork empirical evidence;
+- authoritative implementation references for the same primitive;
+- academic/formal research when an established literature exists;
+- at least one competing interpretation, counterexample, or failure mode.
+
+Maintain reusable references in `research/REFERENCE_BASE.md`.
+
+Every new hypothesis must state:
+- supporting priors;
+- counter-priors / known conflicts;
+- what is transferable to Mer;
+- what cannot be assumed to transfer;
+- the exact discriminating test and rejection/revision condition.
+
+If no useful prior art is found after a bounded search, label the hypothesis `EXPLORATORY_UNSOURCED`; do not silently treat intuition as established engineering knowledge.
+
 For every candidate:
 1. DEFINE hypothesis and metric.
 2. Establish baseline/control.
