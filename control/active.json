@@ -11,5 +11,8 @@
   "priority_hypothesis": "research/priority-force-hypothesis.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
   "conflict_spec": "control/conflict.json",
-  "status": "status/current.json"
+  "status": "status/current.json",
+  "prior_case": "research/prior-case-R504.md",
+  "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
+  "remaining_uncertainty": "instruction_force_and_explicit_delegation"
 }
