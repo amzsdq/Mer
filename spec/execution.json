@@ -6,9 +6,9 @@
   "experiment_id": "H-O1-OWNER-LOSS-RECOVERY_CALIBRATION",
   "primary_variable": "OWNER_LOSS_RECOVERY_MECHANISM",
   "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM_SHADOW",
-  "owner_nominal_horizon_sec": 600,
+  "owner_nominal_horizon_sec": 900,
   "successor_lead_sec": 180,
-  "successor_due_rule": "OWNER_START + 420s",
+  "successor_due_rule": "OWNER_ACTIVATED_AT + 720s",
   "authority_record": "control/ownership.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY_UNTIL_VALID_TAKEOVER",
@@ -16,7 +16,7 @@
   "transfer_rule": "NORMAL_OWNER_MEDIATED_OR_EXPERIMENTAL_EXPIRED_OWNER_CAS",
   "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_OR_SCHEDULER_SIDE_EFFECT_FRESH_READ_OWNERSHIP_AND_REQUIRE_EXACT_ACTIVE_INVOCATION_ID_PLUS_GENERATION",
   "normal_close_scheduler_rewrite": false,
-  "next_action": "DESIGN_OWNER_LOSS_EXPIRY_FROM_SERVER_OBSERVABLES_THEN_RUN_BOUNDED_CANARY",
+  "next_action": "RUN_15_12_BASELINE_WITH_SUCCESSOR_GATED_CLOSE_AND_RETAIN_OWNER_LOSS_RECOVERY_AS_FAILURE_PATH",
   "workload": "research/H-O1-OWNER-LOSS-RECOVERY.md",
   "status_owner": "status/program.json",
   "active_sample": "O1_OWNER_LOSS_CALIBRATION_001",
@@ -29,8 +29,12 @@
     "takeover_requires_optimistic_concurrency": true,
     "per_side_effect_fence_remains_required": true,
     "expiry_threshold": "UNSET_REQUIRES_CALIBRATION",
-    "promotion_gate": "3_CLEAN_OWNER_LOSS_RECOVERIES_PLUS_COMPARATOR"
+    "promotion_gate": "3_CLEAN_OWNER_LOSS_RECOVERIES_PLUS_COMPARATOR",
+    "normal_continue_requires_successor_ready": true,
+    "normal_continue_requires_ownership_transfer": true,
+    "no_successor_no_normal_close": true,
+    "runtime_target_policy": "15M_BASELINE_DECREASE_ONLY_AFTER_ATTRIBUTABLE_FAILURE"
   },
   "sample_001_result": "REVISE_OWNER_TRANSFER_LIVENESS",
-  "updated_at": "2026-09-24T00:08:00+09:00"
+  "updated_at": "2026-09-24T02:00:00+09:00"
 }
