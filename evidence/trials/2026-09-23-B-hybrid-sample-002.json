@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "candidate": "B_HYBRID_BOOTSTRAP_BASELINE",
+  "sample": 2,
+  "observed_at": "2026-09-23T18:12:01+09:00",
+  "bootstrap_read_count": 4,
+  "repository_files_needed_before_result": [
+    "control/active.json",
+    "status/current.json",
+    "spec/execution.json",
+    "research/fixed-workload-v1.md"
+  ],
+  "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+  "bootstrap_fault": false,
+  "scheduler_semantics_changed": false,
+  "classification": "B_BASELINE_SAMPLE_002_PASS"
+}
