@@ -136,11 +136,17 @@ Primary variable: how the same action/invariant is named, while surrounding sema
 
 Examples for the same scheduling action:
 - natural-language Korean/English label: `예약 갱신` / `update the schedule`
-- canonical symbolic name: `SCHEDULE_UPDATE`
-- XML-style semantic tag: `<schedule_update>...</schedule_update>`
+- invented symbolic name: `SCHEDULE_UPDATE`
 - function/command-like anchor: `schedule.update(...)`
+- native protocol fragment when one exists: e.g. `RRULE:FREQ=HOURLY`
 
-Test whether explicit canonical action names/tags improve retrieval, disambiguation, and compliance or merely add ceremony.
+For scheduler invariants, explicitly compare:
+- natural-language description;
+- invented key/value DSL such as `RECURRENCE=HOURLY`;
+- exact native iCalendar fragment such as `RRULE:FREQ=HOURLY`;
+- hybrid natural-language behavior + native protocol fragment.
+
+Test whether canonical/native action names or syntax improve retrieval, disambiguation, and compliance or merely add ceremony.
 Do not mix this test with changes to the underlying rule semantics or scheduler behavior.
 
 #### O2B-3 — Rule encoding rigidity
