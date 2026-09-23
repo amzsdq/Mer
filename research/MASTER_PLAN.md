@@ -131,11 +131,23 @@ Measure:
 - parse/boundary confusion;
 - repair/sync burden.
 
-#### O2B-2 — Rule encoding rigidity
-Run only after O2B-1 establishes a representation baseline.
+#### O2B-2 — Lexical action naming / anchors
+Primary variable: how the same action/invariant is named, while surrounding semantics remain fixed.
+
+Examples for the same scheduling action:
+- natural-language Korean/English label: `예약 갱신` / `update the schedule`
+- canonical symbolic name: `SCHEDULE_UPDATE`
+- XML-style semantic tag: `<schedule_update>...</schedule_update>`
+- function/command-like anchor: `schedule.update(...)`
+
+Test whether explicit canonical action names/tags improve retrieval, disambiguation, and compliance or merely add ceremony.
+Do not mix this test with changes to the underlying rule semantics or scheduler behavior.
+
+#### O2B-3 — Rule encoding rigidity
+Run after syntax and lexical-anchor baselines.
 
 Primary variable: how the same rule is encoded.
-Compare, within the selected representation:
+Compare, within the selected representation/anchor convention:
 - natural-language imperative;
 - declarative key/value or enum/boolean constants where semantically lossless;
 - hybrid: constants/identifiers as machine-like fields, nuanced behavioral rules as direct natural language.
@@ -144,8 +156,8 @@ Do not hardcode dynamic runtime state.
 
 Measure whether exact constants improve compliance without losing conditional/behavioral meaning.
 
-#### O2B-3 — Relay canary
-Promote only the best materially distinct candidates from O2B-1/O2B-2 to real relay canary testing.
+#### O2B-4 — Relay canary
+Promote only the best materially distinct candidates from O2B-1/O2B-2/O2B-3 to real relay canary testing.
 If candidates are operationally tied, choose the simpler/shorter/more maintainable representation.
 
 ### O2C — Versioned canonical/deployed sync
