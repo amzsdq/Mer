@@ -1,13 +1,12 @@
 {
-  "schema_version": 2,
-  "research_phase": "BOUNDARY_COST_COMPARISON",
-  "candidate": "A_PROMPT_HEAVY",
-  "canonical_prompt": "control/CANONICAL_PROMPT_A_HEAVY.md",
-  "status": "status/current.json",
+  "schema_version": 3,
+  "goal": "spec/GOAL.md",
+  "plan": "research/MASTER_PLAN.md",
+  "case_studies": "research/case-studies-v1.md",
+  "program": "status/program.json",
+  "canonical_supervisor_prompt": "control/CANONICAL_PROMPT_SUPERVISOR.md",
+  "current_stage": "3C_HYBRID_DYNAMIC_MUTATION",
+  "next_step_id": "3C-1",
   "fixed_workload": "research/fixed-workload-v1.md",
-  "write_scope": "amzsdq/Mer",
-  "rollout_state": "ACTIVE",
-  "prior_conclusion": "HYBRID_BASELINE_2_OF_2_PASS_AT_4_READS",
-  "next_experiment": "Measure A_PROMPT_HEAVY using the same deterministic workload with execution values embedded in the automation prompt.",
-  "primary_variable": "storage_boundary_candidate"
+  "write_scope": "amzsdq/Mer"
 }
