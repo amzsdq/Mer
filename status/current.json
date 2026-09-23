@@ -2,12 +2,14 @@
   "schema_version": 1,
   "phase": "ADVERSE_BOOTSTRAP_TEST",
   "experiment": "F4_HYBRID_SEMANTIC_CONFLICT",
-  "sample": 0,
+  "sample": 1,
   "observed_generation": 8,
   "observed_phase": "COMPLETE",
   "completion_evidence": null,
-  "last_result": "F3 PASS: generation mismatch detected without false reconciliation.",
+  "last_result": "F4 PASS: generation matched at 8, but desired RUNNING conflicted with observed COMPLETE without completion evidence; reconciliation/completion was not accepted.",
+  "classification": "STATE_NOT_RECONCILED_SEMANTIC_CONFLICT",
   "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state structurally and semantically before execution/reconciliation; avoid duplicated dynamic authority.",
-  "next": "F4: matching generation but contradictory phase semantics; test semantic validation independently.",
-  "updated_at": "2026-09-23T17:49:18+09:00"
+  "next": "F5 prompt drift detection/rollback metadata test; keep one primary variable.",
+  "evidence": "evidence/trials/F4-20260923T174918+0900.md",
+  "updated_at": "2026-09-23T17:50:20+09:00"
 }
