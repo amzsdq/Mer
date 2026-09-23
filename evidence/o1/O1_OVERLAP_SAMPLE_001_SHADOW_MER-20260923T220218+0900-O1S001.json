@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "sample": "O1_OVERLAP_SAMPLE_001",
+  "invocation_id": "MER-20260923T220218+0900-O1S001",
+  "role": "SHADOW_SUCCESSOR",
+  "actual_start": "2026-09-23T22:02:18+09:00",
+  "bootstrap_ready_at": "2026-09-23T22:03:00+09:00",
+  "observed_owner_invocation_id": "MER-20260923T215700+0900-O1S001",
+  "observed_generation": 1,
+  "observed_owner_status": "OWNER_ACTIVE",
+  "declared_successor_scheduled_for": "2026-09-23T22:04:00+09:00",
+  "timing_observation": "This invocation began before the ownership record's declared successor_scheduled_for. Treat actual wake time as observed evidence; do not infer scheduler correctness from planned time.",
+  "status": "READY",
+  "authoritative_side_effects_performed": false,
+  "scheduler_mutation_performed": false,
+  "ready_for_owner_mediated_transfer": true,
+  "note": "Immutable SHADOW evidence only. Ownership remains generation 1 predecessor until owner CAS transfer."
+}
