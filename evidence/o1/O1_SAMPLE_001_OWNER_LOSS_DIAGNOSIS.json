@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "sample": "O1_OVERLAP_SAMPLE_001",
+  "hypothesis": "H-OVERLAP-BASE-1",
+  "diagnosis": "OWNER_LOSS_TRANSFER_LIVENESS_HOLE",
+  "observed_ownership_generation": 1,
+  "observed_owner": "MER-20260923T215700+0900-O1S001",
+  "program_gate_clean_handoffs": 0,
+  "result": "NOT_CLEAN_CURRENT_PROTOCOL_REQUIRES_REVISION",
+  "model_update": "REVISE",
+  "derived_hypothesis": "H-O1-OWNER-LOSS-RECOVERY",
+  "derived_hypothesis_record": "research/H-O1-OWNER-LOSS-RECOVERY.md",
+  "safety_constraint": "LEASE_TAKEOVER_NEVER_REPLACES_PER_SIDE_EFFECT_OWNER_GENERATION_FENCE",
+  "clock_lane": "GitHub issue #1",
+  "start_marker_comment_id": 5797312426,
+  "notes": [
+    "Current protocol requires owner-mediated transfer.",
+    "Durable owner record remained at generation 1 across later wakes.",
+    "A SHADOW cannot self-promote under current rules, so owner disappearance can strand liveness.",
+    "Kubernetes prior art supports bounded takeover after no observed renewal but explicitly does not provide fencing; Mer retains exact owner+generation checks on every authoritative side effect."
+  ]
+}
