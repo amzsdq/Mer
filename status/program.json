@@ -6,7 +6,7 @@
   "plan": "research/MASTER_PLAN.md",
   "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
   "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_OVERLAP_SAMPLE_001_ESTABLISH_OWNER_AND_PREARM_SHADOW",
+  "next_step": "O1_OVERLAP_SAMPLE_001_SHADOW_PREPARE_PUBLISH_READY_THEN_OWNER_CAS_TRANSFER",
   "active_hypothesis": "H-OVERLAP-BASE-1",
   "hypothesis_status": "TESTING",
   "active_execution": "spec/execution.json",
@@ -44,6 +44,8 @@
     "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
-  "updated_at": "2026-09-23T21:48:00+09:00",
-  "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md"
+  "updated_at": "2026-09-23T21:59:30+09:00",
+  "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md",
+  "active_sample": "O1_OVERLAP_SAMPLE_001",
+  "active_sample_owner_evidence": "evidence/o1/O1_OVERLAP_SAMPLE_001_OWNER.json"
 }
