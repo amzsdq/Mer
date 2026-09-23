@@ -31,5 +31,22 @@ Build the comparison table, choose the smallest design that preserves correctnes
 ## Stage 6 — Final validation
 Run 3 clean end-to-end wakes plus 1 recovery wake. Produce the final prompt, repo schema, recovery protocol, rollout method, and rejected-alternative record.
 
+## Wake utilization rule
+A wake is a work session, not a one-step callback.
+
+Initial operating target:
+- useful-work target: about 600 seconds per normal wake;
+- this is an empirical starting value, not a permanent invariant;
+- never sleep, pad, or invent work to hit the target.
+
+After each completed unit:
+1. record useful work accumulated so far;
+2. if the current experiment gate is still open, continue its next valid unit;
+3. if the gate just closed, persist the boundary and immediately continue with the next planned stage/step when it is safe and clearly specified;
+4. stop starting new substantial units only when the remaining runtime is no longer sufficient for the estimated next unit plus close/handoff reserve;
+5. early close is reserved for actual COMPLETE, BLOCKED, RISK, or absence of any safe plan-defined useful unit.
+
+One-primary-variable applies per experiment/sample boundary, not as a reason to waste the remainder of a wake.
+
 ## Stop rules
-Do not repeat a converged sample unless an anomaly requires it. Do not change more than one primary experimental variable at a time.
+Do not repeat a converged sample unless an anomaly requires it. Do not change more than one primary experimental variable inside one experimental sample.
