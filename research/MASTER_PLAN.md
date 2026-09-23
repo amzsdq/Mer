@@ -63,40 +63,86 @@ Imported useful prior findings from tEST/workwork into:
 
 Previous prompt/GitHub-boundary work is retained as prior evidence, not treated as completion of the top-level goal.
 
-## Stage O1 — Immediate-prearm continuity baseline — ACTIVE
+## Stage O1 — Controlled-overlap baseline — ACTIVE
 
-### Hypothesis H-SCHED-1
-After minimal bootstrap/control reads, securing the next wake before substantive work improves continuation survival compared with close-time rearm, without materially reducing useful-work duty cycle.
+Reference:
+- `research/WORKWORK_OVERLAP_INTAKE.md`
 
-Baseline candidate:
-- SAME automation
-- recurring RRULE:FREQ=HOURLY
-- exact_schedule
-- enabled=true
-- one scheduler writer
-- prearm once near wake start, before substantive work
-- no normal close-time scheduler rewrite
-- recurrence retained as cold fallback
+### Prior fact
+workwork directly observed the same recurring automation running predecessor and successor concurrently for about 198 seconds in one controlled probe. Treat concurrent execution as established prior evidence, not as proof of clean handoff or optimal utilization.
 
-Measure:
-- wake_to_schedule_write_sec
-- WRITE_OK
-- STATE_OK
-- actual later WAKE_OK
-- WORK_OK
-- useful_work_sec
-- control_overhead_sec
-- actual_idle_gap_sec when directly observable
-- duplicate/concurrent invocation
-- missed intended wake
+### Hypothesis H-OVERLAP-BASE-1
+A controlled predecessor + SHADOW successor overlap, with exactly one authoritative owner and one scheduler writer, can reduce handoff idle versus non-overlap without duplicate authoritative side effects or continuity loss.
 
-Gate:
-- obtain repeated clean end-to-end samples sufficient to establish a baseline;
-- at least one actual later wake must retrospectively validate each promoted sample;
-- then compare against a close-time/post-bootstrap scheduling control or justify from direct prior Mer evidence if equivalent.
+### Baseline candidate
+- SAME recurring automation
+- `RRULE:FREQ=HOURLY`
+- `exact_schedule`
+- `enabled=true`
+- owner nominal work horizon: 600s initially
+- successor lead: 180s initially
+- successor wake target: owner start + 420s
+- exactly one ACTIVE_OWNER
+- successor begins as SHADOW_SUCCESSOR
+- only ACTIVE_OWNER may mutate scheduler
+- SHADOW may read/prepare/write immutable own evidence but may not perform authoritative project side effects
+- durable generation/CAS ownership transfer
+- predecessor stops authoritative work after successful transfer
+- successor begins prepared useful work immediately after accepting transferred authority
 
-Failure handling:
-- if immediate prearm causes overlap, lost work, or materially worse utilization, revise timing/lead rather than assuming the hypothesis.
+The 600s horizon and 180s lead are starting experimental parameters, not invariants.
+
+### Evidence required per overlap sample
+- predecessor invocation id / start
+- successor scheduled_for / actual_start
+- predecessor evidence after successor actual_start
+- observed overlap_sec
+- successor bootstrap_ready_sec
+- owner generation before/after
+- transfer_at / accept_at
+- authoritative_work_end/start around transfer
+- handoff_gap_sec
+- duplicate_authoritative_work_count
+- scheduler_writer_conflicts
+- checkpoint_loss
+- WRITE_OK / STATE_OK / WAKE_OK / WORK_OK
+- useful_work and control/overlap overhead where directly observable
+
+### Clean sample
+A sample is CLEAN only when:
+- successor actually starts while predecessor is still alive;
+- predecessor is the sole authoritative owner until transfer;
+- successor becomes READY before authority transfer;
+- generation/CAS transfer succeeds;
+- no predecessor authoritative work occurs after transfer;
+- successor fresh-reads/accepts the new generation and begins useful work;
+- exactly one scheduler writer exists;
+- no duplicate authoritative side effect or checkpoint loss occurs.
+
+Concurrent wake without clean authority transfer is overlap evidence but not a clean handoff sample.
+
+### Gate O1A — baseline viability
+Require repeated Mer overlap observations demonstrating actual concurrency and at least 3 clean authority handoffs before treating the mechanism as operationally viable.
+
+### Gate O1B — baseline stabilization
+After first clean transfers, obtain at least 5 clean end-to-end overlap handoffs under an unchanged candidate before timing optimization.
+
+### Comparator
+Existing Mer non-overlap immediate-prearm observations remain comparator evidence. After overlap is viable, compare against the best simple non-overlap policy on:
+- long-run authoritative useful-work duty cycle;
+- handoff/idle gap;
+- continuation success;
+- control overhead;
+- duplicate/race failures.
+
+Do not claim overlap is globally superior until this comparison is measured.
+
+### Failure handling
+If overlap is concurrent but clean handoff fails:
+- do not fall back merely because the first implementation is faulty;
+- classify the failure domain: ownership detection, READY observation, CAS/transfer, scheduler ownership, unit granularity, wake jitter, or recovery;
+- revise only the responsible mechanism and retest.
+If repeated controlled revisions cannot achieve clean handoff without material reliability loss, demote overlap and use the best non-overlap policy.
 
 ## Stage O2 — Prompt enforcement, representation, and versioned sync
 
@@ -218,29 +264,28 @@ Measure actual final scheduler-write-to-wake lead, wake lateness, idle gap, over
 
 Choose the smallest gap/lead region that does not materially worsen continuity/recovery.
 
-## Stage O5 — Overlap / shadow successor only if justified
+## Stage O5 — Overlap lead / handoff optimization
 
-H-OVERLAP-1:
-A shadow successor that wakes before owner close may hide bootstrap/idle cost and improve long-run duty cycle.
+Run only after O1 establishes a viable controlled-overlap mechanism.
 
-Do not adopt by elegance.
-Only test if the best non-overlap policy leaves material idle/bootstrap loss.
+Optimize:
+- successor lead;
+- READY handoff policy;
+- safe-unit granularity near transfer;
+- ownership timeout/recovery;
+- scheduler writer fencing.
 
-Required controls:
-- exactly one ACTIVE_OWNER
-- CAS/generation authority transfer
-- one scheduler writer
-- immutable per-invocation evidence
-- zero duplicate authoritative side effects
+Candidate successor leads begin from the prior-supported 180s region, then test shorter/longer values one primary variable at a time.
 
-Compare against best non-overlap candidate on:
-- authoritative useful-work duty cycle
-- handoff gap
-- overlap waste
-- duplicate/race failures
-- complexity/overhead
+Objective:
+minimize handoff gap and wasted shadow overlap while preserving:
+- one authoritative owner;
+- one scheduler writer;
+- zero duplicate authoritative side effects;
+- clean checkpoint/transfer;
+- stable continuation.
 
-Reject overlap if benefit is negligible or reliability worsens.
+Compare any more complex adaptive lead against the best fixed-lead policy. Prefer the simpler policy if operationally equivalent.
 
 ## Stage O6 — Adverse recovery tests
 
