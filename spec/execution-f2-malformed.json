@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "generation": "MALFORMED_EXPECTED_INTEGER",
+  "experiment_id": "F2_HYBRID_MALFORMED_DYNAMIC_SPEC",
+  "desired_marker": "GITHUB_DYNAMIC",
+  "next_action": ["MALFORMED_EXPECTED_STRING"],
+  "workload": "research/adverse-f2-workload.md",
+  "scheduler_policy_owner": "embedded_stable_core",
+  "status_owner": "status/current.json"
+}
