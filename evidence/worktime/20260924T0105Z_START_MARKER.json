@@ -1,0 +1,6 @@
+{
+  "marker_type": "START_MARKER",
+  "invocation_id": "MER-20260924T0105Z-OWNERLOSS-CAL",
+  "purpose": "O1 owner-loss recovery expiry calibration and test design",
+  "duration_authority": "GITHUB_SERVER_COMMIT_TIMESTAMP"
+}
