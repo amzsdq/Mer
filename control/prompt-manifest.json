@@ -1,10 +1,15 @@
 {
-  "schema_version": 1,
-  "prompt_version": "0.1.0",
-  "canonical_path": "control/CANONICAL_PROMPT.md",
+  "schema_version": 2,
+  "prompt_version": "0.2.0-T2",
+  "canonical_path": "control/CANONICAL_PROMPT_T2.md",
   "deployment_model": "canonical_in_git_deployed_copy_in_automation",
   "compatible_state_schema": 1,
-  "rollout_state": "RESEARCH_ONLY",
-  "previous_good_version": null,
-  "content_hash_status": "TODO_AFTER_PROMPT_FREEZE"
+  "rollout_state": "ACTIVE",
+  "previous_good_version": "0.1.0-T1",
+  "content_hash_status": "TODO_AFTER_PROMPT_FREEZE",
+  "desired_version": "0.2.0-T2",
+  "deployed_version": "0.2.0-T2",
+  "canonical_blob_sha": "66a7451377f6176593b7b386bba6ab6d8f56e387",
+  "rollout_protocol": "control/PROMPT_ROLLOUT.md",
+  "note": "T1->T2 ordering bug discovered because live deployed prompt advanced before active.json/canonical pointer. Reconciled after live T2 verification."
 }
