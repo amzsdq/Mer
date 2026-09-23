@@ -32,14 +32,26 @@ Translation candidates:
 References:
 - https://kubernetes.io/docs/concepts/architecture/leases/
 - https://kubernetes.io/docs/concepts/cluster-administration/coordinated-leader-election/
+- https://pkg.go.dev/k8s.io/client-go/tools/leaderelection
 Relevant ideas:
-- one active holder
+- one active holder identity among multiple live candidates
 - renewable lease / expiry
-- holder identity
-- optimistic concurrency / version fencing
+- optimistic concurrency / versioned updates
+- CRITICAL CAVEAT: client-go explicitly states its leader-election implementation does not guarantee that only one client is acting as leader (fencing). `ReleaseOnCancel` documentation likewise warns guarded work must finish before release or two processes may act on the critical path.
 Translation candidates:
-- overlap experiments require explicit single-authority fencing
+- overlap experiments require explicit single-authority ownership state
 - liveness and authority are separate concerns
+- Mer must not treat successful leader/owner selection as sufficient fencing; exact owner+generation must be revalidated immediately before authoritative shared-state or scheduler side effects so a stale/zombie predecessor cannot publish after transfer
+- timing/defaults and Kubernetes safety properties do not automatically transfer to ChatGPT Automations
+
+### GitHub Contents API
+Reference: https://docs.github.com/en/rest/repos/contents
+Relevant ideas:
+- updating an existing file requires the current blob `sha`
+- conflicting concurrent content operations can fail with conflict
+Translation candidates:
+- a fresh-read + expected-blob-SHA update is a usable optimistic-concurrency primitive for a single Mer ownership record
+- it is not an atomic multi-file transaction and does not by itself fence side effects performed elsewhere
 
 ### AWS Step Functions
 Reference:
