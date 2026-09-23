@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "generation": 7,
+  "experiment_id": "F3_HYBRID_GENERATION_MISMATCH",
+  "desired_marker": "GITHUB_DYNAMIC",
+  "next_action": "validate_generation_match_before_reconciliation",
+  "workload": "research/adverse-f3-workload.md",
+  "scheduler_policy_owner": "embedded_stable_core",
+  "status_owner": "status/current.json"
+}
