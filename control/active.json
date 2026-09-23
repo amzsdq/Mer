@@ -3,10 +3,10 @@
   "research_phase": "PRIORITY_FORCE_TEST",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
-  "canonical_prompt": "control/CANONICAL_PROMPT_T1.md",
+  "canonical_prompt": "control/CANONICAL_PROMPT_T2.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "case_study": "research/case-study-prompt-github-boundary.md",
-  "candidate": "T1_P_DIRECT_CONFLICT",
+  "candidate": "T2_P_DELEGATED",
   "write_scope": "amzsdq/Mer",
   "priority_hypothesis": "research/priority-force-hypothesis.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
@@ -14,5 +14,7 @@
   "status": "status/current.json",
   "prior_case": "research/prior-case-R504.md",
   "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
-  "remaining_uncertainty": "instruction_force_and_explicit_delegation"
+  "remaining_uncertainty": "instruction_force_and_explicit_delegation",
+  "prompt_rollout": "control/PROMPT_ROLLOUT.md",
+  "rollout_state": "ACTIVE"
 }
