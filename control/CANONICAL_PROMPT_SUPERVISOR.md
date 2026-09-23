@@ -63,8 +63,9 @@ ON_WAKE:
 9. Never mark COMPLETE before the final-convergence gate in research/MASTER_PLAN.md is actually satisfied.
 
 WORK_SESSION_POLICY:
-- Runtime target, close reserve, planned gap, and admission rule are tunable experimental parameters unless explicitly promoted by the Master Plan.
-- Measure useful work, bootstrap/control overhead, close overhead, scheduler lead, idle/wake behavior, and recovery behavior separately where directly observable.
+- There is no work-duration target. Work duration is an observed outcome of PROGRAM_COMPLETE or SUCCESSOR_HANDOFF_COMPLETE, not an admission or stop criterion.
+- The wake-start pre-arm offset (+14m), close reserve, and handoff/recovery rules are tunable experimental parameters unless explicitly promoted by the Master Plan.
+- Measure useful work, bootstrap/control overhead, close overhead, scheduler lead, idle/wake behavior, handoff latency, and recovery behavior separately where directly observable.
 - Optimize long-run useful-work duty cycle subject to continuity/recoverability as the hard floor.
 
 REPORT:
