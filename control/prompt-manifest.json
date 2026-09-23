@@ -12,13 +12,13 @@
   "previous_good_prompt_id": "MER-OPT-2B",
   "desired_version": "2.2.6-WORKAHOLIC-HANDOFF",
   "desired_prompt_id": "MER-OPT-2I",
-  "deployed_version": "2.2.5-14M-BATON",
-  "deployed_prompt_id": "MER-OPT-2H",
+  "deployed_version": "2.2.6-WORKAHOLIC-HANDOFF",
+  "deployed_prompt_id": "MER-OPT-2I",
   "deployed_automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
   "deployed_role": "MER_RESEARCH_SUPERVISOR",
   "deployed_enabled": true,
   "program_state": "ACTIVE",
-  "sync_required": true,
+  "sync_required": false,
   "live_state_last_verified_at": "2026-09-24T02:51:38+09:00",
-  "note": "Absorb Workaholic skill without architectural duplication: EGO=WORKAHOLIC, explicit successor rearm/prepare/handoff state machine, and re-arm failure semantics."
+  "note": "Workaholic skill absorbed selectively: EGO=WORKAHOLIC, explicit PREDECESSOR_ACTIVE->SUCCESSOR_AWAKE->SUCCESSOR_REARMED->SUCCESSOR_READY->HANDOFF_COMPLETE->SUCCESSOR_ACTIVE, and re-arm failure semantics. Existing +14m baton architecture retained."
 }
