@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "program": "PROMPT_GITHUB_BOUNDARY_OPTIMIZATION",
+  "status": "ACTIVE",
+  "started_at_kst": "2026-09-23T16:56:16+09:00",
+  "primary_variable": "prompt_to_durable_state_boundary",
+  "candidates": ["PROMPT_HEAVY", "HYBRID_BOOTSTRAP", "POINTER_ONLY"],
+  "current_candidate": "HYBRID_BOOTSTRAP",
+  "baseline_evidence": {
+    "prompt_heavy_examples": ["RRULEF current automation", "tEST current automation"],
+    "pointer_only_examples": ["R legacy wake-pointer automations"],
+    "hybrid_candidate_repo": "amzsdq/Mer"
+  },
+  "metrics": [
+    "prompt_chars",
+    "bootstrap_reads",
+    "time_to_first_useful_work_sec",
+    "prompt_mutations",
+    "dynamic_state_mutations",
+    "stale_policy_incidents",
+    "continuation_success",
+    "recovery_success",
+    "useful_work_utilization"
+  ],
+  "test_discipline": "Hold scheduler semantics and workload class fixed; vary only prompt/durable boundary when running direct comparisons.",
+  "next": "Instrument HYBRID_BOOTSTRAP and compare against observed prompt-heavy and pointer-only baselines before any promotion."
+}
