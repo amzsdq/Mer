@@ -107,28 +107,45 @@ Stable behavioral invariants in the injected prompt are followed more reliably t
 Use existing Mer Stage-1 conflict/delegation results as prior.
 Replicate only the discriminating conflict/delegation cases needed to confirm the result under the current optimizer kernel/model.
 
-### O2B — Representation format
+### O2B — Prompt representation and rule encoding
 
-Do not assume prose, Markdown, JSON, XML, or hardcoded key/value syntax is best.
+Do not conflate syntax format with semantic rigidity.
 
-Candidate representations initially:
+#### O2B-1 — Representation syntax
+Primary variable: section/serialization syntax only.
+
+Candidates:
 - F1_MARKDOWN_DIRECT
-- F2_FLAT_KV_DSL
-- F3_JSON_INVARIANTS
-- F4_XML_SECTIONS
-- F5_HYBRID_MINIMAL
+- F2_FLAT_KV_WRAPPER
+- F3_JSON_WRAPPER
+- F4_XML_WRAPPER
 
-Hold semantics, rule ordering, authority channel, model/reasoning policy, fixtures, and dynamic state constant.
-Change only representation.
+Hold the same atomic propositions, ordering, authority channel, model/reasoning policy, fixtures, and dynamic state constant.
+Do not change a nuanced rule into a simpler enum merely to fit a format.
 
-First run a compact fixture suite measuring:
+Measure:
 - critical invariant adherence;
 - task completion quality;
 - omission/misinterpretation;
 - control/token overhead;
+- parse/boundary confusion;
 - repair/sync burden.
 
-Promote only the best two materially distinct candidates to relay canary testing.
+#### O2B-2 — Rule encoding rigidity
+Run only after O2B-1 establishes a representation baseline.
+
+Primary variable: how the same rule is encoded.
+Compare, within the selected representation:
+- natural-language imperative;
+- declarative key/value or enum/boolean constants where semantically lossless;
+- hybrid: constants/identifiers as machine-like fields, nuanced behavioral rules as direct natural language.
+
+Do not hardcode dynamic runtime state.
+
+Measure whether exact constants improve compliance without losing conditional/behavioral meaning.
+
+#### O2B-3 — Relay canary
+Promote only the best materially distinct candidates from O2B-1/O2B-2 to real relay canary testing.
 If candidates are operationally tied, choose the simpler/shorter/more maintainable representation.
 
 ### O2C — Versioned canonical/deployed sync
