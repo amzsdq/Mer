@@ -12,13 +12,13 @@
   "previous_good_prompt_id": "MER-OPT-2B",
   "desired_version": "2.2.2-SERVER-TIME",
   "desired_prompt_id": "MER-OPT-2E",
-  "deployed_version": "2.2.1-WORKTIME",
-  "deployed_prompt_id": "MER-OPT-2D",
+  "deployed_version": "2.2.2-SERVER-TIME",
+  "deployed_prompt_id": "MER-OPT-2E",
   "deployed_automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
   "deployed_role": "MER_RESEARCH_SUPERVISOR",
   "deployed_enabled": true,
   "program_state": "ACTIVE",
-  "sync_required": true,
-  "live_state_last_verified_at": "2026-09-23T22:08:27+09:00",
-  "note": "Work duration invariant: GitHub server START_MARKER/END_MARKER created_at are the sole duration authority; model clock strings are reporting-only."
+  "sync_required": false,
+  "live_state_last_verified_at": "2026-09-24T00:05:00+09:00",
+  "note": "Work duration invariant active: GitHub server START_MARKER/END_MARKER created_at are sole duration authority. Live automation prompt verified at 2.2.2-SERVER-TIME / MER-OPT-2E."
 }
