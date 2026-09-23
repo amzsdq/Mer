@@ -1,19 +1,16 @@
 {
   "schema_version": 2,
-  "research_phase": "ADVERSE_BOOTSTRAP_TEST",
-  "candidate": "F5_PROMPT_DRIFT_DETECTION",
+  "research_phase": "BOUNDARY_COST_COMPARISON",
+  "candidate": "B_HYBRID_BOOTSTRAP_BASELINE",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
   "canonical_prompt": "control/CANONICAL_PROMPT_B_HYBRID.md",
-  "desired_prompt_candidate": "control/CANONICAL_PROMPT_F5_DRIFT_CANDIDATE.md",
   "status": "status/current.json",
-  "workload": "research/adverse-f5-workload.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "write_scope": "amzsdq/Mer",
-  "rollout_state": "PREPARED",
+  "rollout_state": "ACTIVE",
   "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
-  "remaining_uncertainty": "prompt_drift_detection_and_rollback_metadata",
-  "adverse_test": "F5",
-  "primary_variable": "desired_prompt_version_equals_deployed_version:true->false"
+  "next_experiment": "Measure clean HYBRID baseline with fixed workload, then compare PROMPT_HEAVY and POINTER_ONLY under the same workload and scheduler semantics.",
+  "primary_variable": "storage_boundary_candidate"
 }
