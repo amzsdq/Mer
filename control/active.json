@@ -1,19 +1,19 @@
 {
   "schema_version": 2,
   "research_phase": "ADVERSE_BOOTSTRAP_TEST",
-  "candidate": "F4_HYBRID_SEMANTIC_CONFLICT",
+  "candidate": "F5_PROMPT_DRIFT_DETECTION",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
   "canonical_prompt": "control/CANONICAL_PROMPT_B_HYBRID.md",
-  "execution": "spec/execution-f4-semantic-conflict.json",
+  "desired_prompt_candidate": "control/CANONICAL_PROMPT_F5_DRIFT_CANDIDATE.md",
   "status": "status/current.json",
-  "workload": "research/adverse-f4-workload.md",
+  "workload": "research/adverse-f5-workload.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "write_scope": "amzsdq/Mer",
-  "rollout_state": "ACTIVE",
+  "rollout_state": "PREPARED",
   "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
-  "remaining_uncertainty": "semantic_consistency_after_generation_match",
-  "adverse_test": "F4",
-  "primary_variable": "semantic_phase_consistency:true->false"
+  "remaining_uncertainty": "prompt_drift_detection_and_rollback_metadata",
+  "adverse_test": "F5",
+  "primary_variable": "desired_prompt_version_equals_deployed_version:true->false"
 }
