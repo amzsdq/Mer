@@ -28,7 +28,12 @@
     "elapsed_to_checkpoint_sec": 72,
     "useful_artifact": "research/O1_SAMPLE_WORKLOAD_002.md",
     "useful_work_summary": "Reviewed Sample 001 evidence quality, defined O1 confound taxonomy, clean-sample acceptance criteria, and comparator controls without changing the scheduler primary variable.",
-    "scheduler_rewrites_after_prearm": 0
+    "scheduler_rewrites_after_prearm": 1
   },
-  "status": "OPEN_AWAITING_RETROSPECTIVE_WAKE"
+  "confounds": [
+    "At 2026-09-23T21:42:25+09:00, before the planned 21:45 retrospective wake could occur, the same automation schedule was rewritten to DTSTART 21:55:08 while preserving RRULE:FREQ=HOURLY. This was an undeclared second scheduler mutation and contaminates the clean immediate-prearm sample.",
+    "Because the planned 21:45 wake opportunity was displaced before observation, WAKE_OK for the original Sample 002 schedule cannot be inferred and remains null."
+  ],
+  "status": "INVALIDATED_BY_SECOND_SCHEDULER_WRITE",
+  "promotion_note": "Do not count toward the clean O1 gate. Start a fresh clean sample on the next invocation and perform exactly one prearm scheduler write for that sample."
 }
