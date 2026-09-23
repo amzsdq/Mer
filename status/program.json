@@ -5,10 +5,10 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "4_DISCRIMINATING_FAILURE_TESTS",
-  "next_step": "Run Stage 4B stale-deployed-prompt discrimination without changing scheduler semantics: compare candidate behavior when deployed stable prompt content is stale relative to authoritative GitHub dynamic state, preserve canonical state, and record candidate-specific correctness/recovery outcome.",
-  "required_clean_samples": 1,
+  "next_step": "Run Stage 4C repeated dynamic-state churn discrimination: mutate only the authoritative GitHub dynamic generation/marker across repeated reversible samples while keeping the deployed candidate prompt unchanged; measure correctness, prompt mutation requirement, bootstrap cost, and stale/split-brain behavior.",
+  "required_clean_samples": 2,
   "current_clean_samples": 0,
-  "then": "4C_REPEATED_DYNAMIC_STATE_CHURN",
+  "then": "4D_SCHEDULER_ACCEPTED_WAKE_ABSENT",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T19:59:00+09:00"
+  "updated_at": "2026-09-23T20:01:00+09:00"
 }
