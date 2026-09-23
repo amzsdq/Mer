@@ -2,13 +2,13 @@
   "schema_version": 1,
   "phase": "BOUNDARY_COST_COMPARISON",
   "experiment": "B_HYBRID_BOOTSTRAP_BASELINE",
-  "sample": 0,
-  "last_result": "F5 cleanup recovered: prompt manifest restored to known-good ACTIVE 0.3.0-B-HYBRID before changing experiment phase.",
-  "classification": "F5_CLEANUP_RECOVERED",
-  "previous_good_version": "0.3.0-B-HYBRID",
-  "desired_version": "0.3.0-B-HYBRID",
-  "deployed_version": "0.3.0-B-HYBRID",
+  "sample": 1,
+  "last_result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+  "classification": "B_BASELINE_SAMPLE_001_PASS",
+  "bootstrap_read_count": 4,
+  "bootstrap_fault": false,
+  "scheduler_semantics_changed": false,
   "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; validate delegated state structurally and semantically; manage prompt copies with PREPARE->DEPLOY->VERIFY->ACTIVATE and rollback metadata.",
-  "next": "Collect a clean HYBRID baseline sample under fixed workload and scheduler semantics, then compare PROMPT_HEAVY and POINTER_ONLY by changing only storage boundary candidate.",
-  "updated_at": "2026-09-23T18:04:30+09:00"
+  "next": "Collect another clean HYBRID sample or prepare A_PROMPT_HEAVY using the same fixed workload while changing only storage boundary candidate.",
+  "updated_at": "2026-09-23T18:08:50+09:00"
 }
