@@ -2,14 +2,20 @@
   "schema_version": 1,
   "phase": "STORAGE_BOUNDARY_TEST",
   "experiment": "B_HYBRID_BOOTSTRAP",
-  "sample": 3,
-  "last_result": "T3 pointer-only selected repository-owned GITHUB marker; functional but repository-read dependent",
+  "sample": 4,
+  "last_result": "B hybrid sample 1 produced deterministic workload result but exposed stale/incomplete active.json pointer",
   "phase1_summary": {
     "T1_P_DIRECT_CONFLICT": "PROMPT selected",
     "T2_P_DELEGATED": "GITHUB selected under explicit prompt delegation",
     "T3_POINTER_ONLY": "GITHUB selected from repository authority"
   },
   "provisional_boundary": "Embed hard invariants/bootstrap/scheduler safety/status contract; explicitly delegate Goal/Plan/dynamic experiment and project state to GitHub; avoid duplicated dynamic authority.",
-  "next": "Run storage-boundary HYBRID_BOOTSTRAP baseline and measure bootstrap/control overhead plus adverse-state behavior",
-  "updated_at": "2026-09-23T17:05:30+09:00"
+  "hybrid_sample_1": {
+    "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+    "bootstrap_read_count": 8,
+    "fault": "ACTIVE_POINTER_STALE_AND_INCOMPLETE",
+    "fix": "active.json reconciled to direct canonical/execution/status/workload pointers"
+  },
+  "next": "Run B_HYBRID_BOOTSTRAP sample 2 from reconciled active.json and measure reduced normal-path bootstrap reads; then begin controlled adverse-state tests",
+  "updated_at": "2026-09-23T17:08:40+09:00"
 }
