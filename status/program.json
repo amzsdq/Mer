@@ -13,9 +13,9 @@
   "candidate": {
     "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM_SHADOW",
     "recurrence": "RRULE:FREQ=HOURLY",
-    "owner_nominal_horizon_sec": 600,
+    "owner_nominal_horizon_sec": 900,
     "successor_lead_sec": 180,
-    "successor_due_rule": "OWNER_START + owner_nominal_horizon_sec - successor_lead_sec",
+    "successor_due_rule": "OWNER_ACTIVATED_AT + 720s",
     "successor_role_on_wake": "SHADOW_SUCCESSOR",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "scheduler_writers": 1,
@@ -45,7 +45,7 @@
     "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
-  "updated_at": "2026-09-24T00:08:00+09:00",
+  "updated_at": "2026-09-24T02:00:00+09:00",
   "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md",
   "active_sample": "O1_OVERLAP_SAMPLE_001",
   "active_sample_owner_evidence": "evidence/o1/O1_OVERLAP_SAMPLE_001_OWNER.json",
