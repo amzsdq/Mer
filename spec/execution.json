@@ -1,14 +1,17 @@
 {
-  "schema_version": 2,
-  "state": "INACTIVE",
-  "active": false,
-  "generation": 5,
-  "experiment_id": null,
-  "desired_marker": null,
-  "next_action": "NONE",
-  "workload": null,
+  "schema_version": 3,
+  "state": "ACTIVE",
+  "active": true,
+  "generation": 6,
+  "experiment_id": "H-SCHED-1_IMMEDIATE_PREARM_BASELINE",
+  "primary_variable": "SCHEDULER_WRITE_TIMING",
+  "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM",
+  "target_useful_work_sec": 600,
+  "planned_gap_sec": 180,
+  "normal_close_scheduler_rewrite": false,
+  "next_action": "O1_SAMPLE_001_IMMEDIATE_PREARM",
+  "workload": "research/MASTER_PLAN.md#stage-o1--immediate-prearm-continuity-baseline",
   "status_owner": "status/program.json",
-  "inactive_reason": "PROGRAM_COMPLETE",
   "authoritative_when": "Only when status/program.json.active_execution points to spec/execution.json",
-  "updated_at": "2026-09-23T20:42:00+09:00"
+  "updated_at": "2026-09-23T21:02:00+09:00"
 }
