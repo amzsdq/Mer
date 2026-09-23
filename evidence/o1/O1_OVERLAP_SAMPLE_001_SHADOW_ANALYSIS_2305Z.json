@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "sample": "O1_OVERLAP_SAMPLE_001",
+  "role": "SHADOW_NONAUTHORITATIVE_ANALYSIS",
+  "observations": [
+    "Durable ownership remains generation 1 predecessor; no transfer evidence exists yet.",
+    "Existing shadow READY evidence is sufficient for owner-mediated transfer when predecessor is alive and fresh-reads it.",
+    "execution.json generation=9 conflicts numerically with ownership.json generation=1, but execution generation is execution-spec revision while ownership generation alone owns invocation authority; these counters must not be conflated.",
+    "The planned successor_scheduled_for timestamp cannot establish wake correctness; actual observed wake evidence must be used.",
+    "Current protocol can deadlock if predecessor owner has already terminated before observing READY, because SHADOW is forbidden to self-promote. This is a recovery-domain hypothesis, not permission to bypass ownership now."
+  ],
+  "diagnostic_hypothesis": {
+    "id": "H-O1-OWNER-LOSS-RECOVERY",
+    "status": "PRETEST_DIAGNOSTIC_ONLY",
+    "claim": "Controlled overlap needs an explicit owner-loss recovery/lease-expiry path in addition to normal owner-mediated CAS transfer, otherwise an early-dead predecessor can strand a READY successor.",
+    "discriminator": "First determine whether predecessor is still capable of owner-mediated transfer. If not, classify sample as ownership-transfer failure and source/test a fenced takeover mechanism separately rather than silently self-promoting."
+  },
+  "authoritative_side_effects_performed": false,
+  "scheduler_mutation_performed": false
+}
