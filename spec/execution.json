@@ -14,6 +14,7 @@
   "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY",
   "scheduler_writer_rule": "ACTIVE_OWNER_ONLY",
   "transfer_rule": "GENERATION_PLUS_OPTIMISTIC_CONCURRENCY",
+  "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_OR_SCHEDULER_SIDE_EFFECT_FRESH_READ_OWNERSHIP_AND_REQUIRE_EXACT_ACTIVE_INVOCATION_ID_PLUS_GENERATION",
   "normal_close_scheduler_rewrite": false,
   "next_action": "O1_OVERLAP_SAMPLE_001_SHADOW_PREPARE_PUBLISH_READY_THEN_OWNER_CAS_TRANSFER",
   "workload": "research/MASTER_PLAN.md#stage-o1--controlled-overlap-baseline--active",
@@ -23,7 +24,9 @@
     "shadow_on_wake": "fresh-read ownership; if another invocation owns current generation, do not mutate scheduler/shared authority; create immutable evidence/o1/O1_OVERLAP_SAMPLE_001_SHADOW_<invocation_id>.json with actual_start, bootstrap_ready_at, observed owner/generation, READY status",
     "owner_transfer": "owner fresh-reads READY evidence and ownership; CAS update ownership to successor invocation with generation+1; after successful transfer owner performs no further authoritative project side effects",
     "successor_accept": "successor fresh-reads ownership after transfer; only exact active_invocation_id+generation may become ACTIVE_OWNER and resume useful work",
+    "zombie_fence": "ownership record is not assumed to stop an old process by itself; every authoritative shared-state/scheduler mutation must revalidate exact owner+generation immediately before mutation",
     "clean_gate": "actual concurrent start + READY before transfer + successful CAS + no predecessor authoritative work after transfer + successor acceptance/work + zero scheduler conflict/duplicate/checkpoint loss"
   },
-  "updated_at": "2026-09-23T22:00:00+09:00"
+  "prior_art_correction": "Kubernetes client-go leader election explicitly does not itself guarantee fencing; Mer therefore treats durable ownership as a permission check that must guard each authoritative side effect, not as process exclusion.",
+  "updated_at": "2026-09-23T22:02:00+09:00"
 }
