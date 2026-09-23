@@ -12,5 +12,6 @@
   "architecture": "design/ARCHITECTURE_V0.md",
   "write_scope": "amzsdq/Mer",
   "rollout_state": "ACTIVE",
-  "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE"
+  "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
+  "remaining_uncertainty": "bootstrap_overhead_and_adverse_state_behavior"
 }
