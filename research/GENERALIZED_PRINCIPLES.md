@@ -125,3 +125,31 @@ OPERATIONAL_IMPLICATION:
 
 NEXT_FALSIFICATION_TEST:
 - O2C version-sync and recovery tests.
+
+
+---
+
+## P-OVERLAP-001
+STATUS=PROVISIONAL
+
+CLAIM:
+Concurrent liveness and authoritative ownership are separate dimensions. Multiple invocations may be alive concurrently, while shared authoritative side effects should remain fenced to one durable owner/generation.
+
+EVIDENCE:
+- workwork controlled overlap probe observed 198 seconds of concurrent predecessor/successor execution in the same recurring automation.
+- workwork later handoff records show concurrent/READY successors but also demonstrate that clean normal authority transfer is not automatic.
+- Kubernetes Lease/leader-election design separates multiple live candidates from one holderIdentity and uses optimistic concurrency/version state for ownership.
+
+SCOPE:
+- Same-automation overlap relay and shared-state mutation.
+
+LIMITS:
+- Mer has not yet reproduced a clean overlap handoff.
+- This principle does not establish the optimal overlap lead or ownership timeout.
+
+OPERATIONAL_IMPLICATION:
+- Treat overlap as a utilization mechanism, not permission for concurrent authoritative writes.
+- Use exactly one ACTIVE_OWNER and one scheduler writer; other live invocations remain SHADOW until fenced transfer.
+
+NEXT_FALSIFICATION_TEST:
+- Mer O1 controlled-overlap clean handoff samples with generation/CAS ownership and zero duplicate authoritative side effects.
