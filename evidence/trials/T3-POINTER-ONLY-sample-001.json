@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "test": "T3_POINTER_ONLY",
+  "sample": 1,
+  "observed_at": "2026-09-23T17:05:00+09:00",
+  "deployed_prompt_embeds_result_marker": false,
+  "repository_authority": "control/conflict.json",
+  "repository_result_marker": "GITHUB",
+  "chosen_marker": "GITHUB",
+  "result": "POINTER_ONLY_REPOSITORY_AUTHORITY_FOLLOWED",
+  "bootstrap_entrypoint_reads": 1,
+  "additional_referenced_reads_before_result": 3,
+  "scheduler_semantics_changed": false,
+  "interpretation": "Pointer-only successfully recovered the experiment-owned value from durable repository state. This demonstrates functional delegation, not superiority: it adds repository-read dependency and provides less embedded failure containment than hybrid bootstrap."
+}
