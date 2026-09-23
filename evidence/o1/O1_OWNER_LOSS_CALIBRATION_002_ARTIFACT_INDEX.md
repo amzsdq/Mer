@@ -1,0 +1,15 @@
+# O1 OWNER LOSS CALIBRATION 002 — ARTIFACT INDEX
+
+Status: IMMUTABLE_SHADOW_HANDOFF
+
+Core artifacts to read first next wake:
+- `O1_OWNER_LOSS_CALIBRATION_002_RESEARCH_SUMMARY.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_STATE_RECOMMENDATION.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_CANARY_SPEC.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_TEST_VECTORS.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_METRICS.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_REJECTION_CRITERIA.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_SCHEDULER_FENCE_RISK.md`
+- `O1_OWNER_LOSS_CALIBRATION_002_NEXT_WAKE_INPUT.md`
+
+Supporting design/analysis artifacts remain in the same evidence/o1 namespace. This index exists to avoid forcing the next wake to reread every small artifact produced during calibration.
