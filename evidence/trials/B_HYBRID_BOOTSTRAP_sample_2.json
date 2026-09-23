@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "experiment_id": "B_HYBRID_BOOTSTRAP",
+  "sample": 2,
+  "result": "B_HYBRID_BOOTSTRAP|GITHUB_DYNAMIC|1|emit_fixed_workload_result",
+  "bootstrap_read_count": 4,
+  "repository_files_needed_before_result": ["control/active.json", "spec/execution.json", "status/current.json", "research/fixed-workload-v1.md"],
+  "bootstrap_fault": null,
+  "scheduler_semantics_changed": false,
+  "observation": "Reconciled active pointers reduced normal-path reads from eight to four; no history scan was required."
+}
