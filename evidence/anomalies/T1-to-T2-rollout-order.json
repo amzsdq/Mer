@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "type": "PROMPT_ROLLOUT_ORDERING",
+  "transition": "T1_TO_T2",
+  "observed": "Live automation prompt was T2 while control/active.json still referenced T1.",
+  "risk": "temporary dual-authority / inverted canonical deployment relation",
+  "scheduler_failure": false,
+  "fix": "PREPARE canonical in GitHub -> DEPLOY same automation -> VERIFY live -> ACTIVATE manifest/active pointer",
+  "status": "RECONCILED"
+}
