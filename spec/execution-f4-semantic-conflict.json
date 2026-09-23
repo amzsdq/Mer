@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "generation": 8,
+  "experiment_id": "F4_HYBRID_SEMANTIC_CONFLICT",
+  "desired_marker": "GITHUB_DYNAMIC",
+  "desired_phase": "RUNNING",
+  "next_action": "validate_semantic_consistency_before_reconciliation",
+  "workload": "research/adverse-f4-workload.md",
+  "scheduler_policy_owner": "embedded_stable_core",
+  "status_owner": "status/current.json"
+}
