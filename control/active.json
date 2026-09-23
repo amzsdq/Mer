@@ -5,8 +5,9 @@
   "case_studies": "research/case-studies-v1.md",
   "program": "status/program.json",
   "canonical_supervisor_prompt": "control/CANONICAL_PROMPT_SUPERVISOR.md",
-  "current_stage": "4_DISCRIMINATING_FAILURE_TESTS",
-  "next_step_id": "4A-MISSING-ENTRYPOINT",
+  "current_stage": "6_FINAL_VALIDATION",
+  "next_step_id": "6-CLEAN-002",
   "fixed_workload": "research/fixed-workload-v1.md",
+  "execution": "spec/execution.json",
   "write_scope": "amzsdq/Mer"
 }
