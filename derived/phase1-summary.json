@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
+  "routing_evidence": {
+    "T1_DIRECT_CONFLICT": {
+      "chosen": "PROMPT",
+      "meaning": "direct embedded harmless field selected over conflicting repo value"
+    },
+    "T2_EXPLICIT_DELEGATION": {
+      "chosen": "GITHUB",
+      "meaning": "embedded meta-rule successfully delegated dynamic field to fresh repo"
+    },
+    "T3_POINTER_ONLY": {
+      "chosen": "GITHUB",
+      "bootstrap_entrypoint_reads": 1,
+      "additional_referenced_reads_before_result": 3,
+      "meaning": "functional but repository-read dependent"
+    }
+  },
+  "prompt_sizes": {
+    "control/CANONICAL_PROMPT_T1.md": {
+      "chars": 1252,
+      "lines": 28,
+      "blob_sha": "43112b3c32bc0877b68dbe2567aa1d31678d8e47"
+    },
+    "control/CANONICAL_PROMPT_T2.md": {
+      "chars": 1202,
+      "lines": 27,
+      "blob_sha": "66a7451377f6176593b7b386bba6ab6d8f56e387"
+    },
+    "control/CANONICAL_PROMPT_B_HYBRID.md": {
+      "chars": 1570,
+      "lines": 29,
+      "blob_sha": "2dd1e6d397453622ffe74f732691f9e2c6cc0574"
+    }
+  },
+  "limitations": [
+    "Marker tests demonstrate observed control routing in this automation context, not an undocumented absolute platform precedence theorem.",
+    "Continuation safety still requires adverse-state and scheduler recovery tests."
+  ],
+  "next": "B_HYBRID_BOOTSTRAP fixed-workload baseline"
+}
