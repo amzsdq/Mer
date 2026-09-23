@@ -224,3 +224,41 @@ A format is rejected if it:
 - causes more rollout/sync errors.
 
 No format is promoted because an official guide recommends it; official guidance establishes a prior, not Mer truth.
+
+
+### Native protocol syntax vs invented prompt DSL
+
+#### RFC 5545 iCalendar recurrence syntax
+Source:
+- https://www.rfc-editor.org/rfc/rfc5545.html
+
+Relevant fact:
+- `RRULE:FREQ=HOURLY` is not merely a key/value-looking prompt convention; it is canonical iCalendar recurrence syntax defined by RFC 5545.
+- `FREQ` is a required recurrence rule part and `HOURLY` is a standardized value.
+
+Hypothesis implication:
+- when the downstream scheduler/tool itself consumes VEVENT/RRULE syntax, embedding the exact native fragment in a stable invariant may reduce semantic translation between prompt intent and tool payload compared with an invented alias such as `SCHEDULER_MODE=HOURLY`.
+
+Counter-hypothesis:
+- native syntax may be too low-level to express behavioral conditions such as when to update, when not to update, ownership, or recovery logic;
+- adding protocol syntax may create false confidence while not improving behavioral adherence;
+- model/tool interfaces can still require a natural-language decision before emitting the native payload.
+
+Therefore test these separately:
+- N1_NATURAL_LANGUAGE: “preserve an hourly recurring RRULE”
+- N2_INVENTED_DSL: `RECURRENCE=HOURLY`
+- N3_NATIVE_FRAGMENT: `RRULE:FREQ=HOURLY`
+- N4_HYBRID_NATIVE: concise behavioral sentence + exact native fragment
+
+Keep actual scheduler behavior identical; vary only lexical/representation form.
+
+Primary metrics:
+- exact recurrence preservation;
+- accidental one-shot conversion;
+- wrong DTSTART/recurrence mutation;
+- scheduler payload repair count;
+- control-token/character cost;
+- task-quality/utilization side effects.
+
+Promotion rule:
+- prefer native syntax only if it reproducibly reduces scheduler representation errors or control overhead without increasing behavioral mistakes.
