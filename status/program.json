@@ -5,10 +5,10 @@
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
   "current_stage": "3D_POINTER_ONLY_BASELINE",
-  "next_step": "Prepare and collect the first clean POINTER_ONLY baseline sample using the fixed workload while preserving scheduler semantics.",
+  "next_step": "Collect the second clean POINTER_ONLY baseline sample using the same fixed workload while preserving scheduler semantics; if clean, close the 2/2 gate and advance to Stage 4.",
   "required_clean_samples": 2,
-  "current_clean_samples": 0,
+  "current_clean_samples": 1,
   "then": "4_DISCRIMINATING_FAILURE_TESTS",
   "rule": "Do not choose a new experiment ad hoc; follow the next step unless blocked, invalidated, or risky.",
-  "updated_at": "2026-09-23T19:27:00+09:00"
+  "updated_at": "2026-09-23T19:47:20+09:00"
 }
