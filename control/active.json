@@ -1,19 +1,19 @@
 {
   "schema_version": 2,
   "research_phase": "ADVERSE_BOOTSTRAP_TEST",
-  "candidate": "F3_HYBRID_GENERATION_MISMATCH",
+  "candidate": "F4_HYBRID_SEMANTIC_CONFLICT",
   "kernel": "control/BOOTSTRAP_CONTRACT.md",
   "prompt_manifest": "control/prompt-manifest.json",
   "canonical_prompt": "control/CANONICAL_PROMPT_B_HYBRID.md",
-  "execution": "spec/execution-f3-generation-mismatch.json",
+  "execution": "spec/execution-f4-semantic-conflict.json",
   "status": "status/current.json",
-  "workload": "research/adverse-f3-workload.md",
+  "workload": "research/adverse-f4-workload.md",
   "experiment_matrix": "research/experiment-matrix-v1.md",
   "architecture": "design/ARCHITECTURE_V0.md",
   "write_scope": "amzsdq/Mer",
   "rollout_state": "ACTIVE",
   "prior_conclusion": "HYBRID_STABLE_CORE_WITH_DURABLE_DYNAMIC_STATE",
-  "remaining_uncertainty": "desired_observed_generation_mismatch_behavior",
-  "adverse_test": "F3",
-  "primary_variable": "observed_generation_matches_desired:true->false"
+  "remaining_uncertainty": "semantic_consistency_after_generation_match",
+  "adverse_test": "F4",
+  "primary_variable": "semantic_phase_consistency:true->false"
 }
