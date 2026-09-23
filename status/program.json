@@ -5,31 +5,33 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
-  "current_stage": "O1_IMMEDIATE_PREARM_BASELINE",
-  "next_step": "O1_SAMPLE_003_CLEAN_IMMEDIATE_PREARM",
-  "active_hypothesis": "H-SCHED-1",
+  "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
+  "next_step": "O1_OVERLAP_SAMPLE_001_ESTABLISH_OWNER_AND_PREARM_SHADOW",
+  "active_hypothesis": "H-OVERLAP-BASE-1",
   "hypothesis_status": "TESTING",
   "active_execution": "spec/execution.json",
   "candidate": {
-    "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM",
+    "scheduler_strategy": "ACTIVE_OWNER_IMMEDIATE_PREARM_SHADOW",
     "recurrence": "RRULE:FREQ=HOURLY",
-    "target_useful_work_sec": 600,
-    "planned_gap_sec": 180,
-    "prearm_due_rule": "TURN_START + target_useful_work_sec + planned_gap_sec",
-    "normal_close_scheduler_rewrite": false,
-    "scheduler_writers": 1
+    "owner_nominal_horizon_sec": 600,
+    "successor_lead_sec": 180,
+    "successor_due_rule": "OWNER_START + owner_nominal_horizon_sec - successor_lead_sec",
+    "successor_role_on_wake": "SHADOW_SUCCESSOR",
+    "authority_model": "GENERATION_CAS_SINGLE_OWNER",
+    "scheduler_writers": 1,
+    "shadow_scheduler_write_allowed": false,
+    "normal_close_scheduler_rewrite": false
   },
   "gate": {
-    "baseline_required_clean_end_to_end_samples": 5,
-    "baseline_clean_end_to_end_samples": 0,
-    "open_sample": null,
-    "require_retrospective_wake_ok": true,
-    "require_work_ok": true,
-    "require_comparator": true,
-    "sample_001_disposition": "END_TO_END_WAKE_CONFIRMED_BUT_UTILIZATION_CONFOUNDED",
-    "sample_001_counts_toward_clean_gate": false,
-    "sample_002_disposition": "INVALIDATED_BY_SECOND_SCHEDULER_WRITE",
-    "sample_002_counts_toward_clean_gate": false
+    "viability_required_clean_handoffs": 3,
+    "clean_handoffs": 0,
+    "stabilization_required_clean_handoffs": 5,
+    "overlap_concurrency_required": true,
+    "clean_transfer_required": true,
+    "zero_duplicate_authoritative_side_effects_required": true,
+    "zero_scheduler_writer_conflicts_required": true,
+    "comparator_required": true,
+    "prior_non_overlap_samples_preserved": true
   },
   "objective_order": [
     "CONTINUITY_RECOVERABILITY",
@@ -42,5 +44,6 @@
     "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
-  "updated_at": "2026-09-23T21:43:20+09:00"
+  "updated_at": "2026-09-23T21:48:00+09:00",
+  "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md"
 }
