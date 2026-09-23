@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "research_phase": "BOUNDARY_STUDY",
+  "kernel": "control/BOOTSTRAP_CONTRACT.md",
+  "prompt_manifest": "control/prompt-manifest.json",
+  "canonical_prompt": "control/CANONICAL_PROMPT.md",
+  "architecture": "design/ARCHITECTURE_V0.md",
+  "case_study": "research/case-study-prompt-github-boundary.md",
+  "candidate": "HYBRID_BOOTSTRAP",
+  "write_scope": "amzsdq/Mer"
+}
