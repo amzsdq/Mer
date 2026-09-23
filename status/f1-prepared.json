@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "experiment": "F1_HYBRID_MISSING_DYNAMIC_REFERENCE",
+  "state": "PREPARED_NOT_ACTIVE",
+  "primary_variable": "required_dynamic_reference_exists: true -> false",
+  "prepared_files": [
+    "spec/execution-f1.json",
+    "research/adverse-f1-workload.md"
+  ],
+  "activation_gate": "Only after clean B_HYBRID_BOOTSTRAP sample 2 is durably observed.",
+  "scheduler_semantics_change": false
+}
