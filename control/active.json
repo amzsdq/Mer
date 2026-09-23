@@ -1,13 +1,18 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
+  "bootstrap_role": "STATIC_POINTER_ONLY",
+  "program": "status/program.json",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "case_studies": "research/case-studies-v1.md",
-  "program": "status/program.json",
   "canonical_supervisor_prompt": "control/CANONICAL_PROMPT_SUPERVISOR.md",
-  "current_stage": "6_FINAL_VALIDATION",
-  "next_step_id": "6-CLEAN-003",
-  "fixed_workload": "research/fixed-workload-v1.md",
-  "execution": "spec/execution.json",
-  "write_scope": "amzsdq/Mer"
+  "final_design": "research/FINAL_DESIGN.md",
+  "execution_slot": "spec/execution.json",
+  "recovery_required": [
+    "spec/GOAL.md",
+    "research/MASTER_PLAN.md",
+    "status/program.json"
+  ],
+  "write_scope": "amzsdq/Mer",
+  "invariant": "Do not store current_stage, next_step, experiment, generation, or other changing program state in this file. Read status/program.json for runtime authority."
 }
