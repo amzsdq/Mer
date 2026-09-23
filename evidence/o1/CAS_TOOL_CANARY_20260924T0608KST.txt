@@ -1,0 +1,3 @@
+NON_AUTHORITATIVE_GITHUB_WRITE_CANARY
+purpose=diagnose write primitive availability before authority transition
+invocation_local_label=MER_SHADOW_20260924T0608KST
