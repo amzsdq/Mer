@@ -1,0 +1,18 @@
+{
+  "sample": "O1_OWNER_LOSS_CALIBRATION_001",
+  "result": "PARTIAL_CALIBRATION_ONLY",
+  "marker_server_created_at": [
+    "2026-09-23T16:06:33Z",
+    "2026-09-23T16:06:41Z",
+    "2026-09-23T16:06:48Z",
+    "2026-09-23T16:06:55Z",
+    "2026-09-23T16:07:02Z"
+  ],
+  "inter_marker_delta_sec": [8,7,7,7],
+  "max_observed_marker_transport_delta_sec": 8,
+  "interpretation": "These samples validate server-timestamp marker transport under this wake only. They do NOT measure normal scheduler wake jitter and therefore are insufficient to set owner expiry E.",
+  "hypothesis_update": "KEEP_REVISED",
+  "revision": "Expiry must be based on GitHub-server-created owner renewal markers; ownership.json model-authored updated_at is forbidden as expiry authority. Collect real cross-wake owner-renewal/wake deltas before setting E.",
+  "next_required_evidence": "CROSS_WAKE_OWNER_RENEWAL_AND_WAKE_DELTA_SAMPLES",
+  "expiry_threshold_sec": null
+}
