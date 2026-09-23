@@ -16,11 +16,13 @@
   "scheduler_evidence": {
     "WRITE_OK": true,
     "STATE_OK": true,
-    "WAKE_OK": null,
+    "WAKE_OK": true,
     "WORK_OK": true,
     "returned_enabled": true,
     "returned_timing_mode": "exact_schedule",
-    "returned_rrule": "FREQ=HOURLY"
+    "returned_rrule": "FREQ=HOURLY",
+    "observed_successor_invocation_local": "2026-09-23T21:20:34+09:00",
+    "observed_successor_started_before_nominal_dtstart_sec": 80
   },
   "prior_art": {
     "internal": [
@@ -42,6 +44,10 @@
       "Kubernetes Lease safety guarantees do not imply ChatGPT Automation scheduler guarantees"
     ]
   },
-  "status": "OPEN_AWAITING_RETROSPECTIVE_WAKE",
-  "promotion_note": "This sample cannot count as clean end-to-end until a later invocation proves WAKE_OK and resumed WORK_OK."
+  "confounds": [
+    "The originating invocation closed after roughly 36 seconds instead of using the intended productive window. This is an execution-policy defect, not evidence against immediate prearm.",
+    "Observed successor invocation began about 80 seconds before the nominal DTSTART; scheduler timing precision therefore needs separate measurement and must not be inferred from this sample alone."
+  ],
+  "status": "END_TO_END_WAKE_CONFIRMED_BUT_UTILIZATION_CONFOUNDED",
+  "promotion_note": "Counts as evidence that write/state led to a later resumed invocation, but does not count as a clean utilization sample because the origin wake terminated prematurely."
 }
