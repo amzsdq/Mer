@@ -1,0 +1,14 @@
+{
+  "type": "SCHEDULER_WRITE_INTENT",
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "substantive_generation": 34,
+  "role": "ACTIVE_OWNER",
+  "handoff_epoch": "O8_LONGWAKE_GEN34_TO_GEN35_001",
+  "mutation_reason": "EARLY_EXIT_FALLBACK_AFTER_LONG_WAKE_GATE_PASS_CLOSE_RESERVE",
+  "intended_dtstart_utc": "2026-09-24T15:02:29Z",
+  "vevent": "BEGIN:VEVENT\nDTSTART:20260924T150229Z\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "timing_mode": "exact_schedule",
+  "enabled": true,
+  "representation_path": "FULL_VEVENT_ABSOLUTE",
+  "note": "Current invocation has already passed the 602s long-wake gate and completed multiple genuine repair/research units. Runtime close reserve is now the reason to hand continuity to a near-future wake; this is not a blind unchanged retry."
+}
