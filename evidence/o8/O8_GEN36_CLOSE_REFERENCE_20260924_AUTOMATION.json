@@ -1,0 +1,8 @@
+{
+  "type": "CLOSE_REFERENCE_MARKER",
+  "invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
+  "generation": 36,
+  "status": "CONTINUE",
+  "reason": "final continuity fallback reference; program nonterminal; B02 later WAKE_OK still pending",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP"
+}
