@@ -1,4 +1,7 @@
-# Mer convergence decision
+# Mer prompt-boundary convergence decision
+
+## Scope
+This document records convergence of the prompt/GitHub authority-boundary subproblem. It does **not** mean the overall relay-optimization program is complete; current runtime progress is authoritative in `status/program.json` and `research/MASTER_PLAN.md`.
 
 ## Decision
 Select HYBRID: a small stable execution kernel in the injected prompt plus GitHub-owned dynamic project/program state.
@@ -41,3 +44,7 @@ PASS:
 
 The smallest supported design is therefore:
 **HYBRID stable kernel + GitHub dynamic brain + single authoritative program object.**
+
+
+## Current program relation
+This convergence remains an architectural invariant during the active optimizer program. O1 later validated generation/CAS baton handoff with 5/5 clean samples, and Stage O4 is now testing adaptive pre-arm timing. Overall COMPLETE remains gated by Stage O7.
