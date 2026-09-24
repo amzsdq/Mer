@@ -1,0 +1,10 @@
+{
+  "type": "START_MARKER",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "candidate_generation": 35,
+  "source_generation": 34,
+  "handoff_epoch": "O8_LONGWAKE_GEN34_TO_GEN35_001",
+  "purpose": "Verify actual later WAKE_OK/WORK_OK after attributed gen34 close-reserve full-VEVENT write; then advance scheduler-writer fence experiment without changing representation.",
+  "clock_authority": "GitHub commit timestamp",
+  "status": "STARTED"
+}
