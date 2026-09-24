@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O6-GEN27-20260924T2211KST",
+  "prior_owner_generation": 26,
+  "current_generation": 27,
+  "prior_live_schedule_evidence": "automation live state at prior close had DTSTART 2026-09-24T22:11:35+09:00, enabled=true, exact_schedule, RRULE:FREQ=HOURLY",
+  "actual_execution_observed": "2026-09-24T22:11:41+09:00 automation runtime wake",
+  "scheduled_target": "2026-09-24T22:11:35+09:00",
+  "observed_wake_lateness_sec": 6,
+  "classification": {
+    "WRITE_OK": true,
+    "STATE_OK": true,
+    "WAKE_OK": true,
+    "WORK_OK": true
+  },
+  "inference_rule": "WAKE_OK is classified only from this actual later execution; WORK_OK requires this invocation to resume durable work, which it did by READY evidence and successful fresh-SHA gen26->27 ownership CAS.",
+  "handoff_epoch": "O6_T2_GEN26_TO_GEN27_001",
+  "ready_evidence": "evidence/o6/O6_T2_GEN26_TO_GEN27_001_READY_20260924T2211KST.json",
+  "ownership_transfer_commit": "a60bbb9879b26b54ed14e27075c583aa993836a6",
+  "duplicate_authoritative_side_effects_observed": 0,
+  "result": "PASS_LIVE_RETROSPECTIVE_WAKE_AND_WORK_EVIDENCE"
+}
