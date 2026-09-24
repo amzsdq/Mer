@@ -1,0 +1,9 @@
+{
+  "kind": "START_MARKER",
+  "invocation_id": "MER-O8-GEN38-AUTOMATION-20260924",
+  "source_generation": 37,
+  "target_generation": 38,
+  "epoch_id": "O8_SERIALIZED_GEN37_TO_GEN38_S01",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP",
+  "note": "S01 serialized successor invocation start; commit timestamp authoritative."
+}
