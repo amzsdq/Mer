@@ -1,9 +1,9 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "state": "ACTIVE",
   "active": true,
-  "experiment_id": "H-O5-READY-TRANSFER-GRANULARITY",
-  "primary_variable": "PREDECESSOR_POST_READY_MAX_AUTHORITATIVE_UNITS",
+  "experiment_id": "H-O6-STRANDED-OWNER-RECOVERY",
+  "primary_variable": null,
   "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
   "wake_start_prearm_offset_sec": 840,
   "authority_record": "control/ownership.json",
@@ -12,31 +12,28 @@
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "work_duration_target": "NONE",
   "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
-  "workload": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
-  "active_sample": "O5_MATCHED_WINDOWS_COMPLETE_EVALUATION",
-  "next_action": "EVALUATE A VS B. A LATENCIES 11,7,11; B LATENCIES 7,8,8. BOTH 3/3 CLEAN, DUPLICATES ZERO, CONTROL WRITES ONE. APPLY PROMOTION RULE: PROMOTE B ONLY IF LATENCY OR CONTROL OVERHEAD IS MATERIALLY BETTER; OTHERWISE KEEP A.",
-  "matched_window_test": {
+  "active_sample": "O6_STAGE_ENTRY_PENDING",
+  "next_action": "COMPLETE NORMAL GEN25_TO_GEN26 STAGE-ENTRY HANDOFF INTO O6; THEN RUN HYPOTHESIS SOURCING FOR STRANDED-OWNER RECOVERY AND DEFINE ONE PRIMARY VARIABLE BEFORE TESTABLE PROMOTION.",
+  "sourcing_gate": "PENDING",
+  "prior_stage_result": {
+    "stage": "O5_HANDOFF_OPTIMIZATION",
+    "decision": "KEEP_A_REVISE_HYPOTHESIS",
     "baseline_post_ready_max_authoritative_units": 1,
     "candidate_post_ready_max_authoritative_units": 0,
-    "samples_per_window": 3,
-    "active_window": "EVALUATION",
     "a_clean_samples": 3,
     "b_clean_samples": 3,
-    "hold_scheduler_offset_sec": 840,
-    "change_one_primary_variable": true,
-    "metrics": ["READY_TO_CAS_LATENCY_SEC", "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT", "HANDOFF_SUCCESS", "CONTROL_WRITE_COUNT"],
-    "promotion_rule": "PROMOTE_B_ONLY_IF_CONTINUITY_NO_WORSE_DUPLICATES_ZERO_AND_LATENCY_OR_CONTROL_OVERHEAD_MATERIALLY_BETTER; IF_EQUIVALENT_KEEP_A"
+    "a_latency_sec": [11,7,11],
+    "b_latency_sec": [7,8,8],
+    "duplicate_authoritative_side_effects": 0,
+    "control_writes_per_sample": 1,
+    "evaluation_evidence": "evidence/o5/O5_MATCHED_WINDOW_EVALUATION_20260924.md"
   },
-  "sample_results": {
-    "A1": {"source_generation":18,"target_generation":19,"ready_to_cas_latency_sec":11,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
-    "A2": {"source_generation":19,"target_generation":20,"ready_to_cas_latency_sec":7,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
-    "A3": {"source_generation":20,"target_generation":21,"ready_to_cas_latency_sec":11,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
-    "B1": {"source_generation":21,"target_generation":22,"ready_to_cas_latency_sec":7,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
-    "B2": {"source_generation":22,"target_generation":23,"ready_to_cas_latency_sec":8,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
-    "B3": {"source_generation":23,"target_generation":24,"ready_commit_sha":"7ac71ec9e0efab056d656d7847659d518f63075e","cas_commit_sha":"b258de0474947a9601eca46f1ec9d4815948c4ba","ready_commit_at":"2026-09-24T08:11:08Z","cas_commit_at":"2026-09-24T08:11:16Z","ready_to_cas_latency_sec":8,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"}
+  "o6_incident_seed": {
+    "type": "STRANDED_OWNER_NO_OPEN_SUCCESSOR_EPOCH",
+    "stuck_generation": 24,
+    "recovered_generation": 25,
+    "recovery": "USER_AUTHORIZED_SINGLE_USE_EXACT_GENERATION_RECOVERY",
+    "kernel_fix": "OWNER_EXIT_GUARD_PLUS_SCHEDULER_NONSTOP_GUARD_PLUS_PREARM_LIVE_VERIFY"
   },
-  "successor_priority": {"enabled":true,"concurrent_ready_rule":"FIRST_SUCCESSFUL_FRESH_SHA_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW"},
-  "sourcing_record": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
-  "sourcing_gate": "PASS",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
