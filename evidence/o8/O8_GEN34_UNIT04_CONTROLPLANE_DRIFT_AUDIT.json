@@ -1,0 +1,21 @@
+{
+  "unit": "O8_GEN34_UNIT04_CONTROLPLANE_DRIFT_AUDIT",
+  "generation": 34,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "class": "GENUINE_USEFUL_RELIABILITY_WORK",
+  "findings": [
+    "README and CONVERGENCE still described O4/O7 as current/completion gates after O8 reopened the program",
+    "FINAL_DESIGN lacked role-relative handoff semantics, repair-first finalization, explicit-full-VEVENT scheduler hardening, and O8 long-wake completion gate",
+    "GOAL completion text did not explicitly prevent continuity-only success from being promoted while long-wake work remained unresolved",
+    "PROMPT_ROLLOUT v1 allowed version/id-oriented verification wording that could miss same-version content drift"
+  ],
+  "repairs": [
+    "updated README to O8 active state",
+    "updated CONVERGENCE current-program relation to O8",
+    "updated FINAL_DESIGN with scheduler representation hardening, role-relative stop semantics, repair-first finalization, and O8 gate",
+    "updated GOAL with repair-first and >=600s direct-evidence completion condition",
+    "updated PROMPT_ROLLOUT to v2 requiring exact deployed-content verification during rollout/drift suspicion"
+  ],
+  "result": "PASS_REPAIRED",
+  "finalization_allowed": false
+}
