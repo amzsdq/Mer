@@ -8,7 +8,7 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
-  "next_step": "Finish third isolated AUTOMATION_SERVER_CLOCK sample and, separately, repair generation fencing with an atomic ref-CAS proof or another repository-level single-winner primitive. Do not treat immutable create-only path existence alone as atomic exclusion. After >=3 clean clock samples, execute owner-death-before-close adverse recovery.",
+  "next_step": "Do not keep blind-retrying the blocked experimental ref reconciliation. Treat ref/projection reconstruction logic as validated through fresh ref + descendant proof, but recovery ref advance remains unverified. Next: design/execute owner-loss-before-close adverse recovery using the already-proven serialized scheduler path and keep production control/ownership.json unchanged until a production migration gate explicitly passes.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -34,7 +34,10 @@
     "overall_program_complete": "NO",
     "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
     "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED",
-    "o8_external_clock_failover": "PASS_2_CONSECUTIVE_AUTOMATION_SERVER_CLOCK_SAMPLES_THIRD_IN_PROGRESS"
+    "o8_external_clock_failover": "PASS_3_PLUS_CONSECUTIVE_AUTOMATION_SERVER_CLOCK_SAMPLES",
+    "o8_ref_cas_primitive": "PASS_FAST_FORWARD_SINGLE_WINNER",
+    "o8_ref_projection_gap": "PASS_REPRODUCED_NONPRODUCTION",
+    "o8_ref_recovery_reconciliation": "BLOCKED_BY_SELECTIVE_CONNECTOR_MUTATION_ADMISSION"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -58,8 +61,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "DIFFERENTIAL_VERIFICATION_IN_PROGRESS",
-    "type": "CLOCK_FAILOVER_VALIDATING_AUTHORITY_CAS_SEPARATE",
+    "state": "MECHANISM_CHANGED_DIFFERENTIAL_VERIFIED_PARTIAL",
+    "type": "SELECTIVE_GITHUB_MUTATION_ADMISSION_BLOCKS_RECOVERY_REF_ADVANCE",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
