@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "marker": "END",
+  "invocation_id": "MER-O5-GEN21-SAMPLE3-20260924T1632KST",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "handoff": "GEN20_TO_GEN21",
+  "ready_commit_at": "2026-09-24T07:32:11Z",
+  "cas_commit_at": "2026-09-24T07:32:22Z",
+  "ready_to_cas_latency_sec": 11,
+  "duplicate_authoritative_side_effect": 0,
+  "control_write_count": 1,
+  "server_time_authority": "GitHub commit timestamp"
+}
