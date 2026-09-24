@@ -1,0 +1,6 @@
+{
+  "type": "START_MARKER",
+  "invocation_id": "MER-O7-GEN29-20260924T2241KST",
+  "candidate_prompt_version": "2.2.10-EARLY-EXIT-RETRY",
+  "purpose": "O7 final-kernel clean wake sample 1 successor; GitHub commit timestamp is authoritative work-start clock"
+}
