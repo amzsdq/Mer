@@ -1,0 +1,11 @@
+{
+  "kind": "END_MARKER",
+  "invocation_id": "MER-O8-GEN38-AUTOMATION-20260924",
+  "generation": 38,
+  "sample": "O8_SERIALIZED_SAME_CANONICAL_S02",
+  "start_marker": "evidence/o8/O8_GEN38_START_20260924_AUTOMATION.json",
+  "preclose_marker": "evidence/o8/O8_GEN38_PRECLOSE_20260924.json",
+  "verified_next_dtstart_utc": "2026-09-24T15:48:20Z",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP",
+  "status": "CONTINUE"
+}
