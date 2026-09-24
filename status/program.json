@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O7_FINAL_CONVERGENCE",
-  "next_step": "HOLD FINAL CANDIDATE UNCHANGED. BUILD DIRECT FINAL-KERNEL CLEAN-WAKE/HANDOFF AND DUTY-CYCLE/IDLE EVIDENCE. NEXT ACTUAL WAKE MUST RETROSPECTIVELY ESTABLISH WAKE_OK/WORK_OK FOR THE CURRENT VERIFIED PREARM, COMPLETE NORMAL GEN28_TO_GEN29 HANDOFF, AND UPDATE THE O7 CONVERGENCE MATRIX. DO NOT INFER PROVIDER MISS RATE OR USEFUL WORK FROM ELAPSED TIME.",
+  "next_step": "HOLD FINAL CANDIDATE UNCHANGED. NEXT ACTUAL WAKE MUST VERIFY THE CURRENT PREARM AS ACTUAL WAKE_OK/WORK_OK, COMPLETE NORMAL GEN29_TO_GEN30 SAMPLE2 HANDOFF, AND UPDATE THE O7 MATRIX. IN PARALLEL, DEFINE/PERSIST A DIRECT ACCOUNTING METHOD THAT SEPARATES USEFUL WORK, CONTROL OVERHEAD, AND IDLE WITHOUT TREATING TOTAL ELAPSED TIME AS USEFUL WORK.",
   "active_hypothesis": "H-O7-FINAL-CONVERGENCE",
   "hypothesis_status": "TESTABLE_ACTIVE",
   "active_execution": "spec/execution.json",
@@ -34,20 +34,20 @@
     "o6_stage_gate": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
     "o7_stage_entry": "PASS_GEN27_TO_GEN28_NORMAL_HANDOFF",
     "o7_convergence_matrix": "OPEN_TWO_MATERIAL_GATES",
-    "o7_repeated_unchanged_final_kernel_wakes": "OPEN",
+    "o7_repeated_unchanged_final_kernel_wakes": "SAMPLE1_PASS_SAMPLE2_OPEN",
     "o7_direct_duty_cycle_idle_accounting": "OPEN"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O7_STAGE_ENTRY",
-    "result": "GEN27_TO_GEN28_NORMAL_HANDOFF_COMPLETE",
-    "ready_evidence": "evidence/o7/O7_STAGE_ENTRY_GEN28_READY_20260924T2228KST.json",
-    "start_marker": "evidence/o7/O7_GEN28_START_MARKER_20260924T2228KST.json",
+    "scope": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_1",
+    "result": "PASS_GEN28_TO_GEN29_NORMAL_HANDOFF_COMPLETE",
+    "ready_evidence": "evidence/o7/O7_FINAL_KERNEL_GEN28_TO_GEN29_SAMPLE1_READY_20260924T2241KST.json",
+    "start_marker": "evidence/o7/O7_GEN29_START_MARKER_20260924T2241KST.json",
     "convergence_matrix": "evidence/o7/O7_CONVERGENCE_MATRIX_20260924.md"
   },
   "completion_rule": "O7 may set COMPLETE only after the final convergence matrix has no material testable continuity/utilization uncertainty remaining.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_1",
+  "active_sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_2",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o7/O7_CONVERGENCE_MATRIX_20260924.md"
 }
