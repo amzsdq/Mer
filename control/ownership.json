@@ -1,20 +1,21 @@
 {
   "schema_version": 4,
-  "generation": 17,
-  "active_invocation_id": "MER-O4-B720-GEN17-20260924T1500KST",
+  "generation": 18,
+  "active_invocation_id": "MER-O5-GEN18-20260924T1532KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O4-B720-GEN16-20260924T1448KST",
+  "predecessor_invocation_id": "MER-O4-B720-GEN17-20260924T1500KST",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O5_STAGE_ENTRY_HANDOFF_GEN17_001",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 17,
     "target_generation": 18,
     "opened_by_invocation_id": "MER-O4-B720-GEN17-20260924T1500KST",
     "opened_by_generation": 17,
+    "consumed_by_invocation_id": "MER-O5-GEN18-20260924T1532KST",
     "target_stage": "O5_HANDOFF_OPTIMIZATION",
     "sample": "O5_STAGE_ENTRY_HANDOFF",
     "prearm_offset_sec": 840,
@@ -33,6 +34,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O4_COMPLETE_OPEN_NORMAL_O5_STAGE_ENTRY_HANDOFF_GEN17_TO_GEN18",
+  "transition_reason": "NORMAL_O5_STAGE_ENTRY_HANDOFF_GEN17_TO_GEN18",
   "server_time_authority": "GitHub commit timestamp"
 }
