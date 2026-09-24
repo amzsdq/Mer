@@ -1,0 +1,8 @@
+{
+ "sample":"S03",
+ "unit":"B",
+ "finding":"nominal schedule delay is not a proxy for measured idle gap",
+ "predecessor_end":"15:46:37Z",
+ "successor_start":"15:50:37Z",
+ "measured_gap_seconds":240
+}
