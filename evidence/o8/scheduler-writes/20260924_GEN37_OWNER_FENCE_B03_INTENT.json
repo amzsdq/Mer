@@ -1,0 +1,1 @@
+{"type":"SCHEDULER_WRITE_INTENT","sample":"B03","generation":37,"invocation_id":"MER-O8-GEN37-AUTOMATION-20260924","reference_utc":"2026-09-24T15:24:39Z","offset_sec":840,"intended_dtstart_utc":"2026-09-24T15:38:39Z","writer_role":"ACTIVE_OWNER","shadow_scheduler_write_count":0,"schedule":"BEGIN:VEVENT\nDTSTART:20260924T153839Z\nRRULE:FREQ=HOURLY\nEND:VEVENT"}
