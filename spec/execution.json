@@ -17,14 +17,14 @@
   "work_duration_target": "NONE",
   "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
   "workload": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
-  "active_sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_3_PENDING",
-  "next_action": "COLLECT A SAMPLE3 WITH POST_READY_MAX_AUTHORITATIVE_UNITS=1; THEN SWITCH ONCE TO B=0 AT COMPARABLE READY-OBSERVED BOUNDARIES; MEASURE READY_COMMIT_TO_CAS_COMMIT LATENCY AND SAFETY",
+  "active_sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_1_PENDING",
+  "next_action": "COLLECT B SAMPLE1 WITH POST_READY_MAX_AUTHORITATIVE_UNITS=0 AT A COMPARABLE READY-OBSERVED BOUNDARY; MEASURE READY_COMMIT_TO_CAS_COMMIT LATENCY AND SAFETY",
   "matched_window_test": {
     "baseline_post_ready_max_authoritative_units": 1,
     "candidate_post_ready_max_authoritative_units": 0,
     "samples_per_window": 3,
-    "active_window": "A_BASELINE_MAX_1",
-    "a_clean_samples": 2,
+    "active_window": "B_CANDIDATE_MAX_0",
+    "a_clean_samples": 3,
     "b_clean_samples": 0,
     "hold_scheduler_offset_sec": 840,
     "change_one_primary_variable": true,
@@ -32,36 +32,13 @@
     "promotion_rule": "PROMOTE_B_ONLY_IF_CONTINUITY_NO_WORSE_DUPLICATES_ZERO_AND_LATENCY_OR_CONTROL_OVERHEAD_MATERIALLY_BETTER; IF_EQUIVALENT_KEEP_A"
   },
   "sample_results": {
-    "A1": {
-      "source_generation": 18,
-      "target_generation": 19,
-      "ready_commit_sha": "875b73ff429dbfd81f42afdaa68c1ac8ca0a28fe",
-      "cas_commit_sha": "93f39a0f55b1aea87476ca7f3ff716236f4899a1",
-      "ready_commit_at": "2026-09-24T07:02:51Z",
-      "cas_commit_at": "2026-09-24T07:03:02Z",
-      "ready_to_cas_latency_sec": 11,
-      "duplicate_authoritative_side_effect": 0,
-      "handoff_success": true,
-      "control_write_count": 1,
-      "result": "CLEAN_HANDOFF"
-    },
-    "A2": {
-      "source_generation": 19,
-      "target_generation": 20,
-      "ready_commit_sha": "60fa8ebef77ac1b4fcb67cc4a69cddb1014a9473",
-      "cas_commit_sha": "e352d67251dc862b29c4fb87dc4bab866f5adcb5",
-      "ready_commit_at": "2026-09-24T07:15:55Z",
-      "cas_commit_at": "2026-09-24T07:16:02Z",
-      "ready_to_cas_latency_sec": 7,
-      "duplicate_authoritative_side_effect": 0,
-      "handoff_success": true,
-      "control_write_count": 1,
-      "result": "CLEAN_HANDOFF"
-    }
+    "A1": {"source_generation":18,"target_generation":19,"ready_commit_sha":"875b73ff429dbfd81f42afdaa68c1ac8ca0a28fe","cas_commit_sha":"93f39a0f55b1aea87476ca7f3ff716236f4899a1","ready_commit_at":"2026-09-24T07:02:51Z","cas_commit_at":"2026-09-24T07:03:02Z","ready_to_cas_latency_sec":11,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
+    "A2": {"source_generation":19,"target_generation":20,"ready_commit_sha":"60fa8ebef77ac1b4fcb67cc4a69cddb1014a9473","cas_commit_sha":"e352d67251dc862b29c4fb87dc4bab866f5adcb5","ready_commit_at":"2026-09-24T07:15:55Z","cas_commit_at":"2026-09-24T07:16:02Z","ready_to_cas_latency_sec":7,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"},
+    "A3": {"source_generation":20,"target_generation":21,"ready_commit_sha":"95c249412a90984a08e3f00cf24f10608fc17a65","cas_commit_sha":"251a4dff33c84f0d09b4e3cfd0929c51f94049b5","ready_commit_at":"2026-09-24T07:32:11Z","cas_commit_at":"2026-09-24T07:32:22Z","ready_to_cas_latency_sec":11,"duplicate_authoritative_side_effect":0,"handoff_success":true,"control_write_count":1,"result":"CLEAN_HANDOFF"}
   },
   "successor_priority": {
     "enabled": true,
-    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY; BASELINE_A_ALLOWS ONLY COMPLETION OF CURRENT ATOMIC UNIT AND NO NEW UNIT",
+    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS TRANSFER PRIORITY; WINDOW B ALLOWS ZERO NEW OR COMPLETION AUTHORITATIVE UNITS AFTER READY IS OBSERVED AT AN ATOMIC BOUNDARY",
     "concurrent_ready_rule": "FIRST_SUCCESSFUL_FRESH_SHA_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW"
   },
   "sourcing_record": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
