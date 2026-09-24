@@ -1,0 +1,7 @@
+{
+  "marker": "PRE_CLOSE",
+  "generation": 41,
+  "invocation_id": "MER-O8-GEN41-AUTOMATION-20260924",
+  "purpose": "Serialized continuation after authority write-path repair unit",
+  "clock_authority": "GitHub commit timestamp"
+}
