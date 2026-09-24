@@ -1,0 +1,9 @@
+{
+  "type": "START_MARKER",
+  "invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
+  "role_at_bootstrap": "SHADOW",
+  "source_generation": 35,
+  "target_generation": 36,
+  "epoch_id": "O8_WRITER_FENCE_GEN35_TO_GEN36_001",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP"
+}
