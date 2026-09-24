@@ -1,99 +1,68 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "state": "ACTIVE",
   "active": true,
-  "generation": 18,
   "experiment_id": "H-O4-ADAPTIVE-PREARM",
-  "primary_variable": "PREARM_POLICY_FIXED_840_VS_ADAPTIVE_BOUNDARY_AWARE",
-  "scheduler_strategy": "WAKE_START_ADAPTIVE_PREARM_BATON",
-  "wake_start_prearm_offset_sec": 840,
-  "successor_due_rule": "WAKE_AT + SELECTED_PREARM_OFFSET_SEC",
+  "primary_variable": "WAKE_START_PREARM_OFFSET_SEC",
+  "scheduler_strategy": "WAKE_START_FIXED_WINDOW_COMPARISON",
   "authority_record": "control/ownership.json",
+  "generation_authority": "control/ownership.json",
+  "status_owner": "status/program.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
-  "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY_UNTIL_OWNER_AUTHORIZED_OPEN_HANDOFF_EPOCH_AND_READY",
+  "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY_UNTIL_CURRENT_OPEN_HANDOFF_EPOCH_READY_AND_FRESH_SHA_CAS",
   "scheduler_writer_rule": "EVERY_INVOCATION_EXACTLY_ONCE_AT_WAKE_START_THEN_NO_MORE_WRITES",
-  "transfer_rule": "OWNER_OPENS_GENERATION_BOUND_HANDOFF_EPOCH; FIRST_READY_CONTENDER_MAY_ATTEMPT EXACTLY_ONE_FRESH_SHA_G_TO_G_PLUS_1_CAS",
-  "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_SIDE_EFFECT_FRESH_READ_OWNERSHIP_AND_REQUIRE_EXACT_ACTIVE_INVOCATION_ID_PLUS_GENERATION",
+  "transfer_rule": "OWNER_OPENS_GENERATION_BOUND_HANDOFF_EPOCH; FIRST_ELIGIBLE_READY_CONTENDER_MAY ATTEMPT EXACTLY ONE FRESH_SHA G_TO_G_PLUS_1 CAS",
+  "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_SIDE_EFFECT FRESH_READ control/ownership.json AND REQUIRE CURRENT active_invocation_id PLUS generation",
   "normal_close_scheduler_rewrite": false,
   "work_duration_target": "NONE",
   "normal_stop_gates": [
     "PROGRAM_COMPLETE",
     "SUCCESSOR_HANDOFF_COMPLETE"
   ],
-  "next_action": "ON_NEXT_WAKE_PREARM_PER_ACTIVE_O4_POLICY; RECONSTRUCT_CHECKPOINT; WRITE_READY_EVIDENCE_BOUND_TO_O4_HANDOFF_EPOCH_GEN9_001; ELIGIBLE_READY_SUCCESSOR_HAS_PRIORITY AND MAY ATTEMPT ONE FRESH_SHA GEN9_TO_GEN10 CAS; AFTER SUCCESS RUN O4_TRIAL",
   "workload": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md",
-  "status_owner": "status/program.json",
-  "active_sample": "O4_RESUME_HANDOFF_GEN9_TO_GEN10",
-  "recovery_constraints": {
-    "no_ad_hoc_self_promotion": true,
-    "recovery_epoch": {
-      "authorized": false,
-      "consumed": true,
-      "single_use": true,
-      "expected_generation": 2,
-      "transition": "GEN2_TO_GEN3",
-      "transition_commit": "78c1b668320a34d43c7100348d5ab19ef9e90329",
-      "result": "SUCCESS"
-    },
-    "automatic_expiry_threshold": "NOT_PROMOTED_SEPARATE_FUTURE_EXPERIMENT",
-    "no_model_clock_for_expiry": true,
-    "server_timestamp_required": true,
-    "takeover_requires_fresh_read": true,
-    "takeover_requires_generation_increment": true,
-    "takeover_requires_optimistic_concurrency": true,
-    "per_side_effect_fence_remains_required": true,
-    "runtime_target_policy": "REMOVED_NO_WORK_TARGET",
-    "shadow_wake_start_prearm_allowed": true,
-    "scheduler_mutations_per_wake": 1
+  "active_sample": "O4_FIXED_WINDOW_A_840S",
+  "next_action": "RUN_FIXED_WINDOW_A_AT_840S; COLLECT 3 CLEAN SUCCESSOR HANDOFF SAMPLES WITH ALL OTHER HANDOFF SEMANTICS HELD CONSTANT; THEN SWITCH ONCE TO FIXED_WINDOW_B_AT_720S FOR 3 CLEAN SAMPLES; DO NOT RETUNE WITHIN A WINDOW",
+  "fixed_window_test": {
+    "baseline_offset_sec": 840,
+    "candidate_offset_sec": 720,
+    "candidate_reason": "CONSERVATIVE_FIRST_DESCENT_FROM_VALIDATED_840S_BASELINE; ONLY PREARM_OFFSET_CHANGES",
+    "samples_per_window": 3,
+    "active_window": "A_BASELINE_840S",
+    "a_clean_samples": 0,
+    "b_clean_samples": 0,
+    "switch_rule": "AFTER_3_CLEAN_A_SAMPLES_SWITCH_ONCE_TO_720S_B_WINDOW",
+    "promotion_rule": "KEEP_SHORTER_ONLY_IF_CONTINUITY_NO_WORSE_AND_UTILIZATION_OR_EXPERIMENT_TURNAROUND_MATERIALLY_BETTER; OTHERWISE_KEEP_840S",
+    "change_one_primary_variable": true
   },
-  "previous_sample_result": "O1_TO_O4_STAGE_RECOVERY_PASS_GEN8_TO_GEN9_AND_GEN9_TO_GEN10_EPOCH_OPEN",
-  "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
+  "wake_start_prearm_offset_sec": 840,
+  "successor_due_rule": "WAKE_AT + ACTIVE_WINDOW_PREARM_OFFSET_SEC",
   "adaptive_prearm": {
     "default_sec": 840,
-    "normal_bounds_sec": [
-      180,
-      840
-    ],
+    "normal_bounds_sec": [180, 840],
     "short_cycle_trigger": "CONCRETE_SUCCESSOR_DEPENDENT_EXECUTION_OR_VERIFICATION_BOUNDARY",
-    "selection_rule": "EXPECTED_USEFUL_WORK_TO_BOUNDARY_PLUS_HANDOFF_JITTER_MARGIN",
+    "selection_rule": "FIXED_BY_ACTIVE_EXPERIMENT_WINDOW",
     "no_frequency_for_its_own_sake": true,
     "hold_constant_within_sample": true,
     "fixed_comparator_sec": 840
+  },
+  "successor_priority": {
+    "enabled": true,
+    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY_AFTER_CURRENT_ATOMIC_UNIT",
+    "concurrent_ready_rule": "FIRST_SUCCESSFUL_FRESH_SHA_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW"
+  },
+  "recovery_policy": {
+    "no_ad_hoc_self_promotion": true,
+    "stuck_owner_recovery_requires_explicit_authorization": true,
+    "takeover_requires_fresh_read": true,
+    "takeover_requires_generation_increment": true,
+    "takeover_requires_optimistic_concurrency": true,
+    "per_side_effect_fence_remains_required": true
   },
   "short_cycle_watch": {
     "enabled": true,
     "condition": "REPEATED_NONTERMINAL_SHORT_WAKES_WITH_LONGER_SAFE_USEFUL_WORK_AVAILABLE_AND_NO_PLAN_DECLARED_SHORT_CYCLE_NEED",
     "action": "REPORT_SHORT_CYCLE_ANOMALY_WITH_GITHUB_SERVER_TIMESTAMP_EVIDENCE"
   },
-  "stage_transition": {
-    "from_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-    "to_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-    "state": "RECOVERY_CONSUMED_HANDOFF_OPEN",
-    "reason": "O1 owner remained authoritative after O1 completion and no O4 handoff epoch was opened",
-    "recovery_epoch": {
-      "authorized": false,
-      "consumed": true,
-      "single_use": true,
-      "expected_generation": 8,
-      "transition": "GEN8_TO_GEN9",
-      "target_owner_invocation_id": "MER-O4-STAGE-RECOVERY-001",
-      "target_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-      "transition_commit": "9de0441b4fbc6a6dc699fc8ec18bea91ae8127d2",
-      "result": "SUCCESS"
-    }
-  },
-  "successor_priority": {
-    "enabled": true,
-    "applies_only_when": [
-      "CURRENT_GENERATION_HANDOFF_EPOCH_IS_OPEN",
-      "READY_EVIDENCE_IS_DURABLE_AND_BOUND_TO_CURRENT_GENERATION_AND_EPOCH",
-      "WAKE_START_PREARM_VERIFIED",
-      "CHECKPOINT_RECONSTRUCTED",
-      "CONTENDER_FRESH_READS_OWNERSHIP_BEFORE_CAS"
-    ],
-    "predecessor_rule": "WHEN_AN_ELIGIBLE_READY_SUCCESSOR_EXISTS_FINISH_ONLY_CURRENT_ATOMIC_UNIT_THEN_START_NO_NEW_AUTHORITATIVE_UNIT_AND_YIELD_TO_HANDOFF",
-    "successor_rule": "ELIGIBLE_READY_CONTENDER_HAS_PRIORITY_TO_ATTEMPT_EXACTLY_ONE_FRESH_SHA_GENERATION_CAS",
-    "concurrent_ready_rule": "FIRST_SUCCESSFUL_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW",
-    "not_allowed": "READY_ALONE_WITHOUT_OPEN_EPOCH_OR_GENERATION_BINDING_DOES_NOT_GRANT_PRIORITY"
-  }
+  "previous_sample_result": "GEN9_TO_GEN10_HANDOFF_SUCCEEDED; STALE_DUPLICATE_GENERATION_STATE_FOUND_AND_RECOVERED_TO_GEN11",
+  "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
