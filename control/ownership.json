@@ -1,16 +1,16 @@
 {
   "schema_version": 4,
-  "generation": 31,
-  "active_invocation_id": "MER-O7-GEN31-COVERAGE1-20260924T2252KST",
+  "generation": 32,
+  "active_invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
-  "intended_successor_invocation_id": "NEXT_ELIGIBLE_O7_ACCOUNTING_SUCCESSOR",
+  "predecessor_invocation_id": "MER-O7-GEN31-COVERAGE1-20260924T2252KST",
+  "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O7_ACCOUNTING_GEN31_TO_GEN32_COVERAGE2",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 31,
     "target_generation": 32,
     "opened_by_invocation_id": "MER-O7-GEN31-COVERAGE1-20260924T2252KST",
@@ -20,6 +20,7 @@
     "prearm_offset_sec": 840,
     "post_ready_max_authoritative_units": 1,
     "ready_evidence_required": true,
+    "ready_evidence": "evidence/o7/O7_ACCOUNTING_GEN31_TO_GEN32_COVERAGE2_READY_20260924T2302KST.json",
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_ONE_POST_READY_ATOMIC_UNIT_MAX",
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
@@ -35,6 +36,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O7_ACCOUNTING_COVERAGE1_PASS_OPENED_GEN31_TO_GEN32_COVERAGE2",
+  "transition_reason": "O7_COVERAGE2_SUCCESSOR_READY_AND_FRESH_SHA_CAS_GEN31_TO_GEN32",
   "server_time_authority": "GitHub commit timestamp"
 }
