@@ -1,0 +1,29 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T2-STALE-SHADOW-AFTER-ADVANCE",
+  "test": "T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
+  "primary_variable": "RECOVERY_MODE=DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY",
+  "scenario": {
+    "stale_shadow_observed_generation": 200,
+    "stale_shadow_observed_owner": "FIXTURE-OWNER-G200",
+    "fresh_authority_generation": 201,
+    "fresh_authority_owner": "FIXTURE-OWNER-G201",
+    "fresh_authority_handoff_epoch": {
+      "state": "OPEN",
+      "source_generation": 201,
+      "target_generation": 202
+    }
+  },
+  "admission": {
+    "exact_generation_owner_stable": false,
+    "legal_open_successor_path_absent": false,
+    "decision": "INELIGIBLE_STALE_SHADOW"
+  },
+  "recovery_cas_attempts": 0,
+  "authoritative_mutations": 0,
+  "duplicate_authoritative_side_effects": 0,
+  "normal_successor_path_preserved": true,
+  "scheduler_enabled": true,
+  "result": "PASS",
+  "scope_note": "Deterministic state-machine fixture validation. A stale observer must fresh-read before recovery admission; observed generation mismatch and existing OPEN successor path independently reject recovery."
+}
