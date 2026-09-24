@@ -34,9 +34,13 @@ WF-S1 NO_UNATTRIBUTED_OVERWRITE
 
 WF-S2 WAKE_DISTINCT_FROM_STATE
 - WRITE_OK+STATE_OK never implies WAKE_OK. WAKE_OK requires an actual later automation dispatch attributable to the intended recurring state or a documented provider-equivalent recurrence.
+- If the intended target is intentionally superseded before dispatch, classify the sample `SUPERSEDED_NOT_CLEAN`; do not infer PASS or FAIL for WAKE_OK from that target.
 
 WF-S3 WORK_DISTINCT_FROM_WAKE
 - WAKE_OK never implies WORK_OK. WORK_OK requires durable substantive progress in the resumed invocation.
+
+WF-S4 TARGET_SURVIVES_TO_DISPATCH
+- A CLEAN sample requires the exact intended target to remain authoritative until the qualifying dispatch. Immediate exact readback followed by an intentional corrective/experimental rewrite is mechanism evidence only and cannot count toward the three-clean minimum.
 
 ## Owner-loss adverse assertions
 WF-A1 EXPLICIT_SINGLE_USE_AUTH
@@ -52,12 +56,13 @@ WF-A4 FALLBACK_PRESERVED
 - The previously verified recurring fallback must remain enabled until the recovery owner has exact STATE_OK on its own replacement prearm.
 
 WF-A5 BOUNDED_RECOVERY
-- Measure owner-last-progress -> successor WORK_OK and compare with A-arm relevant recovery evidence. Do not declare non-regression without an explicit comparator or justified bound.
+- Measure loss-marker -> recovery ownership commit -> verified owner rearm -> successor WORK_OK using GitHub server timestamps where available.
+- Compare against a directly relevant A-arm recovery observation if one exists. If no comparable A-arm latency sample exists, the adverse sample may establish `B_RECOVERY_FUNCTIONAL_PASS` but continuity-latency non-regression remains `UNKNOWN`; do not silently convert missing comparator data into PASS.
 
 WF-A6 NO_STRANDING
 - If neither legal recovery CAS nor existing recurring fallback can produce a legal owner/work resumption, B fails.
 
 ## Sample classification
-A B-arm sample is CLEAN only if WF-N1..N6 and WF-S1..S3 all PASS. Immediate WRITE_OK+STATE_OK without later WAKE_OK/WORK_OK is PROVISIONAL, not CLEAN.
+A B-arm normal sample is CLEAN only if WF-N1..N6 and WF-S1..S4 all PASS. Immediate WRITE_OK+STATE_OK without later target-surviving WAKE_OK/WORK_OK is PROVISIONAL, not CLEAN. An intentionally superseded target is SUPERSEDED_NOT_CLEAN.
 
-B may be promoted only after >=3 CLEAN normal samples plus one adverse sample passing WF-A1..A6, with scheduler write count/overwrite ambiguity materially improved and no material continuity regression.
+B may be promoted only after >=3 CLEAN normal samples plus one adverse sample passing WF-A1..A6, with scheduler write count/overwrite ambiguity materially improved and no material continuity regression. If the only missing item is a valid A-arm latency comparator, keep latency non-regression explicitly unresolved rather than weakening the gate.
