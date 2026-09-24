@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "marker": "START_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_1",
+  "source_generation": 18,
+  "target_generation": 19,
+  "handoff_epoch": "O5_WINDOW_A_GEN18_TO_GEN19_SAMPLE1",
+  "invocation_id": "MER-O5-GEN19-SAMPLE1-20260924T1602KST",
+  "server_time_authority": "GitHub commit timestamp"
+}
