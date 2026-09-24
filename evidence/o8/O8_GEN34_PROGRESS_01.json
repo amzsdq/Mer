@@ -1,0 +1,10 @@
+{
+  "type": "PROGRESS_MARKER",
+  "generation": 34,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "start_marker_commit_time_utc": "2026-09-24T14:47:51Z",
+  "completed_distinct_units": ["UNIT03_REPAIR_AND_SYNC","UNIT04_CONTROLPLANE_DRIFT_AUDIT","UNIT05_SCHEDULER_LATE_OBSERVATION","UNIT06_SCHEDULER_OVERWRITE_FORENSIC","UNIT07_FULL_VEVENT_RECOVERY_DIFFERENTIAL"],
+  "scheduler_live_target_utc": "2026-09-24T15:08:14Z",
+  "ownership_expected": "GEN34_OWNER_ACTIVE_WITH_OPEN_GEN34_TO_GEN35_EPOCH",
+  "finalization_rule": "Use this commit's GitHub server timestamp minus 14:47:51Z. If <600s, finalization is forbidden absent a legal later-successor handoff or program terminal state."
+}
