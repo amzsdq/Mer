@@ -1,6 +1,6 @@
 # H-O8-ROLE-RELATIVE-STOP-GATE
 
-Status: TESTABLE
+Status: TESTABLE_RUNNING — IMMEDIATE DISCRIMINATOR PASS; LONG-WAKE GATE PENDING
 Stage: O8_LONG_WAKE_USEFUL_WORK_CONTINUATION
 
 ## HYPOTHESIS_ID
@@ -22,10 +22,11 @@ Stop-gate interpretation after successful ownership acquisition: ROLE_RELATIVE_C
 3. Kubernetes leader election: multiple contenders may exist, but one successful lease holder becomes the active leader and performs control work while leadership remains valid; acquisition is the start of active authority, not a reason to terminate the acquirer.
 4. Temporal durable execution: workflow state is captured and work resumes from durable state after interruption, supporting separation of durable ownership/progress from individual transition events.
 
-## COUNTER_PRIORS / KNOWN_CONFLICTS
+## COUNTER_PRIORS / KNOWN CONFLICTS
 1. Mer's previous prompt treated SUCCESSOR_HANDOFF_COMPLETE too broadly, allowing the acquiring invocation to stop immediately after taking ownership. This produced clean relay evidence but failed the long-wake objective.
 2. A later distinct successor READY event must still bound current-owner work: once an eligible successor for the current OPEN epoch is READY, the owner finishes only its current atomic unit and yields.
 3. Platform invocation/runtime limits may still terminate a correctly continuing owner; role-relative semantics cannot by itself prove >=600s is physically achievable.
+4. Scheduler writes are currently a separate concurrent lane; a later wake may change the canonical DTSTART while the current owner is still working. That must be analyzed separately rather than misclassified as stop-gate failure.
 
 ## TRANSLATION
 - State-machine transition -> handoff changes role/generation, not necessarily invocation termination.
@@ -40,8 +41,13 @@ Stop-gate interpretation after successful ownership acquisition: ROLE_RELATIVE_C
 ## DISCRIMINATING_TEST
 On O8 gen33->34 stage entry, the successor performs verified wake-start prearm, records READY, wins a fresh-SHA CAS, and becomes gen34 ACTIVE_OWNER. Without treating that acquisition handoff as a stop gate, the same invocation executes multiple distinct genuine useful units with durable markers/evidence. Continue until either: (a) GitHub START/END timestamps establish WORKED >=600s while multiple genuine units executed and continuity remained secured; (b) a later distinct eligible successor completes handoff away; or (c) platform-enforced interruption occurs, in which case persist evidence and keep the long-wake gate unresolved.
 
+## INTERIM RESULT — GEN34
+PASS for the immediate causal discriminator. Gen34 acquired ownership and continued in the same invocation through multiple distinct durable work units, including hypothesis/test design, invariant audit, critical-incident repair/prompt synchronization, control-plane drift repair, and scheduler-lateness observation. `acquisition handoff -> immediate invocation exit` did not occur under the corrected semantics.
+
+This is not overall Mer completion. The same invocation's >=600s GitHub-server-timestamp gate remains pending, and a later distinct successor handoff remains a valid stop condition.
+
 ## PROMOTION_GATE
-KEEP only if same-invocation post-acquisition work is directly observed and does not violate single-owner fencing/continuity. Overall Mer completion additionally requires the >=600s LONG_WAKE_VALIDATION_GATE.
+KEEP role-relative semantics if same-invocation post-acquisition work remains directly observed without duplicate authoritative ownership or successor-priority violation. Overall Mer completion additionally requires the >=600s LONG_WAKE_VALIDATION_GATE.
 
 ## REJECTION / REVISION RULE
 - REJECT role-relative continuation if acquisition followed by continued work causes duplicate authoritative ownership or violates successor priority.
