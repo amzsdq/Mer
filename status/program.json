@@ -8,7 +8,7 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S02_WAIT_WAKE_GEN39",
-  "next_step": "Next invocation: create START, verify S02 target 15:48:20Z and gen38 END 15:46:37Z, acquire gen39 legally, persist WORK_OK, compute idle gap, continue S03.",
+  "next_step": "GitHub mutation path was blocked by safety checks during gen40 durable authority acquisition. Do not repeat the same write this invocation. Preserve scheduler continuity; next invocation must first create/fetch gen40 START and repair authority projection, then classify S03 and continue recovery gate.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -30,7 +30,8 @@
     "o8_serialized_s01": "CLEAN_WAKE_WORK_AUTHORITY_PASS",
     "o8_owner_loss_adverse": "DEFERRED_UNTIL_SERIALIZED_NORMAL_PATH_ESTABLISHED",
     "overall_program_complete": "NO",
-    "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING"
+    "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
+    "o8_serialized_s03": "WAKE_WORK_OBSERVED_AUTOMATION_LAST_RUN_15:55:14Z_DURABLE_GEN40_START_PENDING"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -54,8 +55,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "SERIALIZED_S01_DIFFERENTIAL_VERIFICATION_PASS_CONTINUE_S02",
-    "type": "OVERLAP_ASSUMPTION_FAILED_AND_PRIOR_OVERLAP_EVIDENCE_INVALIDATED",
+    "state": "WRITE_PATH_BLOCKED_DIAGNOSTIC",
+    "type": "GITHUB_MUTATION_BLOCKED_DURING_GEN40_ACQUIRE",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
