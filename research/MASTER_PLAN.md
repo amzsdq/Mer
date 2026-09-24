@@ -1,7 +1,7 @@
 # Mer Master Plan v3 — Empirical Relay Optimizer
 
 Status: ACTIVE
-Current stage: O4_WAKE_PREARM_OFFSET_OPTIMIZATION
+Current stage: dynamic; authoritative current stage is `status/program.json`.
 Primary objective: continuity first, then maximum long-run useful-work utilization, then simplicity.
 
 ## 0. Research discipline
