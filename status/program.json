@@ -8,7 +8,7 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
-  "next_step": "Validate AUTOMATION_SERVER_CLOCK failover on the current/next serialized same-canonical sample: START=same-canonical last_run_time; END=final scheduler mutation server updated_at; WORKED=exact delta; never mix clock sources. Keep authority projection/CAS repair as a separate unresolved track.",
+  "next_step": "Finish third isolated AUTOMATION_SERVER_CLOCK sample and, separately, repair generation fencing with an atomic ref-CAS proof or another repository-level single-winner primitive. Do not treat immutable create-only path existence alone as atomic exclusion. After >=3 clean clock samples, execute owner-death-before-close adverse recovery.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -34,7 +34,7 @@
     "overall_program_complete": "NO",
     "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
     "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED",
-    "o8_external_clock_failover": "ACTIVE_DIFFERENTIAL_VALIDATION"
+    "o8_external_clock_failover": "PASS_2_CONSECUTIVE_AUTOMATION_SERVER_CLOCK_SAMPLES_THIRD_IN_PROGRESS"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -58,8 +58,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
-    "type": "DURATION_CLOCK_DECOUPLED_FROM_SELECTIVELY_BLOCKED_GITHUB_MARKER_MUTATION",
+    "state": "DIFFERENTIAL_VERIFICATION_IN_PROGRESS",
+    "type": "CLOCK_FAILOVER_VALIDATING_AUTHORITY_CAS_SEPARATE",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
@@ -83,5 +83,36 @@
     "idle_gap_sec": 395,
     "dispatch_or_recovery_delay_from_target_sec": 319,
     "mutable_authority_update": "SAFETY_BLOCKED"
+  },
+  "external_clock_validation": {
+    "clock_source": "AUTOMATION_SERVER_CLOCK",
+    "rule": "START=same canonical last_run_time; END=final same-canonical scheduler mutation updated_at; never mix sources",
+    "samples": [
+      {
+        "start_utc": "2026-09-24T17:28:56.224055Z",
+        "end_utc": "2026-09-24T17:39:36.584339Z",
+        "worked_sec": 640.360284,
+        "classification": "PASS"
+      },
+      {
+        "start_utc": "2026-09-24T17:42:10.313146Z",
+        "end_utc": "2026-09-24T17:45:28.584994Z",
+        "worked_sec": 198.271848,
+        "classification": "PASS"
+      }
+    ],
+    "current_start_utc": "2026-09-24T17:46:16Z",
+    "current_sample": "THIRD_DIFFERENTIAL_SAMPLE_IN_PROGRESS"
+  },
+  "authority_reconstruction": {
+    "mutable_projection_generation": 39,
+    "immutable_latest_contiguous_generation": 42,
+    "gen41_start_utc": "2026-09-24T16:04:36Z",
+    "gen41_end_utc": "2026-09-24T16:05:56Z",
+    "gen42_start_utc": "2026-09-24T16:08:54Z",
+    "gen42_end_utc": "2026-09-24T16:10:43Z",
+    "immutable_event_chain": "gen41 -> durable gen41 END -> gen42",
+    "same_generation_atomic_exclusion": "UNPROVEN",
+    "conclusion": "Do not promote immutable event log to sole authority until atomic duplicate exclusion is proven."
   }
 }
