@@ -1,9 +1,10 @@
 {
   "incident": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
-  "state": "EARLY_EXIT_CAUSE_IDENTIFIED_AND_CHANGED; SCHEDULER_CAUSE_NARROWED_NOT_YET_PROVEN",
+  "state": "EARLY_EXIT_CAUSE_IDENTIFIED_AND_CHANGED; SCHEDULER_HAS_TWO_DISCRIMINATING_CAUSE_CANDIDATES",
   "failure_observed": [
     "nonterminal invocations repeatedly finalized after materially short work despite runnable work",
-    "a prior scheduler prearm intended for 23:45:17 KST returned a materially different live DTSTART"
+    "a prior scheduler prearm intended for 23:45:17 KST returned a materially different live DTSTART",
+    "during gen34, durable manifest history proves live DTSTART changed from 15:01:31Z to 14:51:15Z within 4.724954s while substantive ownership later remained gen34 with gen34->35 epoch OPEN"
   ],
   "root_cause": {
     "early_exit": {
@@ -12,10 +13,14 @@
       "direct_discriminator": "gen34 acquired ownership and then completed multiple distinct useful units in the same invocation without treating acquisition as terminal"
     },
     "scheduler_mismatch": {
-      "confidence": "UNRESOLVED",
-      "known_control_path_defect": "the prior self-rearm contract did not require a single normalized absolute instant encoded as a complete VEVENT, leaving representation/timezone/provider-rewrite ambiguity",
-      "not_proven": "the historical 23:45:17 -> 07:30 discrepancy cannot yet be attributed uniquely to dtstart_offset_json or provider rewrite because no durable raw write/readback pair for that exact failed mutation was preserved",
-      "diagnostic_plan": "hold recurrence/automation/timing mode constant; change only scheduler write representation to explicit complete VEVENT with normalized absolute DTSTART and exact live readback; repeated PASS narrows the defect to the prior representation/control path, while mismatch triggers capture of raw intended/write/readback evidence before any repair"
+      "confidence": "PARTIALLY_LOCALIZED",
+      "candidate_A_representation": "prior self-rearm contract did not require one normalized absolute instant encoded as a complete VEVENT, leaving representation/timezone/provider-rewrite ambiguity",
+      "candidate_B_concurrent_writers": "scheduler mutation was intentionally decoupled from substantive ownership and permitted every concurrent invocation to write the same canonical; gen34 forensic evidence directly proves a 616-second earlier-target overwrite within ~4.7s without substantive ownership transfer",
+      "not_proven": "the exact writer identity for the second scheduler mutation is unavailable in automation metadata, so the historical 23:45:17 -> 07:30 discrepancy cannot yet be uniquely assigned to representation or concurrent-writer behavior",
+      "diagnostic_order": [
+        "first hold writer policy constant and change only representation to explicit full VEVENT with exact live readback",
+        "then, if overwrite ambiguity persists or controlled evidence warrants, test H-O8-SCHEDULER-WRITER-FENCE with representation held constant"
+      ]
     }
   },
   "mechanism_change": [
@@ -26,8 +31,10 @@
     "LONG_WAKE_VALIDATION_GATE requires >=600s GitHub-server-timestamp work with multiple genuine units before overall completion"
   ],
   "differential_verification": {
-    "scheduler": "NEXT_WAKE_REQUIRED: perform one explicit full-VEVENT prearm and exact live readback; if mismatch occurs persist raw intended/write/readback evidence before repair",
+    "scheduler_representation": "NEXT_WAKE_REQUIRED: one explicit full-VEVENT prearm and exact live readback; persist raw intended/write/readback before repair on mismatch",
+    "scheduler_writer_fence": "SOURCED_NOT_ACTIVE: research/H-O8-SCHEDULER-WRITER-FENCE.md; activate only after representation sample resolves to preserve one-primary-variable discipline",
     "long_wake": "RUNNING: current repair run START_MARKER commit timestamp 2026-09-24T14:47:51Z; continue multiple genuine units and do not voluntarily finalize before a legal stop gate"
   },
+  "forensic_evidence": "evidence/o8/O8_GEN34_UNIT06_SCHEDULER_OVERWRITE_FORENSIC.json",
   "unchanged_retry_forbidden": true
 }
