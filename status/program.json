@@ -8,7 +8,7 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S02_ACTIVE_GEN38",
-  "next_step": "Gen38 ACTIVE_OWNER: continue useful O8 work. At legal close execute S02 PRE_CLOSE+120s complete-VEVENT intent/write/live-readback/result, then durable END and open gen38->39 epoch. Do not wake-start prearm.",
+  "next_step": "Gen38 ACTIVE_OWNER S02: continue useful O8 work and close only with PRE_CLOSE+120s verified same-canonical rearm. S01 CLEAN: END 15:41:51Z, START 15:43:48Z, idle_gap 117s, target delay 27s. Require S02/S03 CLEAN plus serialized owner-loss adverse before promotion.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
