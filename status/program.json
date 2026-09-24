@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-  "next_step": "O4_FIXED_WINDOW_A_840S: KEEP 840S FOR 3 CLEAN HANDOFF SAMPLES; CURRENT OWNER OPENS GEN11_TO_GEN12 HANDOFF; EACH SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES CURRENT-EPOCH READY EVIDENCE, AND ATTEMPTS ONE FRESH_SHA CAS; AFTER 3 CLEAN A SAMPLES SWITCH ONCE TO B_720S",
+  "next_step": "O4_FIXED_WINDOW_A_840S SAMPLE_2: CURRENT GEN12 OWNER OPENS GEN12_TO_GEN13 HANDOFF EPOCH AT 840S; NEXT SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES CURRENT-EPOCH READY EVIDENCE, AND ATTEMPTS ONE FRESH_SHA CAS; AFTER 3 CLEAN A SAMPLES SWITCH ONCE TO B_720S",
   "active_hypothesis": "H-O4-ADAPTIVE-PREARM",
   "hypothesis_status": "TESTABLE_USER_AUTHORIZED_TRIAL",
   "active_execution": "spec/execution.json",
@@ -23,7 +23,7 @@
     "fixed_window_test": {
       "samples_per_window": 3,
       "active_window": "A_BASELINE_840S",
-      "a_clean_samples": 0,
+      "a_clean_samples": 1,
       "b_clean_samples": 0,
       "hold_offset_constant_within_window": true,
       "change_one_primary_variable": true
@@ -36,31 +36,19 @@
     "o4_change_one_primary_variable": true,
     "o4_fixed_window_required": true,
     "o4_continuity_floor": "NO_REGRESSION_VS_840S_BASELINE",
-    "o4_measure": [
-      "WAKE_LATENESS",
-      "OVERLAP",
-      "HANDOFF_GAP",
-      "MISSED_WAKE",
-      "SCHEDULER_CONFLICT",
-      "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT",
-      "USEFUL_VS_CONTROL_WORK_WHERE_OBSERVABLE"
-    ]
+    "o4_measure": ["WAKE_LATENESS","OVERLAP","HANDOFF_GAP","MISSED_WAKE","SCHEDULER_CONFLICT","DUPLICATE_AUTHORITATIVE_SIDE_EFFECT","USEFUL_VS_CONTROL_WORK_WHERE_OBSERVABLE"]
   },
-  "objective_order": [
-    "CONTINUITY_RECOVERABILITY",
-    "USEFUL_WORK_DUTY_CYCLE",
-    "SIMPLICITY"
-  ],
+  "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O4_RECOVERY_AFTER_GEN9_TO_GEN10_HANDOFF",
-    "result": "RECOVERED",
-    "status": "DUPLICATE_GENERATION_AUTHORITY_REMOVED; CONTROL_OWNERSHIP_IS_SOLE_GENERATION_SOURCE; OWNER_RECOVERED_GEN10_TO_GEN11",
-    "recovery_commit": "432b520bd533c3606685a4e603f3e3684f591f37",
-    "execution_reconcile_commit": "7dd22728d7dc51794d2363f1e6caaf67fb0c9103"
+    "scope": "O4_FIXED_WINDOW_A_840S_SAMPLE_1",
+    "result": "CLEAN_HANDOFF",
+    "status": "WAKE_PREARM_WRITE_OK_STATE_OK; READY_EVIDENCE_WRITTEN; FRESH_SHA_CAS_GEN11_TO_GEN12_SUCCEEDED; NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT_OBSERVED",
+    "ready_evidence": "evidence/runtime/O4_GEN11_A840_WAKE_20260924T140416KST.md",
+    "handoff_commit": "b08b4c91861442d858d608a2b99f3ecb64b9f066"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O4_FIXED_WINDOW_A_840S",
+  "active_sample": "O4_FIXED_WINDOW_A_840S_SAMPLE_2_PENDING",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
