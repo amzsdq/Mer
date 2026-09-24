@@ -43,3 +43,7 @@ Before successful CAS, gen38 scheduler writes=0. Existing recurring scheduler st
 
 ## Measurement
 Use GitHub server timestamps for loss marker, CAS commit, scheduler result evidence, and first post-recovery WORK_OK. Report each interval separately; do not collapse unknown provider dispatch latency into a fabricated exact recovery time.
+
+
+## Serialized-candidate migration note
+This frozen schema names the older writer-fence gen37->38 adverse setup and must not be executed verbatim after serialized S01. For H-O8-SERIALIZED-SAME-CANONICAL, adverse execution is deferred until three clean serialized normal samples exist. The future transition must bind the then-current owner generation and test loss before PRE_CLOSE; no historical gen37/gen38 identifier grants recovery authority.
