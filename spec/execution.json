@@ -1,5 +1,5 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "state": "ACTIVE",
   "active": true,
   "experiment_id": "H-O8-ROLE-RELATIVE-STOP-GATE",
@@ -10,6 +10,9 @@
   "wake_start_prearm_offset_sec": 840,
   "scheduler_write_form": "EXPLICIT_COMPLETE_VEVENT_ABSOLUTE_DTSTART",
   "scheduler_offset_helper_for_self_rearm": "FORBIDDEN",
+  "scheduler_write_attribution_protocol": "research/O8_SCHEDULER_WRITE_ATTRIBUTION_PROTOCOL.md",
+  "scheduler_writer_fence_candidate": "research/H-O8-SCHEDULER-WRITER-FENCE.md",
+  "scheduler_writer_fence_candidate_state": "SOURCED_NOT_ACTIVE_UNTIL_REPRESENTATION_DIFFERENTIAL_COMPLETES",
   "authority_record": "control/ownership.json",
   "generation_authority": "control/ownership.json",
   "status_owner": "status/program.json",
@@ -20,7 +23,7 @@
   "active_sample": "O8_GEN34_REPAIR_FIRST_THEN_ROLE_RELATIVE_CONTINUATION",
   "current_owner_generation": 34,
   "current_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
-  "next_action": "Current wake: continue distinct useful repair/research units; do not voluntarily finalize while runnable work remains. Next wake must differentially verify explicit full-VEVENT scheduler self-rearm before closing the critical incident. After verification continue owner work; inherited acquisition handoff is never this invocation's stop gate.",
+  "next_action": "Continue gen34 useful work while available. On next wake, before scheduler mutation persist immutable SCHEDULER_WRITE_INTENT, then perform exactly one explicit full-VEVENT absolute-DTSTART prearm with writer policy otherwise unchanged, live-readback, and persist SCHEDULER_WRITE_RESULT. If mismatch occurs preserve raw evidence before repair. Do not activate writer-fence hypothesis in the same sample. Role-relative immediate discriminator has passed; >=600s overall gate remains pending.",
   "sourcing_gate": "PASS_TESTABLE",
   "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
   "critical_incident_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
@@ -29,16 +32,20 @@
     "MULTIPLE_DISTINCT_USEFUL_UNITS_IN_ONE_INVOCATION",
     "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS",
     "CONTINUITY_REMAINS_SECURED",
-    "EXPLICIT_FULL_VEVENT_SCHEDULER_WRITE_DIFFERENTIAL_PASS",
+    "EXPLICIT_FULL_VEVENT_SCHEDULER_WRITE_DIFFERENTIAL_PASS_WITH_ATTRIBUTION",
     "AT_LEAST_ONE_NONTERMINAL_WORK_SESSION_WORKED_GTE_600S_FOR_OVERALL_COMPLETION"
   ],
   "evidence": [
     "evidence/o8/O8_GEN34_READY_20260924.json",
     "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
     "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json",
+    "evidence/o8/O8_GEN34_UNIT03_INVARIANT_AUDIT.json",
     "evidence/o8/O8_REPAIR_RUN_START_20260924T1448Z.json",
     "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
-    "evidence/o8/O8_GEN34_UNIT03_REPAIR_AND_SYNC.json"
+    "evidence/o8/O8_GEN34_UNIT03_REPAIR_AND_SYNC.json",
+    "evidence/o8/O8_GEN34_UNIT04_CONTROLPLANE_DRIFT_AUDIT.json",
+    "evidence/o8/O8_GEN34_UNIT05_SCHEDULER_LATE_OBSERVATION.json",
+    "evidence/o8/O8_GEN34_UNIT06_SCHEDULER_OVERWRITE_FORENSIC.json"
   ],
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
