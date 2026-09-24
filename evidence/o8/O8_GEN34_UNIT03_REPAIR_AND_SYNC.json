@@ -1,0 +1,16 @@
+{
+  "unit": "O8_GEN34_UNIT03_REPAIR_AND_SYNC",
+  "owner_generation": 34,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "result": "PASS_WITH_NEXT_WAKE_DIFFERENTIAL_PENDING",
+  "genuine_work": [
+    "localized repeated short-cycle root cause to invocation-ambiguous handoff stop semantics plus corrective-rearm masking",
+    "localized scheduler mismatch risk to representation-dependent offset/inherited-timezone path",
+    "changed mechanism to role-relative stop gate, same-turn repair-first finalization guard, explicit full-VEVENT self-rearm, and exact-instant live verification",
+    "deployed prompt 2.2.12 to the same canonical automation and live-readback verified ID/enabled/exact_schedule/RRULE/future DTSTART",
+    "aligned GitHub canonical prompt byte-content with deployed prompt and cleared manifest sync_required"
+  ],
+  "differential_test_next_wake": "Use one normalized absolute DTSTART in complete recurring VEVENT; exact live readback must match. No dtstart_offset_json.",
+  "long_wake_gate": "NOT_YET_SATISFIED",
+  "finalization_allowed": false
+}
