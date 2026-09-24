@@ -4,25 +4,24 @@
   "active_invocation_id": "MER-O7-GEN28-20260924T2228KST",
   "status": "OWNER_ACTIVE",
   "predecessor_invocation_id": "MER-O6-GEN27-20260924T2211KST",
-  "intended_successor_invocation_id": null,
+  "intended_successor_invocation_id": "NEXT_ELIGIBLE_O7_FINAL_KERNEL_SUCCESSOR",
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
-    "epoch_id": "O7_STAGE_ENTRY_GEN27_TO_GEN28_001",
-    "state": "CONSUMED",
-    "source_generation": 27,
-    "target_generation": 28,
-    "opened_by_invocation_id": "MER-O6-GEN27-20260924T2211KST",
-    "opened_by_generation": 27,
+    "epoch_id": "O7_FINAL_KERNEL_GEN28_TO_GEN29_SAMPLE1",
+    "state": "OPEN",
+    "source_generation": 28,
+    "target_generation": 29,
+    "opened_by_invocation_id": "MER-O7-GEN28-20260924T2228KST",
+    "opened_by_generation": 28,
     "target_stage": "O7_FINAL_CONVERGENCE",
-    "sample": "O7_STAGE_ENTRY",
+    "sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_1",
     "prearm_offset_sec": 840,
+    "post_ready_max_authoritative_units": 1,
     "ready_evidence_required": true,
-    "ready_evidence": "evidence/o7/O7_STAGE_ENTRY_GEN28_READY_20260924T2228KST.json",
-    "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
+    "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_ONE_POST_READY_ATOMIC_UNIT_MAX",
     "cas_attempts_per_contender": 1,
-    "cas_result": "SUCCESS_FRESH_SHA",
     "expires_by_time": false
   },
   "recovery_transition": {
@@ -36,6 +35,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O7_STAGE_ENTRY_GEN27_TO_GEN28_NORMAL_HANDOFF_COMPLETE",
+  "transition_reason": "GEN28_OWNER_OPENED_O7_FINAL_KERNEL_SAMPLE1_NORMAL_HANDOFF",
   "server_time_authority": "GitHub commit timestamp"
 }
