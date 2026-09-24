@@ -1,0 +1,23 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T4-CONFLICTING-CAS-CONTENDERS",
+  "test": "T4_CONFLICTING_CAS_CONTENDERS_ONE_WINNER",
+  "scenario": {
+    "source_generation": 400,
+    "source_owner": "FIXTURE-OWNER-G400",
+    "handoff_epoch_state": "CONSUMED",
+    "open_successor_path": false,
+    "contenders": ["RECOVERY-A","RECOVERY-B"],
+    "both_read_same_initial_blob_sha": true
+  },
+  "cas": {
+    "RECOVERY-A": "SUCCESS_FRESH_SHA_G400_TO_G401",
+    "RECOVERY-B": "CONFLICT_STALE_SHA_THEN_REREAD_G401_AND_FAIL_CLOSED_SHADOW"
+  },
+  "successful_winners": 1,
+  "generation_increments": 1,
+  "duplicate_authoritative_side_effects": 0,
+  "next_normal_epoch": {"state":"OPEN","source_generation":401,"target_generation":402},
+  "scheduler_enabled": true,
+  "result": "PASS"
+}
