@@ -1,0 +1,10 @@
+{
+  "type": "SUCCESSOR_READY",
+  "invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
+  "epoch_id": "O8_WRITER_FENCE_GEN35_TO_GEN36_001",
+  "source_generation": 35,
+  "target_generation": 36,
+  "scheduler_write_before_cas": false,
+  "prepared_next_action": "fresh-SHA CAS to generation 36; only after win perform owner-attributed B02 full-VEVENT prearm",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP"
+}
