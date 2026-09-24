@@ -9,14 +9,13 @@
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
-    "epoch_id": "O4_HANDOFF_EPOCH_GEN15_B720_002",
-    "state": "CONSUMED",
-    "source_generation": 15,
-    "target_generation": 16,
-    "opened_by_invocation_id": "MER-O4-B720-GEN15-20260924T1434KST",
-    "opened_by_generation": 15,
-    "consumed_by_invocation_id": "MER-O4-B720-GEN16-20260924T1448KST",
-    "sample": "O4_FIXED_WINDOW_B_720S_SAMPLE_2",
+    "epoch_id": "O4_HANDOFF_EPOCH_GEN16_B720_003",
+    "state": "OPEN",
+    "source_generation": 16,
+    "target_generation": 17,
+    "opened_by_invocation_id": "MER-O4-B720-GEN16-20260924T1448KST",
+    "opened_by_generation": 16,
+    "sample": "O4_FIXED_WINDOW_B_720S_SAMPLE_3",
     "prearm_offset_sec": 720,
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
     "cas_attempts_per_contender": 1,
@@ -33,6 +32,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "HANDOFF_COMPLETE_GEN15_TO_GEN16_O4_B720_SAMPLE2",
+  "transition_reason": "OPEN_NORMAL_GEN16_TO_GEN17_O4_B720_SAMPLE3",
   "server_time_authority": "GitHub commit timestamp"
 }
