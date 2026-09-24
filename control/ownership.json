@@ -1,16 +1,16 @@
 {
   "schema_version": 4,
-  "generation": 33,
-  "active_invocation_id": "MER-O8-GEN33-INVALID-COMPLETION-RECOVERY-20260924",
+  "generation": 34,
+  "active_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "predecessor_invocation_id": "MER-O8-GEN33-INVALID-COMPLETION-RECOVERY-20260924",
   "intended_successor_invocation_id": "NEXT_ELIGIBLE_O8_SUCCESSOR",
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O8_STAGE_ENTRY_GEN33_TO_GEN34_001",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 33,
     "target_generation": 34,
     "opened_by_invocation_id": "MER-O8-GEN33-INVALID-COMPLETION-RECOVERY-20260924",
@@ -19,6 +19,9 @@
     "sample": "O8_ROLE_RELATIVE_STOP_GATE_STAGE_ENTRY",
     "prearm_offset_sec": 840,
     "ready_evidence_required": true,
+    "ready_evidence": "evidence/o8/O8_GEN34_READY_20260924.json",
+    "winner_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+    "cas_result": "SUCCESS_FRESH_SHA",
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_THEN_SUCCESSOR_CONTINUES_WORK",
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
@@ -34,6 +37,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "REOPEN_PROGRAM_FOR_UNRESOLVED_LONG_WAKE_OBJECTIVE",
+  "transition_reason": "NORMAL_O8_STAGE_ENTRY_HANDOFF; acquiring invocation continues as ACTIVE_OWNER under ROLE_RELATIVE_STOP_GATE",
   "server_time_authority": "GitHub commit timestamp"
 }
