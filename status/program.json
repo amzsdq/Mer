@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "CRITICAL REPAIR DIFFERENTIAL VERIFICATION FIRST. On the next wake, use one normalized absolute DTSTART encoded in a COMPLETE recurring VEVENT (DTSTART + RRULE:FREQ=HOURLY), then exact live-readback same ID/enabled/exact_schedule/RRULE/intended instant. Do not use dtstart_offset_json for self-rearm. If scheduler verification passes, continue gen34 ACTIVE_OWNER work; ownership acquisition is not a stop gate. Chain multiple distinct genuine useful units and preserve progress markers toward >=600s. If a later distinct eligible successor becomes READY, finish only current atomic unit and handoff away.",
+  "next_step": "CRITICAL SCHEDULER DIFFERENTIAL FIRST ON NEXT WAKE: one normalized absolute DTSTART in a COMPLETE recurring VEVENT, exact live-readback same ID/enabled/exact_schedule/RRULE/intended instant, no dtstart_offset_json. Capture raw intended/write/readback evidence before repair on any mismatch. Then continue owner work. Role-relative acquisition semantics have passed their immediate discriminator; overall >=600s gate remains open. Keep H-O8-SCHEDULER-WRITER-FENCE as the next candidate only after the representation differential is resolved; do not change two scheduler variables in one sample.",
   "active_hypothesis": "H-O8-ROLE-RELATIVE-STOP-GATE",
-  "hypothesis_status": "TESTABLE_RUNNING",
+  "hypothesis_status": "IMMEDIATE_DISCRIMINATOR_PASS_LONG_WAKE_GATE_PENDING",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -36,10 +36,11 @@
     "o6_stage_gate": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
     "o7_continuity_convergence": "PASS_BUT_OVERALL_COMPLETION_INVALIDATED",
     "o8_stage_entry": "PASS_GEN33_TO_GEN34_FRESH_SHA_CAS",
-    "o8_role_relative_stop_gate": "RUNNING_POST_ACQUISITION_CONTINUATION_OBSERVED",
+    "o8_role_relative_stop_gate": "PASS_IMMEDIATE_DISCRIMINATOR",
     "o8_long_wake_validation_600s": "PENDING",
     "overall_program_complete": "NO",
-    "o8_repair_first_critical_incident": "MECHANISM_CHANGED_AWAITING_NEXT_WAKE_DIFFERENTIAL_SCHEDULER_TEST"
+    "o8_repair_first_critical_incident": "EARLY_EXIT_CAUSE_CHANGED; SCHEDULER_REPRESENTATION_DIFFERENTIAL_PENDING",
+    "o8_scheduler_writer_fence_candidate": "SOURCED_NOT_ACTIVE"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
@@ -53,18 +54,23 @@
   "active_sample": "O8_REPAIR_FIRST_DIFFERENTIAL_THEN_LONG_WAKE",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
+  "next_hypothesis_candidate": "research/H-O8-SCHEDULER-WRITER-FENCE.md",
   "evidence": [
     "evidence/o8/O8_GEN34_READY_20260924.json",
     "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
     "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json",
+    "evidence/o8/O8_GEN34_UNIT03_INVARIANT_AUDIT.json",
     "evidence/o8/O8_REPAIR_RUN_START_20260924T1448Z.json",
-    "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json"
+    "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
+    "evidence/o8/O8_GEN34_UNIT03_REPAIR_AND_SYNC.json",
+    "evidence/o8/O8_GEN34_UNIT04_CONTROLPLANE_DRIFT_AUDIT.json",
+    "evidence/o8/O8_GEN34_UNIT05_SCHEDULER_LATE_OBSERVATION.json"
   ],
   "critical_incident": {
-    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
+    "state": "EARLY_EXIT_CAUSE_IDENTIFIED_AND_CHANGED; SCHEDULER_CAUSE_NARROWED_NOT_YET_PROVEN",
     "type": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
     "priority": "ABOVE_NOMINAL_RESEARCH",
     "root_cause_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
-    "rule": "Do not retry unchanged. Next wake must differentially verify explicit full-VEVENT scheduler write/readback before incident closure."
+    "rule": "Do not retry unchanged. Next wake must differentially verify explicit full-VEVENT scheduler write/readback before scheduler incident closure."
   }
 }
