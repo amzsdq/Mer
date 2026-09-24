@@ -57,30 +57,27 @@ A research-stage transition is not complete merely because `status/program.json.
 The prior O7 completion was invalidated because continuity converged while observed invocations remained materially short. O8 addresses the unresolved original utilization objective and scheduler-control failures exposed during repair.
 
 ### O8A — Role-relative stop-gate validation
-Validate that a wake which acquires ownership does not stop because that inherited handoff completed. The new owner continues through multiple distinct useful units until PROGRAM_COMPLETE or a later distinct successor takes ownership away.
-
-Current result: gen34 immediate discriminator PASS. The same invocation acquired ownership and continued through multiple distinct durable useful units.
+Current result: PASS. A wake which acquires ownership continues as ACTIVE_OWNER; inherited handoff is not its stop gate.
 
 ### O8B — Long-wake empirical gate
-Overall Mer completion requires at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >=600 seconds and multiple distinct genuine useful-work units, no sleep/padding/repetition, and continuity secured. This is a validation gate, not a stop trigger.
-
-Current result: PASS. Gen34 START `14:47:51Z`, qualification `14:57:53Z` = 602s, END `15:00:07Z` = final WORKED 736s. Multiple distinct genuine repair/research units were durably recorded. Overall program remains active because scheduler incident convergence is still open.
+Current result: PASS. Gen34 START `14:47:51Z`, qualification `14:57:53Z` = 602s, END `15:00:07Z` = final WORKED 736s with multiple distinct genuine useful units. This is a validation gate, not a stop trigger.
 
 ### O8C — Work packing / admission optimization
-Gen34 proved >=600s feasibility without padding, so work packing is not required to prove basic long-wake feasibility. Retain as a future optimization only if duty-cycle evidence later shows material benefit.
+Gen34 proved >=600s feasibility without padding. Retain work packing as future optimization only if duty-cycle evidence later shows material benefit.
 
 ### O8D — Scheduler representation and writer authority
-A scheduler incident exposed two distinct questions.
+Representation differential: normalized complete recurring VEVENT + exact live readback + immutable intent/result attribution repeatedly achieved WRITE_OK+STATE_OK. KEEP representation fixed while testing writer authority. Exact gen34 target WAKE_OK was not proven; do not fabricate it.
 
-1. Representation differential: normalized complete recurring VEVENT + exact live readback + immutable intent/result attribution achieved repeated WRITE_OK+STATE_OK. KEEP this representation for the writer-authority experiment. The gen34 close-reserve target was `15:02:29Z`. On the next inspection, automation `last_run_time=15:00:40Z`, so an exact actual wake attributable to `15:02:29Z` is NOT_PROVEN; do not fabricate WAKE_OK. Current invocation nevertheless proves WORK_OK and durable progress.
-2. Writer authority: at gen35 bootstrap the live canonical target was `00:16:30 KST` = `15:16:30Z`, +841s relative to the attributed `15:02:29Z` target, with no matching attributed writer identified in the inspected evidence. Combined with the earlier `15:01:31Z -> 14:51:15Z` overwrite, this strengthens the need to test scheduler writer authority rather than retry representation unchanged. Writer identity remains UNATTRIBUTED; timing alone is not attribution.
-3. H-O8-SCHEDULER-WRITER-FENCE is now ACTIVE TESTABLE. Primary variable only: `ALL_WAKES_PREARM` versus `OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY`; full-VEVENT representation, RRULE, exact_schedule, enabled, +840s normal offset, generation CAS, role-relative stop semantics, and work admission remain fixed.
-4. Gen35 legally consumed `O8_LONGWAKE_GEN34_TO_GEN35_001` with READY + fresh-SHA CAS and became generation35 ACTIVE_OWNER. Prompt `2.2.13-OWNER-FENCED-SCHEDULER / MER-OPT-2Q` activates B: SHADOW does not scheduler-write; current/newly-acquired owner writes after authority resolution.
-5. B01 owner-fenced sample wrote exactly one attributed normal prearm to `00:17:18 KST` = `15:17:18Z`; immediate live readback matched same ID, enabled=true, exact_schedule, RRULE, exact DTSTART. WRITE_OK+STATE_OK PASS; later target stability and WAKE_OK remain pending.
-6. Promotion still requires minimum three clean B samples and the mandatory owner-loss adverse case. Reject B if owner-loss strands continuation or materially worsens recovery without compensating reliability gain.
+Writer-authority hypothesis `H-O8-SCHEDULER-WRITER-FENCE` is ACTIVE TESTABLE. Primary variable only: `ALL_WAKES_PREARM` versus `OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY`. Full VEVENT, RRULE, exact_schedule, enabled, +840s offset, generation CAS, role-relative stop semantics, and work admission remain fixed.
+
+B-arm progress:
+1. B01/gen35: one attributed owner prearm to `15:17:18Z`; immediate WRITE_OK+STATE_OK PASS. Later clean WAKE/stability qualification remains unresolved/superseded by subsequent legal transfer, so B01 is not yet counted as a completed clean sample.
+2. B02/gen36: successor booted as SHADOW, created READY for `O8_WRITER_FENCE_GEN35_TO_GEN36_001`, performed zero scheduler writes before authority, then won one fresh-SHA CAS (`1bb8e18a15d56c5f912a9e7831093b82f7ee8faa`). Only after becoming generation36 ACTIVE_OWNER did it write the attributed +840s target `15:30:20Z`. Separate live readback matched same automation ID, enabled=true, exact_schedule, RRULE:FREQ=HOURLY, and exact intended DTSTART. WRITE_OK+STATE_OK+current WORK_OK PASS; later WAKE_OK/target stability pending.
+3. Gen36 pre-opened `O8_WRITER_FENCE_GEN36_TO_GEN37_001` for B03 with the same SHADOW_NO_WRITE -> fresh-SHA CAS -> NEW_OWNER_PREARM rule.
+4. Promotion still requires at least three completed clean B samples and mandatory owner-loss adverse recovery. The adverse test must not manufacture loss by corrupting authority; use an explicit single-use test transition or naturally observed owner loss with durable evidence.
 
 ### O8 repair-first incident rule
 Repeated unchanged failure is invalid work. Sequence: FAILURE_OBSERVED -> ROOT_CAUSE_IDENTIFIED -> MECHANISM_CHANGED -> DIFFERENTIAL_VERIFICATION -> RESUME. +180s is continuity fallback only when same-turn continuation/repair is genuinely unavailable; it is not a substitute for diagnosis.
 
 ## Current convergence gate
-Do not mark PROGRAM_COMPLETE while writer-fence B lacks its clean-sample minimum/adverse owner-loss evidence or while unexplained scheduler overwrite remains material. Reassess final convergence using continuity, long-wake utilization, recovery, duplicate-side-effect, scheduler-overwrite, and simplicity evidence together.
+Do not mark PROGRAM_COMPLETE while writer-fence B lacks clean-sample minimum/adverse owner-loss evidence or while unexplained scheduler overwrite remains material. Reassess final convergence using continuity, long-wake utilization, recovery, duplicate-side-effect, scheduler-overwrite, and simplicity evidence together.
