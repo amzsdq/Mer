@@ -5,9 +5,9 @@
   "status": "OWNER_ACTIVE",
   "predecessor_invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
   "intended_successor_invocation_id": "NEXT_ELIGIBLE_O8_SUCCESSOR",
-  "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
+  "owner_started_at": "2026-09-24T15:24:39Z",
+  "owner_started_at_source_commit": "cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c",
   "owner_renewal_seq": 1,
-  "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O8_WRITER_FENCE_GEN37_TO_GEN38_001",
     "state": "OPEN",
@@ -30,6 +30,8 @@
     "target_generation": 37,
     "winner_invocation_id": "MER-O8-GEN37-AUTOMATION-20260924",
     "cas_result": "SUCCESS_FRESH_SHA",
+    "cas_commit": "cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c",
+    "cas_commit_created_at": "2026-09-24T15:24:39Z",
     "ready_evidence": "evidence/o8/O8_GEN37_READY_20260924.json"
   },
   "recovery_transition": {
@@ -44,5 +46,6 @@
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
   "transition_reason": "GEN37_FRESH_SHA_CAS_B03_AND_PREOPEN_OWNER_LOSS_ADVERSE",
-  "server_time_authority": "GitHub commit timestamp"
+  "server_time_authority": "GitHub commit timestamp",
+  "timestamp_rule": "Never store placeholder strings as if they were timestamps; use exact observed GitHub commit timestamp plus source commit when available."
 }
