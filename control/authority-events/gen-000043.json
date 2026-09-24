@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "event": "RECOVERY_ACQUIRE",
+  "generation": 43,
+  "invocation_id": "MER-O8-GEN43-RECOVERY-20260925",
+  "recovery_epoch": "evidence/o8/O8_AUTHORITY_GAP_GEN40_TO_GEN43_RECOVERY_EPOCH_V1.json",
+  "historical_strict_contiguous_through_generation": 40,
+  "preserved_gap": "GEN40_TO_GEN41_MISSING_DURABLE_GEN40_END_OR_DECLARED_TERMINAL_EQUIVALENT",
+  "preserved_valid_suffix": "GEN41_TO_GEN42",
+  "predecessor_historical_event": "control/authority-events/gen-000042.json",
+  "recovery_basis": "APPEND_ONLY_SINGLE_USE_RECOVERY_EPOCH_AFTER_AUTHORITY_CHAIN_GAP",
+  "authority_rule": "Unique create-only canonical path per generation; generation43 is a recovery re-root, not a claim that gen40->41 was contiguous. Existing path rejects duplicate contender; lower generation cannot supersede this recovery generation.",
+  "projection_rule": "Do not mutate control/ownership.json or status/program.json until this exact immutable event is fresh-read back.",
+  "scheduler_rule": "Preserve same-canonical recurring scheduler; owner-only scheduler writes after immutable winner readback.",
+  "clock_authority": "GitHub commit timestamp"
+}
