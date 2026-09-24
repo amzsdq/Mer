@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 34,
+  "unit_id": "O8_GEN34_UNIT02_TEST_DESIGN",
+  "unit_class": "GENUINE_USEFUL_EXPERIMENT_DESIGN",
+  "primary_variable": "STOP_GATE_INTERPRETATION_AFTER_ACQUISITION",
+  "control": "LEGACY_ACQUISITION_IMPLIES_EXIT historical behavior",
+  "candidate": "ROLE_RELATIVE_CONTINUE",
+  "held_constant": [
+    "same automation identity",
+    "RRULE:FREQ=HOURLY",
+    "exact_schedule",
+    "enabled=true",
+    "wake-start prearm 840s",
+    "generation-CAS single owner",
+    "successor READY priority",
+    "no sleep/padding/repeated converged work"
+  ],
+  "pass_conditions": [
+    "same invocation performs at least three distinct genuine useful units after acquiring generation 34",
+    "no duplicate authoritative owner side effect",
+    "continuity remains secured",
+    "acquisition handoff is not used as the invocation stop reason"
+  ],
+  "long_gate": "Separate overall gate requires GitHub-server-timestamp WORKED >=600s in one nonterminal authoritative invocation with multiple genuine useful units.",
+  "result_so_far": "UNIT1_AFTER_ACQUISITION_COMPLETED; CONTINUE_TEST"
+}
