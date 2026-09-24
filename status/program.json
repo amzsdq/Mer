@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "Representation repair is KEEP for WRITE_OK/STATE_OK, but exact later WAKE_OK for the attributed gen34 15:02:29Z target is NOT_PROVEN because observed automation last_run_time predates that target. Current gen35 inspection proves WORK_OK and found the live target overwritten to 00:16:30 KST (15:16:30Z), +841s from the attributed target, with writer identity unproven. Do not repeat the representation test unchanged. Advance H-O8-SCHEDULER-WRITER-FENCE as the next primary variable with full-VEVENT representation/840s/recurrence/handoff semantics held constant. First establish legal gen34->35 ownership transfer from the open epoch, then run attributed OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY scheduler-write samples and the mandatory owner-loss adverse case.",
+  "next_step": "Continue H-O8-SCHEDULER-WRITER-FENCE with representation fixed. Gen35 is ACTIVE_OWNER after legal fresh-SHA gen34->35 transfer. B01 owner-only attributed prearm to 15:17:18Z achieved exact WRITE_OK+STATE_OK and gen35->36 epoch is OPEN. Continue useful owner work while observing whether B01 target remains stable. On next eligible successor: SHADOW must not scheduler-write; it may READY against O8_WRITER_FENCE_GEN35_TO_GEN36_001, attempt one fresh-SHA CAS, and only after winning as gen36 ACTIVE_OWNER perform its attributed +840s prearm for B02 and continue work. Need three clean B samples and mandatory owner-loss adverse case before KEEP/REJECT/REVISE.",
   "active_hypothesis": "H-O8-SCHEDULER-WRITER-FENCE",
-  "hypothesis_status": "TESTABLE_ACTIVE_AFTER_UNATTRIBUTED_LATER_OVERWRITE",
+  "hypothesis_status": "B01_WRITE_STATE_PASS_MORE_SAMPLES_REQUIRED",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY_TEST",
@@ -17,8 +17,8 @@
     "generation_authority": "control/ownership.json",
     "work_duration_target": "NONE_VOLUNTARY",
     "post_ready_max_authoritative_units": 1,
-    "prompt_version": "2.2.12-REPAIR-FIRST-CRITICAL",
-    "prompt_id": "MER-OPT-2P",
+    "prompt_version": "2.2.13-OWNER-FENCED-SCHEDULER",
+    "prompt_id": "MER-OPT-2Q",
     "role_relative_stop_gate": true,
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
@@ -29,7 +29,9 @@
     "explicit_full_vevent_scheduler_write": true,
     "same_turn_early_exit_repair": true,
     "scheduler_write_attribution": true,
-    "scheduler_writer_fence_primary_variable": "ALL_WAKES_PREARM_vs_OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY"
+    "scheduler_writer_fence_primary_variable": "ALL_WAKES_PREARM_vs_OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY",
+    "shadow_scheduler_write_allowed": false,
+    "normal_scheduler_writer": "ACTIVE_OWNER_OR_POST_CAS_NEW_OWNER"
   },
   "gate": {
     "o1_stabilization": "PASS",
@@ -41,13 +43,13 @@
     "o8_role_relative_stop_gate": "PASS",
     "o8_long_wake_validation_600s": "PASS_736S_GITHUB_SERVER_CLOCK",
     "overall_program_complete": "NO",
-    "o8_repair_first_critical_incident": "EARLY_EXIT_CAUSE_CHANGED_AND_LONG_WAKE_PASS; FULL_VEVENT WRITE/STATE PASS; EXACT 15:02:29Z LATER WAKE NOT_PROVEN; CURRENT WORK_OK; +841S UNATTRIBUTED LATER OVERWRITE OBSERVED",
-    "o8_scheduler_writer_fence_candidate": "ACTIVE_TESTABLE"
+    "o8_repair_first_critical_incident": "LONG_WAKE PASS; FULL_VEVENT WRITE_STATE KEEP; EXACT GEN34 15:02:29 WAKE NOT_PROVEN; CURRENT WORK_OK; UNATTRIBUTED +841S OVERWRITE OBSERVED; WRITER-FENCE B ACTIVE",
+    "o8_scheduler_writer_fence_candidate": "B01_WRITE_STATE_PASS_1_OF_3_MINIMUM; WAKE_STABILITY_PENDING; OWNER_LOSS_ADVERSE_PENDING"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
-  "completion_rule": "NOT YET SATISFIED. Long-wake gate PASS at 736s. Scheduler representation is KEEP for write/state, but exact attributed later wake remains unproven and an unattributed later overwrite remains. Writer-fence A/B plus adverse owner-loss recovery must converge before final completion.",
+  "completion_rule": "NOT YET SATISFIED. Long-wake gate PASS at 736s. Writer-fence B requires at least three clean samples and mandatory owner-loss adverse recovery, with no material continuity regression, before final convergence.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O8_SCHEDULER_WRITER_FENCE_B_PREP_GEN35",
+  "active_sample": "O8_SCHEDULER_WRITER_FENCE_B01_GEN35_ACTIVE",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O8-SCHEDULER-WRITER-FENCE.md",
   "scheduler_writer_test_plan": "research/O8_SCHEDULER_WRITER_FENCE_TEST_PLAN.md",
@@ -75,11 +77,24 @@
     "overwrite_delta_sec": 841,
     "writer_identity": "UNATTRIBUTED"
   },
+  "writer_fence_b01": {
+    "generation": 35,
+    "owner": "MER-O8-GEN35-WAKEWORK-20260924",
+    "ownership_commit": "8b0ec5c1c3e993127861c5170f75ef1674d8d639",
+    "intent": "evidence/o8/scheduler-writes/20260924T1505_GEN35_OWNER_FENCE_B01_INTENT.json",
+    "result": "evidence/o8/scheduler-writes/20260924T150523Z_GEN35_OWNER_FENCE_B01_RESULT.json",
+    "intended_dtstart_utc": "2026-09-24T15:17:18Z",
+    "write_ok": true,
+    "state_ok": true,
+    "wake_ok": "PENDING",
+    "scheduler_write_count": 1,
+    "next_epoch": "O8_WRITER_FENCE_GEN35_TO_GEN36_001"
+  },
   "critical_incident": {
-    "state": "LONG_WAKE_PASS_736S; FULL_VEVENT WRITE_STATE_KEEP; EXACT PRIOR WAKE_UNPROVEN; CURRENT WORK_OK; UNATTRIBUTED +841S OVERWRITE; WRITER_FENCE ACTIVE",
+    "state": "LONG_WAKE PASS; REPRESENTATION WRITE_STATE KEEP; UNATTRIBUTED OVERWRITE OBSERVED; OWNER-FENCED B01 WRITE_STATE PASS; MULTI-SAMPLE/ADVERSE VERIFICATION ACTIVE",
     "type": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
     "priority": "ABOVE_NOMINAL_RESEARCH",
     "root_cause_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
-    "rule": "Do not retry representation unchanged. Resolve shared scheduler writer authority with attributed writer-fence samples and owner-loss recovery evidence."
+    "rule": "Do not retry representation unchanged. Resolve shared scheduler writer authority with attributed owner-fenced samples and owner-loss recovery evidence."
   }
 }
