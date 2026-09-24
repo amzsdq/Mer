@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "COMPLETE NORMAL GEN33_TO_GEN34 O8 STAGE-ENTRY HANDOFF. AFTER ACQUIRING GEN34, DO NOT STOP ON THAT INHERITED HANDOFF: CONTINUE AS ACTIVE_OWNER. Perform O8 hypothesis sourcing, define the first single-variable test for role-relative stop-gate/work-unit chaining, execute multiple distinct safe useful units in the same invocation, persist bounded evidence after each unit, and continue useful work toward the >=600s long-wake validation gate unless a later distinct successor actually takes ownership or PROGRAM_COMPLETE becomes valid.",
+  "next_step": "GEN34 IS ACTIVE_OWNER. CONTINUE THIS SAME INVOCATION THROUGH DISTINCT GENUINE USEFUL UNITS; DO NOT STOP BECAUSE GEN33_TO_GEN34 HANDOFF COMPLETED. Validate role-relative continuation without changing scheduler timing or authority model, measure WORKED only from GitHub START/END markers, and continue toward >=600s unless a later distinct successor actually completes handoff away or a platform-enforced interruption occurs. Before any nonterminal owner exit, OPEN gen34->35 normal handoff epoch.",
   "active_hypothesis": "H-O8-ROLE-RELATIVE-STOP-GATE",
-  "hypothesis_status": "SOURCING_PENDING",
+  "hypothesis_status": "TESTABLE_RUNNING",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -32,8 +32,8 @@
     "o5_decision": "KEEP_A_REVISE_HYPOTHESIS",
     "o6_stage_gate": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
     "o7_continuity_convergence": "PASS_BUT_OVERALL_COMPLETION_INVALIDATED",
-    "o8_stage_entry": "OPEN_GEN33_TO_GEN34",
-    "o8_role_relative_stop_gate": "PENDING",
+    "o8_stage_entry": "PASS_GEN33_TO_GEN34_FRESH_SHA_CAS",
+    "o8_role_relative_stop_gate": "RUNNING_POST_ACQUISITION_CONTINUATION_OBSERVED",
     "o8_long_wake_validation_600s": "PENDING",
     "overall_program_complete": "NO"
   },
@@ -50,7 +50,12 @@
   },
   "completion_rule": "NOT SATISFIED. Overall completion additionally requires O8 long-wake validation: at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >=600s and multiple distinct genuine useful units while continuity remains secured, unless a physical/platform limit is evidenced and the objective remains explicitly unresolved.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O8_STAGE_ENTRY_AND_ROLE_RELATIVE_STOP_GATE",
+  "active_sample": "O8_GEN34_ROLE_RELATIVE_CONTINUATION",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "PENDING_O8_SOURCING_RECORD"
+  "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
+  "evidence": [
+    "evidence/o8/O8_GEN34_READY_20260924.json",
+    "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
+    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json"
+  ]
 }
