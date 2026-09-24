@@ -1,0 +1,17 @@
+{
+  "type": "SUCCESSOR_READY",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "epoch_id": "O8_LONGWAKE_GEN34_TO_GEN35_001",
+  "expected_source_generation": 34,
+  "target_generation": 35,
+  "prepared_from": [
+    "control/prompt-manifest.json",
+    "status/program.json",
+    "control/ownership.json",
+    "research/H-O8-SCHEDULER-WRITER-FENCE.md",
+    "research/O8_SCHEDULER_WRITER_FENCE_TEST_PLAN.md"
+  ],
+  "immediate_next_action": "Acquire generation35 with fresh-SHA CAS; after acquisition continue as ACTIVE_OWNER and run writer-fence B samples. Do not treat acquisition as stop gate.",
+  "scheduler_note": "This invocation already observed/verified a future recurring scheduler state before ownership transfer. No additional pre-transfer scheduler mutation is required for READY evidence.",
+  "status": "READY"
+}
