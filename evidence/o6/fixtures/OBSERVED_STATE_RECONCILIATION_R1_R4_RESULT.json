@@ -1,0 +1,43 @@
+{
+  "fixture_schema": 1,
+  "hypothesis": "H-O6-OBSERVED-STATE-RECONCILIATION",
+  "primary_variable": "RECONCILIATION_MODE=OBSERVED_STATE",
+  "tests": {
+    "R1_PROMPT_MISMATCH": {
+      "desired_version": "NEXT",
+      "deployed_version": "STALE",
+      "detected_mismatch": true,
+      "substantive_work_before_match": false,
+      "required_observed_live_match_before_resume": true,
+      "result": "PASS"
+    },
+    "R2_MISSING_BOOTSTRAP": {
+      "control_active_readable": false,
+      "stable_recovery_refs_used": ["spec/GOAL.md","research/MASTER_PLAN.md","status/program.json"],
+      "ownership_validation_separate": true,
+      "invented_state": false,
+      "result": "PASS"
+    },
+    "R3_WRITE_OK_WITHOUT_WAKE_OK": {
+      "write_ok": true,
+      "state_ok": true,
+      "wake_ok": false,
+      "work_ok_inferred": false,
+      "substantive_authority_inferred": false,
+      "recurring_fallback_preserved": true,
+      "scheduler_disabled": false,
+      "classification": "DELIVERY_NOT_OBSERVED",
+      "result": "PASS"
+    },
+    "R4_NOMINAL_MATCH": {
+      "prompt_desired_observed_match": true,
+      "bootstrap_reconstructable": true,
+      "scheduler_live_state_match": true,
+      "extra_corrective_scheduler_mutations": 0,
+      "duplicate_authoritative_side_effects": 0,
+      "result": "PASS"
+    }
+  },
+  "suite_result": "PASS_DETERMINISTIC_FIXTURES",
+  "limitations": "Fixture validation proves decision semantics only. It does not prove actual ChatGPT Automation absent-wake frequency or provider recovery latency. Live later-wake evidence remains required for O7 retrospective WAKE_OK/WORK_OK."
+}
