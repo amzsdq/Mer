@@ -1,26 +1,23 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "generation": 37,
   "active_invocation_id": "MER-O8-GEN37-AUTOMATION-20260924",
-  "status": "OWNER_ACTIVE",
+  "status": "OWNER_ACTIVE_SERIALIZED_CLOSE_PREP",
   "predecessor_invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
-  "intended_successor_invocation_id": "NEXT_ELIGIBLE_O8_SUCCESSOR",
+  "intended_successor_invocation_id": "NEXT_SAME_CANONICAL_INVOCATION",
   "owner_started_at": "2026-09-24T15:24:39Z",
   "owner_started_at_source_commit": "cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c",
-  "owner_renewal_seq": 1,
   "handoff_epoch": {
-    "epoch_id": "O8_WRITER_FENCE_GEN37_TO_GEN38_001",
-    "state": "OPEN",
+    "epoch_id": "O8_SERIALIZED_GEN37_TO_GEN38_S01",
+    "state": "OPEN_AFTER_PREDECESSOR_END",
     "source_generation": 37,
     "target_generation": 38,
     "opened_by_invocation_id": "MER-O8-GEN37-AUTOMATION-20260924",
-    "opened_by_generation": 37,
     "target_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-    "sample": "O8_SCHEDULER_WRITER_FENCE_OWNER_LOSS_ADVERSE",
-    "prearm_offset_sec": 840,
-    "ready_evidence_required": true,
-    "scheduler_writer_rule": "SHADOW_NO_WRITE; WIN_FRESH_SHA_CAS_THEN_NEW_OWNER_PREARM",
-    "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_THEN_SUCCESSOR_CONTINUES_WORK",
+    "sample": "O8_SERIALIZED_SAME_CANONICAL_S01",
+    "normal_next_delay_sec": 120,
+    "successor_rule": "NEXT_SAME_CANONICAL_INVOCATION_FRESH_SHA_CAS_AFTER_PREDECESSOR_DURABLE_END",
+    "scheduler_writer_rule": "CURRENT_OWNER_WRITES_CLOSE_RELATIVE_NEXT_BEFORE_END; NEXT_INVOCATION_DOES_NOT_WAKE_PREARM",
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
   },
@@ -31,21 +28,10 @@
     "winner_invocation_id": "MER-O8-GEN37-AUTOMATION-20260924",
     "cas_result": "SUCCESS_FRESH_SHA",
     "cas_commit": "cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c",
-    "cas_commit_created_at": "2026-09-24T15:24:39Z",
-    "ready_evidence": "evidence/o8/O8_GEN37_READY_20260924.json"
+    "cas_commit_created_at": "2026-09-24T15:24:39Z"
   },
-  "recovery_transition": {
-    "single_use": true,
-    "authorized_by": "USER_CORRECTION_2026-09-24_INVALID_PREMATURE_PROGRAM_COMPLETE",
-    "reason": "O7_PROGRAM_COMPLETE_WAS_INVALID_BECAUSE_LONG_WAKE_USEFUL_WORK_OBJECTIVE_REMAINED_UNSATISFIED",
-    "source_generation": 32,
-    "target_generation": 33,
-    "source_owner_invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
-    "target_owner_invocation_id": "MER-O8-GEN33-INVALID-COMPLETION-RECOVERY-20260924",
-    "state": "CONSUMED"
-  },
-  "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "GEN37_FRESH_SHA_CAS_B03_AND_PREOPEN_OWNER_LOSS_ADVERSE",
-  "server_time_authority": "GitHub commit timestamp",
-  "timestamp_rule": "Never store placeholder strings as if they were timestamps; use exact observed GitHub commit timestamp plus source commit when available."
+  "deferred_adverse_test": "research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md",
+  "authority_rule": "Only current generation owner may mutate authoritative shared state. Next serialized invocation acquires next generation only after predecessor durable END.",
+  "transition_reason": "B03_MISSED_CONCURRENT_TARGET_PIVOT_TO_SERIALIZED_S01",
+  "server_time_authority": "GitHub commit timestamp"
 }
