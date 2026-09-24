@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "evidence_type": "SUCCESSOR_READY",
+  "invocation_id": "MER-O5-GEN21-SAMPLE3-20260924T1632KST",
+  "bound_handoff_epoch": "O5_WINDOW_A_GEN20_TO_GEN21_SAMPLE3",
+  "bound_source_generation": 20,
+  "target_generation": 21,
+  "prearm_offset_sec": 840,
+  "prearm_verified": true,
+  "durable_state_reconstructed": true,
+  "immediate_next_action": "ONE_FRESH_SHA_OWNERSHIP_CAS",
+  "post_ready_max_authoritative_units": 1,
+  "server_time_authority": "GitHub commit timestamp"
+}
