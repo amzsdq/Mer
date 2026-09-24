@@ -1,0 +1,9 @@
+{
+  "kind": "START_MARKER",
+  "invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "handoff_epoch": "O7_ACCOUNTING_GEN31_TO_GEN32_COVERAGE2",
+  "source_generation": 31,
+  "target_generation": 32,
+  "purpose": "O7 direct accounting coverage package 2 and materiality reassessment",
+  "clock_authority": "GitHub commit timestamp"
+}
