@@ -28,3 +28,7 @@ Each clean serialized sample requires protocol-complete pre-mutation intent, exa
 
 ## Reject/revise
 Reject if close-relative rearm repeatedly misses continuation or materially worsens idle/recovery versus a validated alternative. If provider occasionally overlaps, retain generation fencing for substantive authority while keeping scheduler writes owner-only.
+
+
+## S01 result
+First clean serialized sample observed. Gen37 END `2026-09-24T15:41:51Z`; intended same-canonical DTSTART `15:43:21Z`; gen38 durable START `15:43:48Z`. Thus server-clock idle gap is 117s and intended-target to durable START is 27s. S01 establishes WRITE_OK, STATE_OK, WAKE_OK, WORK_OK and a legal gen38 takeover for this sample. It supports the serialized candidate but does not yet establish provider seriality; S02/S03 and adverse recovery remain required.
