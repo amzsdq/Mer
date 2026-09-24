@@ -1,0 +1,9 @@
+{
+  "type": "END_MARKER",
+  "invocation_role": "SHADOW",
+  "result": "BLOCKED_AUTHORITY_STRANDED",
+  "observed_generation": 24,
+  "required_missing_condition": "OPEN gen24->gen25 handoff epoch or explicitly authorized fresh single-use recovery transition bound to gen24",
+  "authoritative_mutations_performed": 0,
+  "server_time_authority": "GitHub commit timestamp"
+}
