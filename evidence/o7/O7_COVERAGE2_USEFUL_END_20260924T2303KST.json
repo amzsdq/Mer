@@ -1,0 +1,9 @@
+{
+  "kind": "ACCOUNTING_BOUNDARY",
+  "class": "USEFUL",
+  "boundary": "END",
+  "invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "unit": "coverage materiality reassessment against O7 convergence gates",
+  "result": "additional bounded coverage is informative for class separation but cannot identify long-run duty cycle because most elapsed time remains UNKNOWN; repeated micro-coverage would not discriminate the already-selected final candidate without a prospective coverage criterion or materially different observation window",
+  "clock_authority": "GitHub commit timestamp"
+}
