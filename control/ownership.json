@@ -1,35 +1,21 @@
 {
   "schema_version": 4,
-  "generation": 34,
-  "active_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 35,
+  "active_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O8-GEN33-INVALID-COMPLETION-RECOVERY-20260924",
+  "predecessor_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
   "intended_successor_invocation_id": "NEXT_ELIGIBLE_O8_SUCCESSOR",
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 1,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
-  "handoff_epoch": {
+  "handoff_epoch": null,
+  "last_consumed_handoff": {
     "epoch_id": "O8_LONGWAKE_GEN34_TO_GEN35_001",
-    "state": "OPEN",
     "source_generation": 34,
     "target_generation": 35,
-    "opened_by_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
-    "opened_by_generation": 34,
-    "target_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-    "sample": "O8_LONGWAKE_CONTINUATION_NEXT_SUCCESSOR",
-    "prearm_offset_sec": 840,
-    "ready_evidence_required": true,
-    "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_THEN_SUCCESSOR_CONTINUES_WORK",
-    "cas_attempts_per_contender": 1,
-    "expires_by_time": false
-  },
-  "last_consumed_handoff": {
-    "epoch_id": "O8_STAGE_ENTRY_GEN33_TO_GEN34_001",
-    "source_generation": 33,
-    "target_generation": 34,
-    "winner_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+    "winner_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
     "cas_result": "SUCCESS_FRESH_SHA",
-    "ready_evidence": "evidence/o8/O8_GEN34_READY_20260924.json"
+    "ready_evidence": "evidence/o8/O8_GEN35_READY_20260924.json"
   },
   "recovery_transition": {
     "single_use": true,
@@ -42,6 +28,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "OWNER_EXIT_GUARD_PREOPEN_NEXT_NORMAL_EPOCH_WHILE_GEN34_REMAINS_ACTIVE",
+  "transition_reason": "GEN34_TO_GEN35_ELIGIBLE_READY_FRESH_SHA_CAS",
   "server_time_authority": "GitHub commit timestamp"
 }
