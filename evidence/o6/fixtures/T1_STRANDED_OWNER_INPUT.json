@@ -1,0 +1,33 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T1-STRANDED-OWNER",
+  "program_state": "ACTIVE_NONTERMINAL",
+  "ownership": {
+    "generation": 100,
+    "active_invocation_id": "FIXTURE-OWNER-G100",
+    "status": "OWNER_ACTIVE",
+    "handoff_epoch": {
+      "epoch_id": "FIXTURE-G99-TO-G100",
+      "state": "CONSUMED",
+      "source_generation": 99,
+      "target_generation": 100
+    }
+  },
+  "open_successor_path": false,
+  "eligible_ready_successor": false,
+  "scheduler": {
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY",
+    "prearm_offset_sec": 840
+  },
+  "expected": {
+    "recovery_eligible": true,
+    "target_generation": 101,
+    "recovery_writes": 1,
+    "duplicate_authoritative_side_effects": 0,
+    "next_normal_epoch": "G101_TO_G102_OPEN",
+    "scheduler_enabled_after": true
+  },
+  "safety": "ISOLATED_FIXTURE_ONLY_DO_NOT_MUTATE_CONTROL_OWNERSHIP_TO_MANUFACTURE_FAULT"
+}
