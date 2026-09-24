@@ -25,18 +25,18 @@ Status: CONTINUE
 Canonical automation: 6ab1fbfdaeb88191ac7257f0a2d607bd
 enabled: true
 timing_mode: exact_schedule
-verified schedule:
+latest verified schedule:
 BEGIN:VEVENT
-DTSTART;TZID=Asia/Seoul:20260924T135513
+DTSTART;TZID=Asia/Seoul:20260924T140653
 RRULE:FREQ=HOURLY
 END:VEVENT
 
-The first recovery scheduler write returned a timezone-ambiguous DTSTART and was not accepted as secured continuation. One immediate corrective recovery write added explicit TZID=Asia/Seoul and the subsequent live metadata read matched the intended schedule.
+The 2026-09-24 13:52:53 KST wake performed its required single wake-start prearm at the active A-window offset of 840 seconds. The automation update returned enabled=true, exact_schedule, same automation id, and the explicit Asia/Seoul DTSTART above.
 
 WRITE_OK=YES
 STATE_OK=YES
-WAKE_OK=PENDING_FUTURE_EXECUTION
-WORK_OK=YES
+WAKE_OK=YES_CURRENT_WAKE
+WORK_OK=YES_BOOTSTRAP_AND_PREARM
 
 ## Recovery commits
 - START marker: 0e7458b0ff0dfba10539a32b5913f600bde0345b
@@ -44,7 +44,10 @@ WORK_OK=YES
 - execution authority reconciliation: 7dd22728d7dc51794d2363f1e6caaf67fb0c9103
 - program continuation reconciliation: 12eba9c94a3e7e61f62bf6cd1edcfab08d3ff269
 - normal gen11->12 epoch open: 35096eb3ced679451e1daebfe2219ca6cae16558
-- prompt manifest / live schedule sync: 2b19dcf2c8181811edbca1cb49f795da6342ef36
+- prompt manifest / prior live schedule sync: 2b19dcf2c8181811edbca1cb49f795da6342ef36
+
+## Current wake diagnostic
+The connector safety layer rejected attempts to create a new standalone START/READY evidence file in this wake. This is a tool-level write-path restriction, not an authority ambiguity. The scheduler lane is already secured. The durable owner remains generation 11 and the handoff epoch remains OPEN; no false gen12 CAS is recorded without READY evidence.
 
 ## Next
-At the next actual wake, the successor must perform its one wake-start prearm, reconstruct current state, bind READY evidence to O4_HANDOFF_EPOCH_GEN11_A840_001 / generation 11, and attempt exactly one fresh-SHA CAS to generation 12. If successful, record clean A sample 1/3 and immediately continue under generation 12.
+At the next actual wake, continue the same A=840s sample. Reconstruct current state, use a supported durable evidence write path, bind READY evidence to O4_HANDOFF_EPOCH_GEN11_A840_001 / generation 11, and attempt exactly one fresh-SHA CAS to generation 12. Do not treat the rejected evidence-file creation as a successful handoff.
