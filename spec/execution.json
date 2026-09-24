@@ -1,42 +1,32 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "state": "ACTIVE",
   "active": true,
-  "experiment_id": "H-O7-FINAL-CONVERGENCE",
-  "primary_variable": "NONE_HOLD_FINAL_CANDIDATE_CONSTANT",
+  "experiment_id": "H-O8-ROLE-RELATIVE-STOP-GATE",
+  "primary_variable": "STOP_GATE_INTERPRETATION_AFTER_THIS_INVOCATION_ACQUIRES_OWNERSHIP",
+  "baseline": "INCORRECT_MICROCYCLE_BEHAVIOR_TREAT_INHERITED_HANDOFF_AS_INVOCATION_STOP",
+  "candidate": "ROLE_RELATIVE_STOP_GATE_CONTINUE_AS_OWNER_AFTER_ACQUISITION",
   "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
   "wake_start_prearm_offset_sec": 840,
   "authority_record": "control/ownership.json",
   "generation_authority": "control/ownership.json",
   "status_owner": "status/program.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
-  "work_duration_target": "NONE",
-  "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
-  "active_sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_1",
-  "candidate_frozen": {
-    "prompt_version": "2.2.10-EARLY-EXIT-RETRY",
-    "prompt_id": "MER-OPT-2M",
-    "default_prearm_offset_sec": 840,
-    "post_ready_max_authoritative_units": 1,
-    "authority_model": "GENERATION_CAS_SINGLE_OWNER",
-    "scheduler_nonstop_guard": true,
-    "owner_exit_guard": true,
-    "prearm_live_verify": true,
-    "early_exit_corrective_rearm_sec": 180,
-    "orphan_recovery": "DETERMINISTIC_EXACT_GENERATION_PRIMITIVE",
-    "reconciliation_mode": "OBSERVED_STATE"
-  },
-  "next_action": "HOLD FINAL CANDIDATE UNCHANGED. CONTINUE SAFE O7 EVIDENCE CONSOLIDATION UNTIL SUCCESSOR READY. NEXT ACTUAL WAKE MUST RETROSPECTIVELY CLASSIFY THIS PREARM AS WAKE_OK/WORK_OK, COMPLETE NORMAL GEN28_TO_GEN29 HANDOFF, AND RECORD DIRECTLY OBSERVABLE USEFUL/CONTROL/IDLE COMPONENTS WITHOUT INFERRING USEFUL WORK FROM ELAPSED TIME.",
-  "promotion_gate": [
-    "REPEATED_UNCHANGED_FINAL_KERNEL_CLEAN_WAKES_AND_HANDOFFS",
-    "ZERO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS",
-    "RETROSPECTIVE_WAKE_OK_AND_WORK_OK",
-    "O6_ADVERSE_RECOVERY_PASS",
-    "DIRECT_DUTY_CYCLE_OR_IDLE_GAP_ACCOUNTING_WHERE_OBSERVABLE",
-    "SIMPLER_COMPARATOR_ACCOUNTED",
-    "REJECTED_OR_REVISED_HYPOTHESES_LEDGERED",
-    "NO_MATERIAL_TESTABLE_CONTINUITY_OR_UTILIZATION_UNCERTAINTY_REMAINING"
+  "work_duration_target": "NONE_VOLUNTARY",
+  "long_wake_validation_sec": 600,
+  "normal_stop_gates": [
+    "PROGRAM_COMPLETE",
+    "LATER_DISTINCT_SUCCESSOR_HANDOFF_COMPLETE"
   ],
-  "convergence_matrix": "evidence/o7/O7_CONVERGENCE_MATRIX_20260924.md",
+  "active_sample": "O8_STAGE_ENTRY_PENDING_GEN33_TO_GEN34",
+  "next_action": "On next wake: prearm and verify; acquire gen34 through the OPEN epoch; then remain ACTIVE_OWNER and continue multiple distinct useful units in the same invocation. Source the hypothesis before TESTABLE promotion, then test it without changing scheduler timing or authority model.",
+  "sourcing_gate": "PENDING",
+  "promotion_gate": [
+    "CURRENT_INVOCATION_ACQUIRES_OWNER_AND_CONTINUES_WORK_AFTER_INHERITED_HANDOFF",
+    "MULTIPLE_DISTINCT_USEFUL_UNITS_IN_ONE_INVOCATION",
+    "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS",
+    "CONTINUITY_REMAINS_SECURED",
+    "AT_LEAST_ONE_NONTERMINAL_WORK_SESSION_WORKED_GTE_600S_FOR_OVERALL_COMPLETION"
+  ],
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
