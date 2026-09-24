@@ -20,7 +20,7 @@
     "PROGRAM_COMPLETE",
     "SUCCESSOR_HANDOFF_COMPLETE"
   ],
-  "next_action": "CONSUME_SINGLE_USE_O1_TO_O4_STAGE_TRANSITION_RECOVERY_GEN8_TO_GEN9; OPEN_GEN9_TO_GEN10_HANDOFF_EPOCH; ON_RESUME_ELIGIBLE_READY_SUCCESSOR_HAS_PRIORITY; THEN_RUN_O4_ADAPTIVE_PREARM_TRIAL",
+  "next_action": "ON_NEXT_WAKE_PREARM_PER_ACTIVE_O4_POLICY; RECONSTRUCT_CHECKPOINT; WRITE_READY_EVIDENCE_BOUND_TO_O4_HANDOFF_EPOCH_GEN9_001; ELIGIBLE_READY_SUCCESSOR_HAS_PRIORITY AND MAY ATTEMPT ONE FRESH_SHA GEN9_TO_GEN10 CAS; AFTER SUCCESS RUN O4_TRIAL",
   "workload": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md",
   "status_owner": "status/program.json",
   "active_sample": "O4_STAGE_TRANSITION_RECOVERY_THEN_TRIAL_001",
@@ -68,16 +68,18 @@
   "stage_transition": {
     "from_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
     "to_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-    "state": "RECOVERY_AUTHORIZED",
+    "state": "RECOVERY_CONSUMED_HANDOFF_OPEN",
     "reason": "O1 owner remained authoritative after O1 completion and no O4 handoff epoch was opened",
     "recovery_epoch": {
-      "authorized": true,
-      "consumed": false,
+      "authorized": false,
+      "consumed": true,
       "single_use": true,
       "expected_generation": 8,
       "transition": "GEN8_TO_GEN9",
       "target_owner_invocation_id": "MER-O4-STAGE-RECOVERY-001",
-      "target_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION"
+      "target_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
+      "transition_commit": "9de0441b4fbc6a6dc699fc8ec18bea91ae8127d2",
+      "result": "SUCCESS"
     }
   },
   "successor_priority": {
