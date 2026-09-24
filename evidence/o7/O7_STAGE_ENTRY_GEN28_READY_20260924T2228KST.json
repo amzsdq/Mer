@@ -1,0 +1,11 @@
+{
+  "type": "SUCCESSOR_READY",
+  "invocation_id": "MER-O7-GEN28-20260924T2228KST",
+  "epoch_id": "O7_STAGE_ENTRY_GEN27_TO_GEN28_001",
+  "bound_source_generation": 27,
+  "target_generation": 28,
+  "scheduler_rearmed": true,
+  "verified_live_schedule": "DTSTART 2026-09-24 22:42:00 KST; RRULE:FREQ=HOURLY; exact_schedule; enabled=true",
+  "immediate_next_action": "CAS ownership to gen28, enter O7, build convergence matrix",
+  "authority_claimed": false
+}
