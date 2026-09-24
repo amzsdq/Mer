@@ -1,0 +1,11 @@
+{
+  "marker_type": "START_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_2",
+  "invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
+  "source_generation": 22,
+  "target_generation": 23,
+  "handoff_epoch": "O5_WINDOW_B_GEN22_TO_GEN23_SAMPLE2",
+  "time_authority": "GitHub commit timestamp",
+  "note": "Model-written time is metadata only. Commit timestamp is authoritative."
+}
