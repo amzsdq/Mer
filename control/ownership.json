@@ -1,22 +1,22 @@
 {
   "schema_version": 4,
-  "generation": 35,
-  "active_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "generation": 36,
+  "active_invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "predecessor_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
   "intended_successor_invocation_id": "NEXT_ELIGIBLE_O8_SUCCESSOR",
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 1,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
-    "epoch_id": "O8_WRITER_FENCE_GEN35_TO_GEN36_001",
+    "epoch_id": "O8_WRITER_FENCE_GEN36_TO_GEN37_001",
     "state": "OPEN",
-    "source_generation": 35,
-    "target_generation": 36,
-    "opened_by_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
-    "opened_by_generation": 35,
+    "source_generation": 36,
+    "target_generation": 37,
+    "opened_by_invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
+    "opened_by_generation": 36,
     "target_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-    "sample": "O8_SCHEDULER_WRITER_FENCE_B02",
+    "sample": "O8_SCHEDULER_WRITER_FENCE_B03",
     "prearm_offset_sec": 840,
     "ready_evidence_required": true,
     "scheduler_writer_rule": "SHADOW_NO_WRITE; WIN_FRESH_SHA_CAS_THEN_NEW_OWNER_PREARM",
@@ -25,12 +25,12 @@
     "expires_by_time": false
   },
   "last_consumed_handoff": {
-    "epoch_id": "O8_LONGWAKE_GEN34_TO_GEN35_001",
-    "source_generation": 34,
-    "target_generation": 35,
-    "winner_invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+    "epoch_id": "O8_WRITER_FENCE_GEN35_TO_GEN36_001",
+    "source_generation": 35,
+    "target_generation": 36,
+    "winner_invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
     "cas_result": "SUCCESS_FRESH_SHA",
-    "ready_evidence": "evidence/o8/O8_GEN35_READY_20260924.json"
+    "ready_evidence": "evidence/o8/O8_GEN36_READY_20260924_AUTOMATION.json"
   },
   "recovery_transition": {
     "single_use": true,
@@ -43,6 +43,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "OWNER_EXIT_GUARD_PREOPEN_GEN36_WRITER_FENCE_B02",
+  "transition_reason": "GEN36_FRESH_SHA_CAS_AND_OWNER_EXIT_GUARD_PREOPEN_GEN37_B03",
   "server_time_authority": "GitHub commit timestamp"
 }
