@@ -1,0 +1,11 @@
+{
+  "marker": "END_MARKER",
+  "sample": "O1_NORMAL_HANDOFF_003",
+  "result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "source_generation": 5,
+  "target_generation": 6,
+  "transition_commit": "e4fef58b427d5fbe0a3476e252dd1b7980e3d850",
+  "time_authority": "GitHub commit created_at",
+  "start_marker_commit": "220290da373abaa0e02c9ed4af0525d4e4fecc5d",
+  "note": "END marker commit timestamp minus START marker commit timestamp is authoritative WORKED."
+}
