@@ -1,0 +1,29 @@
+{
+  "type": "WAKE_WORK_RESULT",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "observed_start_commit": "561dac5ea9e1170a426853ef5d34f7b4dc261491",
+  "observed_start_created_at": "2026-09-24T15:03:18Z",
+  "prior_attributed_close_intent_commit": "1920666ca50abc617516f9a84690f9403d38094c",
+  "prior_intended_dtstart_utc": "2026-09-24T15:02:29Z",
+  "automation_last_run_time_observed": "2026-09-24T15:00:40.037085Z",
+  "wake_ok_for_prior_150229_target": "NOT_PROVEN",
+  "work_ok_now": true,
+  "live_scheduler_observation": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY",
+    "dtstart_as_returned": "20260925T001630",
+    "default_timezone": "Asia/Seoul"
+  },
+  "scheduler_target_overwrite": {
+    "prior_verified_target_utc": "2026-09-24T15:02:29Z",
+    "current_live_local_target_interpreted_kst": "2026-09-25T00:16:30+09:00",
+    "current_live_equivalent_utc": "2026-09-24T15:16:30Z",
+    "delta_seconds": 841,
+    "classification": "UNATTRIBUTED_LATER_SCHEDULER_WRITE",
+    "note": "Live target no longer equals the attributed gen34 close-reserve target. Writer identity is not inferred from timing. This is evidence that unconstrained shared scheduler mutation remains observable."
+  },
+  "differential_verification": "FULL_VEVENT WRITE_OK/STATE_OK was previously proven; exact later WAKE_OK for the 15:02:29Z target remains unproven because last_run_time predates it. Current invocation proves WORK_OK and exposes another unattributed later scheduler overwrite.",
+  "next": "Treat representation repair as KEEP for write/state but leave later wake proof open. Advance H-O8-SCHEDULER-WRITER-FENCE as the next discriminating variable; do not repeat the representation test unchanged."
+}
