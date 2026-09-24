@@ -1,0 +1,12 @@
+{
+  "type": "END_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_3",
+  "invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "generation": 24,
+  "ready_commit_sha": "7ac71ec9e0efab056d656d7847659d518f63075e",
+  "cas_commit_sha": "b258de0474947a9601eca46f1ec9d4815948c4ba",
+  "ready_to_cas_latency_sec": 8,
+  "server_time_authority": "GitHub commit timestamp"
+}
