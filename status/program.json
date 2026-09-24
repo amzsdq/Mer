@@ -117,5 +117,20 @@
     "immutable_event_chain": "gen41 -> durable gen41 END -> gen42",
     "same_generation_atomic_exclusion": "UNPROVEN",
     "conclusion": "Do not promote immutable event log to sole authority until atomic duplicate exclusion is proven."
+  },
+  "owner_loss_adverse_transition": {
+    "transition_id": "O8_SERIALIZED_OWNER_LOSS_CURRENTGEN_001",
+    "experiment_id": "H-O8-SERIALIZED-SAME-CANONICAL",
+    "source_generation": 42,
+    "source_authority_basis": "latest reconstructed contiguous durable generation; mutable production projection remains generation39",
+    "target_generation": 43,
+    "reason": "CONTROLLED_OWNER_LOSS_BEFORE_PRE_CLOSE",
+    "state": "ARMED_NOT_ENTERED",
+    "authority_fence": "GIT_REF_FAST_FORWARD_CAS_NONPRODUCTION",
+    "scheduler_fallback": "PRESERVE_EXISTING_RECURRING_SAME_CANONICAL",
+    "shadow_scheduler_writes": 0,
+    "production_authority_migration": false,
+    "loss_boundary_entered": false,
+    "entry_rule": "Only enter simulated loss after fresh readback of this exact transition and fresh scheduler snapshot."
   }
 }
