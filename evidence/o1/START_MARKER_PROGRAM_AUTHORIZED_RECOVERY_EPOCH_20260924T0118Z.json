@@ -1,0 +1,6 @@
+{
+  "marker": "START_MARKER",
+  "purpose": "PROGRAM_AUTHORIZED_SINGLE_USE_RECOVERY_EPOCH",
+  "duration_source_of_truth": "GitHub commit/server timestamp",
+  "note": "Filename/model clock is metadata only; commit timestamp is authoritative."
+}
