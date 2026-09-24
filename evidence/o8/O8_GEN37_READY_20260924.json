@@ -1,0 +1,1 @@
+{"type":"SUCCESSOR_READY","invocation_id":"MER-O8-GEN37-AUTOMATION-20260924","bound_epoch":"O8_WRITER_FENCE_GEN36_TO_GEN37_001","source_generation":36,"target_generation":37,"scheduler_writes_as_shadow":0,"eligibility":"READY"}
