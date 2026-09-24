@@ -1,0 +1,9 @@
+{
+  "marker": "START",
+  "sample": "AUTHORITY_REPAIR_SUCCESSOR",
+  "generation": 41,
+  "invocation_id": "MER-O8-GEN41-AUTOMATION-20260924",
+  "predecessor_generation": 40,
+  "reason": "Fresh automation wake after gen40 recovery; immutable event-log authority repair experiment",
+  "clock_authority": "GitHub commit timestamp"
+}
