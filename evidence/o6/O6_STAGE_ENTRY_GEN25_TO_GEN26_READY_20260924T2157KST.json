@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "epoch_id": "O6_STAGE_ENTRY_GEN25_TO_GEN26_001",
+  "source_generation": 25,
+  "target_generation": 26,
+  "successor_invocation_id": "MER-O6-GEN26-20260924T2157KST",
+  "state": "SUCCESSOR_READY",
+  "scheduler_prearm": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "offset_sec": 840,
+    "intended_dtstart_kst": "2026-09-24T22:11:35+09:00",
+    "write_ok": true,
+    "live_readback_ok": true,
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY"
+  },
+  "prepared_next_action": "Enter O6, source H-O6-STRANDED-OWNER-RECOVERY, define one primary variable, then run adverse recovery tests without scheduler disablement.",
+  "time_authority": "GitHub commit timestamp"
+}
