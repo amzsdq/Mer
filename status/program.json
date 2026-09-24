@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
-  "next_step": "EXECUTE O6 T3: model an existing OPEN handoff epoch with a late/not-yet-READY successor. Deterministic orphan recovery must remain ineligible and must not bypass the normal handoff path. Require zero recovery mutation, scheduler enabled, and OPEN epoch preserved. Then continue T4 if safe.",
+  "next_step": "SOURCE THE NEXT O6 HYPOTHESIS FOR THE REMAINING FAULT CLASSES: PROMPT_VERSION_MISMATCH, MISSING_BOOTSTRAP/CONTROL ACTIVE, AND SCHEDULER WRITE_OK FOLLOWED BY ABSENT WAKE. Use internal evidence plus authoritative implementation references and contrary evidence; change one primary variable. Preserve H-O6 exact-generation orphan recovery as KEEP_PRIMITIVE, not whole-stage completion.",
   "active_hypothesis": "H-O6-STRANDED-OWNER-RECOVERY",
-  "hypothesis_status": "TESTABLE",
+  "hypothesis_status": "KEEP_PRIMITIVE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -29,18 +29,19 @@
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
     "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
     "o6_sourcing_gate": "PASS_TESTABLE",
-    "o6_adverse_tests": "2_OF_5_T1_T2_PASS"
+    "o6_orphan_recovery_fixture_suite": "5_OF_5_PASS_KEEP_PRIMITIVE",
+    "o6_stage_gate": "OPEN_REMAINING_PROMPT_BOOTSTRAP_SCHEDULER_ABSENT_WAKE_FAULTS"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O6_T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
-    "result": "PASS",
-    "status": "STALE OBSERVER REJECTED BEFORE CAS; ZERO AUTHORITATIVE MUTATION; EXISTING OPEN SUCCESSOR PATH PRESERVED; SCHEDULER ENABLED",
-    "evidence": "evidence/o6/fixtures/T2_STALE_SHADOW_RESULT.json"
+    "scope": "H-O6-STRANDED-OWNER-RECOVERY_T1_T5_FIXTURE_SUITE",
+    "result": "KEEP_PRIMITIVE",
+    "status": "5/5 DETERMINISTIC FIXTURES PASS; ZERO DUPLICATE AUTHORITATIVE SIDE EFFECTS; INELIGIBLE CASES ZERO RECOVERY; SCHEDULER ENABLED; STAGE O6 NOT COMPLETE",
+    "evidence": "evidence/o6/O6_ORPHAN_RECOVERY_FIXTURE_SUITE_20260924.md"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_T3_OPEN_EPOCH_LATE_SUCCESSOR_NO_RECOVERY_BYPASS",
+  "active_sample": "O6_NEXT_HYPOTHESIS_SOURCING",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
 }
