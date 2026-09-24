@@ -1,0 +1,24 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T5-UNRECONSTRUCTABLE-AUTHORITY",
+  "test": "T5_UNRECONSTRUCTABLE_AUTHORITY_FAIL_CLOSED_SCHEDULER_ENABLED",
+  "scenario": {
+    "program_nonterminal": true,
+    "ownership_record": "MALFORMED_OR_INTERNALLY_INCONSISTENT",
+    "generation_reconstructable": false,
+    "owner_reconstructable": false
+  },
+  "admission": {
+    "ownership_reconstructable_current": false,
+    "decision": "INELIGIBLE_FAIL_CLOSED"
+  },
+  "recovery_cas_attempts": 0,
+  "authoritative_mutations": 0,
+  "scheduler": {
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY"
+  },
+  "result": "PASS",
+  "interpretation": "Substantive authority remains fail-closed, but continuation is not disabled. A later wake may reconstruct/repair from durable evidence without converting uncertainty into authority."
+}
