@@ -21,9 +21,9 @@
     "SUCCESSOR_HANDOFF_COMPLETE"
   ],
   "next_action": "ON_NEXT_WAKE_PREARM_PER_ACTIVE_O4_POLICY; RECONSTRUCT_CHECKPOINT; WRITE_READY_EVIDENCE_BOUND_TO_O4_HANDOFF_EPOCH_GEN9_001; ELIGIBLE_READY_SUCCESSOR_HAS_PRIORITY AND MAY ATTEMPT ONE FRESH_SHA GEN9_TO_GEN10 CAS; AFTER SUCCESS RUN O4_TRIAL",
-  "workload": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md",
+  "workload": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md",
   "status_owner": "status/program.json",
-  "active_sample": "O4_STAGE_TRANSITION_RECOVERY_THEN_TRIAL_001",
+  "active_sample": "O4_RESUME_HANDOFF_GEN9_TO_GEN10",
   "recovery_constraints": {
     "no_ad_hoc_self_promotion": true,
     "recovery_epoch": {
@@ -46,7 +46,7 @@
     "shadow_wake_start_prearm_allowed": true,
     "scheduler_mutations_per_wake": 1
   },
-  "previous_sample_result": "O1_NORMAL_HANDOFF_003_PASS_GEN5_TO_GEN6_VIABILITY_3_OF_3",
+  "previous_sample_result": "O1_TO_O4_STAGE_RECOVERY_PASS_GEN8_TO_GEN9_AND_GEN9_TO_GEN10_EPOCH_OPEN",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
   "adaptive_prearm": {
     "default_sec": 840,
