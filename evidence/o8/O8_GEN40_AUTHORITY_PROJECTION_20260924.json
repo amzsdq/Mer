@@ -1,0 +1,11 @@
+{
+  "generation": 40,
+  "invocation_id": "MER-O8-GEN40-AUTOMATION-20260924",
+  "start_marker": "evidence/o8/O8_GEN40_START_20260924_AUTOMATION.json",
+  "start_commit": "9338c5c4d6c8b30b740d044a06dfb84cfcda5d82",
+  "predecessor_end_commit": "097f5e0aa4a8b80ad1545fec06a77b640e4cd3a1",
+  "handoff_epoch": "O8_SERIALIZED_GEN39_TO_GEN40_S03",
+  "projection": "ACTIVE_OWNER_CANDIDATE_PENDING_MUTABLE_AUTHORITY_UPDATE",
+  "reason": "Durable successor START exists after durable predecessor END; mutable ownership update separately safety-blocked.",
+  "clock_authority": "GitHub commit timestamp"
+}
