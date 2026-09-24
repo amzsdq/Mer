@@ -4,59 +4,41 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
   "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_NORMAL_HANDOFF_SINGLE_CONTENDER_GEN3_TO_GEN4",
+  "next_step": "O1_NORMAL_HANDOFF_SAMPLE_002_OPEN_GEN4_TO_GEN5_EPOCH_AND_TEST_NEXT_READY_CONTENDER",
   "active_hypothesis": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
-  "hypothesis_status": "TESTABLE_ACTIVE",
+  "hypothesis_status": "TESTABLE_ACTIVE_SAMPLE_001_PASS",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
     "recurrence": "RRULE:FREQ=HOURLY",
     "wake_start_prearm_offset_sec": 840,
-    "successor_due_rule": "INVOCATION_WAKE_AT + 840s",
-    "successor_role_on_wake": "SHADOW_SUCCESSOR",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
-    "scheduler_write_rule": "EVERY_WAKE_EXACTLY_ONCE_AT_START",
-    "shadow_prearm_allowed": true,
-    "scheduler_write_after_prearm_allowed": false,
-    "work_duration_target": "NONE",
-    "normal_stop_gates": [
-      "PROGRAM_COMPLETE",
-      "SUCCESSOR_HANDOFF_COMPLETE"
-    ],
-    "owner_loss_recovery": "SINGLE_USE_PROGRAM_AUTHORIZED_RECOVERY_EPOCH_SAMPLE_001_SUCCESS",
     "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_UNDER_TEST",
-    "automatic_expiry_recovery": "DEFERRED_SEPARATE_EXPERIMENT"
+    "automatic_expiry_recovery": "DEFERRED_SEPARATE_EXPERIMENT",
+    "work_duration_target": "NONE"
   },
   "gate": {
     "viability_required_clean_handoffs": 3,
-    "clean_handoffs": 0,
+    "clean_handoffs": 1,
     "stabilization_required_clean_handoffs": 5,
     "overlap_concurrency_required": true,
     "clean_transfer_required": true,
     "zero_duplicate_authoritative_side_effects_required": true,
     "zero_scheduler_writer_conflicts_required": true,
-    "comparator_required": true,
-    "prior_non_overlap_samples_preserved": true
+    "comparator_required": true
   },
-  "objective_order": [
-    "CONTINUITY_RECOVERABILITY",
-    "USEFUL_WORK_DUTY_CYCLE",
-    "SIMPLICITY"
-  ],
+  "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O1_PROGRAM_AUTHORIZED_SINGLE_USE_RECOVERY_EPOCH_GEN2_TO_GEN3",
-    "result": "SUCCESS",
-    "status": "GEN3_LIVE_OWNER_RESTORED",
-    "transition_commit": "78c1b668320a34d43c7100348d5ab19ef9e90329",
-    "transition_server_timestamp": "2026-09-24T01:19:17Z"
+    "scope": "O1_NORMAL_HANDOFF_001_GEN3_TO_GEN4",
+    "result": "PASS",
+    "status": "CLEAN_HANDOFF_COMPLETE_GEN4_OWNER_ACTIVE",
+    "transition_commit": "bce874c5276edbbb268a1a0f6ab3fc621d2fc882",
+    "ready_evidence_commit": "ed49c5d04146cb9c9e4183c3cf040b339f95d720"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md",
-  "active_sample": "O1_NORMAL_HANDOFF_001",
+  "active_sample": "O1_NORMAL_HANDOFF_002",
   "active_sample_owner_evidence": "control/ownership.json",
-  "sample_001_diagnosis": "evidence/o1/O1_DEAD_OWNER_AUTHORITY_TRANSITION_REVIEW_20260924T0856KST.md",
   "hypothesis_record": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md"
 }
