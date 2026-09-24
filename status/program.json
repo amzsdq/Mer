@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "B03 gen37 is ACTIVE_OWNER after SHADOW zero-write READY and fresh-SHA gen36->37 CAS. B03 owner performed exactly one attributed +840s full-VEVENT prearm to 15:38:39Z with WRITE_OK+STATE_OK. Do not count B01/B02 as clean completed samples unless actual target stability plus later WAKE_OK/WORK_OK is proven; B02 was superseded by an intentional corrective rearm and therefore is not a clean stability sample. Observe B03 target stability and actual later WAKE_OK/WORK_OK. Next epoch O8_WRITER_FENCE_GEN37_TO_GEN38_001 is reserved for the mandatory owner-loss adverse sample; execute only with an explicit evidence-backed single-use transition and no SHADOW scheduler write. Need three genuinely clean B samples plus owner-loss adverse PASS before promotion.",
+  "next_step": "Keep B03/gen37 exact target 15:38:39Z unchanged. Continue genuine O8 work through the target if runtime permits and use research/O8_SAME_CANONICAL_DISPATCH_SERIALITY_OBSERVATION.md to classify whether a distinct successor can dispatch while gen37 is still active. Do not count B01/B02 as clean samples; B02 was intentionally superseded. B03 remains provisional until target survives to actual later WAKE_OK/WORK_OK. After the B03 observation, execute the controlled owner-loss adverse gen37->38 transition from research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md. Three CLEAN normal samples plus adverse recovery/non-regression remain mandatory before promotion.",
   "active_hypothesis": "H-O8-SCHEDULER-WRITER-FENCE",
-  "hypothesis_status": "B03_WRITE_STATE_PASS_CLEAN_WAKE_STABILITY_AND_ADVERSE_REQUIRED",
+  "hypothesis_status": "B03_WRITE_STATE_PASS_TARGET_STABILITY_SERIALITY_OBSERVATION_ACTIVE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY_TEST",
@@ -29,7 +29,8 @@
     "scheduler_write_attribution": true,
     "scheduler_writer_fence_primary_variable": "ALL_WAKES_PREARM_vs_OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY",
     "shadow_scheduler_write_allowed": false,
-    "normal_scheduler_writer": "ACTIVE_OWNER_OR_POST_CAS_NEW_OWNER"
+    "normal_scheduler_writer": "ACTIVE_OWNER_OR_POST_CAS_NEW_OWNER",
+    "same_canonical_dispatch_seriality": "OBSERVATION_ACTIVE_NOT_YET_MER_TRUTH"
   },
   "gate": {
     "o1_stabilization": "PASS",
@@ -41,70 +42,23 @@
     "o8_role_relative_stop_gate": "PASS",
     "o8_long_wake_validation_600s": "PASS_736S_GITHUB_SERVER_CLOCK",
     "overall_program_complete": "NO",
-    "o8_repair_first_critical_incident": "LONG_WAKE PASS; FULL_VEVENT WRITE_STATE KEEP; UNATTRIBUTED OVERWRITE OBSERVED; OWNER-FENCED B03 WRITE_STATE PASS; CLEAN WAKE/STABILITY AND OWNER-LOSS ADVERSE VERIFICATION ACTIVE",
-    "o8_scheduler_writer_fence_candidate": "B01 WRITE_STATE PASS BUT CLEAN WAKE/STABILITY NOT PROVEN; B02 WRITE_STATE PASS BUT TARGET SUPERSEDED BY INTENTIONAL CORRECTIVE REARM; B03 WRITE_STATE PASS AND TARGET-STABILITY/WAKE PENDING; OWNER_LOSS_ADVERSE NEXT"
+    "o8_execution_projection_sync": "REPAIRED_GEN34_STALE_TO_GEN37_B03",
+    "o8_scheduler_writer_fence_candidate": "B01 NOT CLEAN; B02 SUPERSEDED_NOT_CLEAN; B03 WRITE_STATE PASS TARGET-STABILITY/WAKE PENDING; CLEAN_COUNT=0; OWNER_LOSS_ADVERSE PENDING",
+    "o8_same_canonical_dispatch_seriality": "OBSERVATION_ACTIVE_AT_B03_TARGET_15:38:39Z"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
-  "completion_rule": "NOT YET SATISFIED. Long-wake gate PASS at 736s. Writer-fence B requires at least three clean samples with actual later wake/work and mandatory owner-loss adverse recovery, with no material continuity regression, before final convergence.",
+  "completion_rule": "NOT YET SATISFIED. Long-wake gate PASS at 736s. Writer-fence B requires at least three CLEAN normal samples plus owner-loss adverse recovery/non-regression; same-canonical dispatch semantics must not remain a material unresolved assumption if they affect handoff architecture.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
   "active_sample": "O8_SCHEDULER_WRITER_FENCE_B03_GEN37_ACTIVE",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O8-SCHEDULER-WRITER-FENCE.md",
   "scheduler_writer_test_plan": "research/O8_SCHEDULER_WRITER_FENCE_TEST_PLAN.md",
   "scheduler_attribution_protocol": "research/O8_SCHEDULER_WRITE_ATTRIBUTION_PROTOCOL.md",
-  "long_wake_qualification": {
-    "start_utc": "2026-09-24T14:47:51Z",
-    "qualification_elapsed_sec": 602,
-    "end_utc": "2026-09-24T15:00:07Z",
-    "worked_sec": 736,
-    "worked_human": "12m16s",
-    "evidence": "evidence/o8/O8_REPAIR_RUN_END_20260924.json"
-  },
-  "writer_fence_b01": {
-    "generation": 35,
-    "owner": "MER-O8-GEN35-WAKEWORK-20260924",
-    "intended_dtstart_utc": "2026-09-24T15:17:18Z",
-    "write_ok": true,
-    "state_ok": true,
-    "wake_ok": "NOT_PROVEN_AS_CLEAN_TARGET_WAKE",
-    "scheduler_write_count": 1
-  },
-  "writer_fence_b02": {
-    "generation": 36,
-    "owner": "MER-O8-GEN36-AUTOMATION-20260924",
-    "ownership_commit": "1bb8e18a15d56c5f912a9e7831093b82f7ee8faa",
-    "ready_evidence": "evidence/o8/O8_GEN36_READY_20260924_AUTOMATION.json",
-    "intent": "evidence/o8/scheduler-writes/20260924_GEN36_OWNER_FENCE_B02_INTENT.json",
-    "result": "evidence/o8/scheduler-writes/20260924T151627Z_GEN36_OWNER_FENCE_B02_RESULT.json",
-    "intended_dtstart_utc": "2026-09-24T15:30:20Z",
-    "shadow_scheduler_write_count": 0,
-    "owner_scheduler_write_count": 1,
-    "write_ok": true,
-    "state_ok": true,
-    "wake_ok": "NOT_CLEAN_TARGET_SAMPLE_SUPERSEDED_BY_INTENTIONAL_CORRECTIVE_REARM",
-    "work_ok": true
-  },
-  "writer_fence_b03": {
-    "generation": 37,
-    "owner": "MER-O8-GEN37-AUTOMATION-20260924",
-    "ownership_commit": "cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c",
-    "ready_evidence": "evidence/o8/O8_GEN37_READY_20260924.json",
-    "intent": "evidence/o8/scheduler-writes/20260924_GEN37_OWNER_FENCE_B03_INTENT.json",
-    "result": "evidence/o8/scheduler-writes/20260924T152448Z_GEN37_OWNER_FENCE_B03_RESULT.json",
-    "intended_dtstart_utc": "2026-09-24T15:38:39Z",
-    "shadow_scheduler_write_count": 0,
-    "owner_scheduler_write_count": 1,
-    "write_ok": true,
-    "state_ok": true,
-    "wake_ok": "PENDING",
-    "work_ok": true,
-    "next_epoch": "O8_WRITER_FENCE_GEN37_TO_GEN38_001"
-  },
-  "critical_incident": {
-    "state": "LONG_WAKE PASS; REPRESENTATION WRITE_STATE KEEP; OWNER-FENCED B03 WRITE_STATE PASS; CLEAN WAKE/STABILITY AND OWNER-LOSS ADVERSE VERIFICATION ACTIVE",
-    "type": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
-    "priority": "ABOVE_NOMINAL_RESEARCH",
-    "root_cause_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
-    "rule": "Do not promote from immediate readback alone. Require clean later wake/stability samples and owner-loss recovery evidence."
-  }
+  "dispatch_seriality_observation": "research/O8_SAME_CANONICAL_DISPATCH_SERIALITY_OBSERVATION.md",
+  "owner_loss_adverse_protocol": "research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md",
+  "long_wake_qualification": {"start_utc":"2026-09-24T14:47:51Z","qualification_elapsed_sec":602,"end_utc":"2026-09-24T15:00:07Z","worked_sec":736,"worked_human":"12m16s","evidence":"evidence/o8/O8_REPAIR_RUN_END_20260924.json"},
+  "writer_fence_b01": {"generation":35,"intended_dtstart_utc":"2026-09-24T15:17:18Z","write_ok":true,"state_ok":true,"wake_ok":"NOT_PROVEN_AS_CLEAN_TARGET_WAKE","clean":false},
+  "writer_fence_b02": {"generation":36,"intended_dtstart_utc":"2026-09-24T15:30:20Z","shadow_scheduler_write_count":0,"owner_scheduler_write_count":1,"write_ok":true,"state_ok":true,"wake_ok":"SUPERSEDED_NOT_CLEAN","work_ok":true,"clean":false},
+  "writer_fence_b03": {"generation":37,"owner":"MER-O8-GEN37-AUTOMATION-20260924","ownership_commit":"cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c","ready_evidence":"evidence/o8/O8_GEN37_READY_20260924.json","intent":"evidence/o8/scheduler-writes/20260924_GEN37_OWNER_FENCE_B03_INTENT.json","result":"evidence/o8/scheduler-writes/20260924T152448Z_GEN37_OWNER_FENCE_B03_RESULT.json","intended_dtstart_utc":"2026-09-24T15:38:39Z","shadow_scheduler_write_count":0,"owner_scheduler_write_count":1,"write_ok":true,"state_ok":true,"wake_ok":"PENDING","work_ok":true,"clean":"PENDING","next_epoch":"O8_WRITER_FENCE_GEN37_TO_GEN38_001"},
+  "critical_incident": {"state":"B03 TARGET-STABILITY/SERIALITY OBSERVATION ACTIVE; OWNER-LOSS ADVERSE NEXT","type":"REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH","priority":"ABOVE_NOMINAL_RESEARCH","root_cause_record":"evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json","rule":"Do not promote from immediate readback alone. Require clean later target wake/stability, explicit provider-semantics evidence, and owner-loss recovery evidence."}
 }
