@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-20260924T111928+0900-O1HANDOFF005",
+  "marker": "START",
+  "purpose": "O1_STABILIZATION_HANDOFF_005_GEN7_TO_GEN8",
+  "time_authority": "GitHub commit created_at",
+  "scheduler_prearm": "VERIFIED_BEFORE_SUBSTANTIVE_WORK",
+  "expected_source_generation": 7,
+  "expected_target_generation": 8
+}
