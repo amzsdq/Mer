@@ -1,0 +1,9 @@
+{
+  "type": "START_MARKER",
+  "invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
+  "sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_2",
+  "expected_prior_due_kst": "2026-09-24T22:49:15+09:00",
+  "observed_runtime_context_kst": "2026-09-24T22:48:25+09:00",
+  "time_authority": "GitHub commit timestamp for measured work; runtime context only for scheduler prearm",
+  "note": "Sample2 successor wake began before prior intended due; do not infer prior WAKE_OK from schedule target. Continue as concurrent SHADOW until generation CAS eligibility is proven."
+}
