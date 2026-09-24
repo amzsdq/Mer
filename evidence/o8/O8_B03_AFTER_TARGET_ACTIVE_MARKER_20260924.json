@@ -1,0 +1,1 @@
+{"type":"AFTER_TARGET_ACTIVE_MARKER","invocation_id":"MER-O8-GEN37-AUTOMATION-20260924","generation":37,"target_utc":"2026-09-24T15:38:39Z","purpose":"Server-clock proof predecessor remained active across target boundary.","clock_source":"GITHUB_COMMIT_TIMESTAMP"}
