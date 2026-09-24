@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-  "next_step": "O4_ADAPTIVE_PREARM_TRIAL_WITH_FIXED_840S_COMPARATOR",
+  "next_step": "RESUME_VIA_OPEN_GEN9_TO_GEN10_HANDOFF_EPOCH_THEN_RUN_O4_ADAPTIVE_PREARM_TRIAL",
   "active_hypothesis": "H-O4-ADAPTIVE-PREARM",
   "hypothesis_status": "TESTABLE_USER_AUTHORIZED_TRIAL",
   "active_execution": "spec/execution.json",
@@ -27,7 +27,8 @@
       "selection_rule": "EXPECTED_USEFUL_WORK_TO_BOUNDARY_PLUS_HANDOFF_JITTER_MARGIN",
       "hold_constant_within_sample": true,
       "comparator": "FIXED_840S"
-    }
+    },
+    "successor_priority": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_AT_OPEN_CURRENT_GENERATION_HANDOFF_EPOCH"
   },
   "gate": {
     "o1_viability_clean_handoffs": 5,
@@ -51,13 +52,14 @@
     "SIMPLICITY"
   ],
   "previous_program_result": {
-    "scope": "O1_STABILIZATION",
+    "scope": "O1_TO_O4_STAGE_TRANSITION_RECOVERY",
     "result": "PASS",
-    "status": "5_OF_5_CLEAN_HANDOFFS"
+    "status": "GEN8_TO_GEN9_RECOVERED_AND_GEN9_TO_GEN10_HANDOFF_EPOCH_OPEN",
+    "transition_commit": "9de0441b4fbc6a6dc699fc8ec18bea91ae8127d2"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O4_ADAPTIVE_PREARM_TRIAL_001",
+  "active_sample": "O4_RESUME_HANDOFF_GEN9_TO_GEN10",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
