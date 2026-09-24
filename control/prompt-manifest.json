@@ -19,7 +19,10 @@
   "deployed_enabled": true,
   "program_state": "ACTIVE",
   "sync_required": false,
-  "live_state_last_verified_at": "2026-09-24T03:21:32.129777Z",
-  "note": "Post-audit live verification complete. Canonical/live prompt version 2.2.8-READY-PRIORITY / MER-OPT-2K; automation enabled on same canonical ID. Active docs reconciled for O4; O1 historical evidence/archive intentionally left immutable.",
-  "live_schedule_verified": "BEGIN:VEVENT\nDTSTART:20260924T032310Z\nRRULE:FREQ=HOURLY\nEND:VEVENT"
+  "live_state_last_verified_at": "2026-09-24T04:41:17.708822Z",
+  "note": "Recovery reconciliation complete: duplicate generation authority removed from spec/execution.json; control/ownership.json is sole generation authority; O4 fixed-window A=840s is active; same canonical automation verified enabled/exact/hourly with explicit Asia/Seoul DTSTART.",
+  "live_schedule_verified": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Seoul:20260924T135513\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "active_handoff_epoch": "O4_HANDOFF_EPOCH_GEN11_A840_001",
+  "active_generation": 11,
+  "generation_authority": "control/ownership.json"
 }
