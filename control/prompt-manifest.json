@@ -3,7 +3,7 @@
   "prompt_version": "2.2.15-EXTERNAL-CLOCK-FAILOVER",
   "prompt_id": "MER-OPT-2S",
   "canonical_path": "control/CANONICAL_PROMPT_SUPERVISOR.md",
-  "canonical_blob_sha": "09120c6f60b0f401a7b6b8319f9fe11ee1f5d7bb",
+  "canonical_blob_sha": "3a42ad6dda278c5bba4d2358c1c0fcfafb58af97",
   "deployment_model": "canonical_in_git_deployed_copy_in_automation",
   "compatible_program_schema": 3,
   "compatible_active_schema": 4,
