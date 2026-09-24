@@ -13,3 +13,6 @@ Candidate A advanced the dedicated branch with `update_ref(force=false)` and liv
 Candidate B then attempted to advance the same ref. GitHub rejected it with HTTP 422: `Update is not a fast forward`.
 
 Conclusion: sibling contenders built from one observed parent have a repository-level single-winner primitive using Git ref fast-forward semantics. This proves the primitive only. It does not by itself migrate production authority away from `control/ownership.json`. Production integration still requires a declared ref namespace/lifecycle, generation mapping, stale-generation validation, owner-loss recovery, and migration verification.
+
+
+Integration next gate: keep this ref non-authoritative; validate stale contender and owner-loss recovery on a dedicated experimental ref before any production migration. Production control/ownership.json remains authoritative until that gate passes.
