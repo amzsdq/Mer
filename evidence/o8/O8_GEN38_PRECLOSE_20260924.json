@@ -1,0 +1,9 @@
+{
+  "kind": "PRE_CLOSE_MARKER",
+  "invocation_id": "MER-O8-GEN38-AUTOMATION-20260924",
+  "generation": 38,
+  "sample": "O8_SERIALIZED_SAME_CANONICAL_S02",
+  "clock_source": "GITHUB_COMMIT_TIMESTAMP",
+  "normal_close_delay_sec": 120,
+  "rule": "intended DTSTART is this commit server timestamp plus 120 seconds"
+}
