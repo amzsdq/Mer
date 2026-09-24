@@ -1,0 +1,16 @@
+{
+  "unit": "O8_GEN34_UNIT07_FULL_VEVENT_RECOVERY_DIFFERENTIAL",
+  "generation": 34,
+  "class": "GENUINE_USEFUL_DIFFERENTIAL_VERIFICATION",
+  "trigger": "previous verified target was overwritten; overwritten target 14:51:15Z passed without observed last_run advancement",
+  "primary_variable_changed": "scheduler write representation only",
+  "held_constant": ["same automation id","enabled=true","exact_schedule","RRULE:FREQ=HOURLY","writer policy","substantive generation 34"],
+  "representation": "FULL_VEVENT_ABSOLUTE",
+  "intended_dtstart_utc": "2026-09-24T15:08:14Z",
+  "write_ok": "PASS",
+  "state_ok": "PASS_EXACT_LIVE_READBACK",
+  "wake_ok": "PENDING",
+  "work_ok": "PENDING",
+  "result": "REPRESENTATION_WRITE_READBACK_DIFFERENTIAL_PASS; END_TO_END_NOT_YET_CLOSED",
+  "next": "Preserve intent/result attribution. Future wake must establish WAKE_OK/WORK_OK separately. Concurrent-writer fence remains sourced candidate, not yet active."
+}
