@@ -18,15 +18,23 @@
     "PROGRAM_COMPLETE",
     "LATER_DISTINCT_SUCCESSOR_HANDOFF_COMPLETE"
   ],
-  "active_sample": "O8_STAGE_ENTRY_PENDING_GEN33_TO_GEN34",
-  "next_action": "On next wake: prearm and verify; acquire gen34 through the OPEN epoch; then remain ACTIVE_OWNER and continue multiple distinct useful units in the same invocation. Source the hypothesis before TESTABLE promotion, then test it without changing scheduler timing or authority model.",
-  "sourcing_gate": "PENDING",
+  "active_sample": "O8_GEN34_ROLE_RELATIVE_CONTINUATION",
+  "current_owner_generation": 34,
+  "current_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "next_action": "Continue chaining distinct genuine useful units in THIS SAME gen34 invocation. Do not stop because gen34 acquisition completed. Persist bounded evidence after each unit. Open the later gen34->35 epoch before exit if still owner. Overall completion remains forbidden until GitHub START/END timestamps prove >=600s in one nonterminal authoritative invocation with multiple genuine units.",
+  "sourcing_gate": "PASS_TESTABLE",
+  "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
   "promotion_gate": [
     "CURRENT_INVOCATION_ACQUIRES_OWNER_AND_CONTINUES_WORK_AFTER_INHERITED_HANDOFF",
     "MULTIPLE_DISTINCT_USEFUL_UNITS_IN_ONE_INVOCATION",
     "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS",
     "CONTINUITY_REMAINS_SECURED",
     "AT_LEAST_ONE_NONTERMINAL_WORK_SESSION_WORKED_GTE_600S_FOR_OVERALL_COMPLETION"
+  ],
+  "evidence": [
+    "evidence/o8/O8_GEN34_READY_20260924.json",
+    "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
+    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json"
   ],
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
