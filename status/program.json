@@ -4,10 +4,10 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O6_ADVERSE_RECOVERY_TESTS_STAGE_ENTRY_PENDING",
-  "next_step": "COMPLETE NORMAL GEN25_TO_GEN26 HANDOFF INTO O6. SUCCESSOR THEN SOURCES H-O6-STRANDED-OWNER-RECOVERY USING INTERNAL GEN24 INCIDENT, AUTHORITATIVE IMPLEMENTATION REFERENCES, AND CONTRARY EVIDENCE; DEFINE ONE PRIMARY VARIABLE AND TEST RECOVERY WITHOUT DISABLING THE SCHEDULER.",
+  "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
+  "next_step": "EXECUTE H-O6-STRANDED-OWNER-RECOVERY T1: create a bounded synthetic stranded-owner fixture that matches the gen24 failure shape, then apply DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY once under the declared admission predicate. Verify exactly one generation increment, duplicate authoritative side effects=0, scheduler remains enabled, and recovered owner opens a legal next normal epoch. Do not mutate production ownership to manufacture the fault; keep the adverse fixture isolated under evidence/o6/fixtures.",
   "active_hypothesis": "H-O6-STRANDED-OWNER-RECOVERY",
-  "hypothesis_status": "SOURCING_PENDING",
+  "hypothesis_status": "TESTABLE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -19,27 +19,28 @@
     "o5_decision": "KEEP_POST_READY_MAX_1",
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
-    "prearm_live_verify": true
+    "prearm_live_verify": true,
+    "recovery_mode_under_test": "DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY"
   },
   "gate": {
     "o1_stabilization": "PASS",
     "o4_decision": "KEEP_840S",
     "o5_decision": "KEEP_A_REVISE_HYPOTHESIS",
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
-    "o6_stage_entry": "PENDING_GEN25_TO_GEN26_NORMAL_HANDOFF",
-    "o6_sourcing_gate": "PENDING"
+    "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
+    "o6_sourcing_gate": "PASS_TESTABLE",
+    "o6_adverse_tests": "0_OF_5"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "GEN24_STRANDED_AUTHORITY_RECOVERY",
-    "result": "RECOVERED",
-    "status": "USER_AUTHORIZED_SINGLE_USE_GEN24_TO_GEN25_RECOVERY_APPLIED; O5_KEEP_A_DECISION_RECORDED; KERNEL_HARDENING_STARTED",
-    "recovery_commit": "3a6a4e1a0381d98f5c68102c9dfd80603a78c125",
-    "o5_evaluation_evidence": "evidence/o5/O5_MATCHED_WINDOW_EVALUATION_20260924.md"
+    "scope": "O6_STAGE_ENTRY_AND_HYPOTHESIS_SOURCING",
+    "result": "PASS",
+    "status": "GEN25_TO_GEN26_NORMAL_HANDOFF_COMPLETE; H-O6 SOURCED WITH INTERNAL INCIDENT, AUTHORITATIVE EXTERNAL REFERENCES, AND CONTRARY EVIDENCE; ONE PRIMARY VARIABLE DECLARED",
+    "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_STAGE_ENTRY_PENDING",
+  "active_sample": "O6_T1_STRANDED_OWNER_EXACT_REPRODUCTION",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "PENDING_O6_SOURCING_RECORD"
+  "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
 }
