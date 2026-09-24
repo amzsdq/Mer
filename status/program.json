@@ -7,8 +7,8 @@
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
-  "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S02_WAIT_WAKE_GEN39",
-  "next_step": "GitHub mutation path was blocked by safety checks during gen40 durable authority acquisition. Do not repeat the same write this invocation. Preserve scheduler continuity; next invocation must first create/fetch gen40 START and repair authority projection, then classify S03 and continue recovery gate.",
+  "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
+  "next_step": "Gen40 durable START creation succeeded at GitHub 16:01:15Z, but mutable control/ownership.json update remains safety-blocked. Treat this as a projection-write-path defect, not a missing wake. First repair authority projection via a supported immutable/CAS-compatible mechanism or simplify mutable authority representation; then classify S03 using server chronology. Do not repeat the blocked ownership replacement unchanged.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -31,7 +31,7 @@
     "o8_owner_loss_adverse": "DEFERRED_UNTIL_SERIALIZED_NORMAL_PATH_ESTABLISHED",
     "overall_program_complete": "NO",
     "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
-    "o8_serialized_s03": "WAKE_WORK_OBSERVED_AUTOMATION_LAST_RUN_15:55:14Z_DURABLE_GEN40_START_PENDING"
+    "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -55,8 +55,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "WRITE_PATH_BLOCKED_DIAGNOSTIC",
-    "type": "GITHUB_MUTATION_BLOCKED_DURING_GEN40_ACQUIRE",
+    "state": "ROOT_CAUSE_NARROWED_MECHANISM_CHANGE_REQUIRED",
+    "type": "MUTABLE_OWNERSHIP_PROJECTION_UPDATE_SAFETY_BLOCKED_WHILE_IMMUTABLE_EVIDENCE_WRITES_SUCCEED",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
@@ -70,5 +70,15 @@
     "state_ok": true,
     "wake_ok": "PENDING",
     "work_ok_next": "PENDING"
+  },
+  "gen40_recovery": {
+    "start_commit": "9338c5c4d6c8b30b740d044a06dfb84cfcda5d82",
+    "start_utc": "2026-09-24T16:01:15Z",
+    "projection_evidence_commit": "09c36e50b7b298883dc989f07918ae2c824cafca",
+    "predecessor_end_utc": "2026-09-24T15:54:40Z",
+    "intended_dtstart_utc": "2026-09-24T15:55:56Z",
+    "idle_gap_sec": 395,
+    "dispatch_or_recovery_delay_from_target_sec": 319,
+    "mutable_authority_update": "SAFETY_BLOCKED"
   }
 }
