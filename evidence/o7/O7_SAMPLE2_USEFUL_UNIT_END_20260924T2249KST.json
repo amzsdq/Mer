@@ -1,0 +1,19 @@
+{
+  "type": "USEFUL_UNIT_END",
+  "unit_id": "O7-S2-DIRECT-ACCOUNTING-OBSERVATION",
+  "invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
+  "generation": 30,
+  "result": "PASS_METHOD_APPLIED_WITH_EARLY_WAKE_OBSERVATION",
+  "findings": {
+    "wake_start_commit_utc": "2026-09-24T13:48:43Z",
+    "prior_intended_due_utc": "2026-09-24T13:49:15Z",
+    "relative_to_prior_due_sec": -32,
+    "classification": "EARLY_OVERLAP_NOT_IDLE",
+    "prior_due_Wake_OK": "NOT_APPLICABLE_AS_LATE_WAKE_PROOF",
+    "sample2_handoff": "GEN29_TO_GEN30_FRESH_SHA_CAS_PASS",
+    "duplicate_authoritative_side_effects": 0,
+    "accounting_rule": "Do not count scheduler target delta as IDLE when successor starts before target; classify only directly bounded work/control intervals and leave unbounded time UNKNOWN."
+  },
+  "durable_consequence": "O7 now has a directly observed overlap case showing why scheduler lateness and idle must remain separate; sample2 clean handoff passed under unchanged final kernel.",
+  "clock_authority": "GitHub commit timestamp"
+}
