@@ -1,0 +1,17 @@
+{
+  "type": "SUCCESSOR_READY",
+  "epoch_id": "O7_FINAL_KERNEL_GEN29_TO_GEN30_SAMPLE2",
+  "source_generation": 29,
+  "target_generation": 30,
+  "candidate_invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
+  "prearm_verified": true,
+  "prearm_live_state": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY",
+    "dtstart_kst": "2026-09-24T23:02:25+09:00"
+  },
+  "prepared_next_action": "complete fresh-SHA generation CAS for sample2, then execute direct accounting observation and update O7 convergence matrix",
+  "binding_rule": "READY is valid only for the currently OPEN epoch at source generation 29"
+}
