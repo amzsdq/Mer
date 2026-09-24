@@ -3,7 +3,9 @@
   "state": "ACTIVE",
   "active": true,
   "experiment_id": "H-O6-STRANDED-OWNER-RECOVERY",
-  "primary_variable": null,
+  "primary_variable": "RECOVERY_MODE",
+  "recovery_mode_baseline": "MANUAL_SINGLE_USE_EXACT_GENERATION_RECOVERY",
+  "recovery_mode_candidate": "DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY",
   "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
   "wake_start_prearm_offset_sec": 840,
   "authority_record": "control/ownership.json",
@@ -12,20 +14,29 @@
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "work_duration_target": "NONE",
   "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
-  "active_sample": "O6_STAGE_ENTRY_PENDING",
-  "next_action": "COMPLETE NORMAL GEN25_TO_GEN26 STAGE-ENTRY HANDOFF INTO O6; THEN RUN HYPOTHESIS SOURCING FOR STRANDED-OWNER RECOVERY AND DEFINE ONE PRIMARY VARIABLE BEFORE TESTABLE PROMOTION.",
-  "sourcing_gate": "PENDING",
+  "active_sample": "O6_T1_STRANDED_OWNER_EXACT_REPRODUCTION",
+  "next_action": "CREATE ISOLATED SYNTHETIC STRANDED-OWNER FIXTURE AND EXECUTE ONE DETERMINISTIC EXACT-GENERATION ORPHAN RECOVERY. VERIFY ONE GENERATION INCREMENT, ZERO DUPLICATE AUTHORITATIVE SIDE EFFECTS, SCHEDULER ENABLED, AND LEGAL NEXT NORMAL EPOCH.",
+  "sourcing_gate": "PASS_TESTABLE",
+  "admission_predicate": [
+    "PROGRAM_NONTERMINAL",
+    "OWNERSHIP_RECONSTRUCTABLE_CURRENT",
+    "EXACT_CURRENT_GENERATION_AND_OWNER_STABLE_ON_FRESH_READ",
+    "HANDOFF_EPOCH_ABSENT_OR_CONSUMED_AND_NO_LEGAL_OPEN_SUCCESSOR_PATH",
+    "NO_ELIGIBLE_READY_SUCCESSOR_FOR_CURRENT_OPEN_EPOCH",
+    "ONE_FRESH_SHA_RECOVERY_CAS",
+    "RECOVERED_OWNER_MUST_OPEN_NEXT_NORMAL_EPOCH_BEFORE_VOLUNTARY_CLOSE"
+  ],
+  "adverse_tests": [
+    "T1_STRANDED_OWNER_EXACT_REPRODUCTION",
+    "T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
+    "T3_OPEN_EPOCH_LATE_SUCCESSOR_NO_RECOVERY_BYPASS",
+    "T4_CONFLICTING_CAS_CONTENDERS_ONE_WINNER",
+    "T5_UNRECONSTRUCTABLE_AUTHORITY_FAIL_CLOSED_SCHEDULER_ENABLED"
+  ],
+  "promotion_gate": "ALL_5_PASS_WITH_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS_0_GENERATION_MONOTONICITY_EXACTLY_ONE_WIN_WHEN_ELIGIBLE_ZERO_RECOVERY_WHEN_INELIGIBLE_SCHEDULER_ENABLED_AND_LEGAL_SUCCESSOR_PATH_AFTER_RECOVERY",
   "prior_stage_result": {
     "stage": "O5_HANDOFF_OPTIMIZATION",
     "decision": "KEEP_A_REVISE_HYPOTHESIS",
-    "baseline_post_ready_max_authoritative_units": 1,
-    "candidate_post_ready_max_authoritative_units": 0,
-    "a_clean_samples": 3,
-    "b_clean_samples": 3,
-    "a_latency_sec": [11,7,11],
-    "b_latency_sec": [7,8,8],
-    "duplicate_authoritative_side_effects": 0,
-    "control_writes_per_sample": 1,
     "evaluation_evidence": "evidence/o5/O5_MATCHED_WINDOW_EVALUATION_20260924.md"
   },
   "o6_incident_seed": {
@@ -33,7 +44,7 @@
     "stuck_generation": 24,
     "recovered_generation": 25,
     "recovery": "USER_AUTHORIZED_SINGLE_USE_EXACT_GENERATION_RECOVERY",
-    "kernel_fix": "OWNER_EXIT_GUARD_PLUS_SCHEDULER_NONSTOP_GUARD_PLUS_PREARM_LIVE_VERIFY"
+    "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
   },
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
