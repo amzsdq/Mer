@@ -4,10 +4,10 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O7_FINAL_CONVERGENCE_STAGE_ENTRY_PENDING",
-  "next_step": "COMPLETE NORMAL GEN27_TO_GEN28 STAGE-TRANSITION HANDOFF INTO O7. SUCCESSOR THEN BUILD THE O7 CONVERGENCE MATRIX: repeated unchanged clean wakes, zero duplicate authoritative side effects, retrospective WAKE_OK/WORK_OK, O6 adverse recovery PASS, measured duty-cycle/idle-gap where observable, simpler comparator, and rejected-hypothesis ledger. Do not invent provider miss-rate evidence.",
+  "current_stage": "O7_FINAL_CONVERGENCE",
+  "next_step": "HOLD FINAL CANDIDATE UNCHANGED. BUILD DIRECT FINAL-KERNEL CLEAN-WAKE/HANDOFF AND DUTY-CYCLE/IDLE EVIDENCE. NEXT ACTUAL WAKE MUST RETROSPECTIVELY ESTABLISH WAKE_OK/WORK_OK FOR THE CURRENT VERIFIED PREARM, COMPLETE NORMAL GEN28_TO_GEN29 HANDOFF, AND UPDATE THE O7 CONVERGENCE MATRIX. DO NOT INFER PROVIDER MISS RATE OR USEFUL WORK FROM ELAPSED TIME.",
   "active_hypothesis": "H-O7-FINAL-CONVERGENCE",
-  "hypothesis_status": "STAGE_ENTRY_PENDING",
+  "hypothesis_status": "TESTABLE_ACTIVE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -16,7 +16,9 @@
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "generation_authority": "control/ownership.json",
     "work_duration_target": "NONE",
-    "o5_decision": "KEEP_POST_READY_MAX_1",
+    "post_ready_max_authoritative_units": 1,
+    "prompt_version": "2.2.10-EARLY-EXIT-RETRY",
+    "prompt_id": "MER-OPT-2M",
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
     "prearm_live_verify": true,
@@ -29,23 +31,23 @@
     "o4_decision": "KEEP_840S",
     "o5_decision": "KEEP_A_REVISE_HYPOTHESIS",
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
-    "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
-    "o6_orphan_recovery_fixture_suite": "5_OF_5_PASS_KEEP_PRIMITIVE",
-    "o6_observed_state_fixture_suite": "4_OF_4_PASS",
-    "o6_live_wake_reconciliation": "PASS_ACTUAL_WAKE_PLUS6S_AND_WORK_RESUMED_GEN27",
     "o6_stage_gate": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
-    "o7_stage_entry": "PENDING_GEN27_TO_GEN28_NORMAL_HANDOFF"
+    "o7_stage_entry": "PASS_GEN27_TO_GEN28_NORMAL_HANDOFF",
+    "o7_convergence_matrix": "OPEN_TWO_MATERIAL_GATES",
+    "o7_repeated_unchanged_final_kernel_wakes": "OPEN",
+    "o7_direct_duty_cycle_idle_accounting": "OPEN"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O6_ADVERSE_RECOVERY_TESTS",
-    "result": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
-    "status": "5/5 ORPHAN-RECOVERY FIXTURES PASS; 4/4 OBSERVED-STATE FIXTURES PASS; ACTUAL LATER WAKE OBSERVED +6S; WAKE_OK AND WORK_OK DIRECTLY ESTABLISHED; GEN26_TO_GEN27 NORMAL HANDOFF COMPLETE; DUPLICATE AUTHORITATIVE SIDE EFFECTS OBSERVED=0",
-    "evidence": "evidence/o6/O6_GATE_EVALUATION_20260924.md"
+    "scope": "O7_STAGE_ENTRY",
+    "result": "GEN27_TO_GEN28_NORMAL_HANDOFF_COMPLETE",
+    "ready_evidence": "evidence/o7/O7_STAGE_ENTRY_GEN28_READY_20260924T2228KST.json",
+    "start_marker": "evidence/o7/O7_GEN28_START_MARKER_20260924T2228KST.json",
+    "convergence_matrix": "evidence/o7/O7_CONVERGENCE_MATRIX_20260924.md"
   },
-  "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
+  "completion_rule": "O7 may set COMPLETE only after the final convergence matrix has no material testable continuity/utilization uncertainty remaining.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O7_STAGE_ENTRY_PENDING",
+  "active_sample": "O7_FINAL_KERNEL_CLEAN_WAKE_SAMPLE_1",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "PENDING_O7_CONVERGENCE_RECORD"
+  "hypothesis_record": "evidence/o7/O7_CONVERGENCE_MATRIX_20260924.md"
 }
