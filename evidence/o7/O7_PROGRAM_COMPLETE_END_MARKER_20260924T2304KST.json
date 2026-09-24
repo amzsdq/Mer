@@ -1,0 +1,9 @@
+{
+  "kind": "END_MARKER",
+  "invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "generation": 32,
+  "stop_gate": "PROGRAM_COMPLETE",
+  "result": "O7 final convergence satisfied; no material discriminating uncertainty remains for current candidate selection",
+  "start_marker": "evidence/o7/O7_COVERAGE2_WAKE_START_MARKER_20260924T2302KST.json",
+  "clock_authority": "GitHub commit timestamp"
+}
