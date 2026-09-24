@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "marker_type": "START_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_1",
+  "source_generation": 21,
+  "target_generation": 22,
+  "invocation_id": "MER-O5-GEN22-BSAMPLE1-20260924T1644KST",
+  "server_time_authority": "GitHub commit timestamp",
+  "note": "Actual work start marker; commit timestamp is authoritative."
+}
