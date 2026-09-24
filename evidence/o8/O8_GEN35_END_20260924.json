@@ -1,0 +1,21 @@
+{
+  "type": "END_MARKER",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "generation": 35,
+  "role": "ACTIVE_OWNER",
+  "start_commit": "561dac5ea9e1170a426853ef5d34f7b4dc261491",
+  "start_utc": "2026-09-24T15:03:18Z",
+  "clock_authority": "GitHub commit timestamp",
+  "status": "CONTINUE",
+  "continuation": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "verified_schedule": "BEGIN:VEVENT\nDTSTART:20260925T001718\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+    "equivalent_dtstart_utc": "2026-09-24T15:17:18Z",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "prompt_version": "2.2.13-OWNER-FENCED-SCHEDULER",
+    "prompt_id": "MER-OPT-2Q"
+  },
+  "owner_exit_guard": "PASS_OPEN_GEN35_TO_GEN36_EPOCH",
+  "result": "B01 owner-fenced scheduler write/state PASS; representation unchanged; prior exact gen34 WAKE_OK not proven; current WORK_OK proven; B02/adverse tests remain."
+}
