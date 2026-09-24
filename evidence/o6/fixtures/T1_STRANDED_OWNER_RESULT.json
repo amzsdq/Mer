@@ -1,0 +1,39 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T1-STRANDED-OWNER",
+  "test": "T1_STRANDED_OWNER_EXACT_REPRODUCTION",
+  "primary_variable": "RECOVERY_MODE=DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY",
+  "admission": {
+    "program_nonterminal": true,
+    "ownership_reconstructable_current": true,
+    "exact_generation_owner_stable": true,
+    "epoch_absent_or_consumed": true,
+    "legal_open_successor_path_absent": true,
+    "eligible_ready_successor_absent": true,
+    "decision": "ELIGIBLE"
+  },
+  "fresh_sha_cas_simulation": {
+    "source_generation": 100,
+    "target_generation": 101,
+    "attempts": 1,
+    "successful_winners": 1,
+    "result": "SUCCESS"
+  },
+  "post_recovery": {
+    "generation": 101,
+    "active_invocation_id": "FIXTURE-RECOVERED-OWNER-G101",
+    "status": "OWNER_ACTIVE",
+    "next_handoff_epoch": {
+      "epoch_id": "FIXTURE-G101-TO-G102",
+      "state": "OPEN",
+      "source_generation": 101,
+      "target_generation": 102
+    },
+    "duplicate_authoritative_side_effects": 0,
+    "scheduler_enabled": true,
+    "scheduler_timing_mode": "exact_schedule",
+    "scheduler_rrule": "FREQ=HOURLY"
+  },
+  "result": "PASS",
+  "scope_note": "Deterministic state-machine fixture validation only. It validates admission/transition semantics without corrupting production authority; live conflict/stale-owner behavior remains for T2-T5."
+}
