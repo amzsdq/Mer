@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_NORMAL_HANDOFF_SAMPLE_003_TEST_NEXT_READY_CONTENDER_GEN5_TO_GEN6",
+  "next_step": "O1_STABILIZATION_HANDOFF_SAMPLE_004_PREPARE_GEN6_TO_GEN7",
   "active_hypothesis": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
-  "hypothesis_status": "TESTABLE_ACTIVE_SAMPLE_002_PASS",
+  "hypothesis_status": "VIABILITY_GATE_PASS_3_OF_3_CONTINUE_STABILIZATION",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
@@ -20,7 +20,7 @@
   },
   "gate": {
     "viability_required_clean_handoffs": 3,
-    "clean_handoffs": 2,
+    "clean_handoffs": 3,
     "stabilization_required_clean_handoffs": 5,
     "overlap_concurrency_required": true,
     "clean_transfer_required": true,
@@ -30,15 +30,15 @@
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O1_NORMAL_HANDOFF_002_GEN4_TO_GEN5",
+    "scope": "O1_NORMAL_HANDOFF_003_GEN5_TO_GEN6",
     "result": "PASS",
-    "status": "CLEAN_HANDOFF_COMPLETE_GEN5_OWNER_ACTIVE",
-    "transition_commit": "3800b4e90a33ea495ce8d6ad58e427891695e122",
-    "ready_evidence_commit": "3d0450da2bf2926c82af608f8ba4df745a1812ca"
+    "status": "CLEAN_HANDOFF_COMPLETE_GEN6_OWNER_ACTIVE_VIABILITY_3_OF_3",
+    "transition_commit": "e4fef58b427d5fbe0a3476e252dd1b7980e3d850",
+    "ready_evidence_commit": "34d9bb08a7157df454924603cb2e4e16d5f394aa"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O1_NORMAL_HANDOFF_003",
+  "active_sample": "O1_STABILIZATION_HANDOFF_004",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md"
 }
