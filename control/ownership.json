@@ -1,26 +1,26 @@
 {
   "schema_version": 4,
-  "generation": 9,
-  "active_invocation_id": "MER-O4-STAGE-RECOVERY-001",
+  "generation": 10,
+  "active_invocation_id": "MER-O4-20260924-122248-001",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-20260924T111928+0900-O1HANDOFF005",
+  "predecessor_invocation_id": "MER-O4-STAGE-RECOVERY-001",
   "intended_successor_invocation_id": null,
-  "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP_OF_GEN9_STAGE_RECOVERY",
+  "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O4_HANDOFF_EPOCH_GEN9_001",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 9,
     "target_generation": 10,
     "opened_by_invocation_id": "MER-O4-STAGE-RECOVERY-001",
     "opened_by_generation": 9,
-    "consumed_by_invocation_id": null,
+    "consumed_by_invocation_id": "MER-O4-20260924-122248-001",
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "PROGRAM_AUTHORIZED_O1_TO_O4_STAGE_TRANSITION_RECOVERY_AND_NEXT_HANDOFF_PREOPENED",
+  "transition_reason": "ELIGIBLE_READY_SUCCESSOR_WON_FRESH_SHA_GEN9_TO_GEN10_CAS",
   "server_time_authority": "GitHub commit timestamp"
 }
