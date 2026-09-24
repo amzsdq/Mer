@@ -2,7 +2,7 @@
   "schema_version": 4,
   "state": "ACTIVE",
   "active": true,
-  "generation": 15,
+  "generation": 16,
   "experiment_id": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
   "primary_variable": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS",
   "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
@@ -17,10 +17,10 @@
   "normal_close_scheduler_rewrite": false,
   "work_duration_target": "NONE",
   "normal_stop_gates": ["PROGRAM_COMPLETE","SUCCESSOR_HANDOFF_COMPLETE"],
-  "next_action": "NEXT_WAKE_PREARMS_RECONSTRUCTS_CHECKPOINT_WRITES_READY_EVIDENCE_THEN_IF_HANDOFF_EPOCH_OPEN_FOR_GEN5_ATTEMPTS_ONE_GEN5_TO_GEN6_CAS",
+  "next_action": "GEN6_OWNER_OPENS_STABILIZATION_HANDOFF_EPOCH_004_FOR_GEN6_TO_GEN7; NEXT_WAKE_PREARMS_RECONSTRUCTS_CHECKPOINT_WRITES_READY_EVIDENCE_AND_ATTEMPTS_ONE_CAS_IF_EPOCH_REMAINS_OPEN",
   "workload": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md",
   "status_owner": "status/program.json",
-  "active_sample": "O1_NORMAL_HANDOFF_003",
+  "active_sample": "O1_STABILIZATION_HANDOFF_004",
   "recovery_constraints": {
     "no_ad_hoc_self_promotion": true,
     "recovery_epoch": {
@@ -44,8 +44,8 @@
     "scheduler_mutations_per_wake": 1
   },
   "handoff_test": {
-    "source_generation": 5,
-    "target_generation": 6,
+    "source_generation": 6,
+    "target_generation": 7,
     "epoch_must_be_opened_by_current_owner": true,
     "contender_requirements": ["WAKE_OK","WAKE_START_PREARM_VERIFIED","CHECKPOINT_RECONSTRUCTED","READY_EVIDENCE_DURABLE","FRESH_OWNERSHIP_READ_SHOWS_OPEN_EPOCH_FOR_SOURCE_GENERATION"],
     "cas_attempts_per_contender": 1,
@@ -53,6 +53,6 @@
     "losers_rule": "STALE_SHA_OR_GENERATION_FAILS_CLOSED_AS_SHADOW",
     "clean_success_requires": ["GENERATION_INCREMENTS_EXACTLY_ONCE","NEW_OWNER_MATCHES_CAS_WINNER","PREDECESSOR_FENCED","NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT","SUCCESSOR_WORK_OK"]
   },
-  "previous_sample_result": "O1_NORMAL_HANDOFF_002_PASS_GEN4_TO_GEN5",
+  "previous_sample_result": "O1_NORMAL_HANDOFF_003_PASS_GEN5_TO_GEN6_VIABILITY_3_OF_3",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
