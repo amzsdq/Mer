@@ -1,0 +1,9 @@
+{
+  "marker": "START_MARKER",
+  "sample": "O1_NORMAL_HANDOFF_003",
+  "role": "SUCCESSOR_READY_CONTENDER",
+  "source_generation": 5,
+  "target_generation": 6,
+  "time_authority": "GitHub commit created_at",
+  "note": "Marker creation commit timestamp is authoritative; any model-written time is metadata only."
+}
