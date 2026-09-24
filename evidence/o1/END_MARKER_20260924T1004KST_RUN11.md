@@ -1,0 +1,7 @@
+# END_MARKER
+
+run: automation_turn_11
+result: REVISE_EXPERIMENTAL_ORDERING_AUTHORITY_LIVENESS_PREREQUISITE
+start_marker_commit: b55882fb26a0e16b3b3832d5a66537a651cf1383
+finding_commit: ac70be41dc5bcae3d1b2209337b4a16addedbe93
+clock_authority: GitHub commit timestamp
