@@ -19,18 +19,20 @@
   "deployed_enabled": true,
   "program_state": "ACTIVE",
   "sync_required": false,
-  "note": "Repair-first kernel deployed and canonical aligned. Repeated unchanged failure is forbidden; open reliability incidents preempt nominal work; early-exit repair occurs same invocation when possible; +180s is fallback only; scheduler self-rearm uses explicit complete VEVENT on subsequent wakes. No personal medical/safety detail persisted.",
+  "note": "Repair-first kernel deployed/canonical aligned. Gen34 recovery differentially verified explicit full-VEVENT absolute DTSTART write/readback after a concurrent overwrite incident; WAKE_OK/WORK_OK remain separate future evidence. Scheduler write attribution is active diagnostic instrumentation.",
   "generation_authority": "control/ownership.json",
-  "live_state_last_verified_at": "2026-09-24T14:48:16.102569Z",
-  "live_schedule_verified": "BEGIN:VEVENT\nDTSTART:20260924T145115Z\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "live_state_last_verified_at": "2026-09-24T14:54:30.797764Z",
+  "live_schedule_verified": "BEGIN:VEVENT\nDTSTART:20260924T150814Z\nRRULE:FREQ=HOURLY\nEND:VEVENT",
   "live_verification": {
     "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
     "enabled": true,
     "timing_mode": "exact_schedule",
     "recurrence": "RRULE:FREQ=HOURLY",
-    "dtstart_utc": "2026-09-24T14:51:15Z",
+    "dtstart_utc": "2026-09-24T15:08:14Z",
     "prompt_version": "2.2.12-REPAIR-FIRST-CRITICAL",
     "prompt_id": "MER-OPT-2P",
-    "evidence": "separate live automation readback after deployment"
+    "write_intent": "evidence/o8/scheduler-writes/20260924T145414Z_GEN34_RECOVERY_INTENT.json",
+    "write_result": "evidence/o8/scheduler-writes/20260924T145414Z_GEN34_RECOVERY_RESULT.json",
+    "evidence": "separate live automation readback after explicit full-VEVENT recovery write"
   }
 }
