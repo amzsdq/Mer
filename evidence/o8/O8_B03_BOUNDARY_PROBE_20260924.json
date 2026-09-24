@@ -1,0 +1,1 @@
+{"type":"BOUNDARY_PROBE","invocation_id":"MER-O8-GEN37-AUTOMATION-20260924","generation":37,"target_utc":"2026-09-24T15:38:39Z","purpose":"Obtain authoritative server timestamp near/after exact B03 target without mutating scheduler.","clock_source":"GITHUB_COMMIT_TIMESTAMP"}
