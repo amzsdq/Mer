@@ -1,0 +1,16 @@
+{
+  "type": "SCHEDULER_WRITE_INTENT",
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "substantive_generation": 34,
+  "role": "ACTIVE_OWNER",
+  "handoff_epoch": "O8-GEN34-TO-GEN35-NORMAL-001",
+  "mutation_reason": "RECOVERY_AFTER_VERIFIED_PREARM_WAS_OVERWRITTEN_AND_LIVE_DTSTART_PASSED_WITHOUT_OBSERVED_WAKE",
+  "intended_dtstart_utc": "2026-09-24T15:08:14Z",
+  "vevent": "BEGIN:VEVENT\nDTSTART:20260924T150814Z\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "timing_mode": "exact_schedule",
+  "enabled": true,
+  "representation_path": "FULL_VEVENT_ABSOLUTE",
+  "primary_variable": "SCHEDULER_WRITE_REPRESENTATION",
+  "writer_policy": "UNCHANGED_CURRENT_POLICY",
+  "note": "This is a recovery differential after the prior 15:01:31Z target was overwritten to 14:51:15Z and that later target passed without last_run advancement. Persist intent before mutation."
+}
