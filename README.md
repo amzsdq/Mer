@@ -2,8 +2,8 @@
 
 Research workspace for finding the optimal boundary between a ChatGPT Automation reservation prompt and GitHub durable control/state.
 
-## Result
-The research program is COMPLETE.
+## Current status
+The research program is ACTIVE. Prompt-boundary architecture convergence is retained, while relay operating-policy optimization is currently in Stage O4 (wake-prearm timing).
 
 Selected architecture:
 **HYBRID stable kernel + GitHub dynamic brain + single authoritative program object.**
@@ -36,9 +36,11 @@ Selected architecture:
 Historical status belongs in `evidence/` or `archive/`, never as a competing current truth.
 
 ## Validated gates
-- clean final wakes: 3/3 PASS
-- missing-entrypoint recovery: 1/1 PASS
-- final authority cleanup: COMPLETE
+- prompt-boundary architecture convergence: PASS
+- O1 controlled-overlap viability/stabilization: 5/5 clean handoffs PASS
+- O1→O4 stranded-owner recovery: PASS (gen8→gen9)
+- current stage: O4 adaptive pre-arm optimization
+- overall program completion: NOT YET; only O7 may mark COMPLETE
 
 ## Key documents
 - `research/FINAL_DESIGN.md`
