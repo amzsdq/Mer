@@ -1,0 +1,15 @@
+{
+  "type": "SUCCESSOR_READY",
+  "invocation_id": "MER-O7-GEN29-20260924T2241KST",
+  "epoch_id": "O7_FINAL_KERNEL_GEN28_TO_GEN29_SAMPLE1",
+  "source_generation": 28,
+  "target_generation": 29,
+  "scheduler_rearmed": true,
+  "scheduler_live_readback_verified": true,
+  "verified_schedule_dtstart_kst": "2026-09-24T22:55:02+09:00",
+  "rrule": "FREQ=HOURLY",
+  "timing_mode": "exact_schedule",
+  "enabled": true,
+  "prompt_version": "2.2.10-EARLY-EXIT-RETRY",
+  "prepared_next_action": "Acquire gen29 via fresh-SHA CAS, update O7 convergence evidence, and open gen29->gen30 if nonterminal."
+}
