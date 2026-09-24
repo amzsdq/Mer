@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "type": "REF_PROJECTION_GAP_ADVERSE_PROBE",
+  "parent_ref": "8b2894e1dde5cf3b19c85c46e566a376205a6017",
+  "simulated_state": "REF_ADVANCED_PROJECTION_ABSENT",
+  "production_authority": false,
+  "recovery_expectation": "fresh_ref_head_is_reconstructable_without_projection"
+}
