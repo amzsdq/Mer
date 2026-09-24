@@ -1,0 +1,7 @@
+{
+  "marker_type": "CONTROL_END",
+  "invocation_id": "MER-O7-GEN31-COVERAGE1-20260924T2252KST",
+  "unit": "authoritative handoff plus O7 accounting-state reconciliation",
+  "result": "PASS",
+  "clock_authority": "GitHub commit timestamp"
+}
