@@ -1,0 +1,21 @@
+{
+  "evidence_type": "IMMUTABLE_SHADOW_EVALUATION",
+  "invocation_id": "MER-WAKE-20260924T172347KST",
+  "observed_generation": 24,
+  "observed_owner": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "authority_status": "SHADOW_NOT_CURRENT_DURABLE_OWNER",
+  "o5_evaluation": {
+    "A": {"post_ready_max_units":1,"latencies_sec":[11,7,11],"mean_sec":9.6667,"median_sec":11,"clean":"3/3","duplicates":0,"control_writes_per_sample":1},
+    "B": {"post_ready_max_units":0,"latencies_sec":[7,8,8],"mean_sec":7.6667,"median_sec":8,"clean":"3/3","duplicates":0,"control_writes_per_sample":1},
+    "observed_mean_delta_sec":-2.0,
+    "observed_mean_delta_pct_vs_A":-20.69,
+    "decision_if_authoritative": "KEEP_A_REVISE_HYPOTHESIS",
+    "rationale": "Both windows are 3/3 clean with zero duplicates and identical control-write count. B's three-sample latency is lower, but the plan defines no materiality threshold and n=3 per arm is insufficient to establish a robust material latency advantage. Under the declared promotion rule and simplicity tie-break, do not promote B on this evidence alone."
+  },
+  "blocker": {
+    "code": "AUTHORITY_STRANDED_NO_OPEN_HANDOFF_EPOCH",
+    "detail": "control/ownership.json names the prior gen24 invocation as OWNER_ACTIVE, but its handoff epoch is CONSUMED and no gen24-to-gen25 OPEN epoch exists. This wake cannot authoritatively mutate status/program.json, spec/execution.json, or ownership under the current generation fence, and no applicable single-use recovery transition is authorized.",
+    "required_resolution": "Current durable owner must open a normal gen24-to-gen25 handoff epoch, or the program must explicitly authorize a single-use recovery transition for exactly generation 24."
+  },
+  "continuation": {"prearm_offset_sec":840,"scheduler_write_verified":true,"authoritative_state_mutated":false}
+}
