@@ -1,0 +1,8 @@
+{
+  "marker": "END_MARKER",
+  "invocation_id": "MER-WAKE-20260924T172347KST",
+  "result": "BLOCKED_AUTHORITY_STRANDED",
+  "start_marker": "evidence/work_sessions/MER_WAKE_20260924T172347KST_START.json",
+  "evaluation_evidence": "evidence/o5/O5_EVALUATION_SHADOW_20260924T1723KST.json",
+  "time_authority": "GitHub commit timestamp"
+}
