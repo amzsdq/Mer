@@ -1,0 +1,16 @@
+{
+  "evidence_type": "SUCCESSOR_READY",
+  "experiment_id": "H-O5-READY-TRANSFER-GRANULARITY",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_2",
+  "invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
+  "handoff_epoch": "O5_WINDOW_B_GEN22_TO_GEN23_SAMPLE2",
+  "bound_source_generation": 22,
+  "bound_target_generation": 23,
+  "prearm_offset_sec": 840,
+  "prearm_verified": true,
+  "durable_state_reconstructed": true,
+  "immediate_next_action": "FRESH_SHA_CAS_GEN22_TO_GEN23",
+  "post_ready_max_authoritative_units": 0,
+  "ready": true,
+  "time_authority": "GitHub commit timestamp"
+}
