@@ -1,16 +1,16 @@
 {
   "schema_version": 4,
-  "generation": 29,
-  "active_invocation_id": "MER-O7-GEN29-20260924T2241KST",
+  "generation": 30,
+  "active_invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O7-GEN28-20260924T2228KST",
-  "intended_successor_invocation_id": "NEXT_ELIGIBLE_O7_FINAL_KERNEL_SUCCESSOR",
+  "predecessor_invocation_id": "MER-O7-GEN29-20260924T2241KST",
+  "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O7_FINAL_KERNEL_GEN29_TO_GEN30_SAMPLE2",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 29,
     "target_generation": 30,
     "opened_by_invocation_id": "MER-O7-GEN29-20260924T2241KST",
@@ -20,8 +20,10 @@
     "prearm_offset_sec": 840,
     "post_ready_max_authoritative_units": 1,
     "ready_evidence_required": true,
+    "ready_evidence": "evidence/o7/O7_FINAL_KERNEL_GEN29_TO_GEN30_SAMPLE2_READY_20260924T2248KST.json",
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_ONE_POST_READY_ATOMIC_UNIT_MAX",
     "cas_attempts_per_contender": 1,
+    "cas_result": "SUCCESS_FRESH_SHA",
     "expires_by_time": false
   },
   "recovery_transition": {
@@ -35,6 +37,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O7_FINAL_KERNEL_SAMPLE1_CLEAN_HANDOFF_COMPLETE_AND_SAMPLE2_OPENED",
+  "transition_reason": "O7_FINAL_KERNEL_SAMPLE2_NORMAL_HANDOFF_COMPLETE",
   "server_time_authority": "GitHub commit timestamp"
 }
