@@ -1,7 +1,7 @@
 {
   "schema_version": 5,
-  "generation": 39,
-  "active_invocation_id": "MER-O8-GEN39-AUTOMATION-20260924",
+  "generation": 43,
+  "active_invocation_id": "MER-O8-GEN43-RECOVERY-20260925",
   "status": "ACTIVE_OWNER",
   "owner_started_at": "2026-09-24T15:50:37Z",
   "owner_end_marker": "evidence/o8/O8_GEN37_END_20260924_AUTOMATION.json",
@@ -24,8 +24,11 @@
     "winner_invocation_id": "MER-O8-GEN39-AUTOMATION-20260924",
     "cas_result": "SUCCESS_AFTER_DURABLE_END"
   },
-  "authority_rule": "Generation39 remains authoritative until durable END; after END, next distinct invocation may acquire generation40 under serialized continuation.",
+  "authority_rule": "Generation43 is the fresh immutable recovery re-root after preserved gen40->41 gap; stale generations <=42 are fenced. Scheduler writes remain owner-only.",
   "server_time_authority": "GitHub commit timestamp",
   "owner_start_marker": "evidence/o8/O8_GEN39_START_20260924_AUTOMATION.json",
-  "owner_start_commit": "3bb142820628f8d2fbfc6eefdb07ce5638ecab30"
+  "owner_start_commit": "3bb142820628f8d2fbfc6eefdb07ce5638ecab30",
+  "recovery_epoch": "evidence/o8/O8_AUTHORITY_GAP_GEN40_TO_GEN43_RECOVERY_EPOCH_V1.json",
+  "authority_event": "control/authority-events/gen-000043.json",
+  "reconciliation_note": "Historical gen40->41 gap is preserved; gen41->42 is a valid suffix, not retroactively contiguous."
 }
