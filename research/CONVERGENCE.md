@@ -45,6 +45,13 @@ PASS:
 The smallest supported design is therefore:
 **HYBRID stable kernel + GitHub dynamic brain + single authoritative program object.**
 
-
 ## Current program relation
-This convergence remains an architectural invariant during the active optimizer program. O1 later validated generation/CAS baton handoff with 5/5 clean samples, and Stage O4 is now testing adaptive pre-arm timing. Overall COMPLETE remains gated by Stage O7.
+This convergence remains an architectural invariant during the active optimizer program. O1 later validated generation/CAS baton handoff with 5/5 clean samples. O4/O5/O6/O7 established scheduler/handoff/recovery evidence under tested conditions, but the prior overall-completion declaration was invalidated because single-wake useful work remained materially short.
+
+The active stage is O8. O8 adds two constraints that do not change the HYBRID boundary itself:
+1. handoff stop gates are invocation-role-relative: acquisition starts the acquiring invocation's owner tenure; only a later handoff away can stop that owner;
+2. overall completion requires direct >=600s GitHub-server-timestamp evidence for one nonterminal authoritative invocation containing multiple genuine useful units, unless a platform limit is evidenced and the objective remains unresolved.
+
+A scheduler mismatch incident also hardened the stable prompt kernel: relay self-rearm now uses one normalized absolute DTSTART in a complete recurring VEVENT with exact live readback, and repeated unchanged early-exit retry is replaced by repair-first differential verification.
+
+Overall COMPLETE remains **not satisfied** until the current O8 gates in `status/program.json` and `research/MASTER_PLAN.md` pass.
