@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
-  "next_step": "EXECUTE O6 T2 after normal gen26->gen27 handoff: model a stale shadow that attempts deterministic orphan recovery after authority has already advanced. Require zero authoritative mutation and preserve the live normal successor path. Then continue T3 if safe.",
+  "next_step": "EXECUTE O6 T3: model an existing OPEN handoff epoch with a late/not-yet-READY successor. Deterministic orphan recovery must remain ineligible and must not bypass the normal handoff path. Require zero recovery mutation, scheduler enabled, and OPEN epoch preserved. Then continue T4 if safe.",
   "active_hypothesis": "H-O6-STRANDED-OWNER-RECOVERY",
   "hypothesis_status": "TESTABLE",
   "active_execution": "spec/execution.json",
@@ -29,18 +29,18 @@
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
     "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
     "o6_sourcing_gate": "PASS_TESTABLE",
-    "o6_adverse_tests": "1_OF_5_T1_PASS"
+    "o6_adverse_tests": "2_OF_5_T1_T2_PASS"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O6_T1_STRANDED_OWNER_EXACT_REPRODUCTION",
+    "scope": "O6_T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
     "result": "PASS",
-    "status": "ISOLATED FIXTURE: ONE ELIGIBLE RECOVERY, ONE GENERATION INCREMENT, ZERO DUPLICATE AUTHORITATIVE SIDE EFFECTS, SCHEDULER ENABLED, NEXT NORMAL EPOCH OPEN",
-    "evidence": "evidence/o6/fixtures/T1_STRANDED_OWNER_RESULT.json"
+    "status": "STALE OBSERVER REJECTED BEFORE CAS; ZERO AUTHORITATIVE MUTATION; EXISTING OPEN SUCCESSOR PATH PRESERVED; SCHEDULER ENABLED",
+    "evidence": "evidence/o6/fixtures/T2_STALE_SHADOW_RESULT.json"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
+  "active_sample": "O6_T3_OPEN_EPOCH_LATE_SUCCESSOR_NO_RECOVERY_BYPASS",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
 }
