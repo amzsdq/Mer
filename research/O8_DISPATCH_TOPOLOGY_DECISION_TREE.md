@@ -37,3 +37,7 @@ If serialized same-canonical continuation matches or improves measured continuit
 
 ## Failure rule
 If serialized continuation materially increases idle gaps or recovery loss and concurrent overlap is directly reproducible, retain the more complex overlap mechanism with owner-fenced scheduler writes.
+
+
+## S01 direct follow-up
+Serialized S01 produced a distinct successor after predecessor END. GitHub server chronology: predecessor END `15:41:51Z`, intended target `15:43:21Z`, successor START `15:43:48Z`. This is Case 3 evidence for S01. It is one clean serialized sample, not yet a universal provider contract. Continue S02/S03 before promotion.
