@@ -9,13 +9,14 @@
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
-    "epoch_id": "O4_HANDOFF_EPOCH_GEN9_001",
-    "state": "CONSUMED",
-    "source_generation": 9,
-    "target_generation": 10,
-    "opened_by_invocation_id": "MER-O4-STAGE-RECOVERY-001",
-    "opened_by_generation": 9,
-    "consumed_by_invocation_id": "MER-O4-20260924-122248-001",
+    "epoch_id": "O4_HANDOFF_EPOCH_GEN11_A840_001",
+    "state": "OPEN",
+    "source_generation": 11,
+    "target_generation": 12,
+    "opened_by_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
+    "opened_by_generation": 11,
+    "sample": "O4_FIXED_WINDOW_A_840S",
+    "prearm_offset_sec": 840,
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
@@ -31,6 +32,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "USER_AUTHORIZED_SINGLE_USE_RECOVERY_GEN10_TO_GEN11",
+  "transition_reason": "USER_AUTHORIZED_SINGLE_USE_RECOVERY_GEN10_TO_GEN11_THEN_OPEN_NORMAL_GEN11_TO_GEN12",
   "server_time_authority": "GitHub commit timestamp"
 }
