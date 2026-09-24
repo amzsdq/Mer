@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "sample": "O1_STABILIZATION_HANDOFF_005",
+  "invocation_id": "MER-20260924T111928+0900-O1HANDOFF005",
+  "role": "READY_CONTENDER",
+  "source_generation": 7,
+  "target_generation": 8,
+  "handoff_epoch_id": "O1_HANDOFF_EPOCH_GEN7_005",
+  "wake_ok": true,
+  "wake_start_prearm_verified": true,
+  "checkpoint_reconstructed": true,
+  "observed_owner": "MER-20260924T110813+0900-O1HANDOFF004",
+  "observed_epoch_state": "OPEN",
+  "observed_ownership_blob_sha": "969c9794ade8fb92459037d6f39c4a57b0fd1608",
+  "ready": true,
+  "time_authority": "GitHub commit timestamp"
+}
