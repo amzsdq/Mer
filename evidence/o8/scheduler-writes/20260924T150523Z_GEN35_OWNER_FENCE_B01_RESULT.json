@@ -1,0 +1,26 @@
+{
+  "type": "SCHEDULER_WRITE_RESULT",
+  "sample": "O8_WRITER_FENCE_B01",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "substantive_generation": 35,
+  "role": "ACTIVE_OWNER",
+  "write_intent": "evidence/o8/scheduler-writes/20260924T1505_GEN35_OWNER_FENCE_B01_INTENT.json",
+  "write_ok": true,
+  "state_ok": true,
+  "live_readback": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "schedule": "BEGIN:VEVENT\nDTSTART:20260925T001718\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+    "default_timezone": "Asia/Seoul",
+    "equivalent_dtstart_utc": "2026-09-24T15:17:18Z"
+  },
+  "intended_dtstart_utc": "2026-09-24T15:17:18Z",
+  "exact_match": true,
+  "scheduler_write_count_for_sample_so_far": 1,
+  "unexplained_overwrite_after_readback": "NOT_YET_OBSERVED",
+  "wake_ok": "PENDING_FUTURE_DISPATCH",
+  "work_ok": true,
+  "result": "B01_WRITE_STATE_PASS",
+  "next": "Continue genuine owner work; later verify target stability and actual WAKE_OK/WORK_OK. Need three clean B samples plus mandatory owner-loss adverse sample before promotion."
+}
