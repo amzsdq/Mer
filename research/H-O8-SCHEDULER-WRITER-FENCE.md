@@ -18,11 +18,11 @@ Scheduler write authority: ALL_WAKES_PREARM versus OWNER_OR_NEWLY_ACQUIRED_OWNER
 - DISTRIBUTED_SYSTEMS_FORMAL/ENGINEERING_PRIOR
 
 ## SUPPORTING PRIORS
-1. Mer gen34 forensic evidence: durable manifest history shows a verified target changed from `15:01:31Z` to `14:51:15Z` within 4.724954 seconds while substantive ownership remained generation 34 with the gen34->35 epoch OPEN. This directly establishes a concurrent last-writer scheduler surface; it does not identify the second writer.
-2. Mer already uses fresh-SHA generation CAS for authoritative shared-state ownership because concurrent contenders require exactly one winner.
-3. Kubernetes official Lease documentation states that distributed systems use leases to lock shared resources/coordinate members and that Kubernetes uses Lease objects for leader election so one instance acts as leader while peers remain standby. Coordinated Leader Election further uses optimistic concurrency on the Lease resource so one candidate becomes leader.
-4. GitHub official repository-contents documentation requires the current blob `sha` when replacing a file and warns that parallel conflicting content operations can conflict, supporting explicit versioned/serialized mutation rather than unconstrained concurrent writers.
-5. Kleppmann's distributed-lock analysis shows why lease ownership alone is insufficient for correctness if a stale paused holder can resume: protected writes need monotonically increasing fencing tokens. Mer's generation is the fencing-token analogue for authoritative shared-state effects and must remain monotonic even if scheduler recovery policy changes.
+1. Mer gen34 forensic evidence: durable manifest history shows a verified target changed from `15:01:31Z` to `14:51:15Z` within 4.724954 seconds while substantive ownership remained generation 34 with the gen34->35 epoch OPEN. This establishes a concurrent last-writer scheduler surface but does not identify the second writer.
+2. Mer uses fresh-SHA generation CAS for authoritative shared-state ownership because concurrent contenders require exactly one winner.
+3. Kubernetes Lease/leader-election mechanisms coordinate shared leadership so one instance acts while peers remain standby; optimistic concurrency selects the leader.
+4. GitHub repository-content replacement requires the current blob SHA and conflicting parallel writes can conflict, supporting versioned/serialized mutation.
+5. Fencing-token prior art motivates monotonically increasing authority tokens so a stale holder cannot resume protected writes. Mer generation is the analogue for authoritative shared-state effects.
 
 ## AUTHORITATIVE / TECHNICAL REFERENCES
 - Kubernetes Leases: https://kubernetes.io/docs/concepts/architecture/leases/
@@ -35,41 +35,39 @@ Scheduler write authority: ALL_WAKES_PREARM versus OWNER_OR_NEWLY_ACQUIRED_OWNER
 ## COUNTER PRIORS / KNOWN CONFLICTS
 1. ALL_WAKES_PREARM was introduced as crash insurance: a SHADOW can secure a later wake before ownership transfer.
 2. If the current owner dies before transfer and no already-armed future occurrence exists, forbidding all shadow writes could increase recovery latency.
-3. The observed changed DTSTART does not by itself prove the overwrite was harmful; it may have been an intentional recovery mutation. Historical automation metadata lacks writer identity, which is why O8 added immutable write-intent/result attribution.
-4. Kubernetes/GitHub primitives do not prove ChatGPT Automation dispatch semantics; they justify the coordination hypothesis, not the product-specific outcome.
-5. Kubernetes has explicit lease expiry/renewal takeover semantics. Mer currently does not validate elapsed time alone as takeover authority. Do not import TTL takeover without a separate hypothesis/test.
-6. The scheduler API does not expose Mer generation as a native fencing token. Therefore stale-writer rejection must be enforced before scheduler mutation; if owner-loss testing needs independent scheduler liveness, REVISE toward a separate durable scheduler-writer claim/epoch rather than weakening substantive generation fencing.
+3. A changed DTSTART does not prove a harmful overwrite; historical metadata lacks writer identity, hence immutable write attribution.
+4. External coordination primitives do not prove ChatGPT Automation dispatch semantics.
+5. Mer does not validate elapsed time alone as takeover authority; TTL takeover is out of scope.
+6. The scheduler API has no native Mer-generation CAS, so stale-writer rejection is enforced before scheduler mutation. If owner-loss evidence shows this is too restrictive, revise toward a durable scheduler-writer claim/epoch rather than weakening substantive fencing.
 
 ## TRANSLATION
-- Lease holder / leader -> current generation ACTIVE_OWNER.
-- Scheduler write -> mutation of the single canonical automation's DTSTART/RRULE state.
-- Contender preparation -> SHADOW reads durable state and prepares READY evidence without scheduler mutation.
-- Ownership acquisition -> fresh-SHA generation CAS; after success the new owner may write its one scheduler prearm.
-- resourceVersion/blob SHA -> Mer's generation/current-SHA fencing analogue, not an assumed scheduler-native CAS.
-- fencing token -> monotonically increasing Mer generation for authoritative shared-state side effects.
+- leader -> current generation ACTIVE_OWNER;
+- scheduler write -> canonical DTSTART/RRULE mutation;
+- contender preparation -> SHADOW reads/prepares READY with zero scheduler mutation;
+- ownership acquisition -> fresh-SHA generation CAS;
+- fencing token -> monotonically increasing Mer generation.
 
 ## NON-TRANSFERABLE ASSUMPTIONS
-- Kubernetes/GitHub do not establish ChatGPT Automation dispatch timing or guarantee atomic scheduler CAS.
-- Mer must empirically verify owner-only/new-owner-only scheduling against missed continuation and owner-loss recovery.
-- External prior art does not convert a Mer hypothesis into Mer truth.
+External systems do not establish ChatGPT dispatch timing or atomic scheduler CAS. Owner-only scheduling must be empirically verified against missed continuation and owner-loss recovery.
 
 ## DISCRIMINATING TEST
-Hold offset=840s, recurrence, full-VEVENT absolute representation, prompt semantics, work units, and handoff semantics constant. Compare:
-A. current ALL_WAKES_PREARM;
-B. OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY, where a shadow performs no scheduler mutation unless/until it wins generation CAS.
+Hold offset=840s, recurrence, full-VEVENT absolute representation, prompt semantics, work units, and handoff semantics constant. Compare A=ALL_WAKES_PREARM versus B=OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY. Capture attributed intent/result, exact live readback, later WAKE_OK/WORK_OK, ownership generation, handoff result, scheduler write count, target overwrite, missed continuation, idle/handoff gap, and recovery latency.
 
-For each sample capture immutable write intent/result, intended DTSTART, exact live readback, actual later WAKE_OK/WORK_OK, ownership generation, handoff result, scheduler write count, overwritten-target observations, missed continuation, idle/handoff gap, and recovery latency. Use deterministic oracle `research/O8_WRITER_FENCE_DETERMINISTIC_ASSERTIONS.md`. Run the mandatory owner-loss adverse case in `research/O8_WRITER_FENCE_OWNER_LOSS_ADVERSE_PROTOCOL.md` before promotion.
+A completed clean normal B sample requires all of: SHADOW scheduler writes=0; legal fresh-SHA ownership CAS; exactly one attributed owner prearm; exact immediate STATE_OK; intended target remains the authoritative target until actual dispatch or an independently justified later owner transition; actual later WAKE_OK and WORK_OK; no duplicate authority. An intentionally superseded target is useful mechanism evidence but is not a clean normal sample.
+
+Mandatory owner-loss adverse test is `research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md` and must use a single-use evidence-backed transition without corrupting authority.
 
 ## CURRENT B EVIDENCE
-- B01/gen35: immediate WRITE_OK+STATE_OK PASS; completed clean-sample status unresolved because later WAKE/stability was not established before the next legal transfer.
-- B02/gen36: successor began SHADOW, performed zero scheduler writes, created READY bound to gen35->36, won fresh-SHA CAS, and only then performed one attributed owner full-VEVENT +840s write to `15:30:20Z`; separate live readback exact PASS and current WORK_OK PASS. Later WAKE_OK/stability remains pending. Original B02 intent omitted some attribution metadata; history was not rewritten, and an immutable addendum records the limitation. B03 must satisfy the full attribution schema before mutation.
-- Owner-loss adverse protocol/template prepared but not executed.
+- B01/gen35: WRITE_OK+STATE_OK PASS; clean later target wake/stability not proven; clean-count=0.
+- B02/gen36: SHADOW write=0, legal CAS, one owner prearm, WRITE_OK+STATE_OK+WORK_OK PASS; target later intentionally superseded before clean target WAKE qualification; clean-count remains 0.
+- B03/gen37: START `15:24:20Z`; SHADOW write=0; READY bound to gen36->37; fresh-SHA CAS `cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c` at `15:24:39Z`; one owner prearm to `15:38:39Z`; separate live readback exact PASS; current WORK_OK PASS; clean status PENDING actual target stability/WAKE_OK.
+- Controlled owner-loss adverse protocol frozen for gen37->38 and not yet executed.
 
 ## PROMOTION_GATE
-KEEP B only if >=3 completed clean normal samples plus one owner-loss adverse sample show continuity/recovery no worse under tested conditions, scheduler write count/overwrite ambiguity materially lower, no duplicate authority, and stale predecessors fenced from authoritative effects.
+KEEP B only if >=3 completed clean normal samples plus one owner-loss adverse PASS show continuity/recovery no worse under tested conditions, scheduler write count/overwrite ambiguity materially lower, no duplicate authority, and stale predecessors fenced.
 
 ## REJECTION / REVISION RULE
-- REJECT owner-only fencing if a reproducible owner-loss case strands continuation that ALL_WAKES_PREARM recovers safely.
-- REJECT any recovery that requires weakening monotonic generation fencing.
-- REVISE to a durable scheduler-write claim/epoch if owner-only is too restrictive but unconstrained all-wake writes demonstrably collide.
-- Do not infer writer identity from timing alone; require attributed intent/result evidence.
+- REJECT owner-only fencing if reproducible owner loss strands continuation that A recovers safely.
+- REJECT recovery that weakens monotonic generation fencing.
+- REVISE to durable scheduler-write claim/epoch if owner-only is too restrictive but all-wake writes collide.
+- Never infer writer identity from timing alone.
