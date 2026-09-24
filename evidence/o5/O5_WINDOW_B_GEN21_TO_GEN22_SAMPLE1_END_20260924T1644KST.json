@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "marker_type": "END_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_1",
+  "source_generation": 21,
+  "target_generation": 22,
+  "result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "ready_commit_sha": "fd1172233d4f456f9c26618d61151deacebd8c85",
+  "cas_commit_sha": "f5ed559df2e6442da009e835ca16d57e7195212c",
+  "ready_to_cas_latency_sec": 7,
+  "duplicate_authoritative_side_effect": 0,
+  "handoff_success": true,
+  "control_write_count": 1,
+  "server_time_authority": "GitHub commit timestamp",
+  "note": "End marker timestamp is authoritative for WORKED calculation."
+}
