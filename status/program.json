@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "CRITICAL REPAIR FIRST: diagnose the repeated short-cycle/early-finalization signature and any scheduler DTSTART mismatch before nominal O8 progression. Use FAILURE_OBSERVED -> ROOT_CAUSE_IDENTIFIED -> MECHANISM_CHANGED -> DIFFERENTIAL_VERIFICATION. Do not merely schedule +180s and retry the same mechanism. Once the repair is materially verified, continue the open gen33->34 O8 handoff and long-wake validation; after acquiring ownership, continue as ACTIVE_OWNER rather than stopping on the inherited handoff.",
+  "next_step": "CRITICAL REPAIR DIFFERENTIAL VERIFICATION FIRST. On the next wake, use one normalized absolute DTSTART encoded in a COMPLETE recurring VEVENT (DTSTART + RRULE:FREQ=HOURLY), then exact live-readback same ID/enabled/exact_schedule/RRULE/intended instant. Do not use dtstart_offset_json for self-rearm. If scheduler verification passes, continue gen34 ACTIVE_OWNER work; ownership acquisition is not a stop gate. Chain multiple distinct genuine useful units and preserve progress markers toward >=600s. If a later distinct eligible successor becomes READY, finish only current atomic unit and handoff away.",
   "active_hypothesis": "H-O8-ROLE-RELATIVE-STOP-GATE",
   "hypothesis_status": "TESTABLE_RUNNING",
   "active_execution": "spec/execution.json",
@@ -39,33 +39,32 @@
     "o8_role_relative_stop_gate": "RUNNING_POST_ACQUISITION_CONTINUATION_OBSERVED",
     "o8_long_wake_validation_600s": "PENDING",
     "overall_program_complete": "NO",
-    "o8_repair_first_critical_incident": "PENDING_DIAGNOSIS_AND_DIFFERENTIAL_VERIFICATION"
+    "o8_repair_first_critical_incident": "MECHANISM_CHANGED_AWAITING_NEXT_WAKE_DIFFERENTIAL_SCHEDULER_TEST"
   },
-  "objective_order": [
-    "CONTINUITY_RECOVERABILITY",
-    "USEFUL_WORK_DUTY_CYCLE",
-    "SIMPLICITY"
-  ],
+  "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
     "scope": "O7_PREMATURE_COMPLETION",
     "result": "INVALIDATED_BY_USER_CORRECTION",
     "reason": "continuity and scheduling were validated, but long single-wake useful work remained unresolved; observed final invocations were materially short",
     "recovery_generation": 33
   },
-  "completion_rule": "NOT SATISFIED. Overall completion additionally requires O8 long-wake validation: at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >=600s and multiple distinct genuine useful units while continuity remains secured, unless a physical/platform limit is evidenced and the objective remains explicitly unresolved.",
+  "completion_rule": "NOT SATISFIED. Overall completion requires O8 long-wake validation: at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >=600s and multiple distinct genuine useful units while continuity remains secured, unless a physical/platform limit is evidenced and the objective remains explicitly unresolved.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O8_CRITICAL_REPAIR_FIRST_THEN_LONG_WAKE",
+  "active_sample": "O8_REPAIR_FIRST_DIFFERENTIAL_THEN_LONG_WAKE",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
   "evidence": [
     "evidence/o8/O8_GEN34_READY_20260924.json",
     "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
-    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json"
+    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json",
+    "evidence/o8/O8_REPAIR_RUN_START_20260924T1448Z.json",
+    "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json"
   ],
   "critical_incident": {
-    "state": "OPEN",
+    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
     "type": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
     "priority": "ABOVE_NOMINAL_RESEARCH",
-    "rule": "Do not retry unchanged. Identify concrete cause, change mechanism/control path, verify materially different behavior, then resume."
+    "root_cause_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
+    "rule": "Do not retry unchanged. Next wake must differentially verify explicit full-VEVENT scheduler write/readback before incident closure."
   }
 }
