@@ -1,0 +1,9 @@
+{
+  "sample": "S02",
+  "predecessor_end_utc": "2026-09-24T15:46:37Z",
+  "intended_dtstart_utc": "2026-09-24T15:48:20Z",
+  "successor_start_utc": "2026-09-24T15:50:37Z",
+  "idle_gap_sec": 240,
+  "dispatch_delay_sec": 137,
+  "classification": "CLEAN"
+}
