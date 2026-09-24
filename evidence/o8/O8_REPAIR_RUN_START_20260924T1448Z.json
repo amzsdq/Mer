@@ -1,0 +1,7 @@
+{
+  "type": "START_MARKER",
+  "stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
+  "purpose": "repair-first critical incident diagnosis and differential verification",
+  "clock_authority": "GitHub commit server timestamp",
+  "status": "STARTED"
+}
