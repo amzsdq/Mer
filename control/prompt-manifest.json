@@ -19,6 +19,6 @@
   "deployed_enabled": true,
   "program_state": "ACTIVE",
   "sync_required": false,
-  "note": "2.2.15 decouples duration measurement from GitHub marker mutations. Preferred GitHub server marker clock remains supported; AUTOMATION_SERVER_CLOCK failover uses same-canonical last_run_time as START and final scheduler mutation updated_at as END. One sample never mixes clock sources.",
+  "note": "2.2.15: duration clock failover permits same-canonical automation server timestamps when GitHub marker mutation is unavailable; never mix clock sources within one sample.",
   "generation_authority": "control/ownership.json"
 }
