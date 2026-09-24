@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "authority_generation": 43,
+  "authority_event": "control/authority-events/gen-000043.json",
+  "ownership_projection": "control/ownership.json",
+  "historical_strict_contiguous_through_generation": 40,
+  "preserved_gap": "GEN40_TO_GEN41",
+  "preserved_valid_suffix": "GEN41_TO_GEN42",
+  "status_program_state": "STALE_FOLLOWER",
+  "spec_execution_state": "STALE_FOLLOWER",
+  "authority_precedence": "IMMUTABLE_GEN43_EVENT_THEN_OWNERSHIP43",
+  "rule": "Until follower reconciliation succeeds and is independently read back, stale follower generation fields cannot override generation43 authority and cannot authorize owner-loss adverse or CLEAN promotion.",
+  "repair_order": [
+    "fresh-read generation43 immutable event and ownership",
+    "reconcile spec/execution with fresh SHA",
+    "read back spec/execution",
+    "reconcile status/program with fresh SHA",
+    "read back status/program",
+    "only then start fresh normal serialized sample"
+  ]
+}
