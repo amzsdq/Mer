@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 34,
+  "unit_id": "O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION",
+  "unit_class": "GENUINE_USEFUL_RESEARCH",
+  "work": [
+    "Completed normal gen33->34 READY plus fresh-SHA CAS ownership acquisition",
+    "Continued in the same invocation after acquisition instead of treating inherited handoff as a stop gate",
+    "Performed bounded prior-art scan covering internal evidence, AWS Step Functions state transitions, Kubernetes leader election, Temporal durable execution, and contrary/platform-limit interpretation",
+    "Promoted H-O8-ROLE-RELATIVE-STOP-GATE from SOURCING_PENDING to TESTABLE with explicit discriminating test and rejection/revision rules"
+  ],
+  "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
+  "result": "PASS_POST_ACQUISITION_CONTINUATION_OBSERVED",
+  "program_complete": false,
+  "long_wake_600s_gate": "NOT_YET_MEASURED",
+  "next": "Execute additional distinct useful units in this same invocation; measure elapsed work only from GitHub server markers; do not stop because gen34 was acquired."
+}
