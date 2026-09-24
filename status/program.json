@@ -4,10 +4,10 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
-  "next_step": "OBTAIN LIVE RETROSPECTIVE EVIDENCE FOR H-O6-OBSERVED-STATE-RECONCILIATION: on the next actual wake, classify the current prearm as WAKE_OK only from actual execution, never from WRITE_OK/STATE_OK. Then reconcile whether O6 adverse coverage is sufficient for O7 entry; preserve provider-specific absent-wake frequency as UNKNOWN unless actually observed.",
-  "active_hypothesis": "H-O6-OBSERVED-STATE-RECONCILIATION",
-  "hypothesis_status": "KEEP_PENDING_LIVE_WAKE_EVIDENCE",
+  "current_stage": "O7_FINAL_CONVERGENCE_STAGE_ENTRY_PENDING",
+  "next_step": "COMPLETE NORMAL GEN27_TO_GEN28 STAGE-TRANSITION HANDOFF INTO O7. SUCCESSOR THEN BUILD THE O7 CONVERGENCE MATRIX: repeated unchanged clean wakes, zero duplicate authoritative side effects, retrospective WAKE_OK/WORK_OK, O6 adverse recovery PASS, measured duty-cycle/idle-gap where observable, simpler comparator, and rejected-hypothesis ledger. Do not invent provider miss-rate evidence.",
+  "active_hypothesis": "H-O7-FINAL-CONVERGENCE",
+  "hypothesis_status": "STAGE_ENTRY_PENDING",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -20,8 +20,9 @@
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
     "prearm_live_verify": true,
+    "early_exit_corrective_rearm_sec": 180,
     "orphan_recovery": "KEEP_PRIMITIVE",
-    "reconciliation_mode_under_test": "OBSERVED_STATE"
+    "reconciliation_mode": "OBSERVED_STATE"
   },
   "gate": {
     "o1_stabilization": "PASS",
@@ -31,19 +32,20 @@
     "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
     "o6_orphan_recovery_fixture_suite": "5_OF_5_PASS_KEEP_PRIMITIVE",
     "o6_observed_state_fixture_suite": "4_OF_4_PASS",
-    "o6_live_wake_reconciliation": "PENDING_NEXT_ACTUAL_WAKE",
-    "o6_stage_gate": "OPEN_LIVE_RETROSPECTIVE_WAKE_EVIDENCE"
+    "o6_live_wake_reconciliation": "PASS_ACTUAL_WAKE_PLUS6S_AND_WORK_RESUMED_GEN27",
+    "o6_stage_gate": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
+    "o7_stage_entry": "PENDING_GEN27_TO_GEN28_NORMAL_HANDOFF"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "H-O6-OBSERVED-STATE-RECONCILIATION_R1_R4",
-    "result": "KEEP_PENDING_LIVE_WAKE_EVIDENCE",
-    "status": "4/4 DETERMINISTIC FIXTURES PASS; PROMPT MISMATCH DETECTED; MISSING BOOTSTRAP RECOVERED FROM DECLARED STABLE REFS; WRITE_OK WITHOUT WAKE_OK DOES NOT INFER WORK; NOMINAL MATCH ADDS ZERO CORRECTIVE WRITES",
-    "evidence": "evidence/o6/fixtures/OBSERVED_STATE_RECONCILIATION_R1_R4_RESULT.json"
+    "scope": "O6_ADVERSE_RECOVERY_TESTS",
+    "result": "PASS_WITH_PROVIDER_MISS_RATE_UNKNOWN",
+    "status": "5/5 ORPHAN-RECOVERY FIXTURES PASS; 4/4 OBSERVED-STATE FIXTURES PASS; ACTUAL LATER WAKE OBSERVED +6S; WAKE_OK AND WORK_OK DIRECTLY ESTABLISHED; GEN26_TO_GEN27 NORMAL HANDOFF COMPLETE; DUPLICATE AUTHORITATIVE SIDE EFFECTS OBSERVED=0",
+    "evidence": "evidence/o6/O6_GATE_EVALUATION_20260924.md"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_LIVE_WAKE_RECONCILIATION",
+  "active_sample": "O7_STAGE_ENTRY_PENDING",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "research/H-O6-OBSERVED-STATE-RECONCILIATION.md"
+  "hypothesis_record": "PENDING_O7_CONVERGENCE_RECORD"
 }
