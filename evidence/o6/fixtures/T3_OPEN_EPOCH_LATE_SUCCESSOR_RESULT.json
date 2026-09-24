@@ -1,0 +1,21 @@
+{
+  "fixture_schema": 1,
+  "fixture_id": "O6-T3-OPEN-EPOCH-LATE-SUCCESSOR",
+  "test": "T3_OPEN_EPOCH_LATE_SUCCESSOR_NO_RECOVERY_BYPASS",
+  "scenario": {
+    "generation": 300,
+    "owner": "FIXTURE-OWNER-G300",
+    "handoff_epoch": {"state":"OPEN","source_generation":300,"target_generation":301},
+    "successor_ready": false,
+    "program_nonterminal": true
+  },
+  "admission": {
+    "legal_open_successor_path_absent": false,
+    "decision": "INELIGIBLE_NORMAL_HANDOFF_PATH_EXISTS"
+  },
+  "recovery_cas_attempts": 0,
+  "authoritative_mutations": 0,
+  "open_epoch_preserved": true,
+  "scheduler_enabled": true,
+  "result": "PASS"
+}
