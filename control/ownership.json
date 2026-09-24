@@ -1,38 +1,22 @@
 {
   "schema_version": 4,
-  "generation": 3,
-  "active_invocation_id": "MER-RECOVERY-EPOCH-001-LIVE",
-  "status": "OWNER_ACTIVE_HANDOFF_OPEN",
-  "predecessor_invocation_id": "MER-20260924T060808+0900-O1BOOT001",
-  "intended_successor_invocation_id": "FIRST_READY_CONTENDER_FOR_OPEN_EPOCH",
-  "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP_OF_GEN3_TRANSITION",
+  "generation": 4,
+  "active_invocation_id": "MER-20260924T103106+0900-O1HANDOFF001",
+  "status": "OWNER_ACTIVE",
+  "predecessor_invocation_id": "MER-RECOVERY-EPOCH-001-LIVE",
+  "intended_successor_invocation_id": null,
+  "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP_OF_GEN4_TRANSITION",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O1_HANDOFF_EPOCH_GEN3_001",
-    "state": "OPEN",
+    "state": "CONSUMED_HANDOFF_COMPLETE",
     "source_generation": 3,
     "target_generation": 4,
-    "opened_by_invocation_id": "MER-RECOVERY-EPOCH-001-LIVE",
-    "opened_by_generation": 3,
-    "opened_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
-    "admission_rule": "FIRST_READY_CONTENDER",
-    "contender_requirements": [
-      "WAKE_OK",
-      "WAKE_START_PREARM_VERIFIED",
-      "CHECKPOINT_RECONSTRUCTED",
-      "READY_EVIDENCE_DURABLE",
-      "FRESH_READ_STILL_SHOWS_THIS_EPOCH_OPEN_AT_GENERATION_3"
-    ],
-    "cas_attempts_per_contender": 1,
-    "winner_effect": "UPDATE_GENERATION_3_TO_4_AND_SET_ACTIVE_INVOCATION_ID_TO_WINNING_READY_CONTENDER",
-    "loser_effect": "FAIL_CLOSED_SHADOW",
-    "expires_by_time": false,
-    "close_condition": "FIRST_SUCCESSFUL_GEN3_TO_GEN4_CAS_OR_PROGRAM_ABORT"
+    "winner_invocation_id": "MER-20260924T103106+0900-O1HANDOFF001",
+    "winner_ready_evidence": "evidence/o1/O1_NORMAL_HANDOFF_001_READY_20260924T1031KST.md",
+    "winner_cas_attempts": 1
   },
-  "authority_rule": "Only active_invocation_id at current generation may perform authoritative shared-state side effects. An OPEN handoff_epoch authorizes only a READY contender satisfying its requirements to attempt one optimistic-concurrency generation+1 ownership CAS. All authoritative side effects remain generation fenced.",
-  "transition_reason": "PROGRAM_AUTHORIZED_SINGLE_USE_RECOVERY_EPOCH_GEN2_TO_GEN3",
-  "recovery_epoch_id": "O1_RECOVERY_EPOCH_001",
-  "recovery_epoch_single_use": true,
-  "server_time_authority": "GitHub commit timestamp; JSON clock fields are metadata only"
+  "transition_reason": "NORMAL_HANDOFF_001_FIRST_READY_CONTENDER_CAS_GEN3_TO_GEN4",
+  "server_time_authority": "GitHub commit timestamp"
 }
