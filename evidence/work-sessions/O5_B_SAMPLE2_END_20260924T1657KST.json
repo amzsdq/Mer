@@ -1,0 +1,16 @@
+{
+  "marker_type": "END_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_2",
+  "invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
+  "source_generation": 22,
+  "target_generation": 23,
+  "handoff_result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "ready_commit_sha": "ec03f6465d2b6ad3cfbad9fcd91c2e56eae4dc0c",
+  "cas_commit_sha": "443c39231593e3386b461d8fd33cec4e925fdcf8",
+  "ready_to_cas_latency_sec": 8,
+  "duplicate_authoritative_side_effect": 0,
+  "control_write_count": 1,
+  "time_authority": "GitHub commit timestamp",
+  "note": "WORKED is END_MARKER commit timestamp minus START_MARKER commit timestamp."
+}
