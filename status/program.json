@@ -5,28 +5,28 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-  "next_step": "RESUME_VIA_OPEN_GEN9_TO_GEN10_HANDOFF_EPOCH_THEN_RUN_O4_ADAPTIVE_PREARM_TRIAL",
+  "next_step": "O4_FIXED_WINDOW_A_840S: KEEP 840S FOR 3 CLEAN HANDOFF SAMPLES; CURRENT OWNER OPENS GEN11_TO_GEN12 HANDOFF; EACH SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES CURRENT-EPOCH READY EVIDENCE, AND ATTEMPTS ONE FRESH_SHA CAS; AFTER 3 CLEAN A SAMPLES SWITCH ONCE TO B_720S",
   "active_hypothesis": "H-O4-ADAPTIVE-PREARM",
   "hypothesis_status": "TESTABLE_USER_AUTHORIZED_TRIAL",
   "active_execution": "spec/execution.json",
   "candidate": {
-    "scheduler_strategy": "WAKE_START_ADAPTIVE_PREARM_BATON",
+    "scheduler_strategy": "WAKE_START_FIXED_WINDOW_COMPARISON",
     "recurrence": "RRULE:FREQ=HOURLY",
     "wake_start_prearm_offset_sec": 840,
     "baseline_offset_sec": 840,
+    "short_candidate_offset_sec": 720,
     "adaptive_policy_status": "HYPOTHESIS_ONLY_NOT_PROMOTED",
-    "adaptive_rule_candidate": "EXPERIMENT_DECLARED_EXPECTED_OBSERVATION_HORIZON_PLUS_SAFETY_MARGIN_FIXED_WITHIN_SAMPLE_WINDOW",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
-    "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_STABILIZED_5_OF_5",
+    "generation_authority": "control/ownership.json",
+    "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_ELIGIBLE_READY_FRESH_SHA_CAS",
     "work_duration_target": "NONE",
-    "prearm_policy": {
-      "default_sec": 840,
-      "min_normal_sec": 180,
-      "max_normal_sec": 840,
-      "shorten_only_for_concrete_successor_dependent_boundary": true,
-      "selection_rule": "EXPECTED_USEFUL_WORK_TO_BOUNDARY_PLUS_HANDOFF_JITTER_MARGIN",
-      "hold_constant_within_sample": true,
-      "comparator": "FIXED_840S"
+    "fixed_window_test": {
+      "samples_per_window": 3,
+      "active_window": "A_BASELINE_840S",
+      "a_clean_samples": 0,
+      "b_clean_samples": 0,
+      "hold_offset_constant_within_window": true,
+      "change_one_primary_variable": true
     },
     "successor_priority": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_AT_OPEN_CURRENT_GENERATION_HANDOFF_EPOCH"
   },
@@ -52,14 +52,15 @@
     "SIMPLICITY"
   ],
   "previous_program_result": {
-    "scope": "O1_TO_O4_STAGE_TRANSITION_RECOVERY",
-    "result": "PASS",
-    "status": "GEN8_TO_GEN9_RECOVERED_AND_GEN9_TO_GEN10_HANDOFF_EPOCH_OPEN",
-    "transition_commit": "9de0441b4fbc6a6dc699fc8ec18bea91ae8127d2"
+    "scope": "O4_RECOVERY_AFTER_GEN9_TO_GEN10_HANDOFF",
+    "result": "RECOVERED",
+    "status": "DUPLICATE_GENERATION_AUTHORITY_REMOVED; CONTROL_OWNERSHIP_IS_SOLE_GENERATION_SOURCE; OWNER_RECOVERED_GEN10_TO_GEN11",
+    "recovery_commit": "432b520bd533c3606685a4e603f3e3684f591f37",
+    "execution_reconcile_commit": "7dd22728d7dc51794d2363f1e6caaf67fb0c9103"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O4_RESUME_HANDOFF_GEN9_TO_GEN10",
+  "active_sample": "O4_FIXED_WINDOW_A_840S",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
