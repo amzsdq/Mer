@@ -6,9 +6,9 @@
   "plan": "research/MASTER_PLAN.md",
   "prior_evidence": "research/PRIOR_EVIDENCE_2026-09-23.md",
   "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_OWNER_LOSS_RECOVERY_TEST_DESIGN_AND_EXPIRY_CALIBRATION",
-  "active_hypothesis": "H-O1-OWNER-LOSS-RECOVERY",
-  "hypothesis_status": "TESTABLE_CANDIDATE",
+  "next_step": "O1_PROGRAM_AUTHORIZED_SINGLE_USE_RECOVERY_EPOCH_GEN2_TO_GEN3",
+  "active_hypothesis": "H-O1-PROGRAM-AUTHORIZED-RECOVERY-EPOCH",
+  "hypothesis_status": "TESTABLE_ACTIVE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
@@ -21,8 +21,12 @@
     "shadow_prearm_allowed": true,
     "scheduler_write_after_prearm_allowed": false,
     "work_duration_target": "NONE",
-    "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
-    "owner_loss_recovery": "UNDER_TEST_NOT_PROMOTED"
+    "normal_stop_gates": [
+      "PROGRAM_COMPLETE",
+      "SUCCESSOR_HANDOFF_COMPLETE"
+    ],
+    "owner_loss_recovery": "PROGRAM_AUTHORIZED_SINGLE_USE_RECOVERY_EPOCH_UNDER_TEST",
+    "automatic_expiry_recovery": "DEFERRED_SEPARATE_EXPERIMENT"
   },
   "gate": {
     "viability_required_clean_handoffs": 3,
@@ -41,15 +45,15 @@
     "SIMPLICITY"
   ],
   "previous_program_result": {
-    "scope": "PROMPT_GITHUB_BOUNDARY_SUBPROBLEM",
-    "result": "HYBRID_STABLE_KERNEL_PLUS_GITHUB_DYNAMIC_BRAIN",
-    "status": "PRIOR_EVIDENCE_NOT_TOP_LEVEL_COMPLETION"
+    "scope": "O1_OWNER_LOSS_RECOVERY_RENEWAL_CALIBRATION",
+    "result": "REJECTED_AS_STRUCTURALLY_NON_PROGRESSING_WITH_EPHEMERAL_DEAD_OWNER",
+    "status": "REPLACED_BY_SINGLE_USE_RECOVERY_EPOCH_TEST"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
-  "updated_at": "2026-09-24T02:00:00+09:00",
+  "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
   "prior_overlap_evidence": "research/WORKWORK_OVERLAP_INTAKE.md",
-  "active_sample": "O1_OVERLAP_SAMPLE_001",
-  "active_sample_owner_evidence": "evidence/o1/O1_OVERLAP_SAMPLE_001_OWNER.json",
-  "sample_001_diagnosis": "evidence/o1/O1_SAMPLE_001_OWNER_LOSS_DIAGNOSIS.json",
-  "hypothesis_record": "research/H-O1-OWNER-LOSS-RECOVERY.md"
+  "active_sample": "O1_RECOVERY_EPOCH_001",
+  "active_sample_owner_evidence": "control/ownership.json",
+  "sample_001_diagnosis": "evidence/o1/O1_DEAD_OWNER_AUTHORITY_TRANSITION_REVIEW_20260924T0856KST.md",
+  "hypothesis_record": "evidence/o1/O1_DEAD_OWNER_AUTHORITY_TRANSITION_REVIEW_20260924T0856KST.md"
 }
