@@ -1,23 +1,32 @@
 {
   "incident": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
-  "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
+  "state": "EARLY_EXIT_CAUSE_IDENTIFIED_AND_CHANGED; SCHEDULER_CAUSE_NARROWED_NOT_YET_PROVEN",
   "failure_observed": [
     "nonterminal invocations repeatedly finalized after materially short work despite runnable work",
     "a prior scheduler prearm intended for 23:45:17 KST returned a materially different live DTSTART"
   ],
   "root_cause": {
-    "early_exit": "stop-gate semantics were invocation-ambiguous: an acquiring successor could treat inherited handoff completion as permission to finalize instead of continuing as ACTIVE_OWNER; corrective +180s then masked the repeated short-cycle symptom rather than forcing same-turn repair",
-    "scheduler_mismatch": "self-rearm path allowed representation-dependent/offset scheduling instead of requiring one normalized absolute instant encoded as a complete VEVENT; this left timezone/provider rewrite ambiguity in the control path"
+    "early_exit": {
+      "confidence": "HIGH",
+      "cause": "stop-gate semantics were invocation-ambiguous: an acquiring successor could treat inherited handoff completion as permission to finalize instead of continuing as ACTIVE_OWNER; corrective +180s then masked the repeated short-cycle symptom rather than forcing same-turn repair",
+      "direct_discriminator": "gen34 acquired ownership and then completed multiple distinct useful units in the same invocation without treating acquisition as terminal"
+    },
+    "scheduler_mismatch": {
+      "confidence": "UNRESOLVED",
+      "known_control_path_defect": "the prior self-rearm contract did not require a single normalized absolute instant encoded as a complete VEVENT, leaving representation/timezone/provider-rewrite ambiguity",
+      "not_proven": "the historical 23:45:17 -> 07:30 discrepancy cannot yet be attributed uniquely to dtstart_offset_json or provider rewrite because no durable raw write/readback pair for that exact failed mutation was preserved",
+      "diagnostic_plan": "hold recurrence/automation/timing mode constant; change only scheduler write representation to explicit complete VEVENT with normalized absolute DTSTART and exact live readback; repeated PASS narrows the defect to the prior representation/control path, while mismatch triggers capture of raw intended/write/readback evidence before any repair"
+    }
   },
   "mechanism_change": [
     "ROLE_RELATIVE_STOP_GATE: ownership acquisition is not the acquiring invocation's stop gate",
     "EARLY_EXIT_REPAIR_FIRST: short nonterminal finalization enters same-turn repair and final response is forbidden while supported work remains",
-    "SCHEDULER_WRITE_FORM: self-rearm must use explicit complete recurring VEVENT with normalized absolute DTSTART; dtstart_offset_json forbidden for relay self-rearm",
-    "PREARM_LIVE_VERIFY now requires exact intended instant, not merely future DTSTART",
+    "SCHEDULER_WRITE_FORM: self-rearm uses explicit complete recurring VEVENT with normalized absolute DTSTART; dtstart_offset_json forbidden for relay self-rearm",
+    "PREARM_LIVE_VERIFY requires exact intended instant, not merely future DTSTART",
     "LONG_WAKE_VALIDATION_GATE requires >=600s GitHub-server-timestamp work with multiple genuine units before overall completion"
   ],
   "differential_verification": {
-    "scheduler": "NEXT_WAKE_REQUIRED: perform one explicit full-VEVENT prearm and exact live readback; current wake already consumed its wake-start prearm before prompt transition",
+    "scheduler": "NEXT_WAKE_REQUIRED: perform one explicit full-VEVENT prearm and exact live readback; if mismatch occurs persist raw intended/write/readback evidence before repair",
     "long_wake": "RUNNING: current repair run START_MARKER commit timestamp 2026-09-24T14:47:51Z; continue multiple genuine units and do not voluntarily finalize before a legal stop gate"
   },
   "unchanged_retry_forbidden": true
