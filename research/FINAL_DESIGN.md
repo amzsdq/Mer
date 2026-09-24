@@ -13,103 +13,87 @@ The critical refinement is **single dynamic authority**. GitHub being the dynami
 ## Authority model
 
 ### Deployed prompt
-Owns only stable execution/recovery semantics:
-- identity, repository and write scope;
-- explicit delegation contract: GitHub owns dynamic program/project state;
-- canonical recovery references;
-- scheduler survival invariants;
-- fail-safe behavior;
-- work-session discipline and compact reporting contract.
+Owns only stable execution/recovery semantics: identity/write scope, GitHub delegation, recovery references, scheduler survival invariants, fail-safe behavior, work-session discipline and reporting.
 
 ### `control/active.json`
-A **static bootstrap pointer only**. It points to authoritative program state, durable goal/plan, canonical supervisor prompt, final design and execution slot. It must not duplicate current stage, next step, experiment, generation, or current execution state.
+Static bootstrap pointer only. It must not duplicate current stage, next step, experiment, generation, or current execution state.
 
 ### `status/program.json`
-The **single runtime authority** for current stage, next step, active execution, program gates/counters, and final result. A worker may not treat another file as current runtime truth if it conflicts with this file.
+Single runtime authority for current stage, next step, active execution, program gates/counters, and final result.
 
 ### `spec/execution.json`
-A reusable execution slot, authoritative only when `status/program.json.active_execution` explicitly points to it. When complete, it becomes an explicit inactive sentinel rather than retaining stale experiment state.
+Reusable execution slot, authoritative only while `status/program.json.active_execution` points to it. It must be synchronized when the active experiment changes; stale retained experiment state is a control-plane defect, not a second authority. O8 repaired one such gen34->gen37 stale projection while keeping `status/program.json` authoritative.
+
+### `control/ownership.json`
+Dedicated authority for current substantive owner/generation and handoff epoch only. It does not own program stage/next step.
 
 ### Evidence and archives
-- `evidence/`: compact trial evidence.
-- `archive/`: retired runtime snapshots.
-- historical state never overrides `status/program.json`.
+`evidence/` stores trial evidence; historical evidence never overrides current authority.
 
 ## Normal bootstrap
-1. Read the injected stable prompt.
-2. Read `control/prompt-manifest.json`, `control/active.json`, and `status/program.json`.
-3. Resolve any prompt version mismatch before substantial work.
-4. If `active_execution` is non-null, load exactly that execution object and minimum referenced files.
-5. If a dedicated ownership record is declared, validate it before authoritative shared-state mutation.
-6. Read historical evidence only for a decision, anomaly, or explicit research task.
+1. Read injected stable prompt.
+2. Read prompt manifest, static active pointer, and authoritative program state.
+3. Resolve prompt mismatch before substantial work.
+4. Load only the active execution object and minimum referenced files.
+5. Validate dedicated ownership before authoritative mutation.
+6. Historical evidence is loaded only for a decision/anomaly/research task.
 
 ## Recovery protocol
-1. Attempt `control/active.json`.
-2. If missing/unreadable, use prompt-embedded recovery references: `spec/GOAL.md`, `research/MASTER_PLAN.md`, `status/program.json`.
-3. Treat `status/program.json` as authoritative for stage/next/active execution.
-4. Never reconstruct unknown project state from conversational memory or stale archived files.
-5. If authoritative state cannot be validated, emit `BOOTSTRAP_FAULT`, preserve scheduler recoverability, and do not invent work.
-6. Treat scheduler write acceptance, verified live state, actual later wake, and resumed work as distinct evidence.
+If active pointer is unavailable, recover from Goal, Master Plan and `status/program.json`. Never invent unknown state from chat memory. Scheduler WRITE_OK, STATE_OK, WAKE_OK and WORK_OK remain distinct.
 
 ## Scheduler representation hardening
-The relay's self-rearm is an explicit control-plane write, not an informal relative-time hint.
-1. Normalize one intended absolute future instant.
-2. Write the complete recurring VEVENT containing `DTSTART` and `RRULE:FREQ=HOURLY` on the same canonical automation.
-3. Preserve `exact_schedule` and `enabled=true`.
-4. Do not use `dtstart_offset_json` for relay self-rearm.
-5. Live-readback must match same automation ID, enabled state, timing mode, recurrence, and the exact intended DTSTART instant.
-6. On mismatch, diagnose representation/timezone/provider rewrite versus failed write before repair; never equate WRITE_OK with STATE_OK.
+1. Normalize one absolute future instant.
+2. Write complete recurring VEVENT with DTSTART and RRULE:FREQ=HOURLY on the same canonical.
+3. Preserve exact_schedule and enabled=true.
+4. Do not use dtstart_offset_json for relay self-rearm.
+5. Live readback must exactly match ID/enabled/timing/recurrence/DTSTART.
+6. Diagnose mismatch before repair; WRITE_OK is not STATE_OK.
+
+O8 result: full-VEVENT absolute representation has repeated WRITE_OK+STATE_OK and is retained while writer authority is the active primary variable. Later clean target WAKE_OK still requires direct evidence.
 
 ## Invocation-relative handoff semantics
-A handoff is role-relative. When an invocation acquires the next generation, that transition starts its ACTIVE_OWNER tenure; it does not terminate the acquiring invocation. `SUCCESSOR_HANDOFF_COMPLETE` is a normal stop gate only for the predecessor that is actually being replaced. The new owner continues genuine useful work until PROGRAM_COMPLETE or a later distinct successor completes handoff away from it.
+Ownership acquisition starts the acquiring invocation's ACTIVE_OWNER tenure and is not its stop gate. Only PROGRAM_COMPLETE or a later distinct successor handoff away normally stops that owner.
+
+## Scheduler writer authority — active O8 experiment
+The canonical scheduler is a shared mutable resource. O8 observed an unattributed target overwrite while substantive ownership remained unchanged. Current B candidate fences normal scheduler writes to ACTIVE_OWNER or a successor only after fresh-SHA generation CAS. SHADOW performs zero scheduler writes. This is TESTABLE, not yet promoted: B03 immediate WRITE_OK+STATE_OK is provisional until target stability and actual later WAKE/WORK are observed; three clean samples and owner-loss adverse recovery are required.
+
+A separate observational diagnostic now checks whether the same canonical actually overlaps an active invocation or serializes/defer dispatch. If Mer directly reproduces serialization, overlap-dependent handoff architecture must be revised rather than preserved by assumption.
 
 ## Repair-first finalization
-Repeated short nonterminal finalization is a critical reliability incident. The required sequence is failure observed -> root cause identified -> mechanism changed -> differential verification -> resume. A +180s rearm is continuity fallback only when same-turn repair/continuation is genuinely no longer executable; it is not a substitute for diagnosis.
+Repeated short nonterminal finalization is a critical reliability incident. Required sequence: failure observed -> root cause identified -> mechanism changed -> differential verification -> resume. +180s is fallback only when same-turn continuation truly cannot execute.
 
 ## Finalization protocol
-Do **not** model completion as a multi-file atomic transaction; GitHub file updates can be independent and cleanup can partially fail.
-1. Persist required final evidence and deliverables.
-2. Ensure the last active execution is safely closed.
-3. Perform the single authoritative finalization write in `status/program.json`: `current_stage=COMPLETE`, `next_step=NONE`, `active_execution=null`.
-4. After that authority write, archive or clean stale helper files.
-5. Cleanup failure is a maintenance fault, not runtime split-brain, because no helper file owns current program state.
-6. Overall completion is forbidden until the current Master Plan convergence gate is satisfied. Under O8 this includes a directly observed >=600s nonterminal authoritative invocation with multiple genuine useful units, unless a platform limit is evidenced and the long-work objective remains explicitly unresolved.
+1. Persist required final evidence/deliverables.
+2. Safely close last active execution.
+3. Single authoritative finalization write in `status/program.json`: COMPLETE/NONE/null.
+4. Archive/clean helpers after authority write.
+5. Cleanup failure is maintenance, not split-brain.
+6. Overall completion is forbidden until Master Plan convergence is satisfied.
 
 ## Rollout method
-1. Persist/verify Goal, Master Plan, authoritative program state and static active pointer.
-2. Deploy `control/CANONICAL_PROMPT_SUPERVISOR.md` to the existing recurring automation; do not replace the automation.
-3. Preserve recurring scheduler invariants required by the deployed kernel.
-4. Run clean bootstrap validation and reversible missing-entrypoint recovery validation.
-5. Dynamic project changes update GitHub authoritative state, not the deployed prompt.
-6. Change the deployed prompt only when the stable execution/recovery contract changes.
+Persist Goal/Plan/program state/static pointer; deploy canonical prompt to same recurring automation; preserve scheduler invariants; validate bootstrap/recovery; keep dynamic changes in GitHub.
 
 ## Rejected alternatives
-### PROMPT_HEAVY
-Rejected as default because it duplicates dynamic state into the deployed prompt and creates avoidable drift/split-brain surfaces.
-
-### POINTER_ONLY
-Rejected as default because loss/drift of the sole entrypoint leaves no project-state recovery route.
-
-### MULTI-FILE DYNAMIC AUTHORITY
-Rejected because duplicating current stage/next state across multiple files creates stale truths and makes completion depend on best-effort synchronization.
-
-### ACQUISITION_IMPLIES_INVOCATION_EXIT
-Rejected by O8. Ownership acquisition is the beginning of the acquiring invocation's owner tenure, not its terminal event.
-
-### BLIND_CORRECTIVE_RERUN
-Rejected. Repeated short wake -> +180s -> same unchanged path masks the failure and wastes duty cycle; same-turn repair-first behavior is required.
+- PROMPT_HEAVY: dynamic-state duplication/drift.
+- POINTER_ONLY: weak recovery.
+- MULTI_FILE_DYNAMIC_AUTHORITY: stale competing truths.
+- ACQUISITION_IMPLIES_INVOCATION_EXIT: rejected by O8.
+- BLIND_CORRECTIVE_RERUN: rejected; repair-first required.
+- UNFENCED_SCHEDULER_WRITERS: not yet formally rejected, but active B experiment tests whether owner-fencing is superior without continuity regression.
 
 ## Validated / active gates
 - prompt-boundary clean validation: PASS
 - missing-entrypoint recovery: PASS
-- single dynamic authority cleanup: PASS
+- single dynamic authority cleanup: PASS, with O8 stale execution-projection repair recorded
 - O1 normal ownership handoff: 5/5 clean PASS
-- eligible READY successor priority: active invariant at a current OPEN epoch/generation
-- cross-stage ownership: normal handoff or one explicit single-use recovery transition
-- O7 continuity convergence: PASS, but prior overall completion invalidated
-- O8 role-relative continuation: active validation; immediate post-acquisition continuation observed
-- O8 >=600s long-wake gate: PENDING
-- scheduler explicit-full-VEVENT differential after mismatch incident: PENDING NEXT WAKE
+- cross-stage ownership: normal handoff or explicit single-use recovery transition
+- O7 continuity convergence: PASS, prior overall completion invalidated
+- O8 role-relative continuation: PASS
+- O8 >=600s long-wake gate: PASS, 736s GitHub-server-clock invocation
+- scheduler full-VEVENT representation WRITE_OK+STATE_OK: PASS/KEEP representation
+- scheduler writer-fence B: ACTIVE TESTABLE; B03 provisional, clean-count=0, owner-loss adverse pending
+- same-canonical dispatch seriality: ACTIVE OBSERVATION
+- overall program complete: NO
 
 Final boundary:
 **prompt = stable execution/recovery semantics; GitHub = dynamic project brain; `status/program.json` = single runtime authority inside that brain.**
