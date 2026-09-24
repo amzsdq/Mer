@@ -1,0 +1,8 @@
+{
+  "type": "START_MARKER",
+  "invocation_role": "SHADOW",
+  "observed_generation": 24,
+  "observed_owner": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "reason": "O5 evaluation pending but no OPEN gen24 successor handoff epoch and prior recovery transition consumed",
+  "server_time_authority": "GitHub commit timestamp"
+}
