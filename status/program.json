@@ -8,7 +8,7 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
-  "next_step": "Do not keep blind-retrying the blocked experimental ref reconciliation. Treat ref/projection reconstruction logic as validated through fresh ref + descendant proof, but recovery ref advance remains unverified. Next: design/execute owner-loss-before-close adverse recovery using the already-proven serialized scheduler path and keep production control/ownership.json unchanged until a production migration gate explicitly passes.",
+  "next_step": "Execute the serialized owner-loss-before-PRE_CLOSE adverse test only after a fresh current-generation transition can be durably written/read back. Preserve the recurring same-canonical scheduler as fallback; SHADOW scheduler writes=0; use proven Git-ref fast-forward CAS on non-production authority ref; require winner readback before scheduler rearm. If transition persistence is blocked, do not enter simulated loss; continue normal serialized operation and classify persistence admission separately.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -30,7 +30,7 @@
     "o8_dispatch_topology": "SERIALIZED_OR_DEFERRED_CANDIDATE_SAMPLE1",
     "o8_serialized_clean_count": 1,
     "o8_serialized_s01": "CLEAN_WAKE_WORK_AUTHORITY_PASS",
-    "o8_owner_loss_adverse": "DEFERRED_UNTIL_SERIALIZED_NORMAL_PATH_ESTABLISHED",
+    "o8_owner_loss_adverse": "DESIGN_UPDATED_FOR_SERIALIZED_CANDIDATE_ENTRY_BLOCKED_UNTIL_DURABLE_TRANSITION",
     "overall_program_complete": "NO",
     "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
     "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED",
@@ -61,8 +61,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "MECHANISM_CHANGED_DIFFERENTIAL_VERIFIED_PARTIAL",
-    "type": "SELECTIVE_GITHUB_MUTATION_ADMISSION_BLOCKS_RECOVERY_REF_ADVANCE",
+    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
+    "type": "OWNER_LOSS_ADVERSE_ENTRY_REQUIRES_DURABLE_CURRENT_GENERATION_TRANSITION",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
