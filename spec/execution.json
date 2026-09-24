@@ -17,23 +17,38 @@
   "work_duration_target": "NONE",
   "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
   "workload": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
-  "active_sample": "O5_WINDOW_A_POST_READY_MAX_1",
-  "next_action": "COLLECT 3 CLEAN HANDOFFS WITH POST_READY_MAX_AUTHORITATIVE_UNITS=1; THEN SWITCH ONCE TO B=0 AT COMPARABLE READY-OBSERVED BOUNDARIES; MEASURE READY_COMMIT_TO_CAS_COMMIT LATENCY AND SAFETY",
+  "active_sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_2",
+  "next_action": "COLLECT A SAMPLE2 AND SAMPLE3 WITH POST_READY_MAX_AUTHORITATIVE_UNITS=1; THEN SWITCH ONCE TO B=0 AT COMPARABLE READY-OBSERVED BOUNDARIES; MEASURE READY_COMMIT_TO_CAS_COMMIT LATENCY AND SAFETY",
   "matched_window_test": {
     "baseline_post_ready_max_authoritative_units": 1,
     "candidate_post_ready_max_authoritative_units": 0,
     "samples_per_window": 3,
     "active_window": "A_BASELINE_MAX_1",
-    "a_clean_samples": 0,
+    "a_clean_samples": 1,
     "b_clean_samples": 0,
     "hold_scheduler_offset_sec": 840,
     "change_one_primary_variable": true,
     "metrics": ["READY_TO_CAS_LATENCY_SEC", "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT", "HANDOFF_SUCCESS", "CONTROL_WRITE_COUNT"],
     "promotion_rule": "PROMOTE_B_ONLY_IF_CONTINUITY_NO_WORSE_DUPLICATES_ZERO_AND_LATENCY_OR_CONTROL_OVERHEAD_MATERIALLY_BETTER; IF_EQUIVALENT_KEEP_A"
   },
+  "sample_results": {
+    "A1": {
+      "source_generation": 18,
+      "target_generation": 19,
+      "ready_commit_sha": "875b73ff429dbfd81f42afdaa68c1ac8ca0a28fe",
+      "cas_commit_sha": "93f39a0f55b1aea87476ca7f3ff716236f4899a1",
+      "ready_commit_at": "2026-09-24T07:02:51Z",
+      "cas_commit_at": "2026-09-24T07:03:02Z",
+      "ready_to_cas_latency_sec": 11,
+      "duplicate_authoritative_side_effect": 0,
+      "handoff_success": true,
+      "control_write_count": 1,
+      "result": "CLEAN_HANDOFF"
+    }
+  },
   "successor_priority": {
     "enabled": true,
-    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY; BASELINE_A_ALLOWS_ONLY_COMPLETION_OF_CURRENT_ATOMIC_UNIT_AND_NO_NEW_UNIT",
+    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY; BASELINE_A_ALLOWS ONLY COMPLETION OF CURRENT ATOMIC UNIT AND NO NEW UNIT",
     "concurrent_ready_rule": "FIRST_SUCCESSFUL_FRESH_SHA_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW"
   },
   "sourcing_record": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
