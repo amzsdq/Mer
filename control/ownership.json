@@ -1,20 +1,21 @@
 {
   "schema_version": 4,
-  "generation": 14,
-  "active_invocation_id": "MER-O4-A840-GEN14-20260924T1422KST",
+  "generation": 15,
+  "active_invocation_id": "MER-O4-B720-GEN15-20260924T1434KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O4-A840-G13-S2",
+  "predecessor_invocation_id": "MER-O4-A840-GEN14-20260924T1422KST",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O4_HANDOFF_EPOCH_GEN14_B720_001",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 14,
     "target_generation": 15,
     "opened_by_invocation_id": "MER-O4-A840-GEN14-20260924T1422KST",
     "opened_by_generation": 14,
+    "consumed_by_invocation_id": "MER-O4-B720-GEN15-20260924T1434KST",
     "sample": "O4_FIXED_WINDOW_B_720S_SAMPLE_1",
     "prearm_offset_sec": 720,
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
@@ -32,6 +33,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "OPEN_NORMAL_GEN14_TO_GEN15_O4_B720_SAMPLE1",
+  "transition_reason": "NORMAL_HANDOFF_GEN14_TO_GEN15_O4_B720_SAMPLE1",
   "server_time_authority": "GitHub commit timestamp"
 }
