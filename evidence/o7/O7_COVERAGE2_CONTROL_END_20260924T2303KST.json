@@ -1,0 +1,8 @@
+{
+  "kind": "ACCOUNTING_BOUNDARY",
+  "class": "CONTROL",
+  "boundary": "END",
+  "invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "unit": "fresh authority validation and coverage2 handoff reconciliation",
+  "clock_authority": "GitHub commit timestamp"
+}
