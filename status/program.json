@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-  "next_step": "O4_FIXED_WINDOW_A_840S SAMPLE_2: CURRENT GEN12 OWNER OPENS GEN12_TO_GEN13 HANDOFF EPOCH AT 840S; NEXT SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES CURRENT-EPOCH READY EVIDENCE, AND ATTEMPTS ONE FRESH_SHA CAS; AFTER 3 CLEAN A SAMPLES SWITCH ONCE TO B_720S",
+  "next_step": "O4_FIXED_WINDOW_A_840S SAMPLE_3: CURRENT GEN13 OWNER OPENS GEN13_TO_GEN14 HANDOFF EPOCH AT 840S; NEXT SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES CURRENT-EPOCH READY EVIDENCE, AND ATTEMPTS ONE FRESH_SHA CAS; AFTER THIS THIRD CLEAN A SAMPLE SWITCH ONCE TO B_720S",
   "active_hypothesis": "H-O4-ADAPTIVE-PREARM",
   "hypothesis_status": "TESTABLE_USER_AUTHORIZED_TRIAL",
   "active_execution": "spec/execution.json",
@@ -23,7 +23,7 @@
     "fixed_window_test": {
       "samples_per_window": 3,
       "active_window": "A_BASELINE_840S",
-      "a_clean_samples": 1,
+      "a_clean_samples": 2,
       "b_clean_samples": 0,
       "hold_offset_constant_within_window": true,
       "change_one_primary_variable": true
@@ -40,15 +40,15 @@
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O4_FIXED_WINDOW_A_840S_SAMPLE_1",
+    "scope": "O4_FIXED_WINDOW_A_840S_SAMPLE_2",
     "result": "CLEAN_HANDOFF",
-    "status": "WAKE_PREARM_WRITE_OK_STATE_OK; READY_EVIDENCE_WRITTEN; FRESH_SHA_CAS_GEN11_TO_GEN12_SUCCEEDED; NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT_OBSERVED",
-    "ready_evidence": "evidence/runtime/O4_GEN11_A840_WAKE_20260924T140416KST.md",
-    "handoff_commit": "b08b4c91861442d858d608a2b99f3ecb64b9f066"
+    "status": "WAKE_PREARM_WRITE_OK_STATE_OK; READY_EVIDENCE_WRITTEN; FRESH_SHA_CAS_GEN12_TO_GEN13_SUCCEEDED; NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT_OBSERVED",
+    "ready_evidence": "evidence/runtime/o4-a840-sample2-ready.md",
+    "handoff_commit": "ad749b5f9830b47e435b77935fc40652ae14ebca"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O4_FIXED_WINDOW_A_840S_SAMPLE_2_PENDING",
+  "active_sample": "O4_FIXED_WINDOW_A_840S_SAMPLE_3_PENDING",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
