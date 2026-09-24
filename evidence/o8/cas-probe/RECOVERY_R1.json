@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "type": "AUTHORITY_REF_RECOVERY_CONTENDER_PROBE",
+  "parent_head": "c5b5df5dd35ddea28664181e9c75a1013a86fd78",
+  "scenario": "two_recovery_contenders_same_parent",
+  "candidate": "R1",
+  "production_authority": false
+}
