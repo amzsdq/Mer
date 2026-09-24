@@ -1,9 +1,9 @@
 {
   "schema_version": 4,
-  "generation": 10,
-  "active_invocation_id": "MER-O4-20260924-122248-001",
+  "generation": 11,
+  "active_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O4-STAGE-RECOVERY-001",
+  "predecessor_invocation_id": "MER-O4-20260924-122248-001",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
@@ -20,7 +20,17 @@
     "cas_attempts_per_contender": 1,
     "expires_by_time": false
   },
+  "recovery_transition": {
+    "single_use": true,
+    "authorized_by": "USER_DIRECT_INSTRUCTION_2026-09-24",
+    "reason": "STALE_OWNER_PLUS_DUPLICATE_GENERATION_AUTHORITY_PREVENTED_FORWARD_PROGRESS",
+    "source_generation": 10,
+    "target_generation": 11,
+    "source_owner_invocation_id": "MER-O4-20260924-122248-001",
+    "target_owner_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
+    "state": "CONSUMED"
+  },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "ELIGIBLE_READY_SUCCESSOR_WON_FRESH_SHA_GEN9_TO_GEN10_CAS",
+  "transition_reason": "USER_AUTHORIZED_SINGLE_USE_RECOVERY_GEN10_TO_GEN11",
   "server_time_authority": "GitHub commit timestamp"
 }
