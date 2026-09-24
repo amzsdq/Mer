@@ -1,0 +1,7 @@
+{
+  "marker": "PRE_CLOSE",
+  "generation": 42,
+  "invocation_id": "MER-O8-GEN42-AUTOMATION-20260924",
+  "purpose": "Serialized continuation after immutable authority event gen42 acquisition",
+  "clock_authority": "GitHub commit timestamp"
+}
