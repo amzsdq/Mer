@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "marker_type": "SUCCESSOR_READY",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_1",
+  "epoch_id": "O5_WINDOW_B_GEN21_TO_GEN22_SAMPLE1",
+  "bound_source_generation": 21,
+  "target_generation": 22,
+  "successor_invocation_id": "MER-O5-GEN22-BSAMPLE1-20260924T1644KST",
+  "prearm_offset_sec": 840,
+  "prearm_verified": true,
+  "reconstructed_authoritative_state": true,
+  "immediate_next_action": "ONE_FRESH_SHA_OWNERSHIP_CAS",
+  "post_ready_max_authoritative_units": 0,
+  "server_time_authority": "GitHub commit timestamp"
+}
