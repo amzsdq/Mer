@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 34,
+  "unit_id": "O8_GEN34_UNIT03_INVARIANT_AUDIT",
+  "unit_class": "GENUINE_USEFUL_VALIDATION",
+  "checks": {
+    "same_invocation_continued_after_acquisition": "PASS",
+    "distinct_post_acquisition_units_completed": 3,
+    "single_owner_generation_fence": "PASS_GEN34",
+    "scheduler_identity_unchanged": "PASS",
+    "scheduler_enabled": true,
+    "scheduler_exact_schedule": true,
+    "scheduler_hourly_rrule": true,
+    "wake_start_prearm_offset_sec": 840,
+    "acquisition_used_as_stop_gate": false,
+    "program_complete": false,
+    "long_wake_600s_gate": "PENDING"
+  },
+  "interpretation": "ROLE_RELATIVE_CONTINUE has passed its immediate discriminating condition: this invocation acquired gen34 and then completed at least three distinct useful research/validation units without treating the inherited handoff as its stop gate. This does not yet satisfy the >=600s overall long-wake gate.",
+  "next": "Continue useful work in same invocation while available; before nonterminal exit open gen34->35 epoch and preserve continuation."
+}
