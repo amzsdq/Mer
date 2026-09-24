@@ -3,29 +3,29 @@
 Status: ACTIVE OBSERVATIONAL DIAGNOSTIC
 
 ## Question
-Does the same canonical ChatGPT Automation dispatch a new invocation while the prior invocation is still active, or does it serialize/defer the scheduled occurrence?
+Does the same canonical ChatGPT Automation dispatch a new invocation while the prior invocation is still active, or serialize/defer the scheduled occurrence under current Mer conditions?
 
-This is not a new scheduler-policy arm and changes no B03 primary variable. It is a provider-semantics observation needed to interpret WAKE_OK, overlap, and handoff assumptions.
+This changes no B03 primary variable. It is a provider-semantics observation needed to interpret WAKE_OK, overlap and handoff assumptions.
 
-## Why now
-B03 already has an exact owner-fenced target `2026-09-24T15:38:39Z`. If the gen37 invocation remains active through that target while doing genuine O8 work, the target naturally becomes a discriminating observation without any extra scheduler mutation.
+## Priors and conflict
+- `research/WORKWORK_OVERLAP_INTAKE.md` records strong prior evidence from amzsdq/workwork: the same recurring automation produced a successor at 01:29:22 while predecessor remained alive until 01:32:40, yielding 198s observed concurrent execution. This is prior evidence, not Mer truth.
+- A bounded 2026-09-24 OpenAI Help Center search found scheduled-task cadence/lifecycle documentation but no explicit same-task concurrency/serialization contract; see `research/O8_SCHEDULED_TASKS_OFFICIAL_DOCS_GAP_20260924.md`.
+- Therefore neither overlap nor serialization may be assumed. If Mer differs from workwork, investigate conditions/platform evolution rather than declaring a universal rule from one sample.
+
+## Why B03 is discriminating
+B03 has exact owner-fenced target `2026-09-24T15:38:39Z`. If gen37 remains active through that target while doing genuine O8 work, the target becomes a natural observation without extra scheduler mutation.
 
 ## Controls
-Do not change B03 target merely to run this observation. Keep canonical ID, full VEVENT, RRULE, exact_schedule, enabled, +840s, and owner-fence policy unchanged.
+Do not change B03 target to force the result. Keep canonical ID, full VEVENT, RRULE, exact_schedule, enabled, +840s and owner-fence unchanged.
 
 ## Evidence
-Capture:
-1. gen37 START GitHub timestamp;
-2. durable progress marker immediately before target if genuine work naturally reaches that boundary;
-3. automation metadata after target: last_run_time, schedule, enabled/timing/recurrence;
-4. any distinct gen38 START/READY evidence;
-5. gen37 END timestamp if/when it later closes.
+Capture gen37 START; pre-target durable progress; automation metadata after target (last_run_time/schedule/enabled/timing/recurrence); any distinct gen38 START/READY; gen37 END if/when it later closes.
 
 ## Classification
-- `OVERLAP_OBSERVED`: a distinct successor invocation has durable START after the B03 target while gen37 has no prior END.
-- `SERIALIZED_OR_DEFERRED_CANDIDATE`: target passes while gen37 remains active, last_run_time does not advance to a distinct successor, and no distinct successor START exists. One observation is candidate evidence, not a universal provider guarantee.
-- `DISPATCH_AFTER_OWNER_END`: successor begins only after gen37 END; supports serialized continuation for this sample.
+- `OVERLAP_OBSERVED`: distinct successor durable START after B03 target while gen37 has no prior END.
+- `SERIALIZED_OR_DEFERRED_CANDIDATE`: target passes while gen37 remains active, last_run_time does not advance to a distinct successor, and no distinct successor START exists. One sample is candidate evidence, not universal guarantee.
+- `DISPATCH_AFTER_OWNER_END`: successor begins only after gen37 END.
 - `INDETERMINATE`: current invocation closes before target, target is superseded, or evidence cannot distinguish dispatch.
 
 ## Consequence
-If Mer directly reproduces serialized/deferred same-canonical behavior, overlap-dependent handoff logic must be revised rather than repeatedly scheduling a successor that cannot coexist. The simpler candidate would become long owner work + close-relative short rearm on the same canonical, with recurring fallback retained. Do not promote that architecture from another repo's evidence alone.
+Interpret through `research/O8_DISPATCH_TOPOLOGY_DECISION_TREE.md`. Because workwork directly observed overlap in a related system, a Mer serialization observation creates an empirical contradiction requiring condition analysis, not immediate universal promotion.
