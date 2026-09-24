@@ -1,0 +1,21 @@
+{
+  "type": "SCHEDULER_WRITE_RESULT",
+  "intent": "evidence/o8/scheduler-writes/20260924T145929Z_GEN34_CLOSE_RESERVE_INTENT.json",
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "substantive_generation": 34,
+  "update_ack": "SUCCESS",
+  "live_readback": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "dtstart_utc": "2026-09-24T15:02:29Z",
+    "rrule": "FREQ=HOURLY",
+    "last_run_time": "2026-09-24T14:47:01.644841Z"
+  },
+  "intended_exact_match": true,
+  "representation_path": "FULL_VEVENT_ABSOLUTE",
+  "result": "WRITE_OK_AND_STATE_OK_PASS",
+  "wake_ok": "PENDING_FUTURE_DISPATCH",
+  "work_ok": "PENDING_FUTURE_DISPATCH",
+  "note": "Close-reserve continuity fallback after this invocation already passed the 602s long-wake gate; not an unchanged early-exit retry."
+}
