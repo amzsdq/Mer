@@ -1,0 +1,16 @@
+{
+  "sample": "O1_NORMAL_HANDOFF_003",
+  "evidence_type": "SUCCESSOR_READY",
+  "source_generation": 5,
+  "target_generation": 6,
+  "wake_ok": true,
+  "wake_start_prearm_verified": true,
+  "checkpoint_reconstructed": true,
+  "observed_program_next_step": "O1_NORMAL_HANDOFF_SAMPLE_003_TEST_NEXT_READY_CONTENDER_GEN5_TO_GEN6",
+  "observed_epoch_id": "O1_HANDOFF_EPOCH_GEN5_003",
+  "observed_epoch_state": "OPEN",
+  "observed_owner": "MER-20260924T104240+0900-O1HANDOFF002",
+  "ready": true,
+  "authority": "IMMUTABLE_CONTENDER_EVIDENCE_ONLY",
+  "note": "This evidence does not itself grant ownership. A fresh ownership read and one optimistic CAS are still required."
+}
