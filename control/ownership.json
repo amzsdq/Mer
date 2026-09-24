@@ -10,10 +10,12 @@
   "intended_successor_invocation_id": "NEXT_SAME_CANONICAL_INVOCATION",
   "handoff_epoch": {
     "epoch_id": "O8_SERIALIZED_GEN39_TO_GEN40_S03",
-    "state": "NOT_YET_OPEN_UNTIL_S03_CLOSE",
+    "state": "OPEN",
     "source_generation": 39,
     "target_generation": 40,
-    "sample": "O8_SERIALIZED_SAME_CANONICAL_S03"
+    "sample": "O8_SERIALIZED_SAME_CANONICAL_S03",
+    "intended_dtstart_utc": "2026-09-24T15:55:56Z",
+    "scheduler_state_ok": true
   },
   "last_consumed_handoff": {
     "epoch_id": "O8_SERIALIZED_GEN38_TO_GEN39_S02",
@@ -22,7 +24,7 @@
     "winner_invocation_id": "MER-O8-GEN39-AUTOMATION-20260924",
     "cas_result": "SUCCESS_AFTER_DURABLE_END"
   },
-  "authority_rule": "Generation39 is sole ACTIVE_OWNER; serialized close protocol applies.",
+  "authority_rule": "Generation39 remains authoritative until durable END; after END, next distinct invocation may acquire generation40 under serialized continuation.",
   "server_time_authority": "GitHub commit timestamp",
   "owner_start_marker": "evidence/o8/O8_GEN39_START_20260924_AUTOMATION.json",
   "owner_start_commit": "3bb142820628f8d2fbfc6eefdb07ce5638ecab30"
