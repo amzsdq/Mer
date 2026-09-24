@@ -1,6 +1,7 @@
 # Mer Master Plan v3 — Empirical Relay Optimizer
 
 Status: ACTIVE
+Current stage: O4_WAKE_PREARM_OFFSET_OPTIMIZATION
 Primary objective: continuity first, then maximum long-run useful-work utilization, then simplicity.
 
 ## 0. Research discipline
@@ -15,15 +16,15 @@ Use internal empirical evidence, authoritative implementation references, applic
 ## Stage O0 — Evidence intake and reopened objective — COMPLETE
 Prior tEST/workwork evidence remains prior evidence, not automatic Mer truth.
 
-## Stage O1 — Controlled-overlap / baton baseline — ACTIVE
+## Stage O1 — Controlled-overlap / baton baseline — COMPLETE
 
 Reference: `research/WORKWORK_OVERLAP_INTAKE.md`.
 Prior fact: workwork observed predecessor/successor concurrency. This establishes overlap feasibility only, not clean handoff.
 
-### Current baseline candidate
+### Validated O1 baseline candidate (historical comparator)
 - same recurring automation; `RRULE:FREQ=HOURLY`; `exact_schedule`; enabled
 - no work-duration target or voluntary time cutoff
-- every invocation performs exactly one verified scheduler pre-arm immediately on wake: `wake + 840s`; no later scheduler mutation in that wake
+- O1 validation used exactly one verified scheduler pre-arm immediately on wake at `wake + 840s`; this remains the fixed timing comparator, not the current universal timing rule
 - scheduler pre-arm is continuity plumbing and is independent of substantive ownership; SHADOW may perform this one write
 - exactly one substantive ACTIVE_OWNER at a time, fenced by durable generation/CAS
 - successor begins as SHADOW_SUCCESSOR and may prepare/read/write immutable own evidence
@@ -33,16 +34,16 @@ Prior fact: workwork observed predecessor/successor concurrency. This establishe
 - after transfer predecessor stops authoritative work and closes; successor continues prepared work as sole substantive owner
 
 ### Evidence required per baton sample
-Record predecessor/successor invocation ids, actual wake evidence, verified +840s pre-arm, READY evidence, generation before/after, transfer/accept evidence, authoritative work around transfer, handoff gap, duplicate authoritative side effects, scheduler conflicts, checkpoint loss, WRITE_OK/STATE_OK/WAKE_OK/WORK_OK, useful work/control overhead where observable.
+O1 samples recorded predecessor/successor invocation ids, actual wake evidence, verified +840s pre-arm, READY evidence, generation before/after, transfer/accept evidence, authoritative work around transfer, handoff gap, duplicate authoritative side effects, scheduler conflicts, checkpoint loss, WRITE_OK/STATE_OK/WAKE_OK/WORK_OK, and useful/control work where observable.
 
 ### Clean sample
 CLEAN requires actual successor wake while predecessor remains active; exactly one substantive owner before and after transfer; successor READY before/at transfer; successful generation/CAS transfer; no predecessor authoritative side effect after transfer; successor accepts fresh generation and resumes useful work; no duplicate authoritative side effect, scheduler conflict, or checkpoint loss. Concurrent wake without clean transfer is not a clean handoff.
 
-### Gate O1A / O1B
-O1A requires at least 3 clean handoffs. O1B requires at least 5 clean end-to-end handoffs under an unchanged candidate before timing optimization. Preserve prior non-overlap evidence as comparator.
+### Gate O1A / O1B — PASS
+O1A 3/3 PASS; O1B stabilization 5/5 clean end-to-end handoffs PASS. Preserve the validated +840s O1 behavior as the fixed comparator for O4.
 
-### Active failure domain — owner loss
-The first owner-mediated sample exposed a liveness hole when the durable OWNER disappears before consuming a READY successor. `H-O1-OWNER-LOSS-RECOVERY` owns this subproblem. Do not count that sample CLEAN. Prefer a simpler non-time-based takeover if it demonstrates equivalent safety/recovery; retain per-side-effect generation fencing because takeover/leader election alone is not fencing.
+### O1 owner-loss finding
+The first owner-mediated sample exposed a liveness hole when the durable OWNER disappeared before consuming a READY successor. Mer validated explicit program-authorized single-use recovery for a known stuck generation and retained per-side-effect generation fencing. Automatic time-expiry recovery remains a separate future recovery experiment rather than an O4 prerequisite.
 
 ## Stage O2 — Prompt enforcement / representation / versioned sync
 Retain existing prompt-boundary research as planned work. Stable invariants belong in deployed prompt plus canonical GitHub source; dynamic runtime state remains GitHub-only. Compare representation/anchors only with semantics held constant. Version mismatch uses prepare/deploy/verify/activate; version match uses cheap manifest fast path.
