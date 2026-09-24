@@ -9,18 +9,17 @@
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
-    "epoch_id": "O5_WINDOW_B_GEN21_TO_GEN22_SAMPLE1",
-    "state": "CONSUMED",
-    "source_generation": 21,
-    "target_generation": 22,
-    "opened_by_invocation_id": "MER-O5-GEN21-SAMPLE3-20260924T1632KST",
-    "opened_by_generation": 21,
+    "epoch_id": "O5_WINDOW_B_GEN22_TO_GEN23_SAMPLE2",
+    "state": "OPEN",
+    "source_generation": 22,
+    "target_generation": 23,
+    "opened_by_invocation_id": "MER-O5-GEN22-BSAMPLE1-20260924T1644KST",
+    "opened_by_generation": 22,
     "target_stage": "O5_HANDOFF_OPTIMIZATION",
-    "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_1",
+    "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_2",
     "prearm_offset_sec": 840,
     "post_ready_max_authoritative_units": 0,
     "ready_evidence_required": true,
-    "ready_evidence": "evidence/o5/O5_WINDOW_B_GEN21_TO_GEN22_SAMPLE1_READY_20260924T1644KST.json",
     "metrics": ["READY_TO_CAS_LATENCY_SEC", "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT", "HANDOFF_SUCCESS", "CONTROL_WRITE_COUNT"],
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_ZERO_POST_READY_AUTHORITATIVE_UNITS",
     "cas_attempts_per_contender": 1,
@@ -37,6 +36,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O5_WINDOW_B_SAMPLE1_READY_PRIORITY_FRESH_SHA_CAS",
+  "transition_reason": "O5_WINDOW_B_SAMPLE1_CLEAN_OPEN_SAMPLE2",
   "server_time_authority": "GitHub commit timestamp"
 }
