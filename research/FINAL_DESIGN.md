@@ -1,4 +1,9 @@
-# Mer final design
+# Mer architecture baseline
+
+## Status
+ARCHITECTURE_BASELINE_VALIDATED; OVERALL_RELAY_OPTIMIZATION_ACTIVE.
+
+This file defines the durable authority/prompt boundary that later relay experiments must preserve. It is not an O7 overall-completion declaration.
 
 ## Decision
 Use HYBRID: a stable execution/recovery kernel in the deployed automation prompt; all changing project/research state in GitHub.
@@ -98,10 +103,17 @@ Rejected as the default. It keeps dynamic state cleanly in GitHub but loss/drift
 ### MULTI-FILE DYNAMIC AUTHORITY
 Rejected after finalization cleanup exposed the defect directly. Duplicating current stage/next state across `program.json`, `active.json`, `status/current.json`, and `spec/execution.json` creates multiple stale truths and makes completion depend on best-effort multi-file synchronization.
 
-## Validated gates
-- final clean wakes: 3/3 PASS
-- missing-entrypoint recovery: 1/1 PASS
-- final authority cleanup: COMPLETE
+## Validated architecture gates
+- prompt-boundary clean validation: PASS
+- missing-entrypoint recovery: PASS
+- single dynamic authority cleanup: PASS
+
+## Later relay-runtime validation
+- O1 normal ownership handoff: 5/5 clean PASS
+- eligible READY successor priority: active invariant at a current OPEN epoch/generation
+- cross-stage ownership: stage transition must hand off normally or consume one explicit single-use recovery transition
+- O4 adaptive pre-arm optimization: ACTIVE
+- overall program completion: reserved for O7
 
 Final boundary:
 **prompt = stable execution/recovery semantics; GitHub = dynamic project brain; `status/program.json` = single runtime authority inside that brain.**
