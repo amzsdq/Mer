@@ -1,0 +1,9 @@
+{
+  "marker": "START_MARKER",
+  "invocation_id": "MER-WAKE-20260924T172347KST",
+  "stage_observed": "O5_HANDOFF_OPTIMIZATION",
+  "generation_observed": 24,
+  "owner_observed": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "purpose": "O5 matched-window evaluation",
+  "time_authority": "GitHub commit timestamp"
+}
