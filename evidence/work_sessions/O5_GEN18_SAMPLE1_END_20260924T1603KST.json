@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "marker": "END_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_1",
+  "closed_predecessor_generation": 18,
+  "successor_generation": 19,
+  "handoff_epoch": "O5_WINDOW_A_GEN18_TO_GEN19_SAMPLE1",
+  "result": "SUCCESSOR_HANDOFF_COMPLETE",
+  "ready_commit_sha": "875b73ff429dbfd81f42afdaa68c1ac8ca0a28fe",
+  "cas_commit_sha": "93f39a0f55b1aea87476ca7f3ff716236f4899a1",
+  "ready_to_cas_latency_sec": 11,
+  "server_time_authority": "GitHub commit timestamp"
+}
