@@ -69,3 +69,16 @@ A wake is a work session, not a one-step callback. Continue genuine plan-defined
 
 ## Cross-stage ownership rule
 A research-stage transition is not complete merely because `status/program.json.current_stage` changes. Ownership must also cross the boundary. Prefer a normal handoff into the new stage; if the prior-stage OWNER is already gone, use one explicitly authorized single-use recovery transition tied to the exact stuck generation, consume it once, and pre-open the next normal handoff epoch. Never leave a completed-stage dead OWNER as authority for the next stage.
+
+
+## Stage O8 — Long-wake useful-work continuation
+The prior O7 completion was invalidated because relay continuity converged while observed invocations remained short (historically tens of seconds to under two minutes in the final accounting windows). O8 addresses the unresolved original utilization objective rather than treating micro-window convergence as overall completion.
+
+### O8A — Role-relative stop-gate validation
+Validate that a wake which acquires ownership from the previous generation does not stop merely because that inherited handoff completed. The newly active owner must continue through multiple distinct safe useful units. A stop is valid only when PROGRAM_COMPLETE is independently satisfied or a later distinct successor takes ownership away from the current invocation.
+
+### O8B — Long-wake empirical gate
+Overall Mer completion requires at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >= 600 seconds and multiple distinct genuine useful-work units, with no sleep/padding/repetition and continuity still secured. This is a validation gate, not a requirement to idle until 600 seconds. If physical/platform limits prevent it, record evidence and leave the objective unresolved rather than declaring success.
+
+### O8C — Work packing / admission optimization
+If role-relative stop-gate correction alone does not materially extend work, test one primary variable at a time in work-package sizing, next-step breadth, unit chaining, close reserve, and successor-boundary timing. Prefer structures that let a current owner immediately admit the next useful unit instead of manufacturing one-sample-per-wake microcycles.
