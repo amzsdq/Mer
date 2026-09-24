@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "type": "O8_OWNER_LOSS_ADVERSE_SINGLE_USE_AUTHORIZATION_TEMPLATE",
+  "status": "TEMPLATE_NOT_ACTIVE_AUTHORITY",
+  "hypothesis": "H-O8-SCHEDULER-WRITER-FENCE",
+  "canonical_automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+  "source_generation": "FILL_EXACT_CURRENT_GENERATION_AT_TEST_START",
+  "target_generation": "SOURCE_PLUS_ONE",
+  "source_owner_invocation_id": "FILL_EXACT_CURRENT_OWNER",
+  "recovery_invocation_id": "FILL_EXACT_SUCCESSOR",
+  "authorization_scope": "ONE_ADVERSE_SAMPLE_ONLY",
+  "precondition": "source owner has exact verified recurring fallback and no unresolved scheduler mismatch",
+  "effect": "withhold predecessor authoritative progress for this test sample; permit exactly one READY-bound fresh-SHA recovery CAS by the named successor; SHADOW scheduler writes remain forbidden",
+  "forbidden": [
+    "corrupt ownership state",
+    "disable canonical automation",
+    "delete or shorten verified fallback before recovery owner exists",
+    "scheduler write by SHADOW",
+    "automatic takeover from elapsed time alone",
+    "reuse authorization after CONSUMED"
+  ],
+  "required_close": "CAS winner becomes ACTIVE_OWNER, performs one attributed full-VEVENT +840s prearm with exact readback, resumes WORK_OK, marks authorization CONSUMED, opens next normal handoff epoch",
+  "clock_source": "GITHUB_SERVER_TIMESTAMP"
+}
