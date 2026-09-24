@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O5_HANDOFF_OPTIMIZATION",
-  "next_step": "O5_STAGE_ENTRY_HANDOFF: RETAIN 840S DEFAULT COMPARATOR. CURRENT GEN17 OWNER MUST OPEN A NORMAL GEN17_TO_GEN18 HANDOFF EPOCH BOUND_TO_O5; SUCCESSOR PREARMS ONCE AT 840S, RECONSTRUCTS O5 STATE, WRITES READY EVIDENCE, AND PERFORMS ONE FRESH_SHA CAS. AFTER O5 OWNERSHIP IS ACTIVE, TEST ONE PRIMARY VARIABLE: READY_TO_TRANSFER SAFE_UNIT GRANULARITY / READY_TO_CAS LATENCY, HOLDING SCHEDULER OFFSET=840S AND AUTHORITY SEMANTICS CONSTANT.",
+  "next_step": "O5_WINDOW_A_SAMPLE_1: CURRENT GEN18 OWNER OPENS GEN18_TO_GEN19 HANDOFF EPOCH WITH POST_READY_MAX_AUTHORITATIVE_UNITS=1 AND OFFSET=840S. SUCCESSOR PREARMS ONCE, RECONSTRUCTS, WRITES READY EVIDENCE BOUND_TO_CURRENT_EPOCH, THEN ONE FRESH_SHA CAS. RECORD READY_COMMIT_TO_CAS_COMMIT LATENCY, DUPLICATE_SIDE_EFFECT=0/1, HANDOFF_SUCCESS, CONTROL_WRITE_COUNT. COLLECT 3 CLEAN A SAMPLES BEFORE SWITCHING ONCE TO B=0.",
   "active_hypothesis": "H-O5-READY-TRANSFER-GRANULARITY",
-  "hypothesis_status": "STAGED_PENDING_CROSS_STAGE_HANDOFF_AND_SOURCING_GATE",
+  "hypothesis_status": "TESTABLE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -17,27 +17,28 @@
     "generation_authority": "control/ownership.json",
     "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_ELIGIBLE_READY_FRESH_SHA_CAS",
     "work_duration_target": "NONE",
-    "o4_result": "KEEP_840S_BASELINE_720S_VIABLE_NOT_SUPERIOR",
-    "o4_evidence": "evidence/o4/O4_FIXED_WINDOW_EVALUATION_20260924.md"
+    "o5_primary_variable": "PREDECESSOR_POST_READY_MAX_AUTHORITATIVE_UNITS",
+    "o5_baseline_a": 1,
+    "o5_candidate_b": 0
   },
   "gate": {
     "o1_stabilization": "PASS",
-    "o4_matched_windows": "A840_3_OF_3_CLEAN_B720_3_OF_3_CLEAN",
     "o4_decision": "KEEP_840S",
-    "o5_cross_stage_handoff_required": true,
+    "o5_cross_stage_handoff": "PASS_GEN17_TO_GEN18",
+    "o5_sourcing_gate": "PASS",
     "o5_change_one_primary_variable": true,
-    "o5_sourcing_gate_required_before_testable": true
+    "o5_matched_windows": "A_0_OF_3_B_0_OF_3"
   },
-  "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
+  "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O4_FIXED_WINDOW_EVALUATION",
-    "result": "KEEP_BASELINE_REVISE_HYPOTHESIS",
-    "status": "840S_AND_720S_BOTH_3_OF_3_CLEAN; NO_DIRECT_QUANTITATIVE_EVIDENCE_OF_MATERIAL_720S_UTILIZATION_ADVANTAGE; 840S RETAINED_BY_PROMOTION_RULE",
-    "evidence": "evidence/o4/O4_FIXED_WINDOW_EVALUATION_20260924.md"
+    "scope": "O5_SOURCING_GATE",
+    "result": "PASS_TO_TESTABLE",
+    "status": "INTERNAL_VIABILITY_PLUS_KUBERNETES_OPTIMISTIC_CONCURRENCY_PRIOR_PLUS_REDIS_LIVENESS_COUNTERPRIOR; DISCRIMINATING_MATCHED_WINDOW_TEST_DEFINED",
+    "evidence": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O5_STAGE_ENTRY_HANDOFF_PENDING",
+  "active_sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_1_PENDING",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "PENDING_O5_SOURCING"
+  "hypothesis_record": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md"
 }
