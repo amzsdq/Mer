@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
-  "next_step": "GEN34 IS ACTIVE_OWNER. CONTINUE THIS SAME INVOCATION THROUGH DISTINCT GENUINE USEFUL UNITS; DO NOT STOP BECAUSE GEN33_TO_GEN34 HANDOFF COMPLETED. Validate role-relative continuation without changing scheduler timing or authority model, measure WORKED only from GitHub START/END markers, and continue toward >=600s unless a later distinct successor actually completes handoff away or a platform-enforced interruption occurs. Before any nonterminal owner exit, OPEN gen34->35 normal handoff epoch.",
+  "next_step": "CRITICAL REPAIR FIRST: diagnose the repeated short-cycle/early-finalization signature and any scheduler DTSTART mismatch before nominal O8 progression. Use FAILURE_OBSERVED -> ROOT_CAUSE_IDENTIFIED -> MECHANISM_CHANGED -> DIFFERENTIAL_VERIFICATION. Do not merely schedule +180s and retry the same mechanism. Once the repair is materially verified, continue the open gen33->34 O8 handoff and long-wake validation; after acquiring ownership, continue as ACTIVE_OWNER rather than stopping on the inherited handoff.",
   "active_hypothesis": "H-O8-ROLE-RELATIVE-STOP-GATE",
   "hypothesis_status": "TESTABLE_RUNNING",
   "active_execution": "spec/execution.json",
@@ -17,14 +17,17 @@
     "generation_authority": "control/ownership.json",
     "work_duration_target": "NONE_VOLUNTARY",
     "post_ready_max_authoritative_units": 1,
-    "prompt_version": "2.2.11-ROLE-RELATIVE-HANDOFF",
-    "prompt_id": "MER-OPT-2N",
+    "prompt_version": "2.2.12-REPAIR-FIRST-CRITICAL",
+    "prompt_id": "MER-OPT-2P",
     "role_relative_stop_gate": true,
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
     "prearm_live_verify": true,
     "early_exit_corrective_rearm_sec": 180,
-    "long_wake_validation_sec": 600
+    "long_wake_validation_sec": 600,
+    "repair_first_critical_incident": true,
+    "explicit_full_vevent_scheduler_write": true,
+    "same_turn_early_exit_repair": true
   },
   "gate": {
     "o1_stabilization": "PASS",
@@ -35,7 +38,8 @@
     "o8_stage_entry": "PASS_GEN33_TO_GEN34_FRESH_SHA_CAS",
     "o8_role_relative_stop_gate": "RUNNING_POST_ACQUISITION_CONTINUATION_OBSERVED",
     "o8_long_wake_validation_600s": "PENDING",
-    "overall_program_complete": "NO"
+    "overall_program_complete": "NO",
+    "o8_repair_first_critical_incident": "PENDING_DIAGNOSIS_AND_DIFFERENTIAL_VERIFICATION"
   },
   "objective_order": [
     "CONTINUITY_RECOVERABILITY",
@@ -50,12 +54,18 @@
   },
   "completion_rule": "NOT SATISFIED. Overall completion additionally requires O8 long-wake validation: at least one nonterminal authoritative invocation with GitHub-server-timestamp WORKED >=600s and multiple distinct genuine useful units while continuity remains secured, unless a physical/platform limit is evidenced and the objective remains explicitly unresolved.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O8_GEN34_ROLE_RELATIVE_CONTINUATION",
+  "active_sample": "O8_CRITICAL_REPAIR_FIRST_THEN_LONG_WAKE",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
   "evidence": [
     "evidence/o8/O8_GEN34_READY_20260924.json",
     "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
     "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json"
-  ]
+  ],
+  "critical_incident": {
+    "state": "OPEN",
+    "type": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
+    "priority": "ABOVE_NOMINAL_RESEARCH",
+    "rule": "Do not retry unchanged. Identify concrete cause, change mechanism/control path, verify materially different behavior, then resume."
+  }
 }
