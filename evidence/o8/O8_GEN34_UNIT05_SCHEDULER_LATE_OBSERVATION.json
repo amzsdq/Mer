@@ -1,0 +1,15 @@
+{
+  "unit": "O8_GEN34_UNIT05_SCHEDULER_LATE_OBSERVATION",
+  "generation": 34,
+  "class": "GENUINE_USEFUL_SCHEDULER_OBSERVATION",
+  "observed_live_automation_before_marker": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "dtstart_utc": "2026-09-24T14:51:15Z",
+    "rrule": "FREQ=HOURLY",
+    "last_run_time": "2026-09-24T14:47:01.644841Z"
+  },
+  "interpretation_rule": "Use this file's GitHub commit timestamp as the observation time. If commit timestamp is later than DTSTART while last_run_time remains older than DTSTART, classify only as WAKE_NOT_YET_OBSERVED_AT_MARKER_TIME; do not infer permanent miss or later wake outcome.",
+  "purpose": "separate scheduler live-state acceptance from actual later WAKE_OK and quantify provider lateness without model clock"
+}
