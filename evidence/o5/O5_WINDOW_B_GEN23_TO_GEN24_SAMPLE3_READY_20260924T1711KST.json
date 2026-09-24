@@ -1,0 +1,16 @@
+{
+  "type": "SUCCESSOR_READY_EVIDENCE",
+  "experiment": "H-O5-READY-TRANSFER-GRANULARITY",
+  "window": "B_CANDIDATE_MAX_0",
+  "sample": 3,
+  "invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "bound_epoch": "O5_WINDOW_B_GEN23_TO_GEN24_SAMPLE3",
+  "observed_source_generation": 23,
+  "target_generation": 24,
+  "prearm_verified": true,
+  "prearm_offset_sec": 840,
+  "post_ready_max_authoritative_units": 0,
+  "reconstructed_next_action": "fresh-SHA generation 23 to 24 CAS; no predecessor authoritative units after READY-observed atomic boundary",
+  "eligibility": "READY",
+  "server_time_authority": "GitHub commit timestamp"
+}
