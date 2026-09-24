@@ -1,0 +1,9 @@
+{
+  "generation": 41,
+  "unit": "AUTHORITY_WRITE_PATH_DIAGNOSIS",
+  "result": "IMMUTABLE_GENERATION_EVENT_CREATE_READBACK_PASS",
+  "event_commit": "18dba04a2b53903357b9fdcbd8b473aac43b768f",
+  "repair_result_commit": "3ba51ed7b8231e56a664001bd69bd20e1b41d420",
+  "constraint": "Mutable projection replacement remained blocked; no unchanged retry performed.",
+  "next": "Verify repository-level fencing primitive before promotion."
+}
