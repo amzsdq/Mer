@@ -7,8 +7,8 @@
   "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
-  "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S02_ACTIVE_GEN38",
-  "next_step": "Gen38 ACTIVE_OWNER S02: continue useful O8 work and close only with PRE_CLOSE+120s verified same-canonical rearm. S01 CLEAN: END 15:41:51Z, START 15:43:48Z, idle_gap 117s, target delay 27s. Require S02/S03 CLEAN plus serialized owner-loss adverse before promotion.",
+  "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S02_WAIT_WAKE_GEN39",
+  "next_step": "Next invocation: create START, verify S02 target 15:48:20Z and gen38 END 15:46:37Z, acquire gen39 legally, persist WORK_OK, compute idle gap, continue S03.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -29,7 +29,8 @@
     "o8_serialized_clean_count": 1,
     "o8_serialized_s01": "CLEAN_WAKE_WORK_AUTHORITY_PASS",
     "o8_owner_loss_adverse": "DEFERRED_UNTIL_SERIALIZED_NORMAL_PATH_ESTABLISHED",
-    "overall_program_complete": "NO"
+    "overall_program_complete": "NO",
+    "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -56,5 +57,17 @@
     "state": "SERIALIZED_S01_DIFFERENTIAL_VERIFICATION_PASS_CONTINUE_S02",
     "type": "OVERLAP_ASSUMPTION_FAILED_AND_PRIOR_OVERLAP_EVIDENCE_INVALIDATED",
     "priority": "ABOVE_NOMINAL_RESEARCH"
+  },
+  "serialized_s02": {
+    "predecessor_generation": 38,
+    "start_utc": "2026-09-24T15:43:48Z",
+    "end_utc": "2026-09-24T15:46:37Z",
+    "worked_sec": 169,
+    "preclose_utc": "2026-09-24T15:46:20Z",
+    "intended_dtstart_utc": "2026-09-24T15:48:20Z",
+    "write_ok": true,
+    "state_ok": true,
+    "wake_ok": "PENDING",
+    "work_ok_next": "PENDING"
   }
 }
