@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O6-GEN27-20260924T2211KST",
+  "epoch_id": "O6_T2_GEN26_TO_GEN27_001",
+  "source_generation": 26,
+  "target_generation": 27,
+  "prearm_offset_sec": 840,
+  "prearm_live_verified": true,
+  "prearm_live_schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Seoul:20260924T222541\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "prompt_version": "2.2.10-EARLY-EXIT-RETRY",
+  "prompt_id": "MER-OPT-2M",
+  "durable_state_read": ["control/prompt-manifest.json", "status/program.json", "control/ownership.json"],
+  "immediate_next_action": "classify current actual execution as WAKE_OK for prior prearm, acquire gen27 by fresh-SHA CAS, then evaluate O6 gate",
+  "state": "SUCCESSOR_READY"
+}
