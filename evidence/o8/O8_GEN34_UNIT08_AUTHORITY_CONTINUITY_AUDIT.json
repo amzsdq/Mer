@@ -1,0 +1,23 @@
+{
+  "unit": "O8_GEN34_UNIT08_AUTHORITY_CONTINUITY_AUDIT",
+  "generation": 34,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "class": "GENUINE_USEFUL_AUTHORITY_VERIFICATION",
+  "fresh_ownership": {
+    "generation": 34,
+    "active_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+    "status": "OWNER_ACTIVE",
+    "open_epoch": "O8_LONGWAKE_GEN34_TO_GEN35_001",
+    "target_generation": 35,
+    "epoch_state": "OPEN"
+  },
+  "checks": {
+    "role_relative_acquisition_did_not_duplicate_owner": "PASS",
+    "later_distinct_successor_ready_observed": false,
+    "handoff_away_complete": false,
+    "owner_exit_guard_path_exists": true,
+    "current_owner_may_continue_substantive_work": true
+  },
+  "result": "PASS_CONTINUE_GEN34",
+  "finalization_allowed": false
+}
