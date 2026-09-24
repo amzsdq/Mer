@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "repair_id": "O8_AUTHORITY_GAP_GEN40_TO_GEN43_RECOVERY_EPOCH_V1",
+  "created_for": "H-O8-SERIALIZED-SAME-CANONICAL",
+  "historical_interpretation": {
+    "strict_contiguous_through_generation": 40,
+    "gap": "GEN40_TO_GEN41_MISSING_DURABLE_GEN40_END_OR_DECLARED_TERMINAL_EQUIVALENT",
+    "valid_suffix": "GEN41_TO_GEN42",
+    "history_rewrite_forbidden": true
+  },
+  "repair": {
+    "type": "APPEND_ONLY_SINGLE_USE_RECOVERY_EPOCH",
+    "target_generation": 43,
+    "precondition": "fresh readback proves no already-authoritative generation >=43 and preserves the gap record",
+    "duplicate_exclusion": "generation-fenced single winner; no production projection update before immutable winner readback",
+    "rollback": "if immutable recovery acquisition is not durably readable, leave mutable production authority unchanged and preserve recurring scheduler fallback",
+    "projection_order": [
+      "durable recovery declaration",
+      "durable generation43 acquisition",
+      "fresh immutable readback",
+      "mutable ownership reconciliation",
+      "status/program reconciliation"
+    ]
+  },
+  "forbidden": [
+    "fabricate gen40 END",
+    "reinterpret gen40 ACTIVE_OWNER_CANDIDATE as terminal without an historical rule",
+    "enter owner-loss adverse before authority reconciliation"
+  ]
+}
