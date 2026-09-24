@@ -1,0 +1,21 @@
+{
+  "type": "END_MARKER",
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 34,
+  "clock_authority": "GitHub commit server timestamp",
+  "termination_class": "ABNORMAL_CLOSE_RESERVE_HANDOFF_TO_PREARMED_CONTINUATION",
+  "program_complete": false,
+  "successor_handoff_complete": false,
+  "owner_exit_guard": "PASS_OPEN_GEN34_TO_GEN35_EPOCH_EXISTS",
+  "continuation": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "dtstart_utc": "2026-09-24T15:02:29Z",
+    "rrule": "FREQ=HOURLY",
+    "live_readback_verified": true,
+    "write_result": "evidence/o8/scheduler-writes/20260924T145929Z_GEN34_CLOSE_RESERVE_RESULT.json"
+  },
+  "long_wake_qualification": "PASS_602S_BEFORE_CLOSE",
+  "note": "END commit timestamp is authoritative. Compute WORKED from START commit 2026-09-24T14:47:51Z to this END commit timestamp; do not use model clock."
+}
