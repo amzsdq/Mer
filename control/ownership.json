@@ -1,9 +1,9 @@
 {
   "schema_version": 4,
-  "generation": 24,
-  "active_invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "generation": 25,
+  "active_invocation_id": "MER-GEN25-RECOVERY-20260924",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
+  "predecessor_invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
@@ -29,14 +29,14 @@
   "recovery_transition": {
     "single_use": true,
     "authorized_by": "USER_DIRECT_INSTRUCTION_2026-09-24",
-    "reason": "STALE_OWNER_PLUS_DUPLICATE_GENERATION_AUTHORITY_PREVENTED_FORWARD_PROGRESS",
-    "source_generation": 10,
-    "target_generation": 11,
-    "source_owner_invocation_id": "MER-O4-20260924-122248-001",
-    "target_owner_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
+    "reason": "GEN24_OWNER_STRANDED_WITH_CONSUMED_EPOCH_AND_NO_GEN24_TO_GEN25_OPEN_PATH; USER_DIRECTED_EXECUTE_KNOWN_RECOVERY_INSTEAD_OF_BLOCKING",
+    "source_generation": 24,
+    "target_generation": 25,
+    "source_owner_invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+    "target_owner_invocation_id": "MER-GEN25-RECOVERY-20260924",
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O5_WINDOW_B_SAMPLE3_CLEAN_HANDOFF_GEN23_TO_GEN24",
+  "transition_reason": "USER_AUTHORIZED_SINGLE_USE_RECOVERY_GEN24_TO_GEN25",
   "server_time_authority": "GitHub commit timestamp"
 }
