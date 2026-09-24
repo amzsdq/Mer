@@ -4,29 +4,29 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_STABILIZATION_GATE_REACHED_5_OF_5_SELECT_NEXT_PLAN_DEFINED_TEST",
-  "active_hypothesis": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
-  "hypothesis_status": "STABILIZATION_GATE_PASS_5_OF_5",
+  "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
+  "next_step": "O4_RECONCILE_EXECUTION_THEN_DEFINE_FIXED_WINDOW_840S_BASELINE_AND_ONE_SHORTER_EXPERIMENT_AWARE_CANDIDATE",
+  "active_hypothesis": "H-O4-EXPERIMENT-AWARE-PREARM",
+  "hypothesis_status": "TESTABLE_SOURCING_GATE_PASS",
   "active_execution": "spec/execution.json",
   "candidate": {
-    "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
+    "scheduler_strategy": "WAKE_START_PREARM_BATON_UNDER_O4_TEST",
     "recurrence": "RRULE:FREQ=HOURLY",
     "wake_start_prearm_offset_sec": 840,
+    "baseline_offset_sec": 840,
+    "adaptive_policy_status": "HYPOTHESIS_ONLY_NOT_PROMOTED",
+    "adaptive_rule_candidate": "EXPERIMENT_DECLARED_EXPECTED_OBSERVATION_HORIZON_PLUS_SAFETY_MARGIN_FIXED_WITHIN_SAMPLE_WINDOW",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_STABILIZED_5_OF_5",
-    "automatic_expiry_recovery": "DEFERRED_SEPARATE_EXPERIMENT",
     "work_duration_target": "NONE"
   },
   "gate": {
-    "viability_required_clean_handoffs": 3,
-    "clean_handoffs": 5,
-    "stabilization_required_clean_handoffs": 5,
-    "overlap_concurrency_required": true,
-    "clean_transfer_required": true,
-    "zero_duplicate_authoritative_side_effects_required": true,
-    "zero_scheduler_writer_conflicts_required": true,
-    "comparator_required": true
+    "o1_viability_clean_handoffs": 5,
+    "o1_stabilization": "PASS",
+    "o4_change_one_primary_variable": true,
+    "o4_fixed_window_required": true,
+    "o4_continuity_floor": "NO_REGRESSION_VS_840S_BASELINE",
+    "o4_measure": ["WAKE_LATENESS","OVERLAP","HANDOFF_GAP","MISSED_WAKE","SCHEDULER_CONFLICT","DUPLICATE_AUTHORITATIVE_SIDE_EFFECT","USEFUL_VS_CONTROL_WORK_WHERE_OBSERVABLE"]
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
@@ -38,7 +38,7 @@
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O1_STABILIZATION_GATE_PASS",
+  "active_sample": "O4_ADAPTIVE_PREARM_TEST_DESIGN",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md"
+  "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
