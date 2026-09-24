@@ -19,6 +19,7 @@
   "deployed_enabled": true,
   "program_state": "ACTIVE",
   "sync_required": false,
-  "live_state_last_verified_at": "2026-09-24T02:51:38+09:00",
-  "note": "Adds eligible READY successor priority at current open epoch/generation and cross-stage ownership handoff invariant. O1->O4 stranded gen8 recovered to gen9 with next epoch pre-opened."
+  "live_state_last_verified_at": "2026-09-24T03:21:32.129777Z",
+  "note": "Post-audit live verification complete. Canonical/live prompt version 2.2.8-READY-PRIORITY / MER-OPT-2K; automation enabled on same canonical ID. Active docs reconciled for O4; O1 historical evidence/archive intentionally left immutable.",
+  "live_schedule_verified": "BEGIN:VEVENT\nDTSTART:20260924T032310Z\nRRULE:FREQ=HOURLY\nEND:VEVENT"
 }
