@@ -16,32 +16,40 @@ Scheduler write authority: ALL_WAKES_PREARM versus OWNER_OR_NEWLY_ACQUIRED_OWNER
 - INTERNAL_EMPIRICAL
 - AUTHORITATIVE_IMPLEMENTATION
 
-## SUPPORTING_PRIORS
-1. Current Mer live evidence: this gen34 invocation verified a future wake-start prearm, yet later live scheduler state showed a different earlier DTSTART while `control/ownership.json` still remained generation 34 OWNER_ACTIVE and the gen34->35 epoch remained OPEN. The scheduler is therefore observably a shared last-writer surface independent of substantive ownership.
-2. Mer already uses generation/CAS single-owner fencing for authoritative shared-state side effects because concurrent writers require an explicit winner.
-3. Kubernetes-style leader election and lease-holder patterns separate contenders from the active writer: contenders may prepare, but leader-only mutations avoid concurrent control-plane writers.
-4. GitHub optimistic concurrency patterns similarly require a current version/SHA for authoritative replacement, illustrating the general single-writer/fenced-write principle.
+## SUPPORTING PRIORS
+1. Mer gen34 forensic evidence: durable manifest history shows a verified target changed from `15:01:31Z` to `14:51:15Z` within 4.724954 seconds while substantive ownership remained generation 34 with the gen34->35 epoch OPEN. This directly establishes a concurrent last-writer scheduler surface; it does not identify the second writer.
+2. Mer already uses fresh-SHA generation CAS for authoritative shared-state ownership because concurrent contenders require exactly one winner.
+3. Kubernetes official Lease documentation states that distributed systems use leases to lock shared resources/coordinate members and that Kubernetes uses Lease objects for leader election so one instance acts as leader while peers remain standby. Coordinated Leader Election further uses optimistic concurrency on the Lease resource so one candidate becomes leader.
+4. GitHub official repository-contents documentation requires the current blob `sha` when replacing a file and warns that parallel conflicting content operations can conflict, supporting explicit versioned/serialized mutation rather than unconstrained concurrent writers.
 
-## COUNTER_PRIORS / KNOWN CONFLICTS
-1. The existing ALL_WAKES_PREARM rule was introduced as crash-insurance: a SHADOW can secure a later wake before ownership transfer.
+## AUTHORITATIVE REFERENCES
+- Kubernetes Leases: https://kubernetes.io/docs/concepts/architecture/leases/
+- Kubernetes Coordinated Leader Election: https://kubernetes.io/docs/concepts/cluster-administration/coordinated-leader-election/
+- GitHub REST repository contents: https://docs.github.com/en/rest/repos/contents
+
+## COUNTER PRIORS / KNOWN CONFLICTS
+1. ALL_WAKES_PREARM was introduced as crash insurance: a SHADOW can secure a later wake before ownership transfer.
 2. If the current owner dies before transfer and no already-armed future occurrence exists, forbidding all shadow writes could increase recovery latency.
-3. The observed changed DTSTART does not by itself prove harmful collision; another invocation may have intentionally applied a valid recovery rearm. Raw writer identity is not exposed by automation metadata.
+3. The observed changed DTSTART does not by itself prove the overwrite was harmful; it may have been an intentional recovery mutation. Historical automation metadata lacks writer identity, which is why O8 added immutable write-intent/result attribution.
+4. Kubernetes/GitHub primitives do not prove ChatGPT Automation dispatch semantics; they justify the coordination hypothesis, not the product-specific outcome.
 
 ## TRANSLATION
-- Leader/lease holder -> current generation ACTIVE_OWNER.
+- Lease holder / leader -> current generation ACTIVE_OWNER.
 - Scheduler write -> mutation of the single canonical automation's DTSTART/RRULE state.
 - Contender preparation -> SHADOW reads durable state and prepares READY evidence without scheduler mutation.
 - Ownership acquisition -> fresh-SHA generation CAS; after success the new owner may write its one scheduler prearm.
+- resourceVersion/blob SHA -> Mer's generation/current-SHA fencing analogue, not an assumed scheduler-native CAS.
 
-## NON_TRANSFERABLE_ASSUMPTIONS
+## NON-TRANSFERABLE ASSUMPTIONS
 - Kubernetes/GitHub do not establish ChatGPT Automation dispatch timing or guarantee atomic scheduler CAS.
-- Mer must empirically verify that owner-only/new-owner-only scheduling does not create missed continuation after owner loss.
+- Mer must empirically verify owner-only/new-owner-only scheduling against missed continuation and owner-loss recovery.
 
-## DISCRIMINATING_TEST
-Hold offset=840s, recurrence, prompt, work units, and handoff semantics constant. Compare:
+## DISCRIMINATING TEST
+Hold offset=840s, recurrence, full-VEVENT absolute representation, prompt semantics, work units, and handoff semantics constant. Compare:
 A. current ALL_WAKES_PREARM;
-B. OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY, where a shadow performs no scheduler mutation unless/until it wins the generation CAS.
-For each sample capture intended DTSTART, live readback after every permitted write, actual later wake, ownership generation, handoff result, number of scheduler writes, overwritten-target observations, missed continuation, and recovery latency. Inject/observe one owner-loss adverse case before promotion.
+B. OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY, where a shadow performs no scheduler mutation unless/until it wins generation CAS.
+
+For each sample capture immutable write intent/result, intended DTSTART, exact live readback, actual later WAKE_OK/WORK_OK, ownership generation, handoff result, scheduler write count, overwritten-target observations, missed continuation, idle/handoff gap, and recovery latency. Run the mandatory owner-loss adverse case in `research/O8_SCHEDULER_WRITER_FENCE_TEST_PLAN.md` before promotion.
 
 ## PROMOTION_GATE
 KEEP B only if continuity/recovery is no worse under tested conditions and scheduler write count/overwrite ambiguity materially decreases. Prefer A if B increases missed-wake or owner-loss recovery risk without compensating reliability gain.
@@ -49,4 +57,4 @@ KEEP B only if continuity/recovery is no worse under tested conditions and sched
 ## REJECTION / REVISION RULE
 - REJECT owner-only fencing if a reproducible owner-loss case strands continuation that ALL_WAKES_PREARM recovers safely.
 - REVISE to a durable scheduler-write claim/epoch if owner-only is too restrictive but unconstrained all-wake writes demonstrably collide.
-- Do not infer causality from one changed live DTSTART; capture writer-intent/readback evidence in the controlled sample.
+- Do not infer writer identity from timing alone; require attributed intent/result evidence.
