@@ -5,12 +5,12 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
-  "next_step": "O4_RECONCILE_EXECUTION_THEN_DEFINE_FIXED_WINDOW_840S_BASELINE_AND_ONE_SHORTER_EXPERIMENT_AWARE_CANDIDATE",
-  "active_hypothesis": "H-O4-EXPERIMENT-AWARE-PREARM",
-  "hypothesis_status": "TESTABLE_SOURCING_GATE_PASS",
+  "next_step": "O4_ADAPTIVE_PREARM_TRIAL_WITH_FIXED_840S_COMPARATOR",
+  "active_hypothesis": "H-O4-ADAPTIVE-PREARM",
+  "hypothesis_status": "TESTABLE_USER_AUTHORIZED_TRIAL",
   "active_execution": "spec/execution.json",
   "candidate": {
-    "scheduler_strategy": "WAKE_START_PREARM_BATON_UNDER_O4_TEST",
+    "scheduler_strategy": "WAKE_START_ADAPTIVE_PREARM_BATON",
     "recurrence": "RRULE:FREQ=HOURLY",
     "wake_start_prearm_offset_sec": 840,
     "baseline_offset_sec": 840,
@@ -18,7 +18,16 @@
     "adaptive_rule_candidate": "EXPERIMENT_DECLARED_EXPECTED_OBSERVATION_HORIZON_PLUS_SAFETY_MARGIN_FIXED_WITHIN_SAMPLE_WINDOW",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_STABILIZED_5_OF_5",
-    "work_duration_target": "NONE"
+    "work_duration_target": "NONE",
+    "prearm_policy": {
+      "default_sec": 840,
+      "min_normal_sec": 180,
+      "max_normal_sec": 840,
+      "shorten_only_for_concrete_successor_dependent_boundary": true,
+      "selection_rule": "EXPECTED_USEFUL_WORK_TO_BOUNDARY_PLUS_HANDOFF_JITTER_MARGIN",
+      "hold_constant_within_sample": true,
+      "comparator": "FIXED_840S"
+    }
   },
   "gate": {
     "o1_viability_clean_handoffs": 5,
@@ -26,19 +35,29 @@
     "o4_change_one_primary_variable": true,
     "o4_fixed_window_required": true,
     "o4_continuity_floor": "NO_REGRESSION_VS_840S_BASELINE",
-    "o4_measure": ["WAKE_LATENESS","OVERLAP","HANDOFF_GAP","MISSED_WAKE","SCHEDULER_CONFLICT","DUPLICATE_AUTHORITATIVE_SIDE_EFFECT","USEFUL_VS_CONTROL_WORK_WHERE_OBSERVABLE"]
+    "o4_measure": [
+      "WAKE_LATENESS",
+      "OVERLAP",
+      "HANDOFF_GAP",
+      "MISSED_WAKE",
+      "SCHEDULER_CONFLICT",
+      "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT",
+      "USEFUL_VS_CONTROL_WORK_WHERE_OBSERVABLE"
+    ]
   },
-  "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
+  "objective_order": [
+    "CONTINUITY_RECOVERABILITY",
+    "USEFUL_WORK_DUTY_CYCLE",
+    "SIMPLICITY"
+  ],
   "previous_program_result": {
-    "scope": "O1_STABILIZATION_HANDOFF_005_GEN7_TO_GEN8",
+    "scope": "O1_STABILIZATION",
     "result": "PASS",
-    "status": "CLEAN_HANDOFF_COMPLETE_GEN8_OWNER_ACTIVE_STABILIZATION_5_OF_5",
-    "transition_commit": "b0b28d7a780e39ca819fb7f0a67e7fcb734a13ff",
-    "ready_evidence_commit": "402031406be61aff9a18e3e13510e5808787353a"
+    "status": "5_OF_5_CLEAN_HANDOFFS"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O4_ADAPTIVE_PREARM_TEST_DESIGN",
+  "active_sample": "O4_ADAPTIVE_PREARM_TRIAL_001",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md"
 }
