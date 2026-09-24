@@ -5,22 +5,22 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
-  "next_step": "O1_STABILIZATION_HANDOFF_SAMPLE_004_PREPARE_GEN6_TO_GEN7",
+  "next_step": "O1_STABILIZATION_GATE_REACHED_5_OF_5_SELECT_NEXT_PLAN_DEFINED_TEST",
   "active_hypothesis": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
-  "hypothesis_status": "VIABILITY_GATE_PASS_3_OF_3_CONTINUE_STABILIZATION",
+  "hypothesis_status": "STABILIZATION_GATE_PASS_5_OF_5",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
     "recurrence": "RRULE:FREQ=HOURLY",
     "wake_start_prearm_offset_sec": 840,
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
-    "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_UNDER_TEST",
+    "normal_handoff": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS_STABILIZED_5_OF_5",
     "automatic_expiry_recovery": "DEFERRED_SEPARATE_EXPERIMENT",
     "work_duration_target": "NONE"
   },
   "gate": {
     "viability_required_clean_handoffs": 3,
-    "clean_handoffs": 3,
+    "clean_handoffs": 5,
     "stabilization_required_clean_handoffs": 5,
     "overlap_concurrency_required": true,
     "clean_transfer_required": true,
@@ -30,15 +30,15 @@
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY","USEFUL_WORK_DUTY_CYCLE","SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O1_NORMAL_HANDOFF_003_GEN5_TO_GEN6",
+    "scope": "O1_STABILIZATION_HANDOFF_005_GEN7_TO_GEN8",
     "result": "PASS",
-    "status": "CLEAN_HANDOFF_COMPLETE_GEN6_OWNER_ACTIVE_VIABILITY_3_OF_3",
-    "transition_commit": "e4fef58b427d5fbe0a3476e252dd1b7980e3d850",
-    "ready_evidence_commit": "34d9bb08a7157df454924603cb2e4e16d5f394aa"
+    "status": "CLEAN_HANDOFF_COMPLETE_GEN8_OWNER_ACTIVE_STABILIZATION_5_OF_5",
+    "transition_commit": "b0b28d7a780e39ca819fb7f0a67e7fcb734a13ff",
+    "ready_evidence_commit": "402031406be61aff9a18e3e13510e5808787353a"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O1_STABILIZATION_HANDOFF_004",
+  "active_sample": "O1_STABILIZATION_GATE_PASS",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md"
 }
