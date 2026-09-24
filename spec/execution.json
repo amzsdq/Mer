@@ -1,68 +1,42 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "state": "ACTIVE",
   "active": true,
-  "experiment_id": "H-O4-ADAPTIVE-PREARM",
-  "primary_variable": "WAKE_START_PREARM_OFFSET_SEC",
-  "scheduler_strategy": "WAKE_START_FIXED_WINDOW_COMPARISON",
+  "experiment_id": "H-O5-READY-TRANSFER-GRANULARITY",
+  "primary_variable": "PREDECESSOR_POST_READY_MAX_AUTHORITATIVE_UNITS",
+  "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
+  "wake_start_prearm_offset_sec": 840,
   "authority_record": "control/ownership.json",
   "generation_authority": "control/ownership.json",
   "status_owner": "status/program.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY_UNTIL_CURRENT_OPEN_HANDOFF_EPOCH_READY_AND_FRESH_SHA_CAS",
   "scheduler_writer_rule": "EVERY_INVOCATION_EXACTLY_ONCE_AT_WAKE_START_THEN_NO_MORE_WRITES",
-  "transfer_rule": "OWNER_OPENS_GENERATION_BOUND_HANDOFF_EPOCH; FIRST_ELIGIBLE_READY_CONTENDER_MAY ATTEMPT EXACTLY ONE FRESH_SHA G_TO_G_PLUS_1 CAS",
+  "transfer_rule": "OWNER_OPENS_GENERATION_BOUND_HANDOFF_EPOCH; FIRST_ELIGIBLE_READY_CONTENDER MAY ATTEMPT EXACTLY ONE FRESH_SHA G_TO_G_PLUS_1 CAS",
   "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_SIDE_EFFECT FRESH_READ control/ownership.json AND REQUIRE CURRENT active_invocation_id PLUS generation",
-  "normal_close_scheduler_rewrite": false,
   "work_duration_target": "NONE",
-  "normal_stop_gates": [
-    "PROGRAM_COMPLETE",
-    "SUCCESSOR_HANDOFF_COMPLETE"
-  ],
-  "workload": "evidence/o4/O4_ADAPTIVE_PREARM_HYPOTHESIS_20260924T1131KST.md",
-  "active_sample": "O4_FIXED_WINDOW_A_840S",
-  "next_action": "RUN_FIXED_WINDOW_A_AT_840S; COLLECT 3 CLEAN SUCCESSOR HANDOFF SAMPLES WITH ALL OTHER HANDOFF SEMANTICS HELD CONSTANT; THEN SWITCH ONCE TO FIXED_WINDOW_B_AT_720S FOR 3 CLEAN SAMPLES; DO NOT RETUNE WITHIN A WINDOW",
-  "fixed_window_test": {
-    "baseline_offset_sec": 840,
-    "candidate_offset_sec": 720,
-    "candidate_reason": "CONSERVATIVE_FIRST_DESCENT_FROM_VALIDATED_840S_BASELINE; ONLY PREARM_OFFSET_CHANGES",
+  "normal_stop_gates": ["PROGRAM_COMPLETE", "SUCCESSOR_HANDOFF_COMPLETE"],
+  "workload": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
+  "active_sample": "O5_WINDOW_A_POST_READY_MAX_1",
+  "next_action": "COLLECT 3 CLEAN HANDOFFS WITH POST_READY_MAX_AUTHORITATIVE_UNITS=1; THEN SWITCH ONCE TO B=0 AT COMPARABLE READY-OBSERVED BOUNDARIES; MEASURE READY_COMMIT_TO_CAS_COMMIT LATENCY AND SAFETY",
+  "matched_window_test": {
+    "baseline_post_ready_max_authoritative_units": 1,
+    "candidate_post_ready_max_authoritative_units": 0,
     "samples_per_window": 3,
-    "active_window": "A_BASELINE_840S",
+    "active_window": "A_BASELINE_MAX_1",
     "a_clean_samples": 0,
     "b_clean_samples": 0,
-    "switch_rule": "AFTER_3_CLEAN_A_SAMPLES_SWITCH_ONCE_TO_720S_B_WINDOW",
-    "promotion_rule": "KEEP_SHORTER_ONLY_IF_CONTINUITY_NO_WORSE_AND_UTILIZATION_OR_EXPERIMENT_TURNAROUND_MATERIALLY_BETTER; OTHERWISE_KEEP_840S",
-    "change_one_primary_variable": true
-  },
-  "wake_start_prearm_offset_sec": 840,
-  "successor_due_rule": "WAKE_AT + ACTIVE_WINDOW_PREARM_OFFSET_SEC",
-  "adaptive_prearm": {
-    "default_sec": 840,
-    "normal_bounds_sec": [180, 840],
-    "short_cycle_trigger": "CONCRETE_SUCCESSOR_DEPENDENT_EXECUTION_OR_VERIFICATION_BOUNDARY",
-    "selection_rule": "FIXED_BY_ACTIVE_EXPERIMENT_WINDOW",
-    "no_frequency_for_its_own_sake": true,
-    "hold_constant_within_sample": true,
-    "fixed_comparator_sec": 840
+    "hold_scheduler_offset_sec": 840,
+    "change_one_primary_variable": true,
+    "metrics": ["READY_TO_CAS_LATENCY_SEC", "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT", "HANDOFF_SUCCESS", "CONTROL_WRITE_COUNT"],
+    "promotion_rule": "PROMOTE_B_ONLY_IF_CONTINUITY_NO_WORSE_DUPLICATES_ZERO_AND_LATENCY_OR_CONTROL_OVERHEAD_MATERIALLY_BETTER; IF_EQUIVALENT_KEEP_A"
   },
   "successor_priority": {
     "enabled": true,
-    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY_AFTER_CURRENT_ATOMIC_UNIT",
+    "predecessor_rule": "ELIGIBLE_READY_SUCCESSOR_BOUND_TO_CURRENT_OPEN_EPOCH_GETS_TRANSFER_PRIORITY; BASELINE_A_ALLOWS_ONLY_COMPLETION_OF_CURRENT_ATOMIC_UNIT_AND_NO_NEW_UNIT",
     "concurrent_ready_rule": "FIRST_SUCCESSFUL_FRESH_SHA_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW"
   },
-  "recovery_policy": {
-    "no_ad_hoc_self_promotion": true,
-    "stuck_owner_recovery_requires_explicit_authorization": true,
-    "takeover_requires_fresh_read": true,
-    "takeover_requires_generation_increment": true,
-    "takeover_requires_optimistic_concurrency": true,
-    "per_side_effect_fence_remains_required": true
-  },
-  "short_cycle_watch": {
-    "enabled": true,
-    "condition": "REPEATED_NONTERMINAL_SHORT_WAKES_WITH_LONGER_SAFE_USEFUL_WORK_AVAILABLE_AND_NO_PLAN_DECLARED_SHORT_CYCLE_NEED",
-    "action": "REPORT_SHORT_CYCLE_ANOMALY_WITH_GITHUB_SERVER_TIMESTAMP_EVIDENCE"
-  },
-  "previous_sample_result": "GEN9_TO_GEN10_HANDOFF_SUCCEEDED; STALE_DUPLICATE_GENERATION_STATE_FOUND_AND_RECOVERED_TO_GEN11",
+  "sourcing_record": "evidence/o5/O5_READY_TRANSFER_SOURCING_20260924.md",
+  "sourcing_gate": "PASS",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
