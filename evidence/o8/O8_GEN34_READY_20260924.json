@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "role": "SUCCESSOR_READY",
+  "handoff_epoch_id": "O8_STAGE_ENTRY_GEN33_TO_GEN34_001",
+  "source_generation": 33,
+  "target_generation": 34,
+  "prompt_version": "2.2.11-ROLE-RELATIVE-HANDOFF",
+  "scheduler_prearm": {
+    "offset_sec": 840,
+    "write_ok": true,
+    "state_ok": true,
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "enabled": true,
+    "timing_mode": "exact_schedule",
+    "rrule": "FREQ=HOURLY",
+    "dtstart_kst": "2026-09-24T23:58:44+09:00"
+  },
+  "prepared_next_action": "Acquire generation 34 by fresh-SHA CAS, then continue in this same invocation as ACTIVE_OWNER; do not stop on inherited handoff. Source and test H-O8-ROLE-RELATIVE-STOP-GATE with multiple distinct useful units toward >=600s validation.",
+  "authority_claimed": false
+}
