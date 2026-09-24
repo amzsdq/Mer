@@ -1,0 +1,8 @@
+{
+  "type": "USEFUL_UNIT_START",
+  "unit_id": "O7-S2-DIRECT-ACCOUNTING-OBSERVATION",
+  "invocation_id": "MER-O7-GEN30-SAMPLE2-20260924T2248KST",
+  "generation": 30,
+  "purpose": "Apply O7 direct accounting method to sample2 and discriminate scheduler target timing from actual durable work intervals.",
+  "clock_authority": "GitHub commit timestamp"
+}
