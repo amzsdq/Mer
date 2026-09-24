@@ -1,106 +1,40 @@
-# workwork Overlap Evidence Intake
+# workwork Overlap Evidence Intake — CORRECTED
 
-Status: PRIOR_EVIDENCE_ACCEPTED_WITH_LIMITS
-Date: 2026-09-23
+Status: PRIOR_OVERLAP_CLAIM_INVALIDATED_BY_SERVER_CLOCK_AUDIT
+Correction date: 2026-09-24
 
-## What is directly proven
+## Prior claim
+The earlier intake treated model-written fields in `amzsdq/workwork/overlap/OVERLAP-15M-WAKE12M-01/*.json` as clock truth and concluded that the same recurring automation had 198s of concurrent execution.
 
-Source: amzsdq/workwork/overlap/OVERLAP-15M-WAKE12M-01/result.json
+That conclusion is invalid under Mer's clock rule.
 
-Observed:
-- primary_start: 2026-09-23T01:17:18+09:00
-- scheduled_overlap_wake: 01:29:18
-- successor/observer_start: 01:29:22
-- wake jitter: +4s
-- primary_end: 01:32:40
-- observed simultaneous execution: 198s
-- classification: CONCURRENT
+## GitHub-server audit
+The relevant workwork files have authoritative GitHub commit timestamps:
+- `primary-start.json` commit `5759115c21307c81cb1bef799451b35cb3869006` created `2026-09-22T16:17:32Z`.
+- `primary-end.json` commit `4ca1d8f3f0881be219802627ecfa793ad6772683` created `2026-09-22T16:18:57Z`.
+- `observer-01.json` commit `45107f419a3c73522af6ce1166d95e875a8047ab` created `2026-09-22T16:29:46Z`.
 
-Interpretation:
-The same recurring automation can produce a successor invocation while the predecessor invocation remains alive. The successor did not preempt or serialize behind the predecessor in this probe.
+Therefore the durable server-clock interval from primary START file creation to primary END file creation is only 85 seconds. The observer evidence was committed 649 seconds after the primary END commit.
 
-This is strong prior evidence that overlap is technically feasible.
+The JSON body fields claimed `primary_end_kst=01:32:40` and `observer_start_kst=01:29:22`, but `primary-end.json` itself was committed at 01:18:57 KST — more than thirteen minutes before its claimed end. Those model-written clock strings cannot establish runtime duration or overlap.
 
-## What is NOT proven
+## Corrected interpretation
+- WORKWORK SAME-CANONICAL OVERLAP: NOT PROVEN by this probe.
+- WORKWORK 198s CONCURRENCY: INVALIDATED as evidence because it depends on non-authoritative model-written timestamps contradicted by GitHub server chronology.
+- The probe may still contain useful qualitative ideas about overlap/handoff design, but it cannot serve as empirical proof of concurrent execution.
 
-A concurrent wake is not the same as a clean handoff.
+This does not prove serialization. It removes a false positive prior. Mer must directly observe overlap/serialization using external/server timestamps and actual distinct invocation evidence.
 
-workwork/SUCCESSOR_HANDOFF_RESEARCH.md explicitly requires:
-- exactly one ACTIVE_OWNER;
-- SHADOW successor preparation without authoritative side effects;
-- READY;
-- fenced generation/CAS transfer;
-- no predecessor authoritative work after transfer;
-- successor acceptance and immediate work;
-- no scheduler-writer collision;
-- no checkpoint loss.
+## Consequence for Mer
+The previous high-ceiling overlap baseline loses its empirical support from this workwork probe. Do not preserve overlap architecture merely because of the old result.json classification. Current B03 same-canonical dispatch observation becomes more important: classify only from Mer durable START/END/server timestamps plus automation metadata, never model clock strings.
 
-Observed later workwork handoff records repeatedly show:
-- READY successors existed;
-- duplicate_authoritative_work_count remained 0 in the inspected recovery case;
-- scheduler_writer_conflicts remained 0 in the inspected recovery case;
-BUT
-- transfers were classified FENCED_RECOVERY_NOT_CLEAN_NORMAL_HANDOFF;
-- clean_handoff=false;
-- some READY-to-accept delays were tens of minutes.
+## Remaining design prior
+Distributed leader/fencing patterns still support exactly-one authoritative owner when concurrent actors actually exist. They do not establish that ChatGPT scheduled invocations overlap.
 
-Therefore:
-OVERLAP_CONCURRENCY = PROVEN_IN_WORKWORK
-CLEAN_NORMAL_HANDOFF = NOT_YET_PROVEN
-HIGHEST_LONG_RUN_UTILIZATION = NOT_YET_EMPIRICALLY_PROVEN
-
-## Why use overlap as Mer baseline anyway
-
-Mer's primary objective is continuity first, then maximum long-run useful-work utilization.
-
-A non-overlap policy has an unavoidable positive handoff/boot gap unless scheduler jitter accidentally overlaps it.
-A controlled overlap policy can move successor bootstrap/preparation inside predecessor productive time, so its attainable utilization ceiling is higher.
-
-This establishes overlap as the high-ceiling baseline candidate, NOT as a validated final policy.
-
-## External prior
-
-Kubernetes Lease/leader-election patterns support the coordination shape:
-- multiple instances may exist;
-- one holderIdentity owns authority;
-- optimistic concurrency/versioning selects one holder;
-- non-holders remain candidates/followers.
-
-Transferable to Mer:
-- concurrent liveness does not imply concurrent authority;
-- one authoritative owner/writer must be fenced by durable generation/version state.
-
-Not transferable:
-- Kubernetes lease timing/defaults and safety guarantees do not automatically apply to ChatGPT Automations.
-
-## Mer baseline hypothesis
-
-H-OVERLAP-BASE-1:
-A controlled predecessor + SHADOW successor overlap, with exactly one authoritative owner and one scheduler writer, can achieve lower handoff idle than the best non-overlap policy without duplicate authoritative side effects or continuation loss.
-
-Initial prior-informed parameters:
-- owner nominal useful-work horizon: 600s (Mer experimental starting point)
-- successor lead: 180s
-- successor wake target: owner_start + 420s
-- overlap target: about 180s if owner reaches nominal horizon
-- same recurring automation
-- active owner schedules once; shadow does not schedule
-- authority transfer uses generation + optimistic-concurrency/CAS
-- immutable per-invocation evidence
-
-The 180s lead comes from workwork's proven ~3m technical overlap and handoff research starting point. It is an experimental parameter, not a promoted constant.
-
-## Primary falsification conditions
-
-Reject/revise the baseline if repeated Mer samples show any of:
-- successor does not reliably start while predecessor remains alive;
-- duplicate authoritative side effects;
-- scheduler-writer collisions;
-- ownership ambiguity;
-- handoff/recovery overhead erases the utilization advantage;
-- continuity materially worse than the non-overlap comparator.
-
-## Comparator
-
-Retain existing Mer immediate-prearm non-overlap observations as comparator evidence.
-Do not discard them; they are not the primary baseline anymore.
+## Falsification discipline
+Future overlap evidence requires all of:
+1. predecessor durable START with external/server timestamp;
+2. successor distinct invocation durable START with external/server timestamp;
+3. predecessor durable progress or END with external/server timestamp strictly after successor START;
+4. same canonical identity proven independently;
+5. no reliance on model-written start/end strings for temporal ordering.
