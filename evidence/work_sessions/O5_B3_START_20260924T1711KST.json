@@ -1,0 +1,10 @@
+{
+  "type": "START_MARKER",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_B_POST_READY_MAX_0_SAMPLE_3",
+  "invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
+  "source_generation": 23,
+  "target_generation": 24,
+  "handoff_epoch": "O5_WINDOW_B_GEN23_TO_GEN24_SAMPLE3",
+  "server_time_authority": "GitHub commit timestamp"
+}
