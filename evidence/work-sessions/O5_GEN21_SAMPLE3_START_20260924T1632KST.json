@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "marker": "START",
+  "invocation_id": "MER-O5-GEN21-SAMPLE3-20260924T1632KST",
+  "stage": "O5_HANDOFF_OPTIMIZATION",
+  "sample": "O5_WINDOW_A_POST_READY_MAX_1_SAMPLE_3",
+  "source_generation": 20,
+  "target_generation": 21,
+  "server_time_authority": "GitHub commit timestamp"
+}
