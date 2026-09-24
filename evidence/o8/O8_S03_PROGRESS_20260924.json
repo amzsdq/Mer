@@ -1,0 +1,8 @@
+{
+  "sample":"S03",
+  "generation":39,
+  "status":"ACTIVE_OWNER",
+  "completed_units":["S02 wake verification","S02 idle-gap measurement","generation39 authority update","scheduler live-state inspection"],
+  "scheduler_observation":{"dtstart_utc":"2026-09-24T15:48:20Z","last_run_time_utc":"2026-09-24T15:47:13.557008Z","enabled":true,"timing_mode":"exact_schedule","rrule":"FREQ=HOURLY"},
+  "clock_authority":"GitHub commit timestamp"
+}
