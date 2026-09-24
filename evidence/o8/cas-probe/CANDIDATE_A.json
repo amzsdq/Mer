@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "type": "ATOMIC_REF_CAS_PROBE",
+  "base_head": "a1b1059846d56d2b78d7d01edd87d27ec9efa8c4",
+  "purpose": "Non-destructive single-winner primitive validation on dedicated probe branch; not authority",
+  "candidate": "A"
+}
