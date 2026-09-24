@@ -54,7 +54,7 @@ There is no fixed work-duration completion rule in the current baton candidate. 
 After baton handoff is viable, keep +840s as the fixed baseline and test an adaptive pre-arm candidate. Adaptive policy defaults to 840s; when a concrete successor-dependent experiment/verification boundary is expected sooner, select PREARM_OFFSET_SEC as expected useful-work time to that boundary plus handoff/jitter margin, normally bounded to 180..840s. Do not shorten merely to increase wake frequency. Hold the selected offset constant within each sample unless offset itself is the primary variable. Measure actual wake lateness, overlap, handoff gap, missed occurrence, recovery, scheduler overhead, and useful-work duty cycle. Compare adaptive behavior against fixed-offset controls; prefer the simpler fixed policy if reliability/utilization are equivalent.
 
 ## Stage O5 — Handoff optimization
-Optimize READY policy, safe-unit granularity near transfer, ownership recovery, and fencing only after O1 viability. Scheduler has one wake-start write per invocation; substantive ownership remains generation fenced. Compare complex recovery against the simplest safe alternative.
+Optimize READY policy, safe-unit granularity near transfer, ownership recovery, and fencing only after O1 viability. An ELIGIBLE READY successor that is durably bound to the current OPEN handoff epoch and generation has transfer priority: the predecessor finishes only its current atomic authoritative unit, starts no new authoritative unit, and yields to the handoff CAS. READY alone without current epoch/generation binding does not grant priority. Scheduler has one wake-start write per invocation; substantive ownership remains generation fenced. Compare complex recovery against the simplest safe alternative.
 
 ## Stage O6 — Adverse recovery tests
 Test missed intended wake, predecessor termination, stale state, duplicate/competing actor, prompt mismatch, missing bootstrap, and accepted scheduler write followed by absent wake. Reject fast candidates without demonstrated recovery.
@@ -64,3 +64,7 @@ Final candidate must specify scheduler strategy, prompt/canonical sync, work/sto
 
 ## Wake utilization rule
 A wake is a work session, not a one-step callback. Continue genuine plan-defined safe units until `PROGRAM_COMPLETE` or `SUCCESSOR_HANDOFF_COMPLETE`; abnormal platform/safety interruption is not successful voluntary completion. Never sleep, pad, repeat converged work, or invent work. Continuation is secured by the current one-write wake-start pre-arm strategy. If repeated nonterminal wakes remain materially short despite the plan permitting substantially longer continuous useful work, no short-cycle experiment requiring rapid successor turnover is active, and safe useful work remains available, record and report `SHORT_CYCLE_ANOMALY` rather than silently normalizing the pattern.
+
+
+## Cross-stage ownership rule
+A research-stage transition is not complete merely because `status/program.json.current_stage` changes. Ownership must also cross the boundary. Prefer a normal handoff into the new stage; if the prior-stage OWNER is already gone, use one explicitly authorized single-use recovery transition tied to the exact stuck generation, consume it once, and pre-open the next normal handoff epoch. Never leave a completed-stage dead OWNER as authority for the next stage.
