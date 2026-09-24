@@ -8,18 +8,20 @@
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
   "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
-  "next_step": "Gen40 durable START creation succeeded at GitHub 16:01:15Z, but mutable control/ownership.json update remains safety-blocked. Treat this as a projection-write-path defect, not a missing wake. First repair authority projection via a supported immutable/CAS-compatible mechanism or simplify mutable authority representation; then classify S03 using server chronology. Do not repeat the blocked ownership replacement unchanged.",
+  "next_step": "Validate AUTOMATION_SERVER_CLOCK failover on the current/next serialized same-canonical sample: START=same-canonical last_run_time; END=final scheduler mutation server updated_at; WORKED=exact delta; never mix clock sources. Keep authority projection/CAS repair as a separate unresolved track.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
     "recurrence": "RRULE:FREQ=HOURLY",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "generation_authority": "control/ownership.json",
-    "prompt_version": "2.2.14-SERIALIZED-SAME-CANONICAL",
-    "prompt_id": "MER-OPT-2R",
+    "prompt_version": "2.2.15-EXTERNAL-CLOCK-FAILOVER",
+    "prompt_id": "MER-OPT-2S",
     "full_vevent_absolute": true,
     "scheduler_writer": "ACTIVE_OWNER_ONLY",
-    "wake_start_overlap_prearm": false
+    "wake_start_overlap_prearm": false,
+    "clock_policy": "GITHUB_MARKER_PRIMARY_AUTOMATION_SERVER_CLOCK_FAILOVER",
+    "clock_source_isolation": true
   },
   "gate": {
     "o8_long_wake_validation_600s": "PASS_736S_GITHUB_SERVER_CLOCK",
@@ -31,7 +33,8 @@
     "o8_owner_loss_adverse": "DEFERRED_UNTIL_SERIALIZED_NORMAL_PATH_ESTABLISHED",
     "overall_program_complete": "NO",
     "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
-    "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED"
+    "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED",
+    "o8_external_clock_failover": "ACTIVE_DIFFERENTIAL_VALIDATION"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -55,8 +58,8 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "ROOT_CAUSE_NARROWED_MECHANISM_CHANGE_REQUIRED",
-    "type": "MUTABLE_OWNERSHIP_PROJECTION_UPDATE_SAFETY_BLOCKED_WHILE_IMMUTABLE_EVIDENCE_WRITES_SUCCEED",
+    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
+    "type": "DURATION_CLOCK_DECOUPLED_FROM_SELECTIVELY_BLOCKED_GITHUB_MARKER_MUTATION",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "serialized_s02": {
