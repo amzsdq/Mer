@@ -1,0 +1,13 @@
+{
+  "experiment": "AUTHORITY_PROJECTION_WRITE_PATH_REPAIR",
+  "generation": 41,
+  "start_commit": "6bc6e94462d19c4d4cb81eaecb0a1ce94e5b43a6",
+  "authority_event_path": "control/authority-events/gen-000041.json",
+  "authority_event_commit": "18dba04a2b53903357b9fdcbd8b473aac43b768f",
+  "immutable_create_readback": "PASS",
+  "mutable_control_ownership_retry": "NOT_REPEATED",
+  "status_program_projection_update": "SAFETY_BLOCKED",
+  "interpretation": "Narrower failure: immutable generation event mechanism works while replacement of mutable projection files is safety-blocked. Treat immutable event as candidate authority source and verify stale/duplicate exclusion before promotion.",
+  "next": "Run duplicate same-generation create test and stale-generation test using immutable create-only paths; then migrate references only if fail-closed semantics pass.",
+  "clock_authority": "GitHub commit timestamp"
+}
