@@ -1,0 +1,8 @@
+{
+  "marker_type": "END_MARKER",
+  "invocation_id": "MER-O7-GEN31-COVERAGE1-20260924T2252KST",
+  "close_class": "ABNORMAL_EARLY_EXIT_BOUNDARY_WITH_SAFE_USEFUL_WORK_REMAINING",
+  "reason": "successor handoff gen31-to-gen32 not yet complete; package2 remains safe useful work; EARLY_EXIT_CORRECTIVE_REARM required",
+  "next_epoch": "O7_ACCOUNTING_GEN31_TO_GEN32_COVERAGE2",
+  "clock_authority": "GitHub commit timestamp"
+}
