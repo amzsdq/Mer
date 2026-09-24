@@ -5,7 +5,7 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
-  "next_step": "EXECUTE H-O6-STRANDED-OWNER-RECOVERY T1: create a bounded synthetic stranded-owner fixture that matches the gen24 failure shape, then apply DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY once under the declared admission predicate. Verify exactly one generation increment, duplicate authoritative side effects=0, scheduler remains enabled, and recovered owner opens a legal next normal epoch. Do not mutate production ownership to manufacture the fault; keep the adverse fixture isolated under evidence/o6/fixtures.",
+  "next_step": "EXECUTE O6 T2 after normal gen26->gen27 handoff: model a stale shadow that attempts deterministic orphan recovery after authority has already advanced. Require zero authoritative mutation and preserve the live normal successor path. Then continue T3 if safe.",
   "active_hypothesis": "H-O6-STRANDED-OWNER-RECOVERY",
   "hypothesis_status": "TESTABLE",
   "active_execution": "spec/execution.json",
@@ -29,18 +29,18 @@
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
     "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
     "o6_sourcing_gate": "PASS_TESTABLE",
-    "o6_adverse_tests": "0_OF_5"
+    "o6_adverse_tests": "1_OF_5_T1_PASS"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "O6_STAGE_ENTRY_AND_HYPOTHESIS_SOURCING",
+    "scope": "O6_T1_STRANDED_OWNER_EXACT_REPRODUCTION",
     "result": "PASS",
-    "status": "GEN25_TO_GEN26_NORMAL_HANDOFF_COMPLETE; H-O6 SOURCED WITH INTERNAL INCIDENT, AUTHORITATIVE EXTERNAL REFERENCES, AND CONTRARY EVIDENCE; ONE PRIMARY VARIABLE DECLARED",
-    "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
+    "status": "ISOLATED FIXTURE: ONE ELIGIBLE RECOVERY, ONE GENERATION INCREMENT, ZERO DUPLICATE AUTHORITATIVE SIDE EFFECTS, SCHEDULER ENABLED, NEXT NORMAL EPOCH OPEN",
+    "evidence": "evidence/o6/fixtures/T1_STRANDED_OWNER_RESULT.json"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_T1_STRANDED_OWNER_EXACT_REPRODUCTION",
+  "active_sample": "O6_T2_STALE_SHADOW_AFTER_AUTHORITY_ADVANCED",
   "active_sample_owner_evidence": "control/ownership.json",
   "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
 }
