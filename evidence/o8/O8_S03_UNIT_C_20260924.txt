@@ -1,0 +1,1 @@
+S03 unit C completed. Generation 39 authority was durably acquired after the new START marker. Serialized dispatch still retains generation fencing for stale-state protection.
