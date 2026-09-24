@@ -1,0 +1,17 @@
+{
+  "kind": "SUCCESSOR_READY",
+  "epoch_id": "O7_ACCOUNTING_GEN31_TO_GEN32_COVERAGE2",
+  "source_generation": 31,
+  "target_generation": 32,
+  "successor_invocation_id": "MER-O7-GEN32-COVERAGE2-20260924T2302KST",
+  "prearm": {
+    "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+    "dtstart_kst": "2026-09-24T23:16:03+09:00",
+    "rrule": "FREQ=HOURLY",
+    "timing_mode": "exact_schedule",
+    "enabled": true,
+    "live_readback": "PASS"
+  },
+  "prepared_next_action": "complete gen31->32 CAS then execute coverage package 2 accounting and materiality reassessment",
+  "clock_authority": "GitHub commit timestamp"
+}
