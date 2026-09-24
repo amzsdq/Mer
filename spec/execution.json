@@ -2,7 +2,7 @@
   "schema_version": 4,
   "state": "ACTIVE",
   "active": true,
-  "generation": 17,
+  "generation": 18,
   "experiment_id": "H-O4-ADAPTIVE-PREARM",
   "primary_variable": "PREARM_POLICY_FIXED_840_VS_ADAPTIVE_BOUNDARY_AWARE",
   "scheduler_strategy": "WAKE_START_ADAPTIVE_PREARM_BATON",
@@ -20,10 +20,10 @@
     "PROGRAM_COMPLETE",
     "SUCCESSOR_HANDOFF_COMPLETE"
   ],
-  "next_action": "RUN_O4_ADAPTIVE_PREARM_TRIAL; SELECT OFFSET FROM ACTIVE BOUNDARY BEFORE THE SINGLE WAKE_START SCHEDULER WRITE; REPORT PREARM_OFFSET_SEC AND PREARM_REASON; IF LONGER CONTINUOUS WORK IS SAFE AND NO SHORT-CYCLE TEST REQUIRES RAPID HANDOFF, USE DEFAULT 840S",
+  "next_action": "CONSUME_SINGLE_USE_O1_TO_O4_STAGE_TRANSITION_RECOVERY_GEN8_TO_GEN9; OPEN_GEN9_TO_GEN10_HANDOFF_EPOCH; ON_RESUME_ELIGIBLE_READY_SUCCESSOR_HAS_PRIORITY; THEN_RUN_O4_ADAPTIVE_PREARM_TRIAL",
   "workload": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md",
   "status_owner": "status/program.json",
-  "active_sample": "O4_ADAPTIVE_PREARM_TRIAL_001",
+  "active_sample": "O4_STAGE_TRANSITION_RECOVERY_THEN_TRIAL_001",
   "recovery_constraints": {
     "no_ad_hoc_self_promotion": true,
     "recovery_epoch": {
@@ -46,28 +46,6 @@
     "shadow_wake_start_prearm_allowed": true,
     "scheduler_mutations_per_wake": 1
   },
-  "handoff_test": {
-    "source_generation": 6,
-    "target_generation": 7,
-    "epoch_must_be_opened_by_current_owner": true,
-    "contender_requirements": [
-      "WAKE_OK",
-      "WAKE_START_PREARM_VERIFIED",
-      "CHECKPOINT_RECONSTRUCTED",
-      "READY_EVIDENCE_DURABLE",
-      "FRESH_OWNERSHIP_READ_SHOWS_OPEN_EPOCH_FOR_SOURCE_GENERATION"
-    ],
-    "cas_attempts_per_contender": 1,
-    "winner_rule": "FIRST_SUCCESSFUL_GITHUB_OPTIMISTIC_CONCURRENCY_CAS",
-    "losers_rule": "STALE_SHA_OR_GENERATION_FAILS_CLOSED_AS_SHADOW",
-    "clean_success_requires": [
-      "GENERATION_INCREMENTS_EXACTLY_ONCE",
-      "NEW_OWNER_MATCHES_CAS_WINNER",
-      "PREDECESSOR_FENCED",
-      "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT",
-      "SUCCESSOR_WORK_OK"
-    ]
-  },
   "previous_sample_result": "O1_NORMAL_HANDOFF_003_PASS_GEN5_TO_GEN6_VIABILITY_3_OF_3",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
   "adaptive_prearm": {
@@ -86,5 +64,34 @@
     "enabled": true,
     "condition": "REPEATED_NONTERMINAL_SHORT_WAKES_WITH_LONGER_SAFE_USEFUL_WORK_AVAILABLE_AND_NO_PLAN_DECLARED_SHORT_CYCLE_NEED",
     "action": "REPORT_SHORT_CYCLE_ANOMALY_WITH_GITHUB_SERVER_TIMESTAMP_EVIDENCE"
+  },
+  "stage_transition": {
+    "from_stage": "O1_CONTROLLED_OVERLAP_BASELINE",
+    "to_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION",
+    "state": "RECOVERY_AUTHORIZED",
+    "reason": "O1 owner remained authoritative after O1 completion and no O4 handoff epoch was opened",
+    "recovery_epoch": {
+      "authorized": true,
+      "consumed": false,
+      "single_use": true,
+      "expected_generation": 8,
+      "transition": "GEN8_TO_GEN9",
+      "target_owner_invocation_id": "MER-O4-STAGE-RECOVERY-001",
+      "target_stage": "O4_WAKE_PREARM_OFFSET_OPTIMIZATION"
+    }
+  },
+  "successor_priority": {
+    "enabled": true,
+    "applies_only_when": [
+      "CURRENT_GENERATION_HANDOFF_EPOCH_IS_OPEN",
+      "READY_EVIDENCE_IS_DURABLE_AND_BOUND_TO_CURRENT_GENERATION_AND_EPOCH",
+      "WAKE_START_PREARM_VERIFIED",
+      "CHECKPOINT_RECONSTRUCTED",
+      "CONTENDER_FRESH_READS_OWNERSHIP_BEFORE_CAS"
+    ],
+    "predecessor_rule": "WHEN_AN_ELIGIBLE_READY_SUCCESSOR_EXISTS_FINISH_ONLY_CURRENT_ATOMIC_UNIT_THEN_START_NO_NEW_AUTHORITATIVE_UNIT_AND_YIELD_TO_HANDOFF",
+    "successor_rule": "ELIGIBLE_READY_CONTENDER_HAS_PRIORITY_TO_ATTEMPT_EXACTLY_ONE_FRESH_SHA_GENERATION_CAS",
+    "concurrent_ready_rule": "FIRST_SUCCESSFUL_CAS_WINS_OTHERS_FAIL_CLOSED_AS_SHADOW",
+    "not_allowed": "READY_ALONE_WITHOUT_OPEN_EPOCH_OR_GENERATION_BINDING_DOES_NOT_GRANT_PRIORITY"
   }
 }
