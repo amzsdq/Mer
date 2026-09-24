@@ -1,0 +1,19 @@
+{
+  "type": "PROGRESS_MARKER",
+  "invocation_id": "MER-O8-GEN35-WAKEWORK-20260924",
+  "generation": 35,
+  "role": "ACTIVE_OWNER",
+  "units_completed": [
+    "inspected prior attributed close-reserve write versus actual automation last_run_time",
+    "classified exact prior WAKE_OK as NOT_PROVEN instead of fabricating success",
+    "identified current +841s unattributed live target overwrite",
+    "advanced representation mechanism to KEEP for write/state and activated writer-authority differential",
+    "persisted gen35 READY and consumed gen34->35 handoff with fresh-SHA CAS",
+    "deployed prompt 2.2.13 owner-fenced scheduler semantics",
+    "executed B01 attributed owner-only scheduler write and exact live readback PASS",
+    "updated Master Plan and prompt manifest",
+    "preopened gen35->36 B02 epoch for legal successor path"
+  ],
+  "b01_result": "WRITE_OK_STATE_OK_PASS; WAKE_OK_PENDING",
+  "next": "Continue owner-fence experiment. Observe B01 target stability while doing useful analysis; next eligible successor must remain scheduler-silent as SHADOW, CAS to gen36, then prearm as owner for B02. Accumulate three clean B samples and mandatory owner-loss adverse case."
+}
