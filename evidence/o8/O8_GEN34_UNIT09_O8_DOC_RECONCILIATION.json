@@ -1,0 +1,17 @@
+{
+  "unit": "O8_GEN34_UNIT09_O8_DOC_RECONCILIATION",
+  "generation": 34,
+  "class": "GENUINE_USEFUL_DOCUMENTED_CONTROL_REPAIR",
+  "result": "PASS",
+  "artifacts_reconciled": [
+    "spec/GOAL.md",
+    "research/FINAL_DESIGN.md",
+    "research/CONVERGENCE.md",
+    "control/PROMPT_ROLLOUT.md",
+    "README.md",
+    "research/O8_LONG_WAKE_VALIDATION_PROTOCOL.md",
+    "research/O8_REJECTED_OR_REVISED_MECHANISMS.md"
+  ],
+  "purpose": "remove stale continuity-only completion language and make repair-first, role-relative stop semantics, exact scheduler verification, attribution, and >=600s direct long-wake gate durable across operator-facing control docs",
+  "finalization_allowed": false
+}
