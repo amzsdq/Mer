@@ -1,84 +1,71 @@
 # Mer Master Plan v3 — Empirical Relay Optimizer
 
 Status: ACTIVE
-Current stage: dynamic; authoritative current stage is `status/program.json`.
-Primary objective: continuity first, then maximum long-run useful-work utilization, then simplicity.
+Current stage: authoritative in `status/program.json`.
+Primary objective: continuity first, then long-run useful-work utilization, then simplicity.
 
 ## 0. Research discipline
-Each wake follows `status/program.json.next_step`. Do not promote theory directly into production policy.
+Follow `status/program.json.next_step`. New hypotheses obey `research/HYPOTHESIS_SOURCING_POLICY.md`. GitHub server/external timestamps, not model-written clocks, govern temporal claims.
 
-### Hypothesis sourcing gate — REQUIRED
-Before a new hypothesis becomes TESTABLE, follow `research/HYPOTHESIS_SOURCING_POLICY.md`. Use internal empirical evidence, authoritative implementation references, applicable formal work, and competing/counter evidence. A candidate is KEEP/REVISE/REJECT only after a discriminating test. Dynamic runtime authority remains `status/program.json`; execution/evidence files are authoritative only when referenced there.
+## Stage O0 — Evidence intake — COMPLETE WITH LATER CORRECTION
+Prior tEST/workwork evidence is prior only. O8 later invalidated the old workwork 198s overlap claim after GitHub commit timestamps contradicted the model-written duration/order; see corrected `research/WORKWORK_OVERLAP_INTAKE.md`.
 
-## Stage O0 — Evidence intake and reopened objective — COMPLETE
-Prior tEST/workwork evidence remains prior evidence, not automatic Mer truth.
+## Stage O1 — Baton/ownership baseline — HANDOFF EVIDENCE RETAINED; OVERLAP TIMING CLAIM WITHDRAWN
+O1 established useful generation/CAS, READY, exactly-one-owner and single-use recovery mechanics under tested conditions. O1A/O1B handoff records remain historical state-machine evidence unless separately invalidated.
 
-## Stage O1 — Controlled-overlap / baton baseline — COMPLETE
-Reference: `research/WORKWORK_OVERLAP_INTAKE.md`.
-
-Validated historical comparator:
-- same recurring automation; `RRULE:FREQ=HOURLY`; `exact_schedule`; enabled;
-- no voluntary work-duration cutoff;
-- O1 used one verified scheduler pre-arm at wake +840s;
-- exactly one substantive ACTIVE_OWNER fenced by durable generation/CAS;
-- successor begins SHADOW_SUCCESSOR and may prepare/read/write immutable own evidence;
-- predecessor may not voluntarily close before transfer; late/missing successor means predecessor continues useful work;
-- clean transfer requires actual successor wake/READY plus durable generation increment, no duplicate authoritative side effect and no checkpoint loss.
-
-O1A 3/3 PASS; O1B stabilization 5/5 clean handoffs PASS. O1 also exposed an owner-loss liveness hole; Mer validated one explicit program-authorized single-use recovery transition for a known stuck generation. Automatic time-expiry recovery remained separate.
-
-Historical note: O1 allowed SHADOW scheduler prearm as crash insurance. O8 later observed that an unconstrained all-wake scheduler lane can overwrite the single canonical target while substantive ownership remains unchanged. Therefore SHADOW prearm is retained only as a historical comparator until O8D resolves scheduler-writer authority.
+However the prior justification that workwork had empirically proven 198s same-canonical overlap is withdrawn. Server chronology for that probe is primary-start commit 16:17:32Z, primary-end commit 16:18:57Z, observer commit 16:29:46Z. The claimed 01:32:40 primary end existed in a file committed at 01:18:57, so it cannot be clock authority. Do not use O1/workwork as proof that a successor can overlap a live predecessor.
 
 ## Stage O2 — Prompt enforcement / representation / versioned sync
-Stable invariants belong in deployed prompt plus canonical GitHub source; dynamic runtime state remains GitHub-only. Compare representation/anchors only with semantics held constant. Version mismatch uses prepare/deploy/verify/activate; version match uses cheap manifest fast path. During rollout or suspected drift, exact deployed content must be verified against the prepared canonical; version/id equality alone is insufficient.
+Stable invariants live in deployed prompt plus canonical GitHub source; dynamic runtime state remains GitHub-only. Version mismatch uses prepare/deploy/verify/activate. Prompt manifest must not duplicate live scheduler runtime state.
 
-## Stage O3 — Productive-window / completion-envelope observation
-There is no fixed voluntary work-duration completion rule. Measure platform survival boundary, productive window, close overhead, and interruption behavior observationally. A duration threshold may be a validation gate without becoming a stop gate.
+## Stage O3 — Productive-window observation
+No fixed voluntary work-duration completion rule. Measure survival/productive window, close overhead and interruption behavior externally. Duration thresholds are validation gates, not stop gates.
 
 ## Stage O4 — Wake-prearm offset optimization
-Keep +840s as fixed baseline and test adaptive pre-arm candidates only when a concrete successor-dependent boundary warrants it. Hold selected offset constant within each sample unless offset is the primary variable. Measure actual wake lateness, overlap, handoff gap, missed occurrence, recovery, scheduler overhead, and useful-work duty cycle. Prefer simpler fixed policy if reliability/utilization are equivalent.
+840s remains fixed baseline during current writer-fence experiment. Offset changes require their own primary-variable test. Measure actual wake, idle gap, missed occurrence, recovery and useful-work duty cycle rather than nominal DTSTART alone.
 
 ## Stage O5 — Handoff optimization
-An ELIGIBLE READY successor bound to the current OPEN epoch/generation has transfer priority: predecessor finishes only its current atomic authoritative unit, starts no new authoritative unit, and yields to fresh-SHA generation CAS. READY without current epoch/generation binding grants no priority. Substantive ownership remains generation fenced.
+Eligible READY bound to current OPEN epoch/generation has transfer priority only when concurrent successor existence is actually established. Fresh-SHA generation CAS fences substantive authority. Do not assume provider overlap merely because the state machine supports it.
 
-## Stage O6 — Adverse recovery tests
-Test missed intended wake, predecessor termination, stale state, duplicate/competing actor, prompt mismatch, missing bootstrap, and accepted scheduler write followed by absent wake. Reject fast candidates without demonstrated recovery.
+## Stage O6 — Adverse recovery
+Test missed wake, owner termination, stale state, duplicate contender, prompt mismatch, missing bootstrap, accepted scheduler write followed by absent wake, and owner-loss under writer fencing.
 
-## Stage O7 — Final convergence — CONTINUITY SUBGATE PASS, OVERALL COMPLETION INVALIDATED
-O7 established repeated clean continuity/recovery evidence but overall completion was invalidated because long single-wake useful work remained unresolved. Preserve O7 evidence; do not reuse its prior terminal conclusion.
+## Stage O7 — Continuity subgate PASS; overall completion invalidated
+Preserve continuity/recovery evidence, but prior PROGRAM_COMPLETE was invalid because long single-wake work remained unresolved.
 
 ## Wake utilization rule
-A wake is a work session, not a one-step callback. A handoff stop is invocation-role-relative: acquisition starts the acquiring invocation's ACTIVE_OWNER tenure; only a later distinct successor handoff away can stop that owner. Continue genuine plan-defined safe units until verified PROGRAM_COMPLETE or such a later handoff away. Abnormal platform/safety interruption is not successful voluntary completion. Never sleep, pad, repeat converged work, or invent work. Repeated materially short nonterminal wakes with runnable work are `SHORT_CYCLE_ANOMALY` and a repair target.
+A wake is a work session. Acquisition starts ACTIVE_OWNER tenure; it is not the acquiring invocation's stop gate. Continue genuine safe work until PROGRAM_COMPLETE or a later distinct successor handoff away if such a successor actually exists. Never sleep/pad/repeat converged work.
 
-## Cross-stage ownership rule
-A research-stage transition is not complete merely because `status/program.json.current_stage` changes. Ownership must also cross the boundary. Prefer normal handoff; if the prior-stage owner is already gone, use one explicitly authorized single-use recovery transition tied to the exact stuck generation, consume it once, and pre-open the next normal handoff epoch.
+## Stage O8 — Long-wake / repair-first reliability
 
-## Stage O8 — Long-wake useful-work continuation / repair-first reliability
-The prior O7 completion was invalidated because continuity converged while observed invocations remained materially short. O8 addresses the unresolved original utilization objective and scheduler-control failures exposed during repair.
+### O8A — Role-relative stop gate
+PASS.
 
-### O8A — Role-relative stop-gate validation
-Current result: PASS. A wake which acquires ownership continues as ACTIVE_OWNER; inherited handoff is not its stop gate.
+### O8B — Long-wake gate
+PASS. Gen34 GitHub START `14:47:51Z`, END `15:00:07Z`, WORKED=736s with multiple genuine units.
 
-### O8B — Long-wake empirical gate
-Current result: PASS. Gen34 START `14:47:51Z`, qualification `14:57:53Z` = 602s, END `15:00:07Z` = final WORKED 736s with multiple distinct genuine useful units. This is a validation gate, not a stop trigger.
+### O8C — Work packing
+Long work is feasible. Further packing optimization only if duty-cycle evidence warrants it.
 
-### O8C — Work packing / admission optimization
-Gen34 proved >=600s feasibility without padding. Retain work packing as future optimization only if duty-cycle evidence later shows material benefit.
+### O8D — Scheduler representation / writer authority / dispatch topology
+Full absolute recurring VEVENT + exact readback is KEEP for representation. WRITE_OK, STATE_OK, WAKE_OK and WORK_OK remain separate.
 
-### O8D — Scheduler representation and writer authority
-Representation differential: normalized complete recurring VEVENT + exact live readback + immutable intent/result attribution repeatedly achieved WRITE_OK+STATE_OK. KEEP representation fixed while testing writer authority. Exact gen34 target WAKE_OK was not proven; do not fabricate it.
+Writer-fence B changes only scheduler writer eligibility: SHADOW zero-write; ACTIVE_OWNER or post-CAS new owner writes. Promotion requires deterministic oracle WF-N0..N6 + WF-S1..S4 for >=3 CLEAN normal samples plus owner-loss adverse WF-A1..A6.
 
-Writer-authority hypothesis `H-O8-SCHEDULER-WRITER-FENCE` is ACTIVE TESTABLE. Primary variable only: `ALL_WAKES_PREARM` versus `OWNER_OR_NEWLY_ACQUIRED_OWNER_ONLY`. Full VEVENT, RRULE, exact_schedule, enabled, +840s offset, generation CAS, role-relative stop semantics, and work admission remain fixed.
+B evidence:
+- B01/gen35: immediate WRITE_OK+STATE_OK; later target wake/stability not proven => NOT_CLEAN.
+- B02/gen36: SHADOW zero-write, CAS, one owner prearm, immediate WRITE/STATE/WORK PASS; target intentionally superseded => SUPERSEDED_NOT_CLEAN.
+- B03/gen37: START 15:24:20Z; CAS 15:24:39Z; one owner prearm target 15:38:39Z; exact immediate STATE_OK; target still intact at GitHub 15:29:15Z. Original pre-mutation intent omitted protocol-required fields and needed post-hoc addendum => WF-N0 FAIL, ATTRIBUTION_INCOMPLETE_NOT_CLEAN. B03 remains useful for stability and dispatch-topology observation.
+- B04+ must use `research/O8_CLEAN_B_SAMPLE_TEMPLATE.md`.
 
-B-arm progress:
-1. B01/gen35: one attributed owner prearm to `15:17:18Z`; immediate WRITE_OK+STATE_OK PASS. A clean later target wake/stability sample was not proven, so do not count B01 toward the three-clean minimum.
-2. B02/gen36: successor booted as SHADOW, emitted READY, performed zero scheduler writes before authority, won fresh-SHA CAS, and only then performed one attributed owner prearm to `15:30:20Z`; immediate WRITE_OK+STATE_OK and WORK_OK PASS. That target was later intentionally superseded by corrective rearm before it could qualify as a clean target-stability/WAKE sample. Therefore B02 is mechanism evidence but not one of the three clean completed samples.
-3. B03/gen37: successor START `15:24:20Z`, SHADOW scheduler writes=0, READY bound to `O8_WRITER_FENCE_GEN36_TO_GEN37_001`, fresh-SHA CAS commit `cb6a45b8d3efdc54a63eef5738a28f3fda00dc4c` at `15:24:39Z`, then exactly one attributed owner prearm to `15:38:39Z`. Separate live readback matched same automation ID, enabled=true, exact_schedule, RRULE:FREQ=HOURLY, and exact intended DTSTART. WRITE_OK+STATE_OK+WORK_OK PASS; target stability and later WAKE_OK remain pending.
-4. Gen37 pre-opened `O8_WRITER_FENCE_GEN37_TO_GEN38_001` for the mandatory owner-loss adverse case. The controlled test is frozen in `research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md`: no authority corruption, SHADOW scheduler writes=0, explicit single-use transition, fresh-SHA recovery CAS, post-CAS owner rearm, and measured recovery latency.
-5. Promotion still requires at least three completed clean B samples plus the owner-loss adverse PASS. Immediate readback samples do not count as clean later-wake samples.
+### O8E — Same-canonical dispatch topology observation
+ACTIVE. The old workwork overlap proof is invalidated by server-clock audit, and bounded official documentation did not specify same-task concurrency. B03 target 15:38:39Z is therefore a direct Mer discriminator. Use only server/external ordering; interpretation is precommitted in `research/O8_DISPATCH_TOPOLOGY_DECISION_TREE.md`.
 
-### O8 repair-first incident rule
-Repeated unchanged failure is invalid work. Sequence: FAILURE_OBSERVED -> ROOT_CAUSE_IDENTIFIED -> MECHANISM_CHANGED -> DIFFERENTIAL_VERIFICATION -> RESUME. +180s is continuity fallback only when same-turn continuation/repair is genuinely unavailable; it is not a substitute for diagnosis.
+### O8F — Owner-loss adverse
+NEXT after the B03 topology observation. Use `research/O8_OWNER_LOSS_ADVERSE_PROTOCOL.md` and `research/O8_OWNER_LOSS_TRANSITION_SCHEMA.md`; no authority corruption, no SHADOW scheduler write, one explicit single-use transition, fresh-SHA recovery CAS, post-CAS owner rearm, measured recovery latency.
+
+## Repair-first rule
+Repeated unchanged failure is invalid work: FAILURE_OBSERVED -> ROOT_CAUSE_IDENTIFIED -> MECHANISM_CHANGED -> DIFFERENTIAL_VERIFICATION -> RESUME. +180s is fallback only when same-turn continuation truly cannot execute.
 
 ## Current convergence gate
-Do not mark PROGRAM_COMPLETE while writer-fence B lacks clean-sample minimum/adverse owner-loss evidence or while unexplained scheduler overwrite remains material. Reassess final convergence using continuity, long-wake utilization, recovery, duplicate-side-effect, scheduler-overwrite, and simplicity evidence together.
+PROGRAM_COMPLETE=NO. Resolve same-canonical dispatch topology if material, obtain valid CLEAN writer-fence samples/adverse evidence or reject/revise that candidate, retain long-wake PASS, and compare the surviving policy against a simpler competitor on actual continuity/recovery/duty-cycle evidence.
