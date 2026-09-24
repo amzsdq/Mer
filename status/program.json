@@ -5,9 +5,9 @@
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
   "current_stage": "O6_ADVERSE_RECOVERY_TESTS",
-  "next_step": "SOURCE THE NEXT O6 HYPOTHESIS FOR THE REMAINING FAULT CLASSES: PROMPT_VERSION_MISMATCH, MISSING_BOOTSTRAP/CONTROL ACTIVE, AND SCHEDULER WRITE_OK FOLLOWED BY ABSENT WAKE. Use internal evidence plus authoritative implementation references and contrary evidence; change one primary variable. Preserve H-O6 exact-generation orphan recovery as KEEP_PRIMITIVE, not whole-stage completion.",
-  "active_hypothesis": "H-O6-STRANDED-OWNER-RECOVERY",
-  "hypothesis_status": "KEEP_PRIMITIVE",
+  "next_step": "OBTAIN LIVE RETROSPECTIVE EVIDENCE FOR H-O6-OBSERVED-STATE-RECONCILIATION: on the next actual wake, classify the current prearm as WAKE_OK only from actual execution, never from WRITE_OK/STATE_OK. Then reconcile whether O6 adverse coverage is sufficient for O7 entry; preserve provider-specific absent-wake frequency as UNKNOWN unless actually observed.",
+  "active_hypothesis": "H-O6-OBSERVED-STATE-RECONCILIATION",
+  "hypothesis_status": "KEEP_PENDING_LIVE_WAKE_EVIDENCE",
   "active_execution": "spec/execution.json",
   "candidate": {
     "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
@@ -20,7 +20,8 @@
     "scheduler_nonstop_guard": true,
     "owner_exit_guard": true,
     "prearm_live_verify": true,
-    "recovery_mode_under_test": "DETERMINISTIC_EXACT_GENERATION_ORPHAN_RECOVERY"
+    "orphan_recovery": "KEEP_PRIMITIVE",
+    "reconciliation_mode_under_test": "OBSERVED_STATE"
   },
   "gate": {
     "o1_stabilization": "PASS",
@@ -28,20 +29,21 @@
     "o5_decision": "KEEP_A_REVISE_HYPOTHESIS",
     "o5_matched_windows": "A_3_OF_3_B_3_OF_3_EVALUATED",
     "o6_stage_entry": "PASS_GEN25_TO_GEN26_NORMAL_HANDOFF",
-    "o6_sourcing_gate": "PASS_TESTABLE",
     "o6_orphan_recovery_fixture_suite": "5_OF_5_PASS_KEEP_PRIMITIVE",
-    "o6_stage_gate": "OPEN_REMAINING_PROMPT_BOOTSTRAP_SCHEDULER_ABSENT_WAKE_FAULTS"
+    "o6_observed_state_fixture_suite": "4_OF_4_PASS",
+    "o6_live_wake_reconciliation": "PENDING_NEXT_ACTUAL_WAKE",
+    "o6_stage_gate": "OPEN_LIVE_RETROSPECTIVE_WAKE_EVIDENCE"
   },
   "objective_order": ["CONTINUITY_RECOVERABILITY", "USEFUL_WORK_DUTY_CYCLE", "SIMPLICITY"],
   "previous_program_result": {
-    "scope": "H-O6-STRANDED-OWNER-RECOVERY_T1_T5_FIXTURE_SUITE",
-    "result": "KEEP_PRIMITIVE",
-    "status": "5/5 DETERMINISTIC FIXTURES PASS; ZERO DUPLICATE AUTHORITATIVE SIDE EFFECTS; INELIGIBLE CASES ZERO RECOVERY; SCHEDULER ENABLED; STAGE O6 NOT COMPLETE",
-    "evidence": "evidence/o6/O6_ORPHAN_RECOVERY_FIXTURE_SUITE_20260924.md"
+    "scope": "H-O6-OBSERVED-STATE-RECONCILIATION_R1_R4",
+    "result": "KEEP_PENDING_LIVE_WAKE_EVIDENCE",
+    "status": "4/4 DETERMINISTIC FIXTURES PASS; PROMPT MISMATCH DETECTED; MISSING BOOTSTRAP RECOVERED FROM DECLARED STABLE REFS; WRITE_OK WITHOUT WAKE_OK DOES NOT INFER WORK; NOMINAL MATCH ADDS ZERO CORRECTIVE WRITES",
+    "evidence": "evidence/o6/fixtures/OBSERVED_STATE_RECONCILIATION_R1_R4_RESULT.json"
   },
   "completion_rule": "Only O7 final convergence may set COMPLETE after continuity/utilization/recovery gates.",
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
-  "active_sample": "O6_NEXT_HYPOTHESIS_SOURCING",
+  "active_sample": "O6_LIVE_WAKE_RECONCILIATION",
   "active_sample_owner_evidence": "control/ownership.json",
-  "hypothesis_record": "research/H-O6-STRANDED-OWNER-RECOVERY.md"
+  "hypothesis_record": "research/H-O6-OBSERVED-STATE-RECONCILIATION.md"
 }
