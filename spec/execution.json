@@ -2,12 +2,12 @@
   "schema_version": 4,
   "state": "ACTIVE",
   "active": true,
-  "generation": 16,
-  "experiment_id": "H-O1-OWNER-OPENED-HANDOFF-EPOCH-FIRST-READY-CAS",
-  "primary_variable": "OWNER_OPENED_HANDOFF_EPOCH_FIRST_READY_CAS",
-  "scheduler_strategy": "WAKE_START_FIXED_PREARM_BATON",
+  "generation": 17,
+  "experiment_id": "H-O4-ADAPTIVE-PREARM",
+  "primary_variable": "PREARM_POLICY_FIXED_840_VS_ADAPTIVE_BOUNDARY_AWARE",
+  "scheduler_strategy": "WAKE_START_ADAPTIVE_PREARM_BATON",
   "wake_start_prearm_offset_sec": 840,
-  "successor_due_rule": "INVOCATION_WAKE_AT + 840s",
+  "successor_due_rule": "WAKE_AT + SELECTED_PREARM_OFFSET_SEC",
   "authority_record": "control/ownership.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "shadow_rule": "READ_PREPARE_IMMUTABLE_EVIDENCE_ONLY_UNTIL_OWNER_AUTHORIZED_OPEN_HANDOFF_EPOCH_AND_READY",
@@ -16,11 +16,14 @@
   "side_effect_fence_rule": "IMMEDIATELY_BEFORE_EACH_AUTHORITATIVE_SHARED_STATE_SIDE_EFFECT_FRESH_READ_OWNERSHIP_AND_REQUIRE_EXACT_ACTIVE_INVOCATION_ID_PLUS_GENERATION",
   "normal_close_scheduler_rewrite": false,
   "work_duration_target": "NONE",
-  "normal_stop_gates": ["PROGRAM_COMPLETE","SUCCESSOR_HANDOFF_COMPLETE"],
-  "next_action": "GEN6_OWNER_OPENS_STABILIZATION_HANDOFF_EPOCH_004_FOR_GEN6_TO_GEN7; NEXT_WAKE_PREARMS_RECONSTRUCTS_CHECKPOINT_WRITES_READY_EVIDENCE_AND_ATTEMPTS_ONE_CAS_IF_EPOCH_REMAINS_OPEN",
+  "normal_stop_gates": [
+    "PROGRAM_COMPLETE",
+    "SUCCESSOR_HANDOFF_COMPLETE"
+  ],
+  "next_action": "RUN_O4_ADAPTIVE_PREARM_TRIAL; SELECT OFFSET FROM ACTIVE BOUNDARY BEFORE THE SINGLE WAKE_START SCHEDULER WRITE; REPORT PREARM_OFFSET_SEC AND PREARM_REASON; IF LONGER CONTINUOUS WORK IS SAFE AND NO SHORT-CYCLE TEST REQUIRES RAPID HANDOFF, USE DEFAULT 840S",
   "workload": "evidence/o1/O1_HANDOFF_EPOCH_TESTABILITY_REVIEW_20260924T0843KST.md",
   "status_owner": "status/program.json",
-  "active_sample": "O1_STABILIZATION_HANDOFF_004",
+  "active_sample": "O4_ADAPTIVE_PREARM_TRIAL_001",
   "recovery_constraints": {
     "no_ad_hoc_self_promotion": true,
     "recovery_epoch": {
@@ -47,12 +50,41 @@
     "source_generation": 6,
     "target_generation": 7,
     "epoch_must_be_opened_by_current_owner": true,
-    "contender_requirements": ["WAKE_OK","WAKE_START_PREARM_VERIFIED","CHECKPOINT_RECONSTRUCTED","READY_EVIDENCE_DURABLE","FRESH_OWNERSHIP_READ_SHOWS_OPEN_EPOCH_FOR_SOURCE_GENERATION"],
+    "contender_requirements": [
+      "WAKE_OK",
+      "WAKE_START_PREARM_VERIFIED",
+      "CHECKPOINT_RECONSTRUCTED",
+      "READY_EVIDENCE_DURABLE",
+      "FRESH_OWNERSHIP_READ_SHOWS_OPEN_EPOCH_FOR_SOURCE_GENERATION"
+    ],
     "cas_attempts_per_contender": 1,
     "winner_rule": "FIRST_SUCCESSFUL_GITHUB_OPTIMISTIC_CONCURRENCY_CAS",
     "losers_rule": "STALE_SHA_OR_GENERATION_FAILS_CLOSED_AS_SHADOW",
-    "clean_success_requires": ["GENERATION_INCREMENTS_EXACTLY_ONCE","NEW_OWNER_MATCHES_CAS_WINNER","PREDECESSOR_FENCED","NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT","SUCCESSOR_WORK_OK"]
+    "clean_success_requires": [
+      "GENERATION_INCREMENTS_EXACTLY_ONCE",
+      "NEW_OWNER_MATCHES_CAS_WINNER",
+      "PREDECESSOR_FENCED",
+      "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECT",
+      "SUCCESSOR_WORK_OK"
+    ]
   },
   "previous_sample_result": "O1_NORMAL_HANDOFF_003_PASS_GEN5_TO_GEN6_VIABILITY_3_OF_3",
-  "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
+  "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT",
+  "adaptive_prearm": {
+    "default_sec": 840,
+    "normal_bounds_sec": [
+      180,
+      840
+    ],
+    "short_cycle_trigger": "CONCRETE_SUCCESSOR_DEPENDENT_EXECUTION_OR_VERIFICATION_BOUNDARY",
+    "selection_rule": "EXPECTED_USEFUL_WORK_TO_BOUNDARY_PLUS_HANDOFF_JITTER_MARGIN",
+    "no_frequency_for_its_own_sake": true,
+    "hold_constant_within_sample": true,
+    "fixed_comparator_sec": 840
+  },
+  "short_cycle_watch": {
+    "enabled": true,
+    "condition": "REPEATED_NONTERMINAL_SHORT_WAKES_WITH_LONGER_SAFE_USEFUL_WORK_AVAILABLE_AND_NO_PLAN_DECLARED_SHORT_CYCLE_NEED",
+    "action": "REPORT_SHORT_CYCLE_ANOMALY_WITH_GITHUB_SERVER_TIMESTAMP_EVIDENCE"
+  }
 }
