@@ -1,5 +1,5 @@
 {
-  "schema_version": 9,
+  "schema_version": 10,
   "state": "ACTIVE",
   "active": true,
   "experiment_id": "H-O8-ROLE-RELATIVE-STOP-GATE",
@@ -8,33 +8,37 @@
   "candidate": "ROLE_RELATIVE_STOP_GATE_CONTINUE_AS_OWNER_AFTER_ACQUISITION",
   "scheduler_strategy": "WAKE_START_FIXED_840S_COMPARATOR",
   "wake_start_prearm_offset_sec": 840,
+  "scheduler_write_form": "EXPLICIT_COMPLETE_VEVENT_ABSOLUTE_DTSTART",
+  "scheduler_offset_helper_for_self_rearm": "FORBIDDEN",
   "authority_record": "control/ownership.json",
   "generation_authority": "control/ownership.json",
   "status_owner": "status/program.json",
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "work_duration_target": "NONE_VOLUNTARY",
   "long_wake_validation_sec": 600,
-  "normal_stop_gates": [
-    "PROGRAM_COMPLETE",
-    "LATER_DISTINCT_SUCCESSOR_HANDOFF_COMPLETE"
-  ],
-  "active_sample": "O8_GEN34_ROLE_RELATIVE_CONTINUATION",
+  "normal_stop_gates": ["PROGRAM_COMPLETE","LATER_DISTINCT_SUCCESSOR_HANDOFF_COMPLETE"],
+  "active_sample": "O8_GEN34_REPAIR_FIRST_THEN_ROLE_RELATIVE_CONTINUATION",
   "current_owner_generation": 34,
   "current_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
-  "next_action": "Continue chaining distinct genuine useful units in THIS SAME gen34 invocation. Do not stop because gen34 acquisition completed. Persist bounded evidence after each unit. Open the later gen34->35 epoch before exit if still owner. Overall completion remains forbidden until GitHub START/END timestamps prove >=600s in one nonterminal authoritative invocation with multiple genuine units.",
+  "next_action": "Current wake: continue distinct useful repair/research units; do not voluntarily finalize while runnable work remains. Next wake must differentially verify explicit full-VEVENT scheduler self-rearm before closing the critical incident. After verification continue owner work; inherited acquisition handoff is never this invocation's stop gate.",
   "sourcing_gate": "PASS_TESTABLE",
   "hypothesis_record": "research/H-O8-ROLE-RELATIVE-STOP-GATE.md",
+  "critical_incident_record": "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
   "promotion_gate": [
     "CURRENT_INVOCATION_ACQUIRES_OWNER_AND_CONTINUES_WORK_AFTER_INHERITED_HANDOFF",
     "MULTIPLE_DISTINCT_USEFUL_UNITS_IN_ONE_INVOCATION",
     "NO_DUPLICATE_AUTHORITATIVE_SIDE_EFFECTS",
     "CONTINUITY_REMAINS_SECURED",
+    "EXPLICIT_FULL_VEVENT_SCHEDULER_WRITE_DIFFERENTIAL_PASS",
     "AT_LEAST_ONE_NONTERMINAL_WORK_SESSION_WORKED_GTE_600S_FOR_OVERALL_COMPLETION"
   ],
   "evidence": [
     "evidence/o8/O8_GEN34_READY_20260924.json",
     "evidence/o8/O8_GEN34_UNIT01_POST_ACQUIRE_CONTINUATION.json",
-    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json"
+    "evidence/o8/O8_GEN34_UNIT02_TEST_DESIGN.json",
+    "evidence/o8/O8_REPAIR_RUN_START_20260924T1448Z.json",
+    "evidence/o8/O8_CRITICAL_INCIDENT_DIAGNOSIS_20260924.json",
+    "evidence/o8/O8_GEN34_UNIT03_REPAIR_AND_SYNC.json"
   ],
   "updated_at": "SERVER_TIMESTAMP_OF_THIS_COMMIT"
 }
