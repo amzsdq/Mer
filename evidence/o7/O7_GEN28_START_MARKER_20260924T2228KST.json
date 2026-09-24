@@ -1,0 +1,10 @@
+{
+  "type": "START_MARKER",
+  "invocation_id": "MER-O7-GEN28-20260924T2228KST",
+  "stage": "O7_FINAL_CONVERGENCE",
+  "source_generation": 27,
+  "target_generation": 28,
+  "handoff_epoch": "O7_STAGE_ENTRY_GEN27_TO_GEN28_001",
+  "clock_authority": "GitHub commit timestamp",
+  "note": "Server commit timestamp is authoritative; filename/model time is metadata only."
+}
