@@ -1,0 +1,19 @@
+{
+  "type": "PRE_CLOSE_MARKER",
+  "invocation_id": "MER-O8-GEN36-AUTOMATION-20260924",
+  "generation": 36,
+  "role": "ACTIVE_OWNER",
+  "status": "NONTERMINAL_CONTINUE",
+  "reason": "automation invocation close boundary; program remains active",
+  "completed_units": [
+    "gen35->36 READY and fresh-SHA CAS with SHADOW scheduler writes=0",
+    "B02 post-CAS owner full-VEVENT prearm and separate exact live readback",
+    "status/program.json advanced to gen36 B02",
+    "writer-fence test plan reconciled to active B sampling",
+    "MASTER_PLAN O8D updated with B02 evidence",
+    "owner-loss adverse protocol and non-active authorization template prepared",
+    "B02 attribution metadata omission preserved and corrected via immutable addendum",
+    "deterministic writer-fence assertion oracle added"
+  ],
+  "next": "B02 actual WAKE_OK/stability; then B03 gen36->37 SHADOW_NO_WRITE -> CAS -> NEW_OWNER_PREARM; three clean samples plus adverse owner-loss required"
+}
