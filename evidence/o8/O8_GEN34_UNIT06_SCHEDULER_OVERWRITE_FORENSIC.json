@@ -1,0 +1,19 @@
+{
+  "unit": "O8_GEN34_UNIT06_SCHEDULER_OVERWRITE_FORENSIC",
+  "generation": 34,
+  "class": "GENUINE_USEFUL_ROOT_CAUSE_FORENSIC",
+  "durable_manifest_commit": "d504a646c41a28c0a47adb6699144b1ceac73354",
+  "observed_transition": {
+    "previous_live_verified_at": "2026-09-24T14:48:11.377615Z",
+    "previous_dtstart_utc": "2026-09-24T15:01:31Z",
+    "later_live_verified_at": "2026-09-24T14:48:16.102569Z",
+    "later_dtstart_utc": "2026-09-24T14:51:15Z",
+    "wall_delta_between_verifications_sec": 4.724954,
+    "dtstart_moved_earlier_sec": 616
+  },
+  "ownership_at_later_audit": "generation 34 remained OWNER_ACTIVE and gen34->35 handoff epoch remained OPEN",
+  "finding": "The canonical scheduler target was observably overwritten from a far-future prearm to an earlier target within ~4.7 seconds, without a corresponding substantive ownership transfer. This proves scheduler state is a concurrent last-writer surface under the current decoupled lane. It does not identify the exact invocation that performed the second write because automation metadata lacks writer identity.",
+  "implication": "The historical scheduler mismatch is not safely attributable only to timezone/offset representation. Concurrent scheduler writers are now a concrete competing root-cause mechanism and must be discriminated after the explicit-full-VEVENT representation test.",
+  "next_candidate": "research/H-O8-SCHEDULER-WRITER-FENCE.md",
+  "finalization_allowed": false
+}
