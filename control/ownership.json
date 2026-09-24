@@ -1,20 +1,22 @@
 {
   "schema_version": 4,
-  "generation": 11,
-  "active_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
+  "generation": 12,
+  "active_invocation_id": "MER-O4-A840-GEN12-20260924T140416KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O4-20260924-122248-001",
+  "predecessor_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O4_HANDOFF_EPOCH_GEN11_A840_001",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 11,
     "target_generation": 12,
     "opened_by_invocation_id": "MER-O4-RECOVERY-20260924T1336KST",
     "opened_by_generation": 11,
+    "consumed_by_invocation_id": "MER-O4-A840-GEN12-20260924T140416KST",
+    "ready_evidence": "evidence/runtime/O4_GEN11_A840_WAKE_20260924T140416KST.md",
     "sample": "O4_FIXED_WINDOW_A_840S",
     "prearm_offset_sec": 840,
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS",
@@ -32,6 +34,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "USER_AUTHORIZED_SINGLE_USE_RECOVERY_GEN10_TO_GEN11_THEN_OPEN_NORMAL_GEN11_TO_GEN12",
+  "transition_reason": "NORMAL_READY_PRIORITY_HANDOFF_GEN11_TO_GEN12_O4_A840_SAMPLE1",
   "server_time_authority": "GitHub commit timestamp"
 }
