@@ -1,0 +1,34 @@
+{
+  "type": "LONG_WAKE_QUALIFICATION_MARKER",
+  "invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+  "generation": 34,
+  "start_commit_sha": "bec5bd2755eb7819181f38c99b66f3b4abcdb8ee",
+  "start_commit_time_utc": "2026-09-24T14:47:51Z",
+  "threshold_time_utc": "2026-09-24T14:57:51Z",
+  "clock_authority": "GitHub commit server timestamp",
+  "qualification_rule": "This marker qualifies only if its own GitHub commit timestamp is >= 2026-09-24T14:57:51Z. Exact elapsed is marker commit time minus START commit time.",
+  "distinct_useful_units": [
+    "critical incident root-cause and mechanism repair",
+    "canonical/deployed prompt synchronization and rollout hardening",
+    "control-plane stale-document reconciliation",
+    "scheduler late-wake observation",
+    "scheduler overwrite forensic analysis",
+    "scheduler-writer-fence hypothesis sourcing",
+    "scheduler write-attribution protocol",
+    "attributed explicit-full-VEVENT recovery differential WRITE_OK/STATE_OK",
+    "fresh authority continuity audit",
+    "O8 long-wake validation protocol",
+    "rejected/revised mechanism ledger"
+  ],
+  "fresh_authority_before_marker": {
+    "generation": 34,
+    "active_invocation_id": "MER-O8-GEN34-LONGWAKE-20260924",
+    "status": "OWNER_ACTIVE",
+    "handoff_epoch": "O8_LONGWAKE_GEN34_TO_GEN35_001",
+    "handoff_epoch_state": "OPEN"
+  },
+  "scheduler_verified_target_utc": "2026-09-24T15:08:14Z",
+  "scheduler_write_result": "evidence/o8/scheduler-writes/20260924T145414Z_GEN34_RECOVERY_RESULT.json",
+  "program_complete": false,
+  "note": "Meeting the 600s gate does not close the overall program. Full-VEVENT later WAKE_OK/WORK_OK and scheduler concurrent-writer diagnosis remain open."
+}
