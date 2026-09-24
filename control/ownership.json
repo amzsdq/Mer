@@ -1,16 +1,16 @@
 {
   "schema_version": 4,
-  "generation": 23,
-  "active_invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
+  "generation": 24,
+  "active_invocation_id": "MER-O5-GEN24-BSAMPLE3-20260924T1711KST",
   "status": "OWNER_ACTIVE",
-  "predecessor_invocation_id": "MER-O5-GEN22-BSAMPLE1-20260924T1644KST",
+  "predecessor_invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
   "intended_successor_invocation_id": null,
   "owner_started_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "owner_renewal_seq": 0,
   "updated_at": "AUTHORITATIVE_GITHUB_COMMIT_TIMESTAMP",
   "handoff_epoch": {
     "epoch_id": "O5_WINDOW_B_GEN23_TO_GEN24_SAMPLE3",
-    "state": "OPEN",
+    "state": "CONSUMED",
     "source_generation": 23,
     "target_generation": 24,
     "opened_by_invocation_id": "MER-O5-GEN23-BSAMPLE2-20260924T1656KST",
@@ -20,9 +20,10 @@
     "prearm_offset_sec": 840,
     "post_ready_max_authoritative_units": 0,
     "ready_evidence_required": true,
-    "metrics": ["READY_TO_CAS_LATENCY_SEC", "DUPLICATE_AUTHORITATIVE_SIDE_EFFECT", "HANDOFF_SUCCESS", "CONTROL_WRITE_COUNT"],
+    "ready_evidence": "evidence/o5/O5_WINDOW_B_GEN23_TO_GEN24_SAMPLE3_READY_20260924T1711KST.json",
     "admission_rule": "ELIGIBLE_READY_SUCCESSOR_PRIORITY_FIRST_SUCCESSFUL_CAS_ZERO_POST_READY_AUTHORITATIVE_UNITS",
     "cas_attempts_per_contender": 1,
+    "cas_result": "SUCCESS_FRESH_SHA",
     "expires_by_time": false
   },
   "recovery_transition": {
@@ -36,6 +37,6 @@
     "state": "CONSUMED"
   },
   "authority_rule": "Only the current owner at the current generation may write authoritative shared state.",
-  "transition_reason": "O5_WINDOW_B_SAMPLE2_CLEAN_OPEN_SAMPLE3",
+  "transition_reason": "O5_WINDOW_B_SAMPLE3_CLEAN_HANDOFF_GEN23_TO_GEN24",
   "server_time_authority": "GitHub commit timestamp"
 }
