@@ -1,10 +1,11 @@
 {
   "incident": "REPEATED_EARLY_EXIT_AND_SCHEDULER_STATE_MISMATCH",
-  "state": "EARLY_EXIT_CAUSE_IDENTIFIED_AND_CHANGED; SCHEDULER_HAS_TWO_DISCRIMINATING_CAUSE_CANDIDATES",
+  "state": "EARLY_EXIT_CAUSE_CHANGED; FULL_VEVENT_WRITE_STATE_DIFFERENTIAL_PASS; WAKE_WORK_PENDING; CONCURRENT_WRITER_CANDIDATE_OPEN",
   "failure_observed": [
     "nonterminal invocations repeatedly finalized after materially short work despite runnable work",
     "a prior scheduler prearm intended for 23:45:17 KST returned a materially different live DTSTART",
-    "during gen34, durable manifest history proves live DTSTART changed from 15:01:31Z to 14:51:15Z within 4.724954s while substantive ownership later remained gen34 with gen34->35 epoch OPEN"
+    "during gen34, durable manifest history proves live DTSTART changed from 15:01:31Z to 14:51:15Z within 4.724954s while substantive ownership later remained gen34 with gen34->35 epoch OPEN",
+    "the overwritten 14:51:15Z target passed and last_run_time still showed 14:47:01.644841Z at a GitHub marker committed 14:52:30Z, proving WRITE/STATE evidence is distinct from actual later wake"
   ],
   "root_cause": {
     "early_exit": {
@@ -16,25 +17,29 @@
       "confidence": "PARTIALLY_LOCALIZED",
       "candidate_A_representation": "prior self-rearm contract did not require one normalized absolute instant encoded as a complete VEVENT, leaving representation/timezone/provider-rewrite ambiguity",
       "candidate_B_concurrent_writers": "scheduler mutation was intentionally decoupled from substantive ownership and permitted every concurrent invocation to write the same canonical; gen34 forensic evidence directly proves a 616-second earlier-target overwrite within ~4.7s without substantive ownership transfer",
-      "not_proven": "the exact writer identity for the second scheduler mutation is unavailable in automation metadata, so the historical 23:45:17 -> 07:30 discrepancy cannot yet be uniquely assigned to representation or concurrent-writer behavior",
-      "diagnostic_order": [
-        "first hold writer policy constant and change only representation to explicit full VEVENT with exact live readback",
-        "then, if overwrite ambiguity persists or controlled evidence warrants, test H-O8-SCHEDULER-WRITER-FENCE with representation held constant"
-      ]
+      "not_proven": "the exact writer identity for the second scheduler mutation is unavailable in historical automation metadata, so the historical 23:45:17 -> 07:30 discrepancy cannot yet be uniquely assigned",
+      "new_instrumentation": "all incident scheduler mutations now require immutable SCHEDULER_WRITE_INTENT and SCHEDULER_WRITE_RESULT records"
     }
   },
   "mechanism_change": [
-    "ROLE_RELATIVE_STOP_GATE: ownership acquisition is not the acquiring invocation's stop gate",
-    "EARLY_EXIT_REPAIR_FIRST: short nonterminal finalization enters same-turn repair and final response is forbidden while supported work remains",
-    "SCHEDULER_WRITE_FORM: self-rearm uses explicit complete recurring VEVENT with normalized absolute DTSTART; dtstart_offset_json forbidden for relay self-rearm",
-    "PREARM_LIVE_VERIFY requires exact intended instant, not merely future DTSTART",
-    "LONG_WAKE_VALIDATION_GATE requires >=600s GitHub-server-timestamp work with multiple genuine units before overall completion"
+    "ROLE_RELATIVE_STOP_GATE",
+    "EARLY_EXIT_REPAIR_FIRST",
+    "EXPLICIT_COMPLETE_VEVENT_ABSOLUTE_SELF_REARM",
+    "EXACT_INTENDED_INSTANT_LIVE_VERIFY",
+    "SCHEDULER_WRITE_ATTRIBUTION",
+    "LONG_WAKE_VALIDATION_GATE_GTE_600S"
   ],
   "differential_verification": {
-    "scheduler_representation": "NEXT_WAKE_REQUIRED: one explicit full-VEVENT prearm and exact live readback; persist raw intended/write/readback before repair on mismatch",
-    "scheduler_writer_fence": "SOURCED_NOT_ACTIVE: research/H-O8-SCHEDULER-WRITER-FENCE.md; activate only after representation sample resolves to preserve one-primary-variable discipline",
-    "long_wake": "RUNNING: current repair run START_MARKER commit timestamp 2026-09-24T14:47:51Z; continue multiple genuine units and do not voluntarily finalize before a legal stop gate"
+    "scheduler_representation_write_state": "PASS: attributed recovery intent 15:08:14Z used FULL_VEVENT_ABSOLUTE; WRITE_OK and exact live STATE_OK both passed",
+    "scheduler_representation_later_wake_work": "PENDING: WAKE_OK and WORK_OK must be observed separately at/after 15:08:14Z",
+    "scheduler_writer_fence": "SOURCED_NOT_ACTIVE: research/H-O8-SCHEDULER-WRITER-FENCE.md; activate only after representation sample's later wake/work result to preserve one-primary-variable discipline",
+    "long_wake": "RUNNING from GitHub START 2026-09-24T14:47:51Z; threshold 14:57:51Z"
   },
-  "forensic_evidence": "evidence/o8/O8_GEN34_UNIT06_SCHEDULER_OVERWRITE_FORENSIC.json",
+  "forensic_evidence": [
+    "evidence/o8/O8_GEN34_UNIT06_SCHEDULER_OVERWRITE_FORENSIC.json",
+    "evidence/o8/O8_GEN34_UNIT07_FULL_VEVENT_RECOVERY_DIFFERENTIAL.json",
+    "evidence/o8/scheduler-writes/20260924T145414Z_GEN34_RECOVERY_INTENT.json",
+    "evidence/o8/scheduler-writes/20260924T145414Z_GEN34_RECOVERY_RESULT.json"
+  ],
   "unchanged_retry_forbidden": true
 }
