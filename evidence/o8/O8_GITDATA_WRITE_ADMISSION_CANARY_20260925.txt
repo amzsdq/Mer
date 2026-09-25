@@ -1,0 +1,1 @@
+MER O8 write-admission canary; generation43 authority unchanged; purpose=detect content-bearing Git-data mutation recovery only.
