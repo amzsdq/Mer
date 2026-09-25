@@ -1,0 +1,10 @@
+{
+  "analysis": "SERIALIZED_DISPATCH_LATENCY_COMPARATORS",
+  "samples": [
+    {"name":"S01","predecessor_end_utc":"2026-09-24T15:41:51Z","target_utc":"2026-09-24T15:43:21Z","successor_start_utc":"2026-09-24T15:43:48Z","idle_gap_sec":117,"target_delta_sec":27,"classification":"CLEAN"},
+    {"name":"S02","predecessor_end_utc":"2026-09-24T15:46:37Z","target_utc":"2026-09-24T15:48:20Z","successor_start_utc":"2026-09-24T15:50:37Z","idle_gap_sec":240,"target_delta_sec":137,"classification":"CLEAN"},
+    {"name":"S03_SUCCESSOR","predecessor_end_utc":"2026-09-24T15:54:40Z","target_utc":"2026-09-24T15:55:56Z","successor_start_utc":"2026-09-24T16:01:15Z","idle_gap_sec":395,"target_delta_sec":319,"classification":"COMPARATOR_NOT_PROMOTED"},
+    {"name":"GEN41_TO_GEN42","predecessor_end_utc":"2026-09-24T16:05:56Z","target_utc":"2026-09-24T16:07:29Z","successor_start_utc":"2026-09-24T16:08:54Z","idle_gap_sec":178,"target_delta_sec":85,"classification":"AUTHORITY_REPAIR_COMPARATOR"}
+  ],
+  "finding": "Serialized same-canonical continuation is viable but observed idle/dispatch latency is variable and materially nonzero. Immediate-prearm overlap remains worth testing; do not infer a fixed provider delay."
+}
