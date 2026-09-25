@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "event": "ACQUIRE",
+  "generation": 44,
+  "invocation_id": "MER-O8-GEN44-AUTOMATION-20260925T081725Z",
+  "fence_ref": "refs/heads/authority/gen-000044",
+  "fence_parent": "1fcd10c90ff694d894992b3a9a829a98ceba47e1",
+  "acquisition_basis": "CREATE_ONLY_GENERATION_REF_THEN_IMMUTABLE_EVENT",
+  "authority_rule": "The create-only generation ref is the single-winner fence; this event binds its winner to the invocation. Main projection follows only after readback.",
+  "scheduler_rule": "Scheduler writes are ACTIVE_OWNER-only after fence and event readback.",
+  "clock_authority": "GitHub commit timestamp"
+}
