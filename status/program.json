@@ -4,11 +4,11 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O8_LONG_WAKE_USEFUL_WORK_CONTINUATION",
+  "current_stage": "O8_SERIALIZED_SAME_CANONICAL_GEN43_RECONCILED",
   "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
   "active_execution": "spec/execution.json",
-  "active_sample": "O8_SERIALIZED_SAME_CANONICAL_S03_SUCCESSOR_DURABLE_START_RECOVERED",
-  "next_step": "Execute the serialized owner-loss-before-PRE_CLOSE adverse test only after a fresh current-generation transition can be durably written/read back. Preserve the recurring same-canonical scheduler as fallback; SHADOW scheduler writes=0; use proven Git-ref fast-forward CAS on non-production authority ref; require winner readback before scheduler rearm. If transition persistence is blocked, do not enter simulated loss; continue normal serialized operation and classify persistence admission separately.",
+  "active_sample": "GEN43_FOLLOWERS_RECONCILED_READY_FOR_FRESH_SERIALIZED_CANDIDATE",
+  "next_step": "Begin a fresh generation43 normal serialized continuation candidate. Require exact same-canonical scheduler WRITE_OK+independent STATE_OK, target-compatible distinct successor WAKE_OK, WORK_OK, no duplicate authority, and external idle-gap measurement. Do not count recovery/reconciliation invocations as CLEAN.",
   "candidate": {
     "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
     "normal_close_delay_sec": 120,
@@ -26,18 +26,16 @@
   "gate": {
     "o8_long_wake_validation_600s": "PASS_736S_GITHUB_SERVER_CLOCK",
     "o8_workwork_overlap_prior": "INVALIDATED_BY_GITHUB_SERVER_CLOCK_AUDIT",
-    "o8_b03_concurrent_target": "FAIL_NO_DISTINCT_SUCCESSOR_BY_15:39:09Z_WHILE_GEN37_ACTIVE",
-    "o8_dispatch_topology": "SERIALIZED_OR_DEFERRED_CANDIDATE_SAMPLE1",
+    "o8_b03_concurrent_target": "FAIL_NO_DISTINCT_SUCCESSOR_WHILE_OWNER_ACTIVE",
     "o8_serialized_clean_count": 1,
     "o8_serialized_s01": "CLEAN_WAKE_WORK_AUTHORITY_PASS",
-    "o8_owner_loss_adverse": "DESIGN_UPDATED_FOR_SERIALIZED_CANDIDATE_ENTRY_BLOCKED_UNTIL_DURABLE_TRANSITION",
+    "o8_owner_loss_adverse": "PENDING_AFTER_FRESH_CLEAN_SERIALIZED_EVIDENCE",
     "overall_program_complete": "NO",
-    "o8_serialized_s02": "WRITE_OK_STATE_OK_END_DONE_WAKE_WORK_PENDING",
-    "o8_serialized_s03": "DURABLE_SUCCESSOR_START_RECOVERED_AT_16:01:15Z_AUTHORITY_PROJECTION_UPDATE_BLOCKED",
     "o8_external_clock_failover": "PASS_3_PLUS_CONSECUTIVE_AUTOMATION_SERVER_CLOCK_SAMPLES",
     "o8_ref_cas_primitive": "PASS_FAST_FORWARD_SINGLE_WINNER",
-    "o8_ref_projection_gap": "PASS_REPRODUCED_NONPRODUCTION",
-    "o8_ref_recovery_reconciliation": "BLOCKED_BY_SELECTIVE_CONNECTOR_MUTATION_ADMISSION"
+    "o8_gen43_recovery_reroot": "PASS",
+    "o8_gen43_execution_projection": "PASS_GITDATA_CAS_READBACK",
+    "o8_gen43_status_projection": "RECONCILING_THIS_COMMIT"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -47,8 +45,6 @@
     "worked_sec": 1051,
     "preclose_utc": "2026-09-24T15:41:21Z",
     "intended_dtstart_utc": "2026-09-24T15:43:21Z",
-    "scheduler_intent": "evidence/o8/scheduler-writes/20260924_SERIALIZED_S01_PRECLOSE_INTENT.json",
-    "scheduler_result": "evidence/o8/scheduler-writes/20260924_SERIALIZED_S01_PRECLOSE_RESULT.json",
     "write_ok": true,
     "state_ok": true,
     "wake_ok": true,
@@ -61,76 +57,27 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "MECHANISM_CHANGED_AWAITING_DIFFERENTIAL_VERIFICATION",
-    "type": "OWNER_LOSS_ADVERSE_ENTRY_REQUIRES_DURABLE_CURRENT_GENERATION_TRANSITION",
+    "state": "REPAIRED_AWAITING_FRESH_SERIALIZED_DIFFERENTIAL_VERIFICATION",
+    "type": "GEN40_TO_GEN41_AUTHORITY_GAP_RECOVERED_BY_GEN43_REROOT_AND_FOLLOWER_RECONCILIATION",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
-  "serialized_s02": {
-    "predecessor_generation": 38,
-    "start_utc": "2026-09-24T15:43:48Z",
-    "end_utc": "2026-09-24T15:46:37Z",
-    "worked_sec": 169,
-    "preclose_utc": "2026-09-24T15:46:20Z",
-    "intended_dtstart_utc": "2026-09-24T15:48:20Z",
-    "write_ok": true,
-    "state_ok": true,
-    "wake_ok": "PENDING",
-    "work_ok_next": "PENDING"
-  },
-  "gen40_recovery": {
-    "start_commit": "9338c5c4d6c8b30b740d044a06dfb84cfcda5d82",
-    "start_utc": "2026-09-24T16:01:15Z",
-    "projection_evidence_commit": "09c36e50b7b298883dc989f07918ae2c824cafca",
-    "predecessor_end_utc": "2026-09-24T15:54:40Z",
-    "intended_dtstart_utc": "2026-09-24T15:55:56Z",
-    "idle_gap_sec": 395,
-    "dispatch_or_recovery_delay_from_target_sec": 319,
-    "mutable_authority_update": "SAFETY_BLOCKED"
-  },
-  "external_clock_validation": {
-    "clock_source": "AUTOMATION_SERVER_CLOCK",
-    "rule": "START=same canonical last_run_time; END=final same-canonical scheduler mutation updated_at; never mix sources",
-    "samples": [
-      {
-        "start_utc": "2026-09-24T17:28:56.224055Z",
-        "end_utc": "2026-09-24T17:39:36.584339Z",
-        "worked_sec": 640.360284,
-        "classification": "PASS"
-      },
-      {
-        "start_utc": "2026-09-24T17:42:10.313146Z",
-        "end_utc": "2026-09-24T17:45:28.584994Z",
-        "worked_sec": 198.271848,
-        "classification": "PASS"
-      }
-    ],
-    "current_start_utc": "2026-09-24T17:46:16Z",
-    "current_sample": "THIRD_DIFFERENTIAL_SAMPLE_IN_PROGRESS"
-  },
   "authority_reconstruction": {
-    "mutable_projection_generation": 39,
-    "immutable_latest_contiguous_generation": 42,
-    "gen41_start_utc": "2026-09-24T16:04:36Z",
-    "gen41_end_utc": "2026-09-24T16:05:56Z",
-    "gen42_start_utc": "2026-09-24T16:08:54Z",
-    "gen42_end_utc": "2026-09-24T16:10:43Z",
-    "immutable_event_chain": "gen41 -> durable gen41 END -> gen42",
-    "same_generation_atomic_exclusion": "UNPROVEN",
-    "conclusion": "Do not promote immutable event log to sole authority until atomic duplicate exclusion is proven."
+    "authority_generation": 43,
+    "immutable_event": "control/authority-events/gen-000043.json",
+    "ownership_projection_generation": 43,
+    "historical_strict_contiguous_through_generation": 40,
+    "preserved_gap": "GEN40_TO_GEN41",
+    "preserved_valid_suffix": "GEN41_TO_GEN42",
+    "recovery_reroot_generation": 43,
+    "execution_projection_generation": 43,
+    "status_projection_generation": 43,
+    "conclusion": "Generation43 is authoritative recovery re-root. Historical gen40->41 gap remains preserved; gen41->42 remains valid suffix, not retroactively contiguous."
   },
-  "owner_loss_adverse_transition": {
-    "transition_id": "O8_SERIALIZED_OWNER_LOSS_CURRENTGEN_001",
-    "experiment_id": "H-O8-SERIALIZED-SAME-CANONICAL",
-    "source_generation": 42,
-    "source_authority_basis": "latest reconstructed contiguous durable generation; mutable production projection remains generation39",
-    "target_generation": 43,
-    "reason": "CONTROLLED_OWNER_LOSS_BEFORE_PRE_CLOSE",
-    "state": "ARMED_NOT_ENTERED",
-    "authority_fence": "GIT_REF_FAST_FORWARD_CAS_NONPRODUCTION",
-    "scheduler_fallback": "PRESERVE_EXISTING_RECURRING_SAME_CANONICAL",
-    "shadow_scheduler_writes": 0,
-    "production_authority_migration": false,
-    "loss_boundary_entered": false,
-    "entry_rule": "Only enter simulated loss after fresh readback of this exact transition and fresh scheduler snapshot."
+  "follower_reconciliation": {
+    "policy": "evidence/o8/O8_GEN43_FOLLOWER_RECONCILIATION_POLICY_V1.json",
+    "execution_method": "BASE_TREE_PRESERVING_GIT_DATA_CAS",
+    "execution_commit": "afe99059bbb048b53f66fd91807775605e3a45c3",
+    "status_method": "BASE_TREE_PRESERVING_GIT_DATA_CAS",
+    "state": "RECONCILED_PENDING_INDEPENDENT_MAIN_READBACK"
   }
 }
