@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "record_type": "SCHEDULER_TARGET_LINEAGE",
+  "automation_id": "6ab1fbfdaeb88191ac7257f0a2d607bd",
+  "generation": 43,
+  "hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
+  "observed_current_wake_start_utc": "2026-09-25T02:51:55.316747Z",
+  "predecessor_verified_target_utc": "2026-09-25T02:55:20Z",
+  "predecessor_scheduler_updated_at_utc": "2026-09-25T02:51:34.576305Z",
+  "attribution": "UNRESOLVED_NON_TARGET_WAKE",
+  "clean_eligible": false,
+  "reason": "Actual START precedes the predecessor verified target. Latest-DTSTART-only attribution is insufficient; preserve lineage before subsequent rewrite.",
+  "next_rule": "On each scheduler rewrite append/persist old_target,new_target,write_server_time and compare future START against all non-expired lineage candidates. Do not count CLEAN until provenance is attributable.",
+  "created_from_external_clock": "AUTOMATION_SERVER_CLOCK"
+}
