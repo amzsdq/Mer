@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "sample": "GEN44_IMMEDIATE_PREARM_01",
+  "generation": 44,
+  "invocation_id": "MER-O8-GEN44-AUTOMATION-20260925T081725Z",
+  "clock_source": "AUTOMATION_SERVER_CLOCK",
+  "start_utc": "2026-09-25T08:17:25.725921Z",
+  "raw_target_utc": "2026-09-25T08:29:25.725921Z",
+  "vevent_target_utc": "2026-09-25T08:29:26Z",
+  "quantization_rule": "CEIL_TO_WHOLE_SECOND",
+  "quantization_error_sec": 0.274079,
+  "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Seoul:20260925T172926\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+  "scheduler_write_updated_at_utc": "2026-09-25T08:21:22.830819Z",
+  "write_ok": true,
+  "independent_state_readback_updated_at_utc": "2026-09-25T08:21:24.996603Z",
+  "state_ok": true,
+  "same_canonical_id": true,
+  "enabled": true,
+  "timing_mode": "exact_schedule",
+  "authority_ref": "refs/heads/authority/gen-000044",
+  "authority_chain_validation": "evidence/o8/O8_GEN44_AUTHORITY_CHAIN_VALIDATION.json",
+  "classification": "IN_FLIGHT_PENDING_TARGET_AND_SUCCESSOR"
+}
