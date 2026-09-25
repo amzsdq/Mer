@@ -1,0 +1,11 @@
+{
+  "generation": 44,
+  "fence_ref": "refs/heads/authority/gen-000044",
+  "winner_event_commit": "32864054463d74ada89621513145d57ef4aa0ed6",
+  "duplicate_create_test": "PASS_REJECTED",
+  "duplicate_create_http_status": 422,
+  "duplicate_create_message": "Reference already exists",
+  "classification": "CREATE_ONLY_GENERATION_REF_SINGLE_WINNER_PRIMITIVE_VERIFIED",
+  "main_projection": "PENDING",
+  "note": "This verifies the fence primitive, not full projection convergence."
+}
