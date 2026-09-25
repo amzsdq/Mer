@@ -1,11 +1,10 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "state": "ACTIVE",
   "active": true,
-  "experiment_id": "H-O8-SERIALIZED-SAME-CANONICAL",
-  "test_type": "DECLARED_COMPOUND_REPAIR_AFTER_OVERLAP_BOUNDARY_FAILURE",
-  "scheduler_strategy": "SERIALIZED_CLOSE_RELATIVE_FULL_VEVENT",
-  "normal_close_delay_sec": 120,
+  "experiment_id": "H-O8-OVERLAP-12M14M",
+  "test_type": "OPERATOR_DIRECTED_OVERLAP_DIFFERENTIAL_AFTER_SERIALIZED_OVERCOMMIT",
+  "scheduler_strategy": "OVERLAP_SAME_CANONICAL_12M14M",
   "scheduler_write_form": "EXPLICIT_COMPLETE_VEVENT_ABSOLUTE_DTSTART",
   "scheduler_offset_helper_for_self_rearm": "FORBIDDEN",
   "scheduler_writer": "ACTIVE_OWNER_ONLY",
@@ -16,7 +15,7 @@
   "owner_rule": "EXACTLY_ONE_ACTIVE_OWNER",
   "work_duration_target": "NONE_VOLUNTARY",
   "long_wake_gate": "PASS_736S_GITHUB_SERVER_CLOCK",
-  "active_sample": "O8_GEN43_RECOVERY_REROOT_FOLLOWER_RECONCILIATION",
+  "active_sample": "GEN43_OVERLAP_POLICY_MIGRATION",
   "current_owner_generation": 43,
   "current_invocation_id": "MER-O8-GEN43-RECOVERY-20260925",
   "recovery_epoch": "evidence/o8/O8_AUTHORITY_GAP_GEN40_TO_GEN43_RECOVERY_EPOCH_V1.json",
@@ -25,15 +24,15 @@
   "preserved_gap": "GEN40_TO_GEN41_MISSING_DURABLE_GEN40_END_OR_DECLARED_TERMINAL_EQUIVALENT",
   "preserved_valid_suffix": "GEN41_TO_GEN42",
   "follower_reconciliation_policy": "evidence/o8/O8_GEN43_FOLLOWER_RECONCILIATION_POLICY_V1.json",
-  "next_action": "After independent readback of this generation43 execution projection, reconcile status/program.json to generation43 with a separate bounded base-tree-preserving Git-data commit and independent readback. Only then begin a fresh normal serialized CLEAN candidate.",
+  "next_action": "Continue 12m/14m same-canonical overlap differential. Arm only after externally observed wake age >=720s to fresh external reference +60s, verify exact live scheduler state, keep doing useful work toward ~840s, preserve target at close, then measure actual successor START versus predecessor END. +180s is abnormal recovery only.",
   "sourcing_gate": "PASS_TESTABLE",
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "promotion_gate": [
-    "THREE_CLEAN_SERIALIZED_SAMPLES",
-    "OWNER_DEATH_BEFORE_CLOSE_RECOVERY",
+    "THREE_CLEAN_OVERLAP_SAMPLES",
+    "OWNER_LOSS_RECOVERY",
     "NO_DUPLICATE_AUTHORITY",
-    "MEASURED_IDLE_GAP",
+    "MEASURED_OVERLAP_OR_IDLE_GAP",
     "LONG_WAKE_GATE_REMAINS_PASS"
   ],
   "serialized_s01_result": {
@@ -47,13 +46,18 @@
     "wake_ok": true,
     "work_ok": true,
     "duplicate_authority": false,
-    "classification": "CLEAN"
+    "classification": "HISTORICAL_COMPARATOR_CLEAN"
   },
   "reconciliation": {
     "generation": 43,
     "immutable_authority_readback": true,
     "ownership_projection_readback": true,
     "physical_projection_state": "RECONCILED_PENDING_INDEPENDENT_MAIN_READBACK",
-    "method": "BASE_TREE_PRESERVING_GIT_DATA_CAS"
-  }
+    "method": "BASE_TREE_PRESERVING_GIT_DATA_CAS",
+    "overlap_policy_projection": "MIGRATING"
+  },
+  "normal_arm_not_before_wake_age_sec": 720,
+  "work_target_sec": 840,
+  "normal_successor_lead_sec": 60,
+  "abnormal_recovery_delay_sec": 180
 }
