@@ -1,6 +1,6 @@
 # Mer Project Handoff — 2026-09-25
 
-Status: PAUSED/RESUMABLE HANDOFF
+Status: RESUMABLE HANDOFF (scheduler state is independent; verify the live canonical automation before resuming)
 Repository: amzsdq/Mer
 Program: MER_RELAY_OPTIMIZATION
 Canonical automation: 6ab1fbfdaeb88191ac7257f0a2d607bd
