@@ -35,7 +35,7 @@
     "o8_ref_cas_primitive": "PASS_FAST_FORWARD_SINGLE_WINNER",
     "o8_gen43_recovery_reroot": "PASS",
     "o8_gen43_execution_projection": "PASS_GITDATA_CAS_READBACK",
-    "o8_gen43_status_projection": "RECONCILING_THIS_COMMIT"
+    "o8_gen43_status_projection": "PASS_GITDATA_CAS_INDEPENDENT_MAIN_READBACK"
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -57,7 +57,7 @@
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "REPAIRED_AWAITING_FRESH_SERIALIZED_DIFFERENTIAL_VERIFICATION",
+    "state": "REPAIRED_VERIFIED_READY_FOR_FRESH_SERIALIZED_DIFFERENTIAL_VERIFICATION",
     "type": "GEN40_TO_GEN41_AUTHORITY_GAP_RECOVERED_BY_GEN43_REROOT_AND_FOLLOWER_RECONCILIATION",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
@@ -78,6 +78,7 @@
     "execution_method": "BASE_TREE_PRESERVING_GIT_DATA_CAS",
     "execution_commit": "afe99059bbb048b53f66fd91807775605e3a45c3",
     "status_method": "BASE_TREE_PRESERVING_GIT_DATA_CAS",
-    "state": "RECONCILED_PENDING_INDEPENDENT_MAIN_READBACK"
+    "state": "RECONCILED_VERIFIED_ON_MAIN",
+    "status_commit": "dbca610c46eba13432d4c50b79dfd08f6fcab6c9"
   }
 }
