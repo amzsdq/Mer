@@ -1,0 +1,14 @@
+{
+  "analysis": "UTILIZATION_IMPLICATIONS",
+  "work_target_sec": 840,
+  "serialized_clean_samples": [
+    {"name":"S01","idle_gap_sec":117,"approx_cycle_duty_cycle":0.8777},
+    {"name":"S02","idle_gap_sec":240,"approx_cycle_duty_cycle":0.7778}
+  ],
+  "b03": {
+    "target_before_predecessor_end_sec":192,
+    "idle_after_predecessor_end_sec":117,
+    "observation":"Early target did not produce concurrent successor; successor arrived only after predecessor END in the later S01 chronology."
+  },
+  "interpretation": "If gen44 reproduces B03 with valid current-wake authority, immediate prearm may still preserve continuity while empirically demonstrating same-canonical overlap constraint. If actual overlap occurs, START+720 with ~840s work can eliminate positive idle by design. Do not estimate promotion from theory; measure actual successor START."
+}
