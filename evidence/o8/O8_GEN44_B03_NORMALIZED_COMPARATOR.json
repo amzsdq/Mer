@@ -1,0 +1,9 @@
+{
+  "sample": "B03",
+  "target_utc": "2026-09-24T15:38:39Z",
+  "predecessor_end_utc": "2026-09-24T15:41:51Z",
+  "predecessor_active_after_target_sec": 192,
+  "posttarget_observation": "same canonical last_run_time unchanged; zero distinct gen38 START evidence at observation",
+  "classification": "NON_CLEAN_SERIALIZED_OR_DEFERRED_CANDIDATE",
+  "use": "Contrary evidence preserved; not sufficient alone for provider serialization promotion."
+}
