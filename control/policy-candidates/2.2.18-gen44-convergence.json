@@ -1,0 +1,23 @@
+{
+  "policy_epoch": "2.2.18-GEN44-CONVERGENCE",
+  "authority_generation": 44,
+  "authority_ref": "refs/heads/authority/gen-000044",
+  "normal_prearm": {
+    "write_timing": "IMMEDIATE_AFTER_AUTHORITY",
+    "due_formula": "CEIL_TO_SECOND(START + 720s)",
+    "work_target_sec": 840,
+    "preserve_target_at_normal_close": true
+  },
+  "abnormal_recovery_delay_sec": 180,
+  "scheduler_writer": "ACTIVE_OWNER_ONLY",
+  "required_projection_paths": [
+    "control/CANONICAL_PROMPT_SUPERVISOR.md",
+    "control/prompt-manifest.json",
+    "status/program.json",
+    "spec/execution.json",
+    "control/ownership.json",
+    "research/MASTER_PLAN.md"
+  ],
+  "activation_gate": "ALL_PROJECTIONS_SAME_POLICY_EPOCH_AND_FRESH_READBACK",
+  "main_projection_state": "PENDING"
+}
