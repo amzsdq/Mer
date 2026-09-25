@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "generation": 44,
+  "authority_event": "control/authority-events/gen-000044.json",
+  "authority_event_commit": "32864054463d74ada89621513145d57ef4aa0ed6",
+  "predecessor_generation": 43,
+  "predecessor_end_clock_source": "AUTOMATION_SERVER_CLOCK",
+  "predecessor_end_utc": "2026-09-25T08:16:57.467545Z",
+  "successor_start_clock_source": "AUTOMATION_SERVER_CLOCK",
+  "successor_start_utc": "2026-09-25T08:17:25.725921Z",
+  "idle_gap_sec": 28.258376,
+  "distinct_wake": true,
+  "fence_ref": "refs/heads/authority/gen-000044",
+  "fence_duplicate_create_test": "PASS_REJECTED_422_REFERENCE_ALREADY_EXISTS",
+  "validation": "GEN44_AUTHORITY_CHAIN_SUFFIX_VALIDATED",
+  "note": "This append-only validation repairs the gen44 event's missing predecessor-END reference without rewriting the immutable event."
+}
