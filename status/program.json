@@ -4,22 +4,24 @@
   "authority": "SINGLE_RUNTIME_AUTHORITY",
   "goal": "spec/GOAL.md",
   "plan": "research/MASTER_PLAN.md",
-  "current_stage": "O8_SERIALIZED_SAME_CANONICAL_GEN43_RECONCILED",
-  "active_hypothesis": "H-O8-SERIALIZED-SAME-CANONICAL",
+  "current_stage": "O8_OVERLAP_12M14M_REPAIR",
+  "active_hypothesis": "H-O8-OVERLAP-12M14M",
   "active_execution": "spec/execution.json",
-  "active_sample": "GEN43_FOLLOWERS_RECONCILED_READY_FOR_FRESH_SERIALIZED_CANDIDATE",
-  "next_step": "Begin a fresh generation43 normal serialized continuation candidate. Require exact same-canonical scheduler WRITE_OK+independent STATE_OK, target-compatible distinct successor WAKE_OK, WORK_OK, no duplicate authority, and external idle-gap measurement. Do not count recovery/reconciliation invocations as CLEAN.",
+  "active_sample": "GEN43_OVERLAP_POLICY_MIGRATION",
+  "next_step": "Use operator-directed overlap differential: target ~14m genuine work; normal same-canonical arm only after externally observed wake age >=12m; initial fixed successor lead +60s; keep working after arm; +180s only abnormal recovery. Collect externally measured overlap/idle and do not promote serialized provider semantics without the precommitted evidence gate.",
   "candidate": {
-    "scheduler_strategy": "SERIALIZED_SAME_CANONICAL_CLOSE_RELATIVE",
-    "normal_close_delay_sec": 120,
+    "scheduler_strategy": "OVERLAP_SAME_CANONICAL_12M14M",
+    "work_target_sec": 840,
+    "normal_arm_not_before_wake_age_sec": 720,
+    "normal_successor_lead_sec": 60,
+    "abnormal_recovery_delay_sec": 180,
     "recurrence": "RRULE:FREQ=HOURLY",
     "authority_model": "GENERATION_CAS_SINGLE_OWNER",
     "generation_authority": "control/ownership.json",
-    "prompt_version": "2.2.15-EXTERNAL-CLOCK-FAILOVER",
-    "prompt_id": "MER-OPT-2S",
+    "prompt_version": "2.2.16-OVERLAP-12M14M-REPAIR",
+    "prompt_id": "MER-OPT-2T",
     "full_vevent_absolute": true,
     "scheduler_writer": "ACTIVE_OWNER_ONLY",
-    "wake_start_overlap_prearm": false,
     "clock_policy": "GITHUB_MARKER_PRIMARY_AUTOMATION_SERVER_CLOCK_FAILOVER",
     "clock_source_isolation": true
   },
@@ -35,7 +37,8 @@
     "o8_ref_cas_primitive": "PASS_FAST_FORWARD_SINGLE_WINNER",
     "o8_gen43_recovery_reroot": "PASS",
     "o8_gen43_execution_projection": "PASS_GITDATA_CAS_READBACK",
-    "o8_gen43_status_projection": "PASS_GITDATA_CAS_INDEPENDENT_MAIN_READBACK"
+    "o8_gen43_status_projection": "PASS_GITDATA_CAS_INDEPENDENT_MAIN_READBACK",
+    "o8_overlap_clean_count": 0
   },
   "serialized_s01": {
     "predecessor_generation": 37,
@@ -53,12 +56,12 @@
     "successor_start_utc": "2026-09-24T15:43:48Z",
     "dispatch_delay_from_target_sec": 27
   },
-  "completion_rule": "Require >=3 clean serialized samples plus owner-death-before-close recovery evidence and final simpler-policy comparison. PROGRAM_COMPLETE=NO.",
+  "completion_rule": "Require >=3 clean 12m/14m overlap samples plus owner-loss recovery evidence and final simpler-policy comparison. PROGRAM_COMPLETE=NO.",
   "hypothesis_record": "research/H-O8-SERIALIZED-SAME-CANONICAL.md",
   "temporal_standard": "research/TEMPORAL_EVIDENCE_STANDARD.md",
   "critical_incident": {
-    "state": "REPAIRED_VERIFIED_READY_FOR_FRESH_SERIALIZED_DIFFERENTIAL_VERIFICATION",
-    "type": "GEN40_TO_GEN41_AUTHORITY_GAP_RECOVERED_BY_GEN43_REROOT_AND_FOLLOWER_RECONCILIATION",
+    "state": "REPAIR_IN_PROGRESS",
+    "type": "SERIALIZED_POLICY_DRIFT_FROM_OPERATOR_DIRECTED_OVERLAP",
     "priority": "ABOVE_NOMINAL_RESEARCH"
   },
   "authority_reconstruction": {
