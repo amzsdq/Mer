@@ -1,0 +1,12 @@
+{
+  "finding": "POLICY_DRIFT_CHAIN_CONFIRMED",
+  "baseline_2_2_4_commit": "47dff61135735ae3aa781fff05b58b3305a45000",
+  "baseline_2_2_4": "OWNER prearms successor for OWNER_ACTIVATED_AT+720s and continues work toward/beyond 900s",
+  "transition_2_2_5_commit": "d968ea4e4380fb35ca71c7441bd9e53ee614d70e",
+  "transition_2_2_5": "wake-start prearm changed to observed wake+14m and removed fixed work target",
+  "serialized_2_2_14_commit": "5ae70fe944105d95c5012857f170d1e76236a30b",
+  "serialized_2_2_14": "B03-driven serialized close+120s policy",
+  "clock_2_2_15_commit": "f8d18913704035968d607f8bcacc1b2c588814be",
+  "clock_2_2_15": "added automation-server clock failover while retaining serialized policy",
+  "conclusion": "The historical +720 owner-prearm rule is directly present in 2.2.4. Later policies intentionally changed the scheduler strategy; 2.2.16 delayed-arm semantics are not the original +720 baseline."
+}
