@@ -1,0 +1,9 @@
+{
+  "finding": "TEMPORAL_STANDARD_DRIFT",
+  "temporal_standard_last_commit": "8b45fa3b4579851bd47f1f9d8879376d0718f56b",
+  "temporal_standard_time": "2026-09-24T15:35:50Z",
+  "clock_failover_prompt_commit": "f8d18913704035968d607f8bcacc1b2c588814be",
+  "clock_failover_time": "2026-09-24T17:39:03Z",
+  "conflict": "TEMPORAL_EVIDENCE_STANDARD says WORKED requires START/END marker server times, while 2.2.15+ deployed policy explicitly permits coherent same-canonical automation-server START=last_run_time and END=updated_at failover.",
+  "repair_requirement": "Add research/TEMPORAL_EVIDENCE_STANDARD.md to the policy convergence set or explicitly subordinate its Duration section to the newer failover policy. Until repaired, label automation-clock WORKED as prompt-authorized failover evidence rather than claiming the temporal standard itself already permits it."
+}
